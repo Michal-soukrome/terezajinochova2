@@ -1,0 +1,34 @@
+/Users/michaljirak/Documents/GitHub/terezajinochova2
+├── .env.local
+├── README.md
+├── app/
+│   ├── [locale]/
+│   │   ├── cancel/
+│   │   ├── page.tsx
+│   │   ├── products/
+│   │   └── success/
+│   ├── api/
+│   │   └── webhook/
+│   ├── favicon.ico
+│   ├── globals.css
+│   └── page.tsx
+├── components/
+│   ├── BuyButton.tsx
+│   ├── Header.tsx
+│   ├── LanguageSwitcher.tsx
+│   └── ProductCard.tsx
+├── eslint.config.mjs
+├── filetree.txt
+├── lib/
+│   ├── i18n.ts
+│   ├── products.ts
+│   └── proxy.ts
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public/
+├── scripts/
+│   └── generate-tree.js
+└── tsconfig.json
