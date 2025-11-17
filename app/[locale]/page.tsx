@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import TranslatedLink from "@/components/TranslatedLink";
 import { locales, isValidLocale } from "@/lib/i18n";
 
 interface PageProps {
@@ -37,12 +37,12 @@ export default async function HomePage({ params }: PageProps) {
       <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
       <p className="text-lg text-gray-700 mb-8">{description}</p>
       <div className="text-center">
-        <Link
-          href={`/${locale}/products`}
+        <TranslatedLink
+          href={`/products`}
           className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-lg"
         >
           {locale === "cs" ? "Zobrazit Produkty" : "View Products"}
-        </Link>
+        </TranslatedLink>
       </div>
     </main>
   );

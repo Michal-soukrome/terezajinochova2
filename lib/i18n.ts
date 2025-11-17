@@ -1,7 +1,8 @@
 export const locales = ["en", "cs"] as const;
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "en";
+// Default site locale (usecs/cs if you want Czech as the default)
+export const defaultLocale: Locale = "cs";
 
 export function isValidLocale(locale: string | undefined): locale is Locale {
   return !!locale && locales.includes(locale as Locale);

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import TranslatedLink from "./TranslatedLink";
 import { Product } from "@/lib/products";
 import { BuyButton } from "./BuyButton";
 
@@ -22,12 +22,12 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           : `$${(product.priceCZK / 100).toFixed(2)}`}
       </p>
       <div className="flex space-x-4">
-        <Link
-          href={`/${locale}/products/${product.id}`}
+        <TranslatedLink
+          href={`/products/${product.id}`}
           className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
         >
           {locale === "cs" ? "Zobrazit Detaily" : "View Details"}
-        </Link>
+        </TranslatedLink>
         <BuyButton productId={product.id} locale={locale} />
       </div>
     </div>

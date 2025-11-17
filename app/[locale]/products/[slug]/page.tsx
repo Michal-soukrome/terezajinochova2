@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { locales, isValidLocale } from "@/lib/i18n";
-import { PRODUCTS } from "@/lib/products";
+import { PRODUCTS, getProductByLocalizedSlug } from "@/lib/products";
+import { Locale } from "@/lib/i18n";
 import { BuyButton } from "@/components/BuyButton";
 
 interface PageProps {
@@ -19,7 +20,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const product = PRODUCTS[slug as keyof typeof PRODUCTS];
+  const product = getProductByLocalizedSlug(locale as Locale, slug);
   if (!product) {
     return {};
   }
@@ -35,7 +36,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const product = PRODUCTS[slug as keyof typeof PRODUCTS];
+  const product = getProductByLocalizedSlug(locale as Locale, slug);
   if (!product) {
     notFound();
   }
@@ -66,10 +67,10 @@ export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
 
   for (const locale of locales) {
-    for (const productId of Object.keys(PRODUCTS)) {
+    for (const product of Object.values(PRODUCTS)) {
       params.push({
         locale,
-        slug: productId,
+        slug: product.slugs[locale as keyof typeof product.slugs],
       });
     }
   }

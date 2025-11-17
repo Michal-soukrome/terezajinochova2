@@ -19,8 +19,10 @@ export async function POST(request: NextRequest) {
 
   try {
     event = stripe.webhooks.constructEvent(body, signature, endpointSecret);
-  } catch (err: any) {
-    console.error("Invalid webhook signature:", err.message);
+  } catch (err) {
+    // `err` is unknown by default in TS; cast locally for message access
+    const error = err as { message?: string };
+    console.error("Invalid webhook signature:", error.message);
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 

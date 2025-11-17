@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { routes } from "@/lib/routes";
+import TranslatedLink from "./TranslatedLink";
 import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -16,12 +16,12 @@ export function Header({ locale }: HeaderProps) {
             My App
           </Link>
           <nav className="flex items-center space-x-4">
-            <Link
-              href={`/${locale}/products`}
+            <TranslatedLink
+              href={`/products`}
               className="text-gray-700 hover:text-gray-900"
             >
               {locale === "cs" ? "Produkty" : "Products"}
-            </Link>
+            </TranslatedLink>
             <LanguageSwitcher />
           </nav>
         </div>

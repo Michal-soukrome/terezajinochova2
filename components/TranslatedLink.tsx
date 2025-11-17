@@ -1,0 +1,98 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { routes } from "@/lib/routes";
+import { PRODUCT_LIST } from "@/lib/products";
+
+interface TranslatedLinkProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export default function TranslatedLink({
+  href,
+  children,
+  className,
+}: TranslatedLinkProps) {
+  const pathname = usePathname();
+  const pathLocale = pathname?.split("/").filter(Boolean)[0];
+
+  // If we can't detect locale from path, just return a regular Link
+  if (!pathLocale) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+
+  const locale = pathLocale;
+
+  // Normalize href
+  let cleanHref = href;
+  if (cleanHref.startsWith(`/${locale}`)) {
+    cleanHref = cleanHref.slice(locale.length + 1);
+  }
+
+  // If it's root
+  if (cleanHref === "/" || cleanHref === "")
+    return (
+      <Link href={`/${locale}`} className={className}>
+        {children}
+      </Link>
+    );
+
+  const segments = cleanHref.split("/").filter(Boolean);
+
+  // Map top-level route using routes translation mapping
+  const top = segments[0];
+  const routeKey = Object.keys(routes).find(
+    (key) => routes[key as keyof typeof routes].en === top || key === top
+  );
+
+  if (routeKey) {
+    // Build localized top slug
+    const localizedTop =
+      routes[routeKey as keyof typeof routes][
+        locale as keyof (typeof routes)[keyof typeof routes]
+      ];
+
+    // Product path: map product slug if present
+    if (top === routes.products.en && segments[1]) {
+      const productIdentifier = segments[1];
+      const product = PRODUCT_LIST.find(
+        (p) =>
+          p.id === productIdentifier ||
+          p.slugs.en === productIdentifier ||
+          p.slugs.cs === productIdentifier
+      );
+      if (product) {
+        const localizedProductSlug =
+          product.slugs[locale as keyof typeof product.slugs];
+        return (
+          <Link
+            href={`/${locale}/${localizedTop}/${localizedProductSlug}`}
+            className={className}
+          >
+            {children}
+          </Link>
+        );
+      }
+    }
+
+    return (
+      <Link href={`/${locale}/${localizedTop}`} className={className}>
+        {children}
+      </Link>
+    );
+  }
+
+  // Fallback to adding locale prefix
+  return (
+    <Link href={`/${locale}${href}`} className={className}>
+      {children}
+    </Link>
+  );
+}

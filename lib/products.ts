@@ -75,3 +75,13 @@ export const PRODUCTS: Record<string, Product> = {
 
 export type ProductId = keyof typeof PRODUCTS;
 export const PRODUCT_LIST = Object.values(PRODUCTS);
+
+// Najde produkt podle lokalizovaného slugu (např. "zakladni" v češtině)
+import { Locale } from "@/lib/i18n";
+
+export function getProductByLocalizedSlug(
+  locale: Locale,
+  slug: string
+): Product | undefined {
+  return Object.values(PRODUCTS).find((p) => p.slugs[locale] === slug);
+}

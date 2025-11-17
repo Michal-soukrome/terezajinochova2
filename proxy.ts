@@ -8,7 +8,7 @@ import { routes } from "@/lib/routes";
  * Proxy handler pro i18n + canonical slug verificaton.
  * Nahrazuje deprecated middleware konvenci.
  */
-export function proxy(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
 
@@ -20,7 +20,7 @@ export function proxy(request: NextRequest) {
     /\.[^\/]+$/.test(pathname); // simple file check
 
   if (isPublicFile) {
-    return; // proxy může vrátit `undefined` pro nezasahování
+    return NextResponse.next();
   }
 
   // Zkontroluj, jestli URL již obsahuje locale prefix
@@ -48,10 +48,22 @@ export function proxy(request: NextRequest) {
         res.cookies.set("NEXT_LOCALE", locale);
         return res;
       }
+
+      // Pokud je slug lokalizovaný, přesměruj na kanonickou anglickou verzi
+      const canonicalSlug = routes[routeKey as keyof typeof routes].en;
+      if (slug !== canonicalSlug) {
+        // Přepiš na kanonickou verzi pro interní routing a zachovej zbytek cesty
+        const rest = parts.slice(2).join("/");
+        const canonicalPath = `/${locale}/${canonicalSlug}${
+          rest ? `/${rest}` : ""
+        }`;
+        const rewriteUrl = new URL(canonicalPath, request.url);
+        return NextResponse.rewrite(rewriteUrl);
+      }
     }
 
     // všechno OK, nezasahujeme
-    return;
+    return NextResponse.next();
   }
 
   // Nemá locale prefix — rozhodni se na základě cookie / Accept-Language
