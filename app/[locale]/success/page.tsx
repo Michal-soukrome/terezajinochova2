@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
+import Button from "@/components/Button";
 
 interface SessionData {
   id: string;
@@ -20,6 +21,10 @@ interface SessionData {
 }
 
 export const dynamic = "force-dynamic";
+
+// `success` is a client component and cannot export server-only metadata.
+// If you want OG tags for this page, add them from a parent server layout or
+// convert the page to a server component.
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -106,7 +111,7 @@ function SuccessContent() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden receipt-container">
         {/* Header */}
         <div className="bg-green-600 text-white p-6">
@@ -188,18 +193,16 @@ function SuccessContent() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center no-print">
-            <button
+            <Button
               onClick={handleExport}
-              className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+              variant="secondary"
+              className="px-6 py-3"
             >
               📄 Export Receipt
-            </button>
-            <Link
-              href="/"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center"
-            >
+            </Button>
+            <Button href="/" variant="primary" className="px-6 py-3">
               🏠 Back to Homepage
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

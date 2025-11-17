@@ -18,8 +18,23 @@ export async function generateMetadata({
   }
 
   const title = locale === "cs" ? "Domů" : "Home";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const url = `${siteUrl}/${locale}`;
+  const description = locale === "cs" ? "Popis aplikace" : "App description";
   return {
     title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "My App",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -33,7 +48,7 @@ export default async function HomePage({ params }: PageProps) {
   const description = locale === "cs" ? "Popis aplikace" : "App description";
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main>
       <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
       <p className="text-lg text-gray-700 mb-8">{description}</p>
       <div className="text-center">

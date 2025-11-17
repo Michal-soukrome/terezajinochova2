@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales, Locale } from "@/lib/i18n";
+import { setCookie } from "@/lib/cookies";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
 
@@ -52,10 +53,10 @@ export function LanguageSwitcher() {
 
   const setLocaleCookie = (locale: Locale) => {
     try {
-      // Set cookie for 1 year so future visits default to chosen locale
-      const maxAge = 60 * 60 * 24 * 365; // 1 year
-      // eslint-disable-next-line react-hooks/immutability
-      document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=${maxAge}`;
+      setCookie("NEXT_LOCALE", locale, {
+        maxAge: 60 * 60 * 24 * 365,
+        path: "/",
+      });
     } catch {
       // ignore in non-browser environments
     }
@@ -68,7 +69,7 @@ export function LanguageSwitcher() {
           key={locale}
           href={getLocalizedPath(locale)}
           onClick={() => setLocaleCookie(locale)}
-          className="px-3 py-1 text-sm bg-gray-200 rounded hover:bg-gray-300"
+          className="btn btn-ghost px-3 py-1 text-sm"
         >
           {locale.toUpperCase()}
         </Link>

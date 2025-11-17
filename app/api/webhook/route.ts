@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// Disable body parsing
-export const config = { api: { bodyParser: false } };
+// Don't export deprecated `config` in app router. We keep reading the raw body
+// directly using `request.text()` for Stripe signature verification.
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 

@@ -9,12 +9,18 @@ interface TranslatedLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
+  activeClassName?: string;
+  exact?: boolean;
 }
 
 export default function TranslatedLink({
   href,
   children,
   className,
+  onClick,
+  activeClassName,
+  exact,
 }: TranslatedLinkProps) {
   const pathname = usePathname();
   const pathLocale = pathname?.split("/").filter(Boolean)[0];
@@ -82,16 +88,39 @@ export default function TranslatedLink({
       }
     }
 
+    const localizedHref = `/${locale}/${localizedTop}`;
+    const normalize = (p?: string) => p?.replace(/\/+$/, "") ?? "";
+    const isActive = exact
+      ? normalize(pathname) === normalize(localizedHref)
+      : normalize(pathname).startsWith(normalize(localizedHref));
     return (
-      <Link href={`/${locale}/${localizedTop}`} className={className}>
+      <Link
+        href={localizedHref}
+        className={`${className ?? ""} ${
+          isActive && activeClassName ? activeClassName : ""
+        }`}
+        onClick={onClick}
+      >
         {children}
       </Link>
     );
   }
 
   // Fallback to adding locale prefix
+  const localized = `/${locale}${href}`;
+  const normalize = (p?: string) => p?.replace(/\/+$/, "") ?? "";
+  const isActive = exact
+    ? normalize(pathname) === normalize(localized)
+    : normalize(pathname) === normalize(localized) ||
+      normalize(pathname).startsWith(normalize(localized) + "/");
   return (
-    <Link href={`/${locale}${href}`} className={className}>
+    <Link
+      href={localized}
+      className={`${className ?? ""} ${
+        isActive && activeClassName ? activeClassName : ""
+      }`}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );

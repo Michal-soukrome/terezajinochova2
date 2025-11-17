@@ -17,7 +17,7 @@ function CancelContent() {
     : defaultLocale;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md text-center">
         <h1 className="text-2xl font-bold text-red-600 mb-4">
           {locale === "cs" ? "Platba zrušena" : "Payment cancelled"}
@@ -34,16 +34,13 @@ function CancelContent() {
         )}
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-          <TranslatedLink
-            href="/"
-            className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
+          <TranslatedLink href="/" className="btn btn-primary px-6 py-3">
             {locale === "cs" ? "Zpět na domovskou stránku" : "Back to homepage"}
           </TranslatedLink>
 
           <TranslatedLink
             href="/products"
-            className="px-6 py-3 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+            className="btn btn-secondary px-6 py-3"
           >
             {locale === "cs" ? "Zobrazit produkty" : "View products"}
           </TranslatedLink>
@@ -60,3 +57,7 @@ export default function CancelPage() {
     </Suspense>
   );
 }
+
+// `cancel` is a client component and cannot export server-only metadata.
+// If you want OG tags for this page, add them from a parent server layout or
+// convert the page to a server component.

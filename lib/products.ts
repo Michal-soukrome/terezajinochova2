@@ -27,6 +27,11 @@ export interface Product {
 
   // Frontend assets
   image: string;
+  // Short bullet points to highlight benefits
+  highlights?: {
+    cs: string[];
+    en: string[];
+  };
 }
 
 export const PRODUCTS: Record<string, Product> = {
@@ -43,12 +48,24 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Wedding Diary – Basic",
     },
     descriptions: {
-      cs: "Kompletní průvodce plánováním svatby.",
-      en: "Complete guide to planning your wedding.",
+      cs: "Praktický deník pro moderní páry — checklisty, rozpočtové šablony a místo pro vaše nejhezčí vzpomínky.",
+      en: "A practical wedding diary for modern couples — checklists, budget templates and space for your favorite memories.",
     },
 
     priceCZK: 990,
-    image: "/assets/thumbnail_IMG_5264.png",
+    image: "/assets/cover.png",
+    highlights: {
+      cs: [
+        "Praktické checklisty pro každý den",
+        "Šablony rozpočtu a seznam dodavatelů",
+        "Místa pro poznámky a vzpomínky",
+      ],
+      en: [
+        "Practical daily checklists",
+        "Budget templates & vendor lists",
+        "Dedicated space for memories and notes",
+      ],
+    },
   },
 
   premium: {
@@ -64,12 +81,24 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Wedding Diary – Premium",
     },
     descriptions: {
-      cs: "Luxusní verze s bonusovým obsahem.",
-      en: "Luxury version with bonus content.",
+      cs: "Prémiové vydání s rozšířenými kapitolami, tiskově připravenými návrhy a bonusovými stránkami pro plánování.",
+      en: "Premium edition with extended chapters, print-ready layouts and bonus pages for advanced planning.",
     },
 
     priceCZK: 1490,
-    image: "/assets/thumbnail_IMG_5264.png",
+    image: "/assets/cover.png",
+    highlights: {
+      cs: [
+        "Větší rozsah kapitol & bonusové návody",
+        "Prémiová tisková kvalita a extra stránky",
+        "Stylové návrhy svatebního harmonogramu",
+      ],
+      en: [
+        "Extended chapters & bonus guides",
+        "Premium print-ready layouts & extra pages",
+        "Stylish timeline and planning templates",
+      ],
+    },
   },
 };
 

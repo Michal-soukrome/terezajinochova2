@@ -1,13 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import Button from "./Button";
 
 interface BuyButtonProps {
   productId: string;
   locale: string;
+  className?: string;
+  variant?: "primary" | "secondary" | "ghost" | "icon" | "outline";
+  roundedFull?: boolean;
 }
 
-export function BuyButton({ productId, locale }: BuyButtonProps) {
+export function BuyButton({
+  productId,
+  locale,
+  className,
+  variant = "primary",
+  roundedFull,
+}: BuyButtonProps) {
   const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
@@ -29,13 +39,18 @@ export function BuyButton({ productId, locale }: BuyButtonProps) {
     }
   };
 
+  const label = locale === "cs" ? "Koupit" : "Buy Now";
+
   return (
-    <button
+    <Button
       onClick={handleClick}
       disabled={loading}
-      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+      variant={variant}
+      className={className}
+      roundedFull={roundedFull}
+      aria-busy={loading}
     >
-      {loading ? "Loading..." : "Buy Now"}
-    </button>
+      {loading ? (locale === "cs" ? "Načítání..." : "Loading...") : label}
+    </Button>
   );
 }

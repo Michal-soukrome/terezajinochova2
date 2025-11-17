@@ -1,4 +1,6 @@
-// proxy.ts
+// proxy.ts - Next.js Proxy (new convention, replacing middleware.ts)
+// Runs at network boundary before requests reach the app
+
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale, getPreferredLocale } from "@/lib/i18n";

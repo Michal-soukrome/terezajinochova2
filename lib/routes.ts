@@ -4,4 +4,5 @@ export const routes = {
   cancel: { cs: "zruseno", en: "cancel" },
   basic: { cs: "zakladni", en: "basic" },
   premium: { cs: "premium", en: "premium" },
+  privacy: { cs: "soukromi", en: "privacy" },
 };

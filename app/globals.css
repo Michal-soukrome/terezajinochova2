@@ -8,7 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter); /* Inter for body text */
+  --font-heading: var(--font-poppins); /* Poppins for headings */
   --font-mono: var(--font-geist-mono);
 }
 
@@ -19,10 +20,23 @@
   }
 }
 
+@import "./styles/buttons.css";
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Headings use Poppins for a friendly, rounded look */
+h1,
+h2,
+h3,
+.heading {
+  font-family: var(--font-heading), var(--font-sans);
+  letter-spacing: -0.01em;
 }
 
 /* Print styles for receipt */
