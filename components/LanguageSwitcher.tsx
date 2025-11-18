@@ -63,15 +63,22 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex space-x-2">
+    <div className="flex gap-1">
       {locales.map((locale) => (
         <Link
           key={locale}
           href={getLocalizedPath(locale)}
           onClick={() => setLocaleCookie(locale)}
-          className="btn btn-ghost px-3 py-1 text-sm"
+          className="btn btn-ghost"
+          // když nepoužiju vlajky tak můžu odkomentovat
+          // className={locale === "cs" ? "btn-ghost" : "btn-secondary"}
         >
           {locale.toUpperCase()}
+          {/*{locale === "cs" ? "cz" : "en"}
+          
+            tady sem chtěl doplnit vlajky namísto textových hodnot, proto ta proměnná
+
+          */}
         </Link>
       ))}
     </div>

@@ -5,6 +5,37 @@
   --foreground: #171717;
 }
 
+/* Safe area support for modern devices */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+  .safe-area-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+  .safe-area-left {
+    padding-left: max(env(safe-area-inset-left), 0px);
+  }
+  .safe-area-right {
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
+  .safe-area-x {
+    padding-left: max(env(safe-area-inset-left), 0px);
+    padding-right: max(env(safe-area-inset-right), 0px);
+  }
+  .safe-area-y {
+    padding-top: max(env(safe-area-inset-top), 0px);
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -21,6 +52,7 @@
 }
 
 @import "./styles/buttons.css";
+@import "./styles/navigation.css";
 
 body {
   background: var(--background);
@@ -53,4 +85,31 @@ h3,
     box-shadow: none !important;
     border: 1px solid #ccc !important;
   }
+}
+
+header a,
+footer a {
+  @apply !capitalize;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::before {
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  border: 1px solid black;
+
+  background: red;
+}
+
+h3::first-letter {
+  @apply capitalize;
+}
+
+#fullscreen-menu {
+  height: calc(100svh - 5rem);
+  /* 5 rem protože výška headeru je h-20 což je 5 rem (platí jak pro desktop tak pro mobil) */
 }

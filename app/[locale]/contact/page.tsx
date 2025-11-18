@@ -15,37 +15,32 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
 
-  const title =
-    locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy";
+  const title = locale === "cs" ? "Kontakt" : "Contact";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
-  const url = `${siteUrl}/${locale}/privacy`;
+  const url = `${siteUrl}/${locale}/contact`;
   return {
     title,
-    description:
-      locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy",
+    description: locale === "cs" ? "Kontakt" : "Contact",
     openGraph: {
       title,
-      description:
-        locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy",
+      description: locale === "cs" ? "Kontakt" : "Contact",
       url,
       siteName: "svatební deník",
     },
   };
 }
 
-export default async function PrivacyPage({ params }: PageProps) {
+export default async function ContactPage({ params }: PageProps) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
 
   return (
     <div>
       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-        {locale === "cs" ? "Ochrana osobních údajů" : "Privacy policy"}
+        {locale === "cs" ? "Napište mi" : "Let`s get in touch"}
       </h3>
       <p className="text-gray-600 mb-6">
-        {locale === "cs"
-          ? "Toto jsou podmínky ochrany osobních údajů..."
-          : "This privacy policy explains how we handle personal data..."}
+        {locale === "cs" ? "Nějaké texty" : "Some texts here"}
       </p>
 
       <div>

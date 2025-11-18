@@ -1,9 +1,10 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
+import { isValidLocale, defaultLocale, Locale } from "@/lib/i18n";
 
 interface SessionData {
   id: string;
@@ -32,6 +33,11 @@ function SuccessContent() {
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const pathname = usePathname();
+  const localeFromPath = pathname?.split("/").filter(Boolean)[0];
+  const locale: Locale = isValidLocale(localeFromPath)
+    ? localeFromPath
+    : defaultLocale;
 
   useEffect(() => {
     if (sessionId) {
@@ -117,8 +123,16 @@ function SuccessContent() {
         <div className="bg-green-600 text-white p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold">Payment Successful! 🎉</h1>
-              <p className="text-green-100 mt-2">Thank you for your purchase</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                {locale === "cs"
+                  ? "Platba proběhla úspěšně!"
+                  : "Payment was successfully completed!"}
+              </h3>{" "}
+              <p className="text-gray-700">
+                {locale === "cs"
+                  ? "Vše proběhlo v pořádku, moc děkuji za nákup."
+                  : "Platba byla z nějakého důvodu neúspěšná.."}
+              </p>{" "}
             </div>
             <div className="text-right">
               <p className="text-sm">Receipt #{sessionData.id.slice(-8)}</p>

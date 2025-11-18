@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TranslatedLink from "@/components/TranslatedLink";
 import { locales, isValidLocale } from "@/lib/i18n";
+import { ProductCard } from "@/components/ProductCard";
+import { PRODUCT_LIST } from "@/lib/products";
 
 interface PageProps {
   params: Promise<{
@@ -17,7 +19,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = locale === "cs" ? "Domů" : "Home";
+  const title = locale === "cs" ? "úvod" : "Home";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const url = `${siteUrl}/${locale}`;
   const description = locale === "cs" ? "Popis aplikace" : "App description";
@@ -28,7 +30,7 @@ export async function generateMetadata({
       title,
       description,
       url,
-      siteName: "My App",
+      siteName: "svatební deník",
     },
     twitter: {
       card: "summary_large_image",
@@ -49,16 +51,38 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <main>
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
-      <p className="text-lg text-gray-700 mb-8">{description}</p>
-      <div className="text-center">
-        <TranslatedLink
-          href={`/products`}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-lg"
-        >
-          {locale === "cs" ? "Zobrazit Produkty" : "View Products"}
-        </TranslatedLink>
-      </div>
+      <section className="h-[70vh] w-full border-b">
+        <div className="h-full flex flex-col items-center justify-center">
+          <h1>{title}</h1>
+          <h2>{description}</h2>{" "}
+          <div className="mt-4">
+            <TranslatedLink href={`/products`} className="btn btn-primary">
+              {locale === "cs" ? "Zobrazit Produkty" : "View Products"}
+            </TranslatedLink>
+          </div>
+        </div>
+      </section>
+
+      {/* about diaries, benefits, stats */}
+      <section className="max-w-7xl mx-auto"></section>
+
+      {/* product list, just duplicating products page */}
+      <section className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
+          {PRODUCT_LIST.map((product) => (
+            <ProductCard key={product.id} product={product} locale={locale} />
+          ))}
+        </div>
+      </section>
+
+      {/* reviews, maybe with offset carousel on scroll or just bento grid */}
+      <section className="max-w-7xl mx-auto"></section>
+
+      {/* about the author */}
+      <section className="max-w-7xl mx-auto"></section>
+
+      {/* contact */}
+      <section className="max-w-7xl mx-auto"></section>
     </main>
   );
 }

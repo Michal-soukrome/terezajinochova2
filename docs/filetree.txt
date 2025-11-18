@@ -1,0 +1,50 @@
+/Users/michaljirak/Documents/GitHub/terezajinochova2
+├── .env.example // stores all enviromental variables
+├── .env.local // duplicate
+├── ASSET_COMMENTS.md // app description
+├── README.md // app description
+├── app/ // apps root basically
+│   ├── [locale]/ // stores localized routes (on new page add, new folder and page.tsx has to be created)
+│   │   ├── cancel/ // canceled payment page (when user clicks "back to page" from stripes checkout window)
+│   │   ├── page.tsx // homepage with vercel deployment info, shouldnt be visible anywhere as redirect ensures that /cs is default
+│   │   ├── privacy/ // privacy policy page
+│   │   ├── products/ // product page, displays ProductCard component
+│   │   └── success/ // successful payment page, shows receipt and other info
+│   ├── api/ // "database" files
+│   │   ├── checkout/ // stripe communication file
+│   │   ├── session/ // stripe session id checker (reused also inside cancel and success pages as url)
+│   │   └── webhook/ // base stripe communication file
+│   ├── favicon.ico // favicon, has to be changed later
+│   ├── globals.css // global styles for body, fonts etc.
+│   ├── page.tsx
+│   └── styles/
+│       ├── buttons.css // button styles
+│       └── navigation.css // header (nav) styles
+├── components/
+│   ├── Button.module.css // keeps basic button styles
+│   ├── Button.tsx // simple button with multiple variants such as primary, secondary, etc.
+│   ├── BuyButton.tsx // button thats connected to stripe and calls the "buy" function
+│   ├── Footer.tsx // apps footer (footer)
+│   ├── Header.tsx // apps header (nav)
+│   ├── LanguageSwitcher.tsx // switches between languages and stores it into cookies
+│   ├── ProductCard.tsx // displays product card 
+│   └── TranslatedLink.tsx // link helper component that supports multilang via the "locale" attribute
+├── eslint.config.mjs // linter
+├── filetree.txt // generated structure file
+├── lib/
+│   ├── animations.ts // stores animations used when changing routes
+│   ├── cookies.ts // cookies stores preferred language used via LanguageSwitcher so user dont need to change it 
+│   ├── i18n.ts // multilang support
+│   └── products.ts // product data (not managed in stripe)
+├── next-env.d.ts
+├── next.config.ts // nextjs config file
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs 
+├── proxy.ts // aka middleware, helps with localized routing
+├── public/
+│   └── assets/
+│       └── cover.png // product image (other images has to be stored here as well, nextjs optimizes them on deploy)
+├── scripts/
+│   └── generate-tree.js // generates filetree.txt apps structure via "npm run tree" terminal command 
+└── tsconfig.json 

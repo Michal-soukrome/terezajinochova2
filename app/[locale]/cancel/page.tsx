@@ -19,9 +19,9 @@ function CancelContent() {
   return (
     <div className="flex items-center justify-center">
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md text-center">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">
           {locale === "cs" ? "Platba zrušena" : "Payment cancelled"}
-        </h1>
+        </h3>
         <p className="text-gray-700">
           {locale === "cs"
             ? "Platba byla zrušena. Pokud jste omylem přerušili platbu, můžete zkusit nákup znovu nebo se vrátit na hlavní stránku."
@@ -35,7 +35,7 @@ function CancelContent() {
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
           <TranslatedLink href="/" className="btn btn-primary px-6 py-3">
-            {locale === "cs" ? "Zpět na domovskou stránku" : "Back to homepage"}
+            {locale === "cs" ? "Zpět na úvodní stránku" : "Back to homepage"}
           </TranslatedLink>
 
           <TranslatedLink

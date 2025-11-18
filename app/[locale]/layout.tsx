@@ -18,12 +18,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div>
       <div className="w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-start justify-between min-h-svh w-full h-full">
           <Header locale={locale} />
 
-          <main className="flex-1 py-8">
+          {/* exclude homepage from layout as it has to be fullwidth */}
+
+          <main className="w-full flex-1 p-4 sm:p-6 lg:p-8 ">
             <RouteTransition>{children}</RouteTransition>
           </main>
 

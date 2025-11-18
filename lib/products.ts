@@ -23,6 +23,7 @@ export interface Product {
   };
 
   // Cena pro zobrazení (Stripe řeší reálnou cenu)
+  // zobrazuje se cena v centech/halířích (?)
   priceCZK: number;
 
   // Frontend assets
@@ -52,7 +53,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "A practical wedding diary for modern couples — checklists, budget templates and space for your favorite memories.",
     },
 
-    priceCZK: 990,
+    priceCZK: 20500,
     image: "/assets/cover.png",
     highlights: {
       cs: [

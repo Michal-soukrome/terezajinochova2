@@ -43,7 +43,7 @@ export async function generateMetadata({
       title: titleLocalized,
       description: descLocalized,
       url,
-      siteName: "My App",
+      siteName: "svatební deník",
       images: [
         {
           url: `${siteUrl}${image}`,
@@ -72,19 +72,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="">
-      <div className="bg-white p-8 rounded-lg shadow-lg md:flex md:gap-8">
-        <div className="md:w-1/2">
+    <div id="product-detail-wrap">
+      <div className="md:flex md:gap-20" id="product-detail-content">
+        <div className="md:w-1/2" id="product-detail-left">
           <Image
             src={product.image}
             alt={product.names[locale as keyof typeof product.names]}
             width={720}
             height={820}
-            className="w-full h-auto rounded-md object-cover"
+            className="w-full h-auto rounded-md object-cover shadow"
             priority
           />
         </div>
-        <div className="md:w-1/2">
+        <div className="md:w-1/2" id="product-detail-right">
+          {product.id === "premium" ? (
+            <div className="inline-block mb-2 border border-yellow-300 px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded font-medium uppercase">
+              premium
+            </div>
+          ) : (
+            <div className="inline-block mb-2 border border-gray-300 px-2 py-1 text-xs text-gray-800 bg-gray-100 rounded font-medium uppercase">
+              základní
+            </div>
+          )}
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             {product.names[locale as keyof typeof product.names]}
           </h1>
@@ -93,7 +102,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </p>
 
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-base font-semibold mb-2">
               {locale === "cs" ? "Co získáte" : "What you get"}
             </h3>
             <ul className="list-disc list-inside text-gray-700 mb-4">
@@ -133,6 +142,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
             />
           </div>
         </div>
+      </div>
+      <div className="mt-10 border-t py-5">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. A voluptate et
+        beatae expedita quisquam, sint dolore provident quod accusamus totam
+        consequuntur ipsum ad quas amet laudantium nisi aperiam. Voluptatum
+        laborum hic veniam fugiat ullam aliquam ratione sed totam molestiae
+        repellendus beatae natus sequi tenetur quisquam mollitia molestias,
+        voluptate cupiditate? Facere!
       </div>
     </div>
   );

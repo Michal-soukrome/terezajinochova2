@@ -5,4 +5,5 @@ export const routes = {
   basic: { cs: "zakladni", en: "basic" },
   premium: { cs: "premium", en: "premium" },
   privacy: { cs: "soukromi", en: "privacy" },
+  contact: { cs: "kontakt", en: "contact" },
 };

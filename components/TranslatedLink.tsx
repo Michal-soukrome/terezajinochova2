@@ -1,9 +1,12 @@
+// TODO: every link click has to scroll all the way back on page
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
+import { useRef } from "react";
 
 interface TranslatedLinkProps {
   href: string;
@@ -90,6 +93,7 @@ export default function TranslatedLink({
 
     const localizedHref = `/${locale}/${localizedTop}`;
     const normalize = (p?: string) => p?.replace(/\/+$/, "") ?? "";
+
     const isActive = exact
       ? normalize(pathname) === normalize(localizedHref)
       : normalize(pathname).startsWith(normalize(localizedHref));
