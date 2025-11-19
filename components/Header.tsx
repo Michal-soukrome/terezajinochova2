@@ -8,6 +8,7 @@ import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "./Button";
+import { BookA, BookOpen, Home, Mail, ShoppingCart } from "lucide-react";
 
 interface HeaderProps {
   locale: Locale;
@@ -160,7 +161,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2"
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -170,6 +171,7 @@ export function Header({ locale }: HeaderProps) {
                     : "Go to homepage"
                 }
               >
+                <Home className="w-4 h-4" />
                 <span className="uppercase">
                   {locale === "cs" ? "úvod" : "Home"}
                 </span>
@@ -180,7 +182,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -189,6 +191,7 @@ export function Header({ locale }: HeaderProps) {
                     : "Go to about page"
                 }
               >
+                <BookOpen className="w-4 h-4" />
                 <span className="uppercase">
                   {locale === "cs" ? "O deníku" : "About"}
                 </span>
@@ -200,7 +203,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
-                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -209,6 +212,7 @@ export function Header({ locale }: HeaderProps) {
                     : "Go to products page"
                 }
               >
+                <ShoppingCart className="w-4 h-4" />
                 <span className="uppercase">
                   {locale === "cs" ? "Objednat" : "Order"}
                 </span>
@@ -384,7 +388,7 @@ export function Header({ locale }: HeaderProps) {
                           {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
                         </h3>
                         <div className="space-y-3">
-                          <div className="grow flex-1 bg-linear-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+                          <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-200">
                             <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
                               {locale === "cs"
                                 ? "Začněte plánovat"
@@ -397,7 +401,7 @@ export function Header({ locale }: HeaderProps) {
                             </p>
                             <TranslatedLink
                               href="/products"
-                              className="inline-flex items-center px-4 py-2 bg-amber-800 text-white rounded-lg hover:bg-amber-900 transition-colors duration-200 font-medium text-sm"
+                              className="btn btn-primary text-xs"
                               onClick={() => setOpen(false)}
                               title={
                                 locale === "cs"
@@ -405,25 +409,12 @@ export function Header({ locale }: HeaderProps) {
                                   : "Explore products"
                               }
                             >
+                              <BookOpen className="w-4 h-4 mr-2" />
                               {locale === "cs" ? "Prozkoumat" : "Explore"}
-                              <svg
-                                className="ml-2 w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M9 5l7 7-7 7"
-                                />
-                              </svg>
                             </TranslatedLink>
                           </div>
 
-                          <div className="grow flex-1 bg-linear-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+                          <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-200">
                             <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
                               {locale === "cs"
                                 ? "Potřebujete pomoc?"
@@ -436,7 +427,7 @@ export function Header({ locale }: HeaderProps) {
                             </p>
                             <TranslatedLink
                               href="/contact"
-                              className="inline-flex items-center px-4 py-2 border border-amber-800 text-amber-800 rounded-lg hover:bg-amber-800 hover:text-white transition-colors duration-200 font-medium text-sm"
+                              className="btn btn-secondary text-xs"
                               onClick={() => setOpen(false)}
                               title={
                                 locale === "cs"
@@ -444,21 +435,8 @@ export function Header({ locale }: HeaderProps) {
                                   : "Contact us"
                               }
                             >
+                              <Mail className="w-4 h-4 mr-2" />
                               {locale === "cs" ? "Napište mi" : "Let me know"}
-                              <svg
-                                className="ml-2 w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                />
-                              </svg>
                             </TranslatedLink>
                           </div>
                         </div>

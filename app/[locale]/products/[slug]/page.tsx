@@ -156,10 +156,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <span className="text-5xl font-bold text-gray-900 font-deluxe">
                 {locale === "cs"
                   ? `${(product.priceCZK / 100).toFixed(0)}`
-                  : `$${(product.priceCZK / 100).toFixed(2)}`}
+                  : `${(product.priceCZK / 100).toFixed(0)}`}
               </span>
               <span className="text-2xl text-gray-600">
-                {locale === "cs" ? "Kč" : ""}
+                {locale === "cs" ? "Kč" : "Kč"}
+                {/* obě teď ukazují Kč, ale jde upravit na dolary nebo eura protože i v nich lze přijímat platba */}
               </span>
             </div>
 
