@@ -28,6 +28,13 @@ export async function GET(
       amount_total: session.amount_total,
       currency: session.currency,
       customer_email: session.customer_details?.email,
+      customer_details: session.customer_details,
+      shipping_details:
+        (session as any).shipping_details || (session as any).shipping,
+      payment_method:
+        session.payment_intent && typeof session.payment_intent !== "string"
+          ? (session.payment_intent as any).payment_method
+          : null,
       line_items: session.line_items?.data,
       created: session.created,
     });

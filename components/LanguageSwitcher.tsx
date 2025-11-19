@@ -78,6 +78,7 @@ export function LanguageSwitcher({
             onLanguageChange?.();
           }}
           className="btn btn-ghost"
+          title={locale === "cs" ? "Přepnout na češtinu" : "Switch to English"}
           // když nepoužiju vlajky tak můžu odkomentovat
           // className={locale === "cs" ? "btn-ghost" : "btn-secondary"}
         >

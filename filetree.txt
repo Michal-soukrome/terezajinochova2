@@ -1,6 +1,23 @@
-C:\Users\michal.jirak\Documents\GitHub\terezajinochova2
-├── .env
+/Users/michaljirak/Documents/GitHub/terezajinochova2
+├── .env.example
+├── .env.local
+├── ASSET_COMMENTS.md
+├── README.md
 ├── app/
+│   ├── [locale]/
+│   │   ├── cancel/
+│   │   │   └── page.tsx
+│   │   ├── contact/
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── privacy/
+│   │   │   └── page.tsx
+│   │   ├── products/
+│   │   │   ├── [slug]/
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   └── success/
+│   │       └── page.tsx
 │   ├── api/
 │   │   ├── session/
 │   │   │   └── [sessionId]/
@@ -8,28 +25,15 @@ C:\Users\michal.jirak\Documents\GitHub\terezajinochova2
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── page.tsx
-│   ├── styles/
-│   │   └── buttons.css
-│   └── [locale]/
-│       ├── cancel/
-│       │   └── page.tsx
-│       ├── contact/
-│       │   └── page.tsx
-│       ├── page.tsx
-│       ├── privacy/
-│       │   └── page.tsx
-│       ├── products/
-│       │   ├── page.tsx
-│       │   └── [slug]/
-│       │       └── page.tsx
-│       └── success/
-│           └── page.tsx
-├── ASSET_COMMENTS.md
+│   └── styles/
+│       └── buttons.css
 ├── components/
 │   ├── Button.module.css
 │   ├── Button.tsx
 │   ├── BuyButton.tsx
+│   ├── CountUp.tsx
 │   ├── Footer.tsx
+│   ├── FullPageLoader.tsx
 │   ├── Header.tsx
 │   ├── LanguageSwitcher.tsx
 │   ├── ProductCard.tsx
@@ -52,7 +56,6 @@ C:\Users\michal.jirak\Documents\GitHub\terezajinochova2
 ├── public/
 │   └── assets/
 │       └── cover.png
-├── README.md
 ├── scripts/
 │   └── generate-tree.js
 └── tsconfig.json

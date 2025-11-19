@@ -14,6 +14,7 @@ interface TranslatedLinkProps {
   activeClassName?: string;
   exact?: boolean;
   preserveScroll?: boolean;
+  title?: string;
 }
 
 export default function TranslatedLink({
@@ -24,6 +25,7 @@ export default function TranslatedLink({
   activeClassName,
   exact,
   preserveScroll = false,
+  title,
 }: TranslatedLinkProps) {
   const pathname = usePathname();
 
@@ -42,7 +44,12 @@ export default function TranslatedLink({
   // If we can't detect locale from path, just return a regular Link
   if (!pathLocale) {
     return (
-      <Link href={href} className={className} onClick={handleClick}>
+      <Link
+        href={href}
+        className={className}
+        onClick={handleClick}
+        title={title}
+      >
         {children}
       </Link>
     );
@@ -59,7 +66,12 @@ export default function TranslatedLink({
   // If it's root
   if (cleanHref === "/" || cleanHref === "")
     return (
-      <Link href={`/${locale}`} className={className} onClick={handleClick}>
+      <Link
+        href={`/${locale}`}
+        className={className}
+        onClick={handleClick}
+        title={title}
+      >
         {children}
       </Link>
     );
@@ -96,6 +108,7 @@ export default function TranslatedLink({
             href={`/${locale}/${localizedTop}/${localizedProductSlug}`}
             className={className}
             onClick={handleClick}
+            title={title}
           >
             {children}
           </Link>
@@ -116,6 +129,7 @@ export default function TranslatedLink({
           isActive && activeClassName ? activeClassName : ""
         }`}
         onClick={handleClick}
+        title={title}
       >
         {children}
       </Link>
@@ -136,6 +150,7 @@ export default function TranslatedLink({
         isActive && activeClassName ? activeClassName : ""
       }`}
       onClick={handleClick}
+      title={title}
     >
       {children}
     </Link>

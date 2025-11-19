@@ -147,6 +147,9 @@ export function Header({ locale }: HeaderProps) {
           href={`/${locale}`}
           className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-amber-800/10 shadow relative z-10"
           onClick={() => setOpen(false)}
+          title={
+            locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
+          }
         >
           <span className="uppercase font-deluxe text-amber-800">logo</span>
         </Link>
@@ -161,6 +164,11 @@ export function Header({ locale }: HeaderProps) {
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
+                title={
+                  locale === "cs"
+                    ? "Přejít na domovskou stránku"
+                    : "Go to homepage"
+                }
               >
                 <span className="uppercase">
                   {locale === "cs" ? "úvod" : "Home"}
@@ -175,6 +183,11 @@ export function Header({ locale }: HeaderProps) {
                 className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
+                title={
+                  locale === "cs"
+                    ? "Přejít na stránku o deníku"
+                    : "Go to about page"
+                }
               >
                 <span className="uppercase">
                   {locale === "cs" ? "O deníku" : "About"}
@@ -190,6 +203,11 @@ export function Header({ locale }: HeaderProps) {
                 className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
+                title={
+                  locale === "cs"
+                    ? "Přejít na stránku produktů"
+                    : "Go to products page"
+                }
               >
                 <span className="uppercase">
                   {locale === "cs" ? "Objednat" : "Order"}
@@ -302,6 +320,11 @@ export function Header({ locale }: HeaderProps) {
                             className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
+                            title={
+                              locale === "cs"
+                                ? "Přejít na stránku o deníku"
+                                : "Go to about page"
+                            }
                           >
                             <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
                               {locale === "cs" ? "O deníku" : "About"}
@@ -312,6 +335,11 @@ export function Header({ locale }: HeaderProps) {
                             className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
+                            title={
+                              locale === "cs"
+                                ? "Přejít na stránku produktů"
+                                : "Go to products page"
+                            }
                           >
                             <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
                               {locale === "cs" ? "Objednat" : "Order"}
@@ -322,6 +350,11 @@ export function Header({ locale }: HeaderProps) {
                             className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
+                            title={
+                              locale === "cs"
+                                ? "Přejít na kontaktní stránku"
+                                : "Go to contact page"
+                            }
                           >
                             <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
                               {locale === "cs" ? "Kontakt" : "Contact"}
@@ -332,6 +365,11 @@ export function Header({ locale }: HeaderProps) {
                             className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
+                            title={
+                              locale === "cs"
+                                ? "Přejít na stránku soukromí"
+                                : "Go to privacy page"
+                            }
                           >
                             <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
                               {locale === "cs" ? "Soukromí" : "Privacy"}
@@ -361,6 +399,11 @@ export function Header({ locale }: HeaderProps) {
                               href="/products"
                               className="inline-flex items-center px-4 py-2 bg-amber-800 text-white rounded-lg hover:bg-amber-900 transition-colors duration-200 font-medium text-sm"
                               onClick={() => setOpen(false)}
+                              title={
+                                locale === "cs"
+                                  ? "Prozkoumat produkty"
+                                  : "Explore products"
+                              }
                             >
                               {locale === "cs" ? "Prozkoumat" : "Explore"}
                               <svg
@@ -395,6 +438,11 @@ export function Header({ locale }: HeaderProps) {
                               href="/contact"
                               className="inline-flex items-center px-4 py-2 border border-amber-800 text-amber-800 rounded-lg hover:bg-amber-800 hover:text-white transition-colors duration-200 font-medium text-sm"
                               onClick={() => setOpen(false)}
+                              title={
+                                locale === "cs"
+                                  ? "Kontaktovat nás"
+                                  : "Contact us"
+                              }
                             >
                               {locale === "cs" ? "Napište mi" : "Let me know"}
                               <svg
@@ -452,6 +500,11 @@ export function Header({ locale }: HeaderProps) {
                       activeClassName="bg-amber-800/5 font-semibold"
                       exact
                       onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na domovskou stránku"
+                          : "Go to homepage"
+                      }
                     >
                       {locale === "cs" ? "Úvod" : "Home"}
                     </TranslatedLink>
@@ -460,6 +513,11 @@ export function Header({ locale }: HeaderProps) {
                       className="px-4 py-6 mobile-navigation-link"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na stránku o deníku"
+                          : "Go to about page"
+                      }
                     >
                       {locale === "cs" ? "O deníku" : "About"}
                     </TranslatedLink>
@@ -468,6 +526,11 @@ export function Header({ locale }: HeaderProps) {
                       className="px-4 py-6 mobile-navigation-link"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na stránku produktů"
+                          : "Go to products page"
+                      }
                     >
                       {locale === "cs" ? "Objednat" : "Order"}
                     </TranslatedLink>
@@ -476,6 +539,11 @@ export function Header({ locale }: HeaderProps) {
                       className="px-4 py-6 mobile-navigation-link"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na stránku soukromí"
+                          : "Go to privacy page"
+                      }
                     >
                       {locale === "cs" ? "Soukromí" : "Privacy"}
                     </TranslatedLink>
@@ -484,6 +552,11 @@ export function Header({ locale }: HeaderProps) {
                       className="px-4 py-6 mobile-navigation-link"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na kontaktní stránku"
+                          : "Go to contact page"
+                      }
                     >
                       {locale === "cs" ? "Kontakt" : "Contact"}
                     </TranslatedLink>
