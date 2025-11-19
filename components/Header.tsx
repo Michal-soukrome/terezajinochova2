@@ -94,7 +94,7 @@ export function Header({ locale }: HeaderProps) {
               <TranslatedLink
                 href="/"
                 className="text-gray-700 hover:text-gray-900 p-2"
-                activeClassName="font-bold"
+                activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
               >
@@ -109,7 +109,7 @@ export function Header({ locale }: HeaderProps) {
               <TranslatedLink
                 href={`/products`}
                 className="text-gray-700 hover:text-gray-900 p-2 "
-                activeClassName="font-bold"
+                activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
               >
                 <span className="uppercase">
