@@ -10,7 +10,7 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-amber-800/5 border-t border-amber-200">
+    <footer className="w-full bg-amber-800/5 border-t border-amber-200 safe-area-bottom">
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">

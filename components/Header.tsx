@@ -121,7 +121,7 @@ export function Header({ locale }: HeaderProps) {
         y: { duration: 0.3, ease: "easeInOut" },
         backgroundColor: { duration: 0.5, ease: "easeInOut" },
       }}
-      className="fixed top-0 left-0 right-0 z-50 w-full h-20"
+      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top"
     >
       <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
       <div

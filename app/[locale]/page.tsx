@@ -382,14 +382,6 @@ export default async function HomePage({ params }: PageProps) {
                 </svg>
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-4 border border-gray-100">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                <span className="text-sm font-medium text-gray-700">
-                  {locale === "cs" ? "K dispozici" : "Available"}
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </section>

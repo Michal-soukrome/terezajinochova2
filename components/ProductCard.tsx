@@ -13,7 +13,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
 
   return (
     <div
-      className={`bg-white rounded shadow overflow-hidden transition-all duration-300  ${
+      className={`bg-white rounded border shadow overflow-hidden transition-all duration-300  ${
         isPremium
           ? "border-amber-200 shadow-amber-100/50"
           : "border-gray-200 shadow-gray-100/50"
@@ -37,20 +37,6 @@ export function ProductCard({ product, locale }: ProductCardProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           </TranslatedLink>
-
-          {/* Premium Badge */}
-          {isPremium && (
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-3 py-1.5 rounded-full text-xs font-deluxe font-semibold shadow-lg flex items-center gap-1">
-              <svg
-                className="w-3.5 h-3.5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-              {locale === "cs" ? "Premium" : "Premium"}
-            </div>
-          )}
         </div>
 
         {/* Content Section */}

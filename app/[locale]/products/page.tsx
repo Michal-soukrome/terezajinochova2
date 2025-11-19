@@ -215,11 +215,7 @@ export default async function ProductsPage({ params }: PageProps) {
           id="products-grid"
         >
           {PRODUCT_LIST.map((product, idx) => (
-            <div
-              key={product.id}
-              className="transform transition-all duration-300 hover:scale-105"
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
+            <div key={product.id} style={{ animationDelay: `${idx * 100}ms` }}>
               <ProductCard product={product} locale={locale} />
             </div>
           ))}
