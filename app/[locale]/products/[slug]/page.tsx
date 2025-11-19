@@ -37,10 +37,10 @@ export async function generateMetadata({
   const image = product.image || "/favicon.ico";
 
   return {
-    title: titleLocalized,
+    title: `${titleLocalized} | Tereza Jinochová`,
     description: descLocalized,
     openGraph: {
-      title: titleLocalized,
+      title: `${titleLocalized} | Tereza Jinochová`,
       description: descLocalized,
       url,
       siteName: "svatební deník",
@@ -53,7 +53,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: titleLocalized,
+      title: `${titleLocalized} | Tereza Jinochová`,
       description: descLocalized,
       images: [`${siteUrl}${image}`],
     },

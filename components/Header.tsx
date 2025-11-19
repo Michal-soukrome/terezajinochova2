@@ -18,20 +18,33 @@ export function Header({ locale }: HeaderProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [headerBgOpacity, setHeaderBgOpacity] = useState(0.05); // Start with very light background
+  const [scrollUpDistance, setScrollUpDistance] = useState(0);
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Handle scroll to show/hide header
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollDelta = lastScrollY - currentScrollY;
 
       // Show header when scrolling up or at the top
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        setIsVisible(true);
+      if (currentScrollY < lastScrollY) {
+        // Accumulate scroll up distance
+        const newScrollUpDistance = scrollUpDistance + Math.abs(scrollDelta);
+        setScrollUpDistance(newScrollUpDistance);
+        setIsScrollingUp(true); // Actively scrolling up
+
+        // Only show header after scrolling up by 80px or more
+        if (newScrollUpDistance >= 80 || currentScrollY < 100) {
+          setIsVisible(true);
+        }
       }
       // Hide header when scrolling down (but not at the very top)
       else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
+        setScrollUpDistance(0); // Reset scroll up distance when scrolling down
+        setIsScrollingUp(false); // No longer scrolling up
       }
 
       // Calculate background opacity based on scroll position
@@ -47,7 +60,7 @@ export function Header({ locale }: HeaderProps) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, scrollUpDistance]);
 
   useEffect(() => {
     if (open) {
@@ -116,10 +129,12 @@ export function Header({ locale }: HeaderProps) {
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
         backgroundColor: open ? "#ffffff" : "rgba(120,53,15,0.05)", // fade color
+        backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}
       transition={{
         y: { duration: 0.3, ease: "easeInOut" },
         backgroundColor: { duration: 0.5, ease: "easeInOut" },
+        backdropFilter: { duration: 0.3, ease: "easeInOut" }, // smooth backdrop blur transition
       }}
       className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top"
     >
@@ -131,6 +146,7 @@ export function Header({ locale }: HeaderProps) {
         <Link
           href={`/${locale}`}
           className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-amber-800/10 shadow relative z-10"
+          onClick={() => setOpen(false)}
         >
           <span className="uppercase font-deluxe text-amber-800">logo</span>
         </Link>
@@ -141,7 +157,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="text-amber-800 hover:text-amber-900 font-medium p-2"
+                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -150,13 +166,13 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "úvod" : "Home"}
                 </span>
               </TranslatedLink>{" "}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
             <span className="text-amber-700">|</span>
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
               >
@@ -164,14 +180,14 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "O deníku" : "About"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
 
             <span className="text-amber-700">|</span>
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
-                className="text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
               >
@@ -179,9 +195,8 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "Objednat" : "Order"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
-            <span className="text-amber-700">|</span>
           </nav>
           {/* Hamburger visible on all screen sizes */}
           <button
@@ -189,7 +204,7 @@ export function Header({ locale }: HeaderProps) {
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="p-3 rounded border border-amber-800/10 hover:bg-amber-800/10 transition-colors duration-200 "
+            className="p-3 rounded border cursor-pointer border-amber-800/10 hover:bg-amber-800/10 transition-colors duration-200 "
           >
             <motion.svg
               className="h-6 w-6"
@@ -198,8 +213,8 @@ export function Header({ locale }: HeaderProps) {
               stroke="currentColor"
               animate={
                 open
-                  ? { scale: 1.05, rotate: 90, stroke: "#8c7c7c" }
-                  : { scale: 1, rotate: 0, stroke: "#7a6d6d" }
+                  ? { scale: 1.05, rotate: 90, stroke: "#78350f" }
+                  : { scale: 1, rotate: 0, stroke: "#92400e" }
               }
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
             >
@@ -312,6 +327,16 @@ export function Header({ locale }: HeaderProps) {
                               {locale === "cs" ? "Kontakt" : "Contact"}
                             </span>
                           </TranslatedLink>
+                          <TranslatedLink
+                            href="/privacy"
+                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            activeClassName="text-amber-900 font-semibold"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "Soukromí" : "Privacy"}
+                            </span>
+                          </TranslatedLink>
                         </nav>
                       </div>
 
@@ -320,7 +345,7 @@ export function Header({ locale }: HeaderProps) {
                         <h3 className="text-2xl font-deluxe font-bold text-amber-900 mb-6 uppercase">
                           {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
                         </h3>
-                        <div className="flex gap-3  ">
+                        <div className="space-y-3">
                           <div className="grow flex-1 bg-linear-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
                             <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
                               {locale === "cs"
@@ -371,7 +396,7 @@ export function Header({ locale }: HeaderProps) {
                               className="inline-flex items-center px-4 py-2 border border-amber-800 text-amber-800 rounded-lg hover:bg-amber-800 hover:text-white transition-colors duration-200 font-medium text-sm"
                               onClick={() => setOpen(false)}
                             >
-                              {locale === "cs" ? "Napsat nám" : "Write to Us"}
+                              {locale === "cs" ? "Napište mi" : "Let me know"}
                               <svg
                                 className="ml-2 w-4 h-4"
                                 fill="none"
@@ -394,20 +419,19 @@ export function Header({ locale }: HeaderProps) {
                   </div>
 
                   {/* Bottom section with contact and language switcher - always at bottom */}
-                  <div className="border-t border-amber-200 pt-8">
+                  <div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <div className="text-amber-800">
-                          <div className="font-medium">
-                            {locale === "cs" ? "Kontaktujte nás" : "Contact Us"}
-                          </div>
-                          <div className="text-sm text-amber-600">
+                          <div className="text-xs text-amber-800">
                             info@svatebnidenik.cz
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
-                        <LanguageSwitcher />
+                        <LanguageSwitcher
+                          onLanguageChange={() => setOpen(false)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -429,7 +453,7 @@ export function Header({ locale }: HeaderProps) {
                       exact
                       onClick={() => setOpen(false)}
                     >
-                      {locale === "cs" ? "úvod" : "Home"}
+                      {locale === "cs" ? "Úvod" : "Home"}
                     </TranslatedLink>
                     <TranslatedLink
                       href="/about"
@@ -467,7 +491,9 @@ export function Header({ locale }: HeaderProps) {
                   <div className="w-full flex items-center justify-between p-4">
                     <div className="flex items-center gap-2">email</div>
                     <div>
-                      <LanguageSwitcher />
+                      <LanguageSwitcher
+                        onLanguageChange={() => setOpen(false)}
+                      />
                     </div>
                   </div>
                 </div>

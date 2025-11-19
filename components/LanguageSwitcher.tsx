@@ -8,7 +8,11 @@ import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
 import ReactCountryFlag from "react-country-flag";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({
+  onLanguageChange,
+}: {
+  onLanguageChange?: () => void;
+}) {
   const pathname = usePathname();
 
   const getLocalizedPath = (newLocale: Locale): string => {
@@ -69,7 +73,10 @@ export function LanguageSwitcher() {
         <Link
           key={locale}
           href={getLocalizedPath(locale)}
-          onClick={() => setLocaleCookie(locale)}
+          onClick={() => {
+            setLocaleCookie(locale);
+            onLanguageChange?.();
+          }}
           className="btn btn-ghost"
           // když nepoužiju vlajky tak můžu odkomentovat
           // className={locale === "cs" ? "btn-ghost" : "btn-secondary"}

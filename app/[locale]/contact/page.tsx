@@ -15,7 +15,10 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
 
-  const title = locale === "cs" ? "Kontakt" : "Contact";
+  const title =
+    locale === "cs"
+      ? "Kontakt | Tereza Jinochová"
+      : "Contact | Tereza Jinochová";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const url = `${siteUrl}/${locale}/contact`;
   return {

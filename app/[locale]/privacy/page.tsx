@@ -16,7 +16,9 @@ export async function generateMetadata({
   if (!isValidLocale(locale)) return {};
 
   const title =
-    locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy";
+    locale === "cs"
+      ? "Zásady ochrany osobních údajů | Tereza Jinochová"
+      : "Privacy Policy | Tereza Jinochová";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const url = `${siteUrl}/${locale}/privacy`;
   return {

@@ -15,7 +15,10 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
 
-  const title = locale === "cs" ? "O deníku" : "About";
+  const title =
+    locale === "cs"
+      ? "O deníku | Tereza Jinochová"
+      : "About | Tereza Jinochová";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const url = `${siteUrl}/${locale}/about`;
   return {
@@ -231,8 +234,8 @@ export default async function AboutPage({ params }: PageProps) {
 
       {/* CTA Section */}
       <div className="text-center mt-12">
-        <TranslatedLink href="/products" className="btn-luxe">
-          {locale === "cs" ? "Vybrat plánovač" : "Choose Your Planner"}
+        <TranslatedLink href="/products" className="btn btn-primary">
+          {locale === "cs" ? "Vybrat deník" : "Choose Your Planner"}
         </TranslatedLink>
       </div>
     </div>

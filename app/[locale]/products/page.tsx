@@ -4,6 +4,7 @@ import { locales, isValidLocale } from "@/lib/i18n";
 import { PRODUCT_LIST } from "@/lib/products";
 import Image from "next/image";
 import { ProductCard } from "@/components/ProductCard";
+import { Star, Check, Lock } from "lucide-react";
 
 interface PageProps {
   params: Promise<{
@@ -19,7 +20,10 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = locale === "cs" ? "Produkty" : "Products";
+  const title =
+    locale === "cs"
+      ? "Produkty | Tereza Jinochová"
+      : "Products | Tereza Jinochová";
   const description =
     locale === "cs"
       ? "Objevte Moje svatební deníky a plánovače - vaše dokonalé svatby začíná zde"
@@ -111,13 +115,7 @@ export default async function ProductsPage({ params }: PageProps) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-200 rounded-full mb-6">
-              <svg
-                className="w-5 h-5 text-amber-600"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
+              <Star className="w-5 h-5 text-amber-600" />
               <span className="text-sm font-semibold text-amber-900">
                 {locale === "cs"
                   ? "Plánujte svatbu snadno"
@@ -134,38 +132,14 @@ export default async function ProductsPage({ params }: PageProps) {
             </p>
 
             <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5 text-amber-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+              <div className="flex items-center gap-2 ">
+                <Check className="w-5 h-5 text-amber-600" />
                 <span>
                   {locale === "cs" ? "Okamžitý přístup" : "Instant access"}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5 text-amber-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
+                <Lock className="w-5 h-5 text-amber-600" />
                 <span>
                   {locale === "cs" ? "Bezpečná platba" : "Secure payment"}
                 </span>

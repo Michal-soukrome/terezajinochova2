@@ -20,10 +20,16 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = locale === "cs" ? "úvod" : "Home";
+  const title =
+    locale === "cs"
+      ? "Váš svatební plánovač | Tereza Jinochová"
+      : "Your Wedding Planner | Tereza Jinochová";
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const url = `${siteUrl}/${locale}`;
-  const description = locale === "cs" ? "Popis aplikace" : "App description";
+  const description =
+    locale === "cs"
+      ? "Naplánujte si svůj svatební den s lehkostí a radostí"
+      : "Plan your wedding day with ease and joy";
   return {
     title,
     description,
@@ -64,9 +70,13 @@ export default async function HomePage({ params }: PageProps) {
           <h2 className="font-deluxe text-center text-lg text-amber-900 font-light uppercase mt-2 mb-4">
             {description}
           </h2>{" "}
-          <div className="mt-4">
-            <a href="#products" className="btn btn-primary">
-              {locale === "cs" ? "Více informací" : "More information"}
+          <div className="mt-4 flex gap-2 flex-wrap">
+            <TranslatedLink href="/products" className="btn btn-primary">
+              {locale === "cs" ? "To potřebuji!" : "I need this!"}
+            </TranslatedLink>
+
+            <a href="#products" className="btn btn-secondary">
+              {locale === "cs" ? "Chci vědět více" : "More information"}
             </a>
           </div>
         </div>
