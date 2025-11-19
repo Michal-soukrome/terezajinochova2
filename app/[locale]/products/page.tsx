@@ -49,22 +49,26 @@ export default async function ProductsPage({ params }: PageProps) {
 
   return (
     <>
-      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-        {locale === "cs" ? "Moje produkty" : "My products"}
-      </h3>
-      <p className="text-sm md:text-lg text-gray-700 mb-6">
-        {locale === "cs"
-          ? "Deník, který vám pomůže plánovat každý krok svatby — od rozpočtu po seznam hostů."
-          : "A planner that guides you through every step of your wedding — from budget to vows."}
-      </p>
+      <div className="">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+            {locale === "cs" ? "Moje produkty" : "My products"}
+          </h3>
+          <p className="text-sm md:text-lg text-gray-700 mb-6">
+            {locale === "cs"
+              ? "Deník, který vám pomůže plánovat každý krok svatby — od rozpočtu po seznam hostů."
+              : "A planner that guides you through every step of your wedding — from budget to vows."}
+          </p>
 
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 "
-        id="products-grid"
-      >
-        {PRODUCT_LIST.map((product) => (
-          <ProductCard key={product.id} product={product} locale={locale} />
-        ))}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 "
+            id="products-grid"
+          >
+            {PRODUCT_LIST.map((product) => (
+              <ProductCard key={product.id} product={product} locale={locale} />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

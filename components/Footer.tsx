@@ -10,8 +10,8 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-white border-t border-gray-300 px-4 sm:px-6 lg:px-8 ">
-      <div className="py-6">
+    <footer className="w-full bg-white border-t border-black">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-center md:justify-between">
           <div className="text-xs text-gray-500 ">
             &copy; {new Date().getFullYear()}{" "}

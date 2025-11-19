@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
       case "checkout.session.completed":
         const session = event.data.object as Stripe.Checkout.Session;
         console.log("Checkout completed:", session.id, session.amount_total);
-        // TODO: uložit do DB nebo triggernout fulfillment
         break;
 
       case "payment_intent.succeeded":
@@ -48,7 +47,6 @@ export async function POST(request: NextRequest) {
           paymentIntent.id,
           paymentIntent.amount
         );
-        // TODO: označit objednávku jako zaplacenou
         break;
 
       default:

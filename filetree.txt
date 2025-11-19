@@ -1,24 +1,30 @@
-/Users/michaljirak/Documents/GitHub/terezajinochova2
-├── .env.example
-├── .env.local
-├── ASSET_COMMENTS.md
-├── README.md
+C:\Users\michal.jirak\Documents\GitHub\terezajinochova2
 ├── app/
-│   ├── [locale]/
-│   │   ├── cancel/
-│   │   ├── page.tsx
-│   │   ├── privacy/
-│   │   ├── products/
-│   │   └── success/
 │   ├── api/
+│   │   ├── contact/
 │   │   ├── session/
+│   │   │   └── [sessionId]/
 │   │   └── webhook/
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── page.tsx
-│   └── styles/
-│       ├── buttons.css
-│       └── navigation.css
+│   ├── styles/
+│   │   └── buttons.css
+│   └── [locale]/
+│       ├── cancel/
+│       │   └── page.tsx
+│       ├── contact/
+│       │   └── page.tsx
+│       ├── page.tsx
+│       ├── privacy/
+│       │   └── page.tsx
+│       ├── products/
+│       │   ├── page.tsx
+│       │   └── [slug]/
+│       │       └── page.tsx
+│       └── success/
+│           └── page.tsx
+├── ASSET_COMMENTS.md
 ├── components/
 │   ├── Button.module.css
 │   ├── Button.tsx
@@ -28,6 +34,8 @@
 │   ├── LanguageSwitcher.tsx
 │   ├── ProductCard.tsx
 │   └── TranslatedLink.tsx
+├── docs/
+│   └── filetree.txt
 ├── eslint.config.mjs
 ├── filetree.txt
 ├── lib/
@@ -44,6 +52,7 @@
 ├── public/
 │   └── assets/
 │       └── cover.png
+├── README.md
 ├── scripts/
 │   └── generate-tree.js
 └── tsconfig.json

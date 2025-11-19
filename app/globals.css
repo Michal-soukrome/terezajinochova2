@@ -52,7 +52,6 @@ body {
 }
 
 @import "./styles/buttons.css";
-@import "./styles/navigation.css";
 
 body {
   background: var(--background);

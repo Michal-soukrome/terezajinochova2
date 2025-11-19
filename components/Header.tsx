@@ -74,165 +74,169 @@ export function Header({ locale }: HeaderProps) {
   const MotionDiv: any = (motion as any).div;
   const overlayRef = useRef<HTMLDivElement | null>(null);
   return (
-    <header className="w-full bg-white border-b border-gray-300 px-4 sm:px-6 lg:px-8 sticky z-50 top-0 left-0">
-      <div className="flex justify-between items-center h-20" id="top-nav">
+    <header className="relative w-full bg-amber-800/5 h-20">
+      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
+      <div
+        className="h-full flex justify-between items-center px-4 sm:px-6 lg:px-8"
+        id="top-nav"
+      >
         <Link
           href={`/${locale}`}
-          className="text-xl font-bold text-gray-900 capitalize relative z-10 transition-colors duration-300 ease-in-out group"
+          className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-amber-800/10 shadow relative z-10"
         >
-          svatební deník
-          <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-[width] duration-500 ease-in-out group-hover:w-full"></span>
+          <span className="uppercase">logo</span>
         </Link>
 
         {/* Desktop nav */}
         <div className="flex items-center gap-10">
-          <nav className="hidden md:flex items-center gap-5">
+          <nav className="hidden md:flex items-center gap-5 ">
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
-              {/* TODO: homepage link isnt higlighting probably because of i18n internationalization */}
               <TranslatedLink
                 href="/"
-                className="text-gray-700 hover:text-gray-900 p-2 "
+                className="text-gray-700 hover:text-gray-900 p-2"
                 activeClassName="font-bold"
+                exact
+                onClick={() => setOpen(false)}
               >
-                {locale === "cs" ? "úvod" : "Home"}
+                <span className="uppercase">
+                  {locale === "cs" ? "úvod" : "Home"}
+                </span>
               </TranslatedLink>{" "}
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
             <span className="text-gray-300">|</span>
-            <span className="relative z-10 transition-colors duration-300 ease-in-out group">
+            <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
                 className="text-gray-700 hover:text-gray-900 p-2 "
                 activeClassName="font-bold"
+                onClick={() => setOpen(false)}
               >
-                {locale === "cs" ? "Produkty" : "Products"}
+                <span className="uppercase">
+                  {locale === "cs" ? "Produkty" : "Products"}
+                </span>
               </TranslatedLink>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
             <span className="text-gray-300">|</span>
           </nav>
-          {/* Hamburger visible on all screen sizes */}
-          <Button
-            variant="icon"
+          {/* Hamburger visible on all screen sizes */}(
+          <button
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="text-gray-500 hover:bg-gray-100"
+            className="p-3 rounded border border-amber-800/10 hover:bg-amber-800/10 transition-colors duration-200 "
           >
-            {/* TODO: change icon by animating based on open state from hamburger into cross */}
-            {/* TODO: prohibit background scroll when both mobile and desktop menu is opened */}
+            <motion.svg
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              animate={
+                open
+                  ? { scale: 1.05, rotate: 90, stroke: "#8c7c7c" }
+                  : { scale: 1, rotate: 0, stroke: "#7a6d6d" }
+              }
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+            >
+              {/* Top line */}
+              <motion.path
+                animate={open ? "open" : "closed"}
+                variants={{
+                  closed: { d: "M4 6h16" },
+                  open: { d: "M6 6l12 12" },
+                }}
+                transition={{ duration: 0.25 }}
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
 
-            {open ? (
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path
-                  d="M6 18L18 6M6 6l12 12"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path
-                  d="M4 6h16M4 12h16M4 18h16"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </Button>
+              {/* Middle line */}
+              <motion.path
+                animate={open ? "open" : "closed"}
+                variants={{
+                  closed: { opacity: 1, d: "M4 12h16" },
+                  open: { opacity: 0 },
+                }}
+                transition={{ duration: 0.25, delay: 0.05 }}
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+
+              {/* Bottom line */}
+              <motion.path
+                animate={open ? "open" : "closed"}
+                variants={{
+                  closed: { d: "M4 18h16" },
+                  open: { d: "M6 18l12-12" },
+                }}
+                transition={{ duration: 0.25, delay: 0.1 }}
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+          </button>
         </div>
       </div>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0">
-            <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
-              <div />
-              <div className="flex items-center gap-3">
-                <Button
-                  ref={closeButtonRef}
-                  variant="icon"
-                  aria-label="Close menu"
-                  onClick={() => setOpen(false)}
-                >
-                  <svg
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M6 18L18 6M6 6l12 12"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </Button>
-              </div>
-            </div>
-
+          <div id="opened-menu">
             {/* fullscreen menu */}
-            <div
-              className="fixed w-svw flex items-start justify-between bg-white border-t border-gray-300"
+            <MotionDiv
+              ref={overlayRef}
+              className="fixed w-full flex items-start justify-between bg-white "
               id="fullscreen-menu"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              {/* TODO: make fullscreen menu slide in from the right on both desktop and mobile */}
-
               {/* desktop menu */}
-              <div className="w-full hidden md:block" id="desktop-menu">
-                <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                  desktop
-                </div>
+              <div className="w-full hidden md:block pt-20" id="desktop-menu">
+                <div className="px-4 sm:px-6 lg:px-8">desktop</div>
               </div>
 
               {/* mobile menu */}
               <div className="w-full h-full md:hidden " id="mobile-menu">
                 <div className="w-full h-full flex flex-col justify-between items-start p-0">
-                  {/* TODO: close menu on nav link click, probably can be implemented straight into TranslatedLink component */}
-
                   <ul
                     role="navigation"
-                    className="w-full divide-y divide-gray-400 flex flex-col"
+                    className="w-full divide-y divide-amber-800/20 flex flex-col mt-6 text-amber-900"
                     id="mobile-navigation-links"
                   >
                     <TranslatedLink
                       href="/"
                       className="px-4 py-6 mobile-navigation-link"
-                      activeClassName="bg-gray-100 font-semibold"
+                      activeClassName="bg-amber-800/5 font-semibold"
                       exact
+                      onClick={() => setOpen(false)}
                     >
                       {locale === "cs" ? "úvod" : "Home"}
                     </TranslatedLink>
                     <TranslatedLink
                       href="/products"
                       className="px-4 py-6 mobile-navigation-link"
-                      activeClassName="bg-gray-100 font-semibold"
+                      activeClassName="bg-amber-800/5 font-semibold"
+                      onClick={() => setOpen(false)}
                     >
                       {locale === "cs" ? "Produkty" : "Products"}
                     </TranslatedLink>
                     <TranslatedLink
                       href="/privacy"
                       className="px-4 py-6 mobile-navigation-link"
-                      activeClassName="bg-gray-100 font-semibold"
+                      activeClassName="bg-amber-800/5 font-semibold"
+                      onClick={() => setOpen(false)}
                     >
                       {locale === "cs" ? "Soukromí" : "Privacy"}
                     </TranslatedLink>
                     <TranslatedLink
                       href="/contact"
                       className="px-4 py-6 mobile-navigation-link"
-                      activeClassName="bg-gray-100 font-semibold"
+                      activeClassName="bg-amber-800/5 font-semibold"
+                      onClick={() => setOpen(false)}
                     >
                       {locale === "cs" ? "Kontakt" : "Contact"}
                     </TranslatedLink>
@@ -245,7 +249,7 @@ export function Header({ locale }: HeaderProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </MotionDiv>
           </div>
         )}
       </AnimatePresence>

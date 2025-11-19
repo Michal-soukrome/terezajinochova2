@@ -22,6 +22,9 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: "payment",
+      shipping_address_collection: {
+        allowed_countries: ["CZ", "SK", "US", "DE"],
+      },
       success_url: `${request.nextUrl.origin}/${locale}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}/${locale}/cancel?session_id={CHECKOUT_SESSION_ID}`,
     });

@@ -22,7 +22,7 @@ function shouldIgnore(name) {
   return ignorePatterns.some((pattern) => name.includes(pattern));
 }
 
-function generateTree(dir, prefix = "", maxDepth = 3, currentDepth = 0) {
+function generateTree(dir, prefix = "", maxDepth = 10, currentDepth = 0) {
   if (currentDepth >= maxDepth) return "";
 
   let result = "";

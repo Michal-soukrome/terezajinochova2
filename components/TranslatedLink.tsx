@@ -1,12 +1,9 @@
-// TODO: every link click has to scroll all the way back on page
-
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
-import { useRef } from "react";
 
 interface TranslatedLinkProps {
   href: string;
@@ -15,6 +12,7 @@ interface TranslatedLinkProps {
   onClick?: () => void;
   activeClassName?: string;
   exact?: boolean;
+  preserveScroll?: boolean;
 }
 
 export default function TranslatedLink({
@@ -24,14 +22,22 @@ export default function TranslatedLink({
   onClick,
   activeClassName,
   exact,
+  preserveScroll = false,
 }: TranslatedLinkProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!preserveScroll) {
+      // Smooth scroll to top when navigating
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    onClick?.();
+  };
   const pathname = usePathname();
   const pathLocale = pathname?.split("/").filter(Boolean)[0];
 
   // If we can't detect locale from path, just return a regular Link
   if (!pathLocale) {
     return (
-      <Link href={href} className={className}>
+      <Link href={href} className={className} onClick={handleClick}>
         {children}
       </Link>
     );
@@ -48,7 +54,7 @@ export default function TranslatedLink({
   // If it's root
   if (cleanHref === "/" || cleanHref === "")
     return (
-      <Link href={`/${locale}`} className={className}>
+      <Link href={`/${locale}`} className={className} onClick={handleClick}>
         {children}
       </Link>
     );
@@ -84,6 +90,7 @@ export default function TranslatedLink({
           <Link
             href={`/${locale}/${localizedTop}/${localizedProductSlug}`}
             className={className}
+            onClick={handleClick}
           >
             {children}
           </Link>
@@ -103,7 +110,7 @@ export default function TranslatedLink({
         className={`${className ?? ""} ${
           isActive && activeClassName ? activeClassName : ""
         }`}
-        onClick={onClick}
+        onClick={handleClick}
       >
         {children}
       </Link>
@@ -123,7 +130,7 @@ export default function TranslatedLink({
       className={`${className ?? ""} ${
         isActive && activeClassName ? activeClassName : ""
       }`}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {children}
     </Link>

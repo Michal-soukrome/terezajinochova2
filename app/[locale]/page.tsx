@@ -51,8 +51,8 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <main>
-      <section className="h-[70vh] w-full border-b">
-        <div className="h-full flex flex-col items-center justify-center">
+      <section className="h-[70vh] w-full bg-amber-800/5 pt-8 md:pt-12">
+        <div className="h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
           <h1>{title}</h1>
           <h2>{description}</h2>{" "}
           <div className="mt-4">

@@ -18,19 +18,17 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <div>
-      <div className="w-full">
-        <div className="max-w-7xl mx-auto flex flex-col items-start justify-between min-h-svh w-full h-full">
-          <Header locale={locale} />
+    <div className="w-full bg-gray-50">
+      <div className="flex flex-col items-start justify-between min-h-svh w-full h-full">
+        <Header locale={locale} />
 
-          {/* exclude homepage from layout as it has to be fullwidth */}
+        {/* exclude homepage from layout as it has to be fullwidth */}
 
-          <main className="w-full flex-1 p-4 sm:p-6 lg:p-8 ">
-            <RouteTransition>{children}</RouteTransition>
-          </main>
+        <main className="w-full flex-1">
+          <RouteTransition>{children}</RouteTransition>
+        </main>
 
-          <Footer locale={locale} />
-        </div>
+        <Footer locale={locale} />
       </div>
     </div>
   );
