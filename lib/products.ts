@@ -28,6 +28,8 @@ export interface Product {
 
   // Frontend assets
   image: string;
+  // Gallery images for product showcase
+  gallery?: string[];
   // Short bullet points to highlight benefits
   highlights?: {
     cs: string[];
@@ -55,6 +57,12 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 20500,
     image: "/assets/cover.png",
+    gallery: [
+      "/assets/gallery1.png",
+      "/assets/gallery2.png",
+      "/assets/gallery3.png",
+      "/assets/gallery4.png",
+    ],
     highlights: {
       cs: [
         "Praktické checklisty pro každý den",
@@ -88,6 +96,14 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 1490,
     image: "/assets/cover.png",
+    gallery: [
+      "/assets/gallery1.png",
+      "/assets/gallery2.png",
+      "/assets/gallery3.png",
+      "/assets/gallery4.png",
+      "/assets/gallery5.png",
+      "/assets/gallery6.png",
+    ],
     highlights: {
       cs: [
         "Větší rozsah kapitol & bonusové návody",

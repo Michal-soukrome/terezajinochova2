@@ -2,7 +2,7 @@
 .btn {
   @apply font-deluxe inline-flex items-center justify-center 
          px-6 py-3 rounded-lg transition-all duration-300 ease-out
-         font-medium tracking-wide select-none cursor-pointer;
+         font-medium tracking-wide select-none cursor-pointer text-sm;
 }
 
 /* PRIMARY — minimalistický luxus */
