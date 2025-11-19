@@ -84,7 +84,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
             priority
           />
         </div>
-        <div className="md:w-1/2" id="product-detail-right">
+        <div
+          className="md:w-1/2 px-4 sm:px-6 lg:px-8 py-4 md:py-0"
+          id="product-detail-right"
+        >
           {product.id === "premium" ? (
             <div className="inline-block mb-2 border border-yellow-300 px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded font-medium uppercase">
               premium
@@ -94,14 +97,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
               základní
             </div>
           )}
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2 font-deluxe">
             {product.names[locale as keyof typeof product.names]}
           </h1>
           <p className="text-gray-600 mb-4">
             {product.descriptions[locale as keyof typeof product.descriptions]}
           </p>
 
-          <div className="mb-6">
+          <div className="px-4 sm:px-6 lg:px-8 mb-6">
             <h3 className="text-base font-semibold mb-2">
               {locale === "cs" ? "Co získáte" : "What you get"}
             </h3>
@@ -116,8 +119,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </ul>
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-2">
+          <div className="px-4 sm:px-6 lg:px-8 mb-6">
+            <h3 className="text-lg font-semibold mb-2 font-deluxe text-gray-800">
               {locale === "cs" ? "Recenze" : "Testimonials"}
             </h3>
             <blockquote className="italic text-gray-700">
@@ -143,7 +146,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
-      <div className="mt-10 border-t py-5">
+      <div className="mt-10 border-t py-5 px-4 sm:px-6 lg:px-8 text-gray-700">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. A voluptate et
         beatae expedita quisquam, sint dolore provident quod accusamus totam
         consequuntur ipsum ad quas amet laudantium nisi aperiam. Voluptatum

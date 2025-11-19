@@ -41,6 +41,7 @@ body {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter); /* Inter for body text */
   --font-heading: var(--font-poppins); /* Poppins for headings */
+  --font-deluxe: var(--font-deluxe); /* Playfair Display for deluxe text */
   --font-mono: var(--font-geist-mono);
 }
 
@@ -70,6 +71,11 @@ h3,
   letter-spacing: -0.01em;
 }
 
+/* Deluxe font for special text */
+.font-deluxe {
+  font-family: var(--font-deluxe), serif;
+}
+
 /* Print styles for receipt */
 @media print {
   .no-print {
@@ -91,17 +97,8 @@ footer a {
   @apply !capitalize;
 }
 
-.nav-link {
-  position: relative;
-}
-
-.nav-link::before {
-  position: absolute;
-  width: 50px;
-  height: 5px;
-  border: 1px solid black;
-
-  background: red;
+html {
+  scroll-behavior: smooth;
 }
 
 h3::first-letter {

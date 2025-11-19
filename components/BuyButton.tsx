@@ -50,7 +50,7 @@ export function BuyButton({
       roundedFull={roundedFull}
       aria-busy={loading}
     >
-      {loading ? (locale === "cs" ? "Načítání..." : "Loading...") : label}
+      {loading ? (locale === "cs" ? "Strpení..." : "Loading...") : label}
     </Button>
   );
 }

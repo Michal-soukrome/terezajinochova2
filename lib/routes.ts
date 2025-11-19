@@ -6,4 +6,5 @@ export const routes = {
   premium: { cs: "premium", en: "premium" },
   privacy: { cs: "soukromi", en: "privacy" },
   contact: { cs: "kontakt", en: "contact" },
+  about: { cs: "o-deniku", en: "about" },
 };

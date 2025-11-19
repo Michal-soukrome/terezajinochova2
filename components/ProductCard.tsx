@@ -73,13 +73,19 @@ export function ProductCard({ product, locale }: ProductCardProps) {
             </p>
           </div>{" "}
         </div>{" "}
-        <div className="mt-auto">
+        <div className="mt-auto flex gap-2">
           <TranslatedLink
             href={`/products/${product.id}`}
             className="btn btn-secondary"
           >
             {locale === "cs" ? "Zobrazit Detaily" : "View Details"}
           </TranslatedLink>
+          <BuyButton
+            productId={product.id}
+            locale={locale}
+            variant="primary"
+            className="px-6 py-3"
+          />
         </div>
       </div>
     </div>

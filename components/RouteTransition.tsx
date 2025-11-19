@@ -2,27 +2,48 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { routeTransition } from "@/lib/animations";
+import FullPageLoader from "./FullPageLoader";
 
 interface Props {
   children: React.ReactNode;
+  locale: string;
 }
 
-export default function RouteTransition({ children }: Props) {
+export default function RouteTransition({ children, locale }: Props) {
   const pathname = usePathname();
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [prevPath, setPrevPath] = useState(pathname);
+
+  useEffect(() => {
+    if (pathname !== prevPath) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsLoading(true);
+      setPrevPath(pathname);
+
+      // počkej, až se layout fakt domaluje
+      requestAnimationFrame(() => {
+        setIsLoading(false);
+      });
+    }
+  }, [pathname, prevPath]);
+
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={pathname}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        variants={routeTransition}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <>
+      {isLoading && <FullPageLoader locale={locale} />}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={pathname}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={routeTransition}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 }

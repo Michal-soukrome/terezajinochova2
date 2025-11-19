@@ -6,6 +6,7 @@ import { locales, Locale } from "@/lib/i18n";
 import { setCookie } from "@/lib/cookies";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
+import ReactCountryFlag from "react-country-flag";
 
 export function LanguageSwitcher() {
   const pathname = usePathname();
@@ -63,7 +64,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex gap-1">
+    <div className="flex">
       {locales.map((locale) => (
         <Link
           key={locale}
@@ -73,12 +74,19 @@ export function LanguageSwitcher() {
           // když nepoužiju vlajky tak můžu odkomentovat
           // className={locale === "cs" ? "btn-ghost" : "btn-secondary"}
         >
-          {locale.toUpperCase()}
-          {/*{locale === "cs" ? "cz" : "en"}
-          
-            tady sem chtěl doplnit vlajky namísto textových hodnot, proto ta proměnná
-
-          */}
+          {locale === "cs" ? (
+            <ReactCountryFlag
+              countryCode="CZ"
+              svg
+              style={{ width: "1em", height: "1em" }}
+            />
+          ) : (
+            <ReactCountryFlag
+              countryCode="GB"
+              svg
+              style={{ width: "1em", height: "1em" }}
+            />
+          )}
         </Link>
       ))}
     </div>

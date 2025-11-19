@@ -84,7 +84,7 @@ export function Header({ locale }: HeaderProps) {
           href={`/${locale}`}
           className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-amber-800/10 shadow relative z-10"
         >
-          <span className="uppercase">logo</span>
+          <span className="uppercase font-deluxe text-amber-800">logo</span>
         </Link>
 
         {/* Desktop nav */}
@@ -93,7 +93,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="text-gray-700 hover:text-gray-900 p-2"
+                className="text-amber-800 hover:text-amber-900 font-medium p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -102,25 +102,40 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "úvod" : "Home"}
                 </span>
               </TranslatedLink>{" "}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
-            <span className="text-gray-300">|</span>
+            <span className="text-amber-700">|</span>
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
-                href={`/products`}
-                className="text-gray-700 hover:text-gray-900 p-2 "
+                href={`/about`}
+                className="text-amber-800 hover:text-amber-900 font-medium p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
               >
                 <span className="uppercase">
-                  {locale === "cs" ? "Produkty" : "Products"}
+                  {locale === "cs" ? "O deníku" : "About"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gray-500 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
-            <span className="text-gray-300">|</span>
+
+            <span className="text-amber-700">|</span>
+            <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
+              <TranslatedLink
+                href={`/products`}
+                className="text-amber-800 hover:text-amber-900 font-medium p-2 "
+                activeClassName="font-semibold"
+                onClick={() => setOpen(false)}
+              >
+                <span className="uppercase">
+                  {locale === "cs" ? "Objednat" : "Order"}
+                </span>
+              </TranslatedLink>
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+            </span>
+            <span className="text-amber-700">|</span>
           </nav>
-          {/* Hamburger visible on all screen sizes */}(
+          {/* Hamburger visible on all screen sizes */}
           <button
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -217,12 +232,20 @@ export function Header({ locale }: HeaderProps) {
                       {locale === "cs" ? "úvod" : "Home"}
                     </TranslatedLink>
                     <TranslatedLink
+                      href="/about"
+                      className="px-4 py-6 mobile-navigation-link"
+                      activeClassName="bg-amber-800/5 font-semibold"
+                      onClick={() => setOpen(false)}
+                    >
+                      {locale === "cs" ? "O deníku" : "About"}
+                    </TranslatedLink>
+                    <TranslatedLink
                       href="/products"
                       className="px-4 py-6 mobile-navigation-link"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
                     >
-                      {locale === "cs" ? "Produkty" : "Products"}
+                      {locale === "cs" ? "Objednat" : "Order"}
                     </TranslatedLink>
                     <TranslatedLink
                       href="/privacy"

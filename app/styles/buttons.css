@@ -1,35 +1,38 @@
+/* BASE */
 .btn {
-  @apply inline-flex items-center justify-center rounded px-4 py-2 transition-colors;
+  @apply font-deluxe inline-flex items-center justify-center 
+         px-6 py-3 rounded-lg transition-all duration-300 ease-out
+         font-medium tracking-wide select-none cursor-pointer;
 }
 
+/* PRIMARY — minimalistický luxus */
 .btn-primary {
-  @apply bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50;
+  @apply bg-amber-800 text-white border border-amber-900/20;
+  @apply hover:bg-amber-900 hover:shadow-md;
+  @apply active:scale-95;
 }
 
+/* OUTLINE — decentní, čisté, elegantní */
 .btn-secondary {
-  @apply bg-gray-600 text-white hover:bg-gray-700 disabled:opacity-50;
+  @apply border border-amber-600 text-amber-700 bg-transparent;
+  @apply hover:bg-amber-50 hover:border-amber-700;
+  @apply active:scale-95;
 }
 
+/* GHOST — skoro neviditelný, ale pořád luxusní */
 .btn-ghost {
-  @apply bg-transparent text-gray-700 hover:bg-gray-100;
+  @apply text-amber-800 bg-transparent;
+  @apply hover:bg-amber-50;
+  @apply active:scale-95;
 }
 
-.btn-icon {
-  @apply p-2 rounded-md inline-flex items-center justify-center;
-}
-
+/* ROUNDED FULL OPTION */
 .btn-roundedFull {
   @apply rounded-full;
 }
 
-.btn-outline {
-  @apply border border-solid border-black/8 px-5 hover:bg-black/4;
-}
-
-.btn-disabled {
+/* DISABLED */
+.btn-disabled,
+.btn:disabled {
   @apply opacity-50 pointer-events-none;
-}
-
-button {
-  @apply cursor-pointer;
 }
