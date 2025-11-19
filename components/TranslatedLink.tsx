@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
 
@@ -24,14 +25,18 @@ export default function TranslatedLink({
   exact,
   preserveScroll = false,
 }: TranslatedLinkProps) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const pathname = usePathname();
+
+  // Scroll to top when pathname changes (after navigation)
+  useEffect(() => {
     if (!preserveScroll) {
-      // Smooth scroll to top when navigating
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+  }, [pathname, preserveScroll]);
+
+  const handleClick = () => {
     onClick?.();
   };
-  const pathname = usePathname();
   const pathLocale = pathname?.split("/").filter(Boolean)[0];
 
   // If we can't detect locale from path, just return a regular Link

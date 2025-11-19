@@ -15,7 +15,39 @@ interface HeaderProps {
 
 export function Header({ locale }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [headerBgOpacity, setHeaderBgOpacity] = useState(0.05); // Start with very light background
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  // Handle scroll to show/hide header
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show header when scrolling up or at the top
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        setIsVisible(true);
+      }
+      // Hide header when scrolling down (but not at the very top)
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+
+      // Calculate background opacity based on scroll position
+      // At top: very light (0.05), when scrolled: more opaque (0.15)
+      const newOpacity = currentScrollY < 50 ? 0.05 : 0.15;
+      setHeaderBgOpacity(newOpacity);
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (open) {
@@ -32,6 +64,11 @@ export function Header({ locale }: HeaderProps) {
   // Close overlay on Escape + trap Tab focus when overlay is open
   useEffect(() => {
     if (!open) return;
+
+    // Focus on the close button when menu opens (without scrolling)
+    if (closeButtonRef.current) {
+      closeButtonRef.current.focus({ preventScroll: true });
+    }
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
@@ -55,11 +92,11 @@ export function Header({ locale }: HeaderProps) {
         const last = focusable[focusable.length - 1];
 
         if (!e.shiftKey && document.activeElement === last) {
-          first.focus();
+          first.focus({ preventScroll: true });
           e.preventDefault();
         }
         if (e.shiftKey && document.activeElement === first) {
-          last.focus();
+          last.focus({ preventScroll: true });
           e.preventDefault();
         }
       }
@@ -74,8 +111,19 @@ export function Header({ locale }: HeaderProps) {
   const MotionDiv: any = (motion as any).div;
   const overlayRef = useRef<HTMLDivElement | null>(null);
   return (
-    <header className="relative w-full bg-amber-800/5 h-20">
-      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
+    <motion.header
+      initial={false}
+      animate={{
+        y: isVisible ? 0 : -80, // slide up/down
+        backgroundColor: open ? "#ffffff" : "rgba(120,53,15,0.05)", // fade color
+      }}
+      transition={{
+        y: { duration: 0.3, ease: "easeInOut" },
+        backgroundColor: { duration: 0.5, ease: "easeInOut" },
+      }}
+      className="fixed top-0 left-0 right-0 z-50 w-full h-20"
+    >
+      <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
       <div
         className="h-full flex justify-between items-center px-4 sm:px-6 lg:px-8"
         id="top-nav"
@@ -137,6 +185,7 @@ export function Header({ locale }: HeaderProps) {
           </nav>
           {/* Hamburger visible on all screen sizes */}
           <button
+            ref={closeButtonRef}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
@@ -208,10 +257,161 @@ export function Header({ locale }: HeaderProps) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()} // Prevent scroll on overlay click
             >
               {/* desktop menu */}
-              <div className="w-full hidden md:block pt-20" id="desktop-menu">
-                <div className="px-4 sm:px-6 lg:px-8">desktop</div>
+              <div className="w-full hidden md:block h-full" id="desktop-menu">
+                <div className="h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
+                  {/* Main content area */}
+                  <div className="pt-20 pb-8">
+                    <div className="grid grid-cols-2 gap-12 max-w-4xl">
+                      {/* Navigation Links */}
+                      <div>
+                        <h3 className="text-2xl font-deluxe font-bold text-amber-900 mb-6 uppercase">
+                          {locale === "cs" ? "Navigace" : "Navigation"}
+                        </h3>
+                        <nav className="space-y-4">
+                          <TranslatedLink
+                            href="/"
+                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            activeClassName="text-amber-900 font-semibold"
+                            exact
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "Úvod" : "Home"}
+                            </span>
+                          </TranslatedLink>
+                          <TranslatedLink
+                            href="/about"
+                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            activeClassName="text-amber-900 font-semibold"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "O deníku" : "About"}
+                            </span>
+                          </TranslatedLink>
+                          <TranslatedLink
+                            href="/products"
+                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            activeClassName="text-amber-900 font-semibold"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "Objednat" : "Order"}
+                            </span>
+                          </TranslatedLink>
+                          <TranslatedLink
+                            href="/contact"
+                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            activeClassName="text-amber-900 font-semibold"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "Kontakt" : "Contact"}
+                            </span>
+                          </TranslatedLink>
+                        </nav>
+                      </div>
+
+                      {/* Interactive Content */}
+                      <div>
+                        <h3 className="text-2xl font-deluxe font-bold text-amber-900 mb-6 uppercase">
+                          {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
+                        </h3>
+                        <div className="flex gap-3  ">
+                          <div className="grow flex-1 bg-linear-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+                            <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
+                              {locale === "cs"
+                                ? "Začněte plánovat"
+                                : "Start Planning"}
+                            </h4>
+                            <p className="text-amber-800 text-sm mb-4">
+                              {locale === "cs"
+                                ? "Objevte naše nástroje pro dokonalou svatbu"
+                                : "Discover our tools for the perfect wedding"}
+                            </p>
+                            <TranslatedLink
+                              href="/products"
+                              className="inline-flex items-center px-4 py-2 bg-amber-800 text-white rounded-lg hover:bg-amber-900 transition-colors duration-200 font-medium text-sm"
+                              onClick={() => setOpen(false)}
+                            >
+                              {locale === "cs" ? "Prozkoumat" : "Explore"}
+                              <svg
+                                className="ml-2 w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </TranslatedLink>
+                          </div>
+
+                          <div className="grow flex-1 bg-linear-to-br from-amber-50 to-amber-100 p-6 rounded-xl border border-amber-200">
+                            <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
+                              {locale === "cs"
+                                ? "Potřebujete pomoc?"
+                                : "Need Help?"}
+                            </h4>
+                            <p className="text-amber-800 text-sm mb-4">
+                              {locale === "cs"
+                                ? "Kontaktujte nás pro osobní konzultaci"
+                                : "Contact us for personal consultation"}
+                            </p>
+                            <TranslatedLink
+                              href="/contact"
+                              className="inline-flex items-center px-4 py-2 border border-amber-800 text-amber-800 rounded-lg hover:bg-amber-800 hover:text-white transition-colors duration-200 font-medium text-sm"
+                              onClick={() => setOpen(false)}
+                            >
+                              {locale === "cs" ? "Napsat nám" : "Write to Us"}
+                              <svg
+                                className="ml-2 w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                />
+                              </svg>
+                            </TranslatedLink>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom section with contact and language switcher - always at bottom */}
+                  <div className="border-t border-amber-200 pt-8">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="text-amber-800">
+                          <div className="font-medium">
+                            {locale === "cs" ? "Kontaktujte nás" : "Contact Us"}
+                          </div>
+                          <div className="text-sm text-amber-600">
+                            info@svatebnidenik.cz
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <LanguageSwitcher />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* mobile menu */}
@@ -276,6 +476,6 @@ export function Header({ locale }: HeaderProps) {
           </div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
