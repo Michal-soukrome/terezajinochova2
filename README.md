@@ -34,3 +34,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Installing dependencies
+
+If you see an npm peer dependency error like `ERESOLVE` mentioning `framer-motion` and `react` when running `npm i`, it's usually because the project has React 19 and an older `framer-motion` version that only lists React 18 in its peer dependencies.
+
+To fix this locally we upgraded `framer-motion` to a 12.x release that supports React 19. If you still hit issues you can temporarily bypass strict peer checks with:
+
+```bash
+npm i --legacy-peer-deps
+```
+
+Prefer upgrading `framer-motion` (or the conflicting package) to a version that lists React 19 in its peerDependencies instead of using the legacy flag.
