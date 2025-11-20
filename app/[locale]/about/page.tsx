@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TranslatedLink from "@/components/TranslatedLink";
 import { locales, isValidLocale } from "@/lib/i18n";
+import { AnimatedHeader } from "@/components/AnimatedHeader";
 
 interface PageProps {
   params: Promise<{
@@ -40,16 +41,15 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h3 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
-          {locale === "cs" ? "O deníku" : "About the Planner"}
-        </h3>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          {locale === "cs"
+      <AnimatedHeader
+        title={locale === "cs" ? "O deníku" : "About the Planner"}
+        subtitle={
+          locale === "cs"
             ? "Vaše cesta k dokonale zorganizované svatbě začíná zde"
-            : "Your journey to a perfectly organized wedding starts here"}
-        </p>
-      </div>
+            : "Your journey to a perfectly organized wedding starts here"
+        }
+        locale={locale}
+      />
 
       {/* Main Content */}
       <div className="prose prose-amber max-w-none">

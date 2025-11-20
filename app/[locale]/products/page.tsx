@@ -5,6 +5,7 @@ import { PRODUCT_LIST } from "@/lib/products";
 import Image from "next/image";
 import { ProductCard } from "@/components/ProductCard";
 import { Star, Check, Lock } from "lucide-react";
+import { AnimatedHeader } from "@/components/AnimatedHeader";
 
 interface PageProps {
   params: Promise<{
@@ -113,24 +114,13 @@ export default async function ProductsPage({ params }: PageProps) {
       <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-amber-50/50 border-b border-amber-100">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
-              {t.title}
-            </h3>
-
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-              {t.subtitle}
-            </p>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-800/10 rounded-full mb-6">
-              <Star className="w-5 h-5 text-amber-600" />
-              <span className="text-sm font-semibold text-amber-900">
-                {locale === "cs"
-                  ? "Plánujte svatbu snadno"
-                  : "Plan Your Wedding Easily"}
-              </span>
-            </div>
-          </div>
+          <AnimatedHeader
+            title={t.title}
+            subtitle={t.subtitle}
+            locale={locale}
+            headingLevel={3}
+            showBadge={true}
+          />
         </div>
       </div>
 

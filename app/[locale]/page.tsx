@@ -7,7 +7,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { PRODUCT_LIST } from "@/lib/products";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/HeroSection";
-import { BackToTop } from "@/components/BackToTop";
 
 interface PageProps {
   params: Promise<{
@@ -768,8 +767,6 @@ export default async function HomePage({ params }: PageProps) {
           </div>
         </div>
       </section>
-
-      <BackToTop />
     </main>
   );
 }

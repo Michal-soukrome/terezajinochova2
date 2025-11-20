@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TranslatedLink from "@/components/TranslatedLink";
 import { locales, isValidLocale } from "@/lib/i18n";
+import { AnimatedHeader } from "@/components/AnimatedHeader";
 
 interface PageProps {
   params: Promise<{
@@ -42,16 +43,17 @@ export default async function PrivacyPage({ params }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
-          {locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy"}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          {locale === "cs"
+      <AnimatedHeader
+        title={
+          locale === "cs" ? "Zásady ochrany osobních údajů" : "Privacy Policy"
+        }
+        subtitle={
+          locale === "cs"
             ? "Vaše soukromí je pro nás důležité"
-            : "Your privacy is important to us"}
-        </p>
-      </div>
+            : "Your privacy is important to us"
+        }
+        locale={locale}
+      />
 
       {/* Last Updated */}
       <div className="bg-amber-50 border border-amber-800/10 rounded-xl p-4 mb-8 text-center">

@@ -305,7 +305,7 @@ export function Header({ locale }: HeaderProps) {
             >
               {/* Floating Decorative Elements */}
               <motion.div
-                className="absolute top-20 left-10 w-6 h-6 text-amber-300/60"
+                className="absolute top-20 left-10 w-6 h-6 text-amber-100"
                 animate={{
                   y: [0, -20, 0],
                   rotate: [0, 180, 360],
@@ -358,7 +358,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-20 right-12 w-7 h-7 text-amber-300/70"
+                className="absolute bottom-20 right-12 w-7 h-7 text-amber-200"
                 animate={{
                   y: [0, -25, 0],
                   opacity: [0.7, 1, 0.7],
@@ -375,7 +375,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-40 left-1/4 w-4 h-4 text-amber-400/50"
+                className="absolute top-40 left-1/4 w-4 h-4 text-amber-200"
                 animate={{
                   x: [0, 10, 0],
                   y: [0, -10, 0],
@@ -392,7 +392,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/3 right-20 w-6 h-6 text-amber-300/60"
+                className="absolute top-1/3 right-20 w-6 h-6 text-amber-100"
                 animate={{
                   rotate: [0, -180, 0],
                   scale: [1, 1.1, 1],
@@ -428,7 +428,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 left-10 w-7 h-7 text-amber-400/50"
+                className="absolute top-1/2 left-10 w-7 h-7 text-amber-200"
                 animate={{
                   x: [0, -15, 0],
                   rotate: [0, 360, 0],
@@ -613,10 +613,14 @@ export function Header({ locale }: HeaderProps) {
               </div>
 
               {/* mobile menu */}
-              <div className="w-full h-full md:hidden " id="mobile-menu">
-                <div className="w-full h-full flex flex-col justify-between items-start p-0">
-                  {/* Language switcher at the top */}
-
+              <div
+                className="w-full h-full md:hidden bg-white overflow-y-auto"
+                id="mobile-menu"
+              >
+                <div
+                  className="w-full flex flex-col justify-between items-start p-0"
+                  id="mobile-menu-subwrap"
+                >
                   <ul
                     role="navigation"
                     className="w-full divide-y divide-amber-800/20 flex flex-col text-amber-900 pt-5"
@@ -749,7 +753,8 @@ export function Header({ locale }: HeaderProps) {
                       </div>
                     </TranslatedLink>
                   </ul>
-                  <div className="w-full flex items-center justify-end p-4 border-t border-amber-800/20">
+
+                  <div className="w-full flex items-center justify-start p-4">
                     <LanguageSwitcher onLanguageChange={() => setOpen(false)} />
                   </div>
                 </div>

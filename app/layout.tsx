@@ -7,6 +7,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
+import { BackToTop } from "@/components/BackToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${playfairDisplay.variable} antialiased safe-area-y`}
       >
         {children}
+        <BackToTop />
       </body>
     </html>
   );

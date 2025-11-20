@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TranslatedLink from "@/components/TranslatedLink";
 import { locales, isValidLocale } from "@/lib/i18n";
+import { AnimatedHeader } from "@/components/AnimatedHeader";
 
 interface PageProps {
   params: Promise<{
@@ -40,16 +41,15 @@ export default async function ContactPage({ params }: PageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
-          {locale === "cs" ? "Kontaktujte mě" : "Get in Touch"}
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          {locale === "cs"
+      <AnimatedHeader
+        title={locale === "cs" ? "Kontaktujte mě" : "Get in Touch"}
+        subtitle={
+          locale === "cs"
             ? "Máte otázky nebo potřebujete pomoc? Rád vám pomohu s plánováním vaší svatby."
-            : "Have questions or need help? I'm here to assist you with planning your wedding."}
-        </p>
-      </div>
+            : "Have questions or need help? I'm here to assist you with planning your wedding."
+        }
+        locale={locale}
+      />
 
       {/* Contact Options */}
       <div className="grid md:grid-cols-2 gap-8 mb-12">

@@ -12,20 +12,29 @@ export function BackToTop({
   showThreshold = 300,
 }: BackToTopProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > showThreshold) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      const scrollY = window.scrollY || window.pageYOffset;
+      const newIsVisible = scrollY > showThreshold;
+
+      if (newIsVisible && !isVisible) {
+        // Becoming visible - trigger animation
+        setShouldAnimate(true);
+        setTimeout(() => setShouldAnimate(false), 600); // Reset after animation duration
       }
+
+      setIsVisible(newIsVisible);
     };
 
     window.addEventListener("scroll", toggleVisibility);
 
+    // Check initial scroll position
+    toggleVisibility();
+
     return () => window.removeEventListener("scroll", toggleVisibility);
-  }, [showThreshold]);
+  }, [showThreshold, isVisible]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -37,11 +46,11 @@ export function BackToTop({
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-5 right-5 z-50 bg-amber-800 hover:bg-amber-700 cursor-pointer text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-500 ease-out  ${
+      className={`fixed bottom-5 right-5 z-50 bg-amber-800 hover:bg-amber-700 cursor-pointer text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-500 ease-out ${
         isVisible
-          ? "translate-y-0 opacity-100"
-          : "translate-y-full opacity-0 pointer-events-none"
-      } ${className}`}
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none translate-y-full"
+      } ${shouldAnimate ? "animate-bounce-in" : ""} ${className}`}
       aria-label="Back to top"
     >
       <svg
