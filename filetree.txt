@@ -1,6 +1,5 @@
 /Users/michaljirak/Documents/GitHub/terezajinochova2
-├── .env.example
-├── .env.local
+├── .env
 ├── ASSET_COMMENTS.md
 ├── README.md
 ├── app/
@@ -28,6 +27,9 @@
 │   └── styles/
 │       └── buttons.css
 ├── components/
+│   ├── AnimatedHeader.tsx
+│   ├── BackToTop.tsx
+│   ├── Badge.tsx
 │   ├── Button.module.css
 │   ├── Button.tsx
 │   ├── BuyButton.tsx
@@ -35,8 +37,11 @@
 │   ├── Footer.tsx
 │   ├── FullPageLoader.tsx
 │   ├── Header.tsx
+│   ├── HeroSection.tsx
 │   ├── LanguageSwitcher.tsx
 │   ├── ProductCard.tsx
+│   ├── ReviewsCarousel.tsx
+│   ├── SocialMediaIcons.tsx
 │   └── TranslatedLink.tsx
 ├── docs/
 │   └── filetree.txt
