@@ -38,7 +38,7 @@ export default async function ContactPage({ params }: PageProps) {
   if (!isValidLocale(locale)) notFound();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
@@ -114,7 +114,7 @@ export default async function ContactPage({ params }: PageProps) {
           <div className="flex justify-center gap-4">
             <a
               href="#"
-              className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-200 transition-colors"
+              className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800/10 transition-colors"
               aria-label="Instagram"
             >
               <svg
@@ -127,7 +127,7 @@ export default async function ContactPage({ params }: PageProps) {
             </a>
             <a
               href="#"
-              className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-200 transition-colors"
+              className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800/10 transition-colors"
               aria-label="Facebook"
             >
               <svg

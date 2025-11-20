@@ -8,7 +8,14 @@ import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "./Button";
-import { BookA, BookOpen, Home, Mail, ShoppingCart } from "lucide-react";
+import {
+  BookA,
+  BookOpen,
+  Home,
+  Mail,
+  ShoppingCart,
+  Shield,
+} from "lucide-react";
 
 interface HeaderProps {
   locale: Locale;
@@ -129,7 +136,7 @@ export function Header({ locale }: HeaderProps) {
       initial={false}
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
-        backgroundColor: open ? "#ffffff" : "rgba(120,53,15,0.05)", // fade color
+        backgroundColor: open ? "#ffffff" : "#fffbeb", // solid amber-50 when closed
         backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}
       transition={{
@@ -161,7 +168,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2"
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -182,7 +189,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -203,7 +210,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900 font-medium p-2 "
+                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -288,7 +295,7 @@ export function Header({ locale }: HeaderProps) {
             {/* fullscreen menu */}
             <MotionDiv
               ref={overlayRef}
-              className="fixed w-full flex items-start justify-between bg-white "
+              className="fixed w-full flex items-start justify-between bg-amber-50"
               id="fullscreen-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -296,6 +303,147 @@ export function Header({ locale }: HeaderProps) {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e: React.MouseEvent) => e.stopPropagation()} // Prevent scroll on overlay click
             >
+              {/* Floating Decorative Elements */}
+              <motion.div
+                className="absolute top-20 left-10 w-6 h-6 text-amber-300/60"
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-32 right-16 w-8 h-8 text-amber-400/40"
+                animate={{
+                  y: [0, 15, 0],
+                  x: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-32 left-20 w-5 h-5 text-amber-500/50"
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-20 right-12 w-7 h-7 text-amber-300/70"
+                animate={{
+                  y: [0, -25, 0],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-40 left-1/4 w-4 h-4 text-amber-400/50"
+                animate={{
+                  x: [0, 10, 0],
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 9,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-1/3 right-20 w-6 h-6 text-amber-300/60"
+                animate={{
+                  rotate: [0, -180, 0],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 11,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-40 right-1/3 w-5 h-5 text-amber-500/40"
+                animate={{
+                  y: [0, 15, 0],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-1/2 left-10 w-7 h-7 text-amber-400/50"
+                animate={{
+                  x: [0, -15, 0],
+                  rotate: [0, 360, 0],
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                </svg>
+              </motion.div>
+
               {/* desktop menu */}
               <div className="w-full hidden md:block h-full" id="desktop-menu">
                 <div className="h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
@@ -310,7 +458,7 @@ export function Header({ locale }: HeaderProps) {
                         <nav className="space-y-4">
                           <TranslatedLink
                             href="/"
-                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             exact
                             onClick={() => setOpen(false)}
@@ -321,7 +469,7 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/about"
-                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
@@ -336,7 +484,7 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/products"
-                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
@@ -351,7 +499,7 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/contact"
-                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
@@ -366,7 +514,7 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/privacy"
-                            className="block text-lg text-amber-800 hover:text-amber-900 font-medium transition-colors duration-200 group"
+                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
@@ -388,7 +536,7 @@ export function Header({ locale }: HeaderProps) {
                           {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
                         </h3>
                         <div className="space-y-3">
-                          <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-200">
+                          <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-800/10">
                             <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
                               {locale === "cs"
                                 ? "Začněte plánovat"
@@ -414,7 +562,7 @@ export function Header({ locale }: HeaderProps) {
                             </TranslatedLink>
                           </div>
 
-                          <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-200">
+                          <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-800/10">
                             <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
                               {locale === "cs"
                                 ? "Potřebujete pomoc?"
@@ -467,14 +615,16 @@ export function Header({ locale }: HeaderProps) {
               {/* mobile menu */}
               <div className="w-full h-full md:hidden " id="mobile-menu">
                 <div className="w-full h-full flex flex-col justify-between items-start p-0">
+                  {/* Language switcher at the top */}
+
                   <ul
                     role="navigation"
-                    className="w-full divide-y divide-amber-800/20 flex flex-col mt-6 text-amber-900"
+                    className="w-full divide-y divide-amber-800/20 flex flex-col text-amber-900 pt-5"
                     id="mobile-navigation-links"
                   >
                     <TranslatedLink
                       href="/"
-                      className="px-4 py-6 mobile-navigation-link"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
                       activeClassName="bg-amber-800/5 font-semibold"
                       exact
                       onClick={() => setOpen(false)}
@@ -484,11 +634,23 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to homepage"
                       }
                     >
-                      {locale === "cs" ? "Úvod" : "Home"}
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Home className="w-5 h-5 text-amber-800" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-amber-900">
+                          {locale === "cs" ? "Úvod" : "Home"}
+                        </div>
+                        <div className="text-sm text-amber-800 font-light lowercase">
+                          {locale === "cs"
+                            ? "Vítejte na naší stránce"
+                            : "Welcome to our page"}
+                        </div>
+                      </div>
                     </TranslatedLink>
                     <TranslatedLink
                       href="/about"
-                      className="px-4 py-6 mobile-navigation-link"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -497,11 +659,23 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to about page"
                       }
                     >
-                      {locale === "cs" ? "O deníku" : "About"}
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                        <BookOpen className="w-5 h-5 text-amber-800" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-amber-900">
+                          {locale === "cs" ? "O deníku" : "About"}
+                        </div>
+                        <div className="text-sm text-amber-800 font-light lowercase">
+                          {locale === "cs"
+                            ? "Zjistěte více o svatebním deníku"
+                            : "Learn more about wedding diary"}
+                        </div>
+                      </div>
                     </TranslatedLink>
                     <TranslatedLink
                       href="/products"
-                      className="px-4 py-6 mobile-navigation-link"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -510,11 +684,23 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to products page"
                       }
                     >
-                      {locale === "cs" ? "Objednat" : "Order"}
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                        <ShoppingCart className="w-5 h-5 text-amber-800" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-amber-900">
+                          {locale === "cs" ? "Objednat" : "Order"}
+                        </div>
+                        <div className="text-sm text-amber-800 font-light lowercase">
+                          {locale === "cs"
+                            ? "Vyberte si svůj svatební deník"
+                            : "Choose your wedding diary"}
+                        </div>
+                      </div>
                     </TranslatedLink>
                     <TranslatedLink
                       href="/privacy"
-                      className="px-4 py-6 mobile-navigation-link"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -523,11 +709,23 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to privacy page"
                       }
                     >
-                      {locale === "cs" ? "Soukromí" : "Privacy"}
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Shield className="w-5 h-5 text-amber-800" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-amber-900">
+                          {locale === "cs" ? "Soukromí" : "Privacy"}
+                        </div>
+                        <div className="text-sm text-amber-800 font-light lowercase">
+                          {locale === "cs"
+                            ? "Informace o ochraně osobních údajů"
+                            : "Personal data protection information"}
+                        </div>
+                      </div>
                     </TranslatedLink>
                     <TranslatedLink
                       href="/contact"
-                      className="px-4 py-6 mobile-navigation-link"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
                       activeClassName="bg-amber-800/5 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -536,16 +734,23 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to contact page"
                       }
                     >
-                      {locale === "cs" ? "Kontakt" : "Contact"}
+                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Mail className="w-5 h-5 text-amber-800" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-amber-900">
+                          {locale === "cs" ? "Kontakt" : "Contact"}
+                        </div>
+                        <div className="text-sm text-amber-800 font-light lowercase">
+                          {locale === "cs"
+                            ? "Spojte se s námi"
+                            : "Get in touch with us"}
+                        </div>
+                      </div>
                     </TranslatedLink>
                   </ul>
-                  <div className="w-full flex items-center justify-between p-4">
-                    <div className="flex items-center gap-2">email</div>
-                    <div>
-                      <LanguageSwitcher
-                        onLanguageChange={() => setOpen(false)}
-                      />
-                    </div>
+                  <div className="w-full flex items-center justify-end p-4 border-t border-amber-800/20">
+                    <LanguageSwitcher onLanguageChange={() => setOpen(false)} />
                   </div>
                 </div>
               </div>

@@ -3,6 +3,7 @@
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import TranslatedLink from "./TranslatedLink";
 import { Locale } from "@/lib/i18n";
+import { SocialMediaIcons } from "./SocialMediaIcons";
 
 interface FooterProps {
   locale: Locale;
@@ -10,135 +11,159 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-amber-800/5 border-t border-amber-200 safe-area-bottom">
+    <footer className="w-full bg-white border-t border-gray-200">
+      {/* Footer Top Area */}
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Brand Section */}
-            <div className="md:col-span-2">
-              <div className="mb-4">
-                <h3 className="text-xl font-deluxe font-bold text-amber-900 uppercase mb-2">
-                  {locale === "cs" ? "Svatební deník" : "Wedding Todoist"}
-                </h3>
-                <p className="text-amber-800 text-sm leading-relaxed max-w-md">
-                  {locale === "cs"
-                    ? "Váš spolehlivý průvodce plánováním svatebního dne. Pomáháme párům vytvořit nezapomenutelné vzpomínky."
-                    : "Your reliable guide to wedding day planning. We help couples create unforgettable memories."}
-                </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* Info Column */}
+            <div>
+              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+                {locale === "cs" ? "Info" : "Info"}
+              </h6>
+
+              <div className="space-y-3">
+                <div className="text-gray-700 text-sm">
+                  <a
+                    href="https://maps.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-amber-600 transition-colors duration-200"
+                  >
+                    {locale === "cs"
+                      ? "Praha, Česká republika"
+                      : "Prague, Czech Republic"}
+                  </a>
+                </div>
+
+                <div className="text-gray-700 text-sm">
+                  <a
+                    href="mailto:info@svatebnidenik.cz"
+                    className="hover:text-amber-600 transition-colors duration-200"
+                  >
+                    info@svatebnidenik.cz
+                  </a>
+                </div>
+
+                <div className="text-gray-700 text-sm">
+                  <a
+                    href="tel:+420123456789"
+                    className="hover:text-amber-600 transition-colors duration-200"
+                  >
+                    +420 123 456 789
+                  </a>
+                </div>
               </div>
 
-              {/* Contact Info */}
-              <div className="space-y-2">
-                <div className="flex items-center text-amber-800 text-sm">
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  info@svatebnidenik.cz
-                </div>
-                <div className="flex items-center text-amber-800 text-sm">
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  {locale === "cs"
-                    ? "Praha, Česká republika"
-                    : "Prague, Czech Republic"}
-                </div>
+              {/* Social Links */}
+              <div className="mt-6">
+                <SocialMediaIcons />
               </div>
             </div>
 
-            {/* Quick Links */}
+            {/* Products Column */}
             <div>
-              <h4 className="font-deluxe font-semibold text-amber-900 uppercase text-sm mb-4">
-                {locale === "cs" ? "Rychlé odkazy" : "Quick Links"}
-              </h4>
+              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+                {locale === "cs" ? "Produkty" : "Products"}
+              </h6>
+
+              <nav className="space-y-3">
+                <TranslatedLink
+                  href="/products/zakladni"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs"
+                    ? "Svatební Deník – Základní"
+                    : "Wedding Diary – Basic"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/products/premium"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs"
+                    ? "Svatební Deník – Prémiový"
+                    : "Wedding Diary – Premium"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/products"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "Všechny produkty" : "All Products"}
+                </TranslatedLink>
+              </nav>
+            </div>
+
+            {/* Navigation Column */}
+            <div>
+              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+                {locale === "cs" ? "Navigace" : "Navigation"}
+              </h6>
+
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/"
-                  className="block text-amber-800 hover:text-amber-900 text-sm transition-colors duration-200"
-                  activeClassName="text-amber-900 font-medium"
-                  exact
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
                 >
-                  {locale === "cs" ? "Úvod" : "Home"}
+                  {locale === "cs" ? "Domů" : "Home"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/about"
-                  className="block text-amber-800 hover:text-amber-900 text-sm transition-colors duration-200"
-                  activeClassName="text-amber-900 font-medium"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "O deníku" : "About"}
                 </TranslatedLink>
                 <TranslatedLink
-                  href="/products"
-                  className="block text-amber-800 hover:text-amber-900 text-sm transition-colors duration-200"
-                  activeClassName="text-amber-900 font-medium"
-                >
-                  {locale === "cs" ? "Objednat" : "Order"}
-                </TranslatedLink>
-                <TranslatedLink
                   href="/contact"
-                  className="block text-amber-800 hover:text-amber-900 text-sm transition-colors duration-200"
-                  activeClassName="text-amber-900 font-medium"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Kontakt" : "Contact"}
                 </TranslatedLink>
-              </nav>
-            </div>
-
-            {/* Legal & Support */}
-            <div>
-              <h4 className="font-deluxe font-semibold text-amber-900 uppercase text-sm mb-4">
-                {locale === "cs" ? "Podpora" : "Support"}
-              </h4>
-              <nav className="space-y-3">
                 <TranslatedLink
                   href="/privacy"
-                  className="block text-amber-800 hover:text-amber-900 text-sm transition-colors duration-200"
-                  activeClassName="text-amber-900 font-medium"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Soukromí" : "Privacy"}
                 </TranslatedLink>
-                <div className="pt-2">
-                  <div className="text-amber-800 text-sm font-medium mb-2">
-                    {locale === "cs" ? "Jazyk" : "Language"}
-                  </div>
-                  <LanguageSwitcher />
-                </div>
+              </nav>
+            </div>
+
+            {/* Services Column */}
+            <div>
+              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+                {locale === "cs" ? "Služby" : "Services"}
+              </h6>
+
+              <nav className="space-y-3">
+                <TranslatedLink
+                  href="/#benefits"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "Plánování svatby" : "Wedding Planning"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/#products"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "Svatební deníky" : "Wedding Diaries"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/contact"
+                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "Konzultace" : "Consultation"}
+                </TranslatedLink>
               </nav>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Bottom Bar */}
-          <div className="pt-8 border-t border-amber-200">
+      {/* Footer Bottom */}
+      <div className="border-t border-gray-200">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-amber-700">
+              <div className="text-xs text-gray-600">
                 &copy; {new Date().getFullYear()}{" "}
                 <span className="font-deluxe">
                   {locale === "cs" ? "Svatební deník" : "Wedding Todoist"}
@@ -147,7 +172,7 @@ export function Footer({ locale }: FooterProps) {
                 <span className="italic">Tereza Jinochová</span>
               </div>
 
-              <div className="text-xs text-amber-600">
+              <div className="text-xs text-gray-500">
                 {locale === "cs"
                   ? "Vytvořeno s ❤️ pro nezapomenutelné svatby"
                   : "Made with ❤️ for unforgettable weddings"}

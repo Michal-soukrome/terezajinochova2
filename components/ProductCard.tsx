@@ -16,7 +16,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
     <div
       className={`bg-white rounded border shadow overflow-hidden transition-all duration-300  ${
         isPremium
-          ? "border-amber-200 shadow-amber-100/50"
+          ? "border-amber-800/10 shadow-amber-100/50"
           : "border-gray-200 shadow-gray-100/50"
       }`}
       id="product-card"
@@ -100,25 +100,23 @@ export function ProductCard({ product, locale }: ProductCardProps) {
                 : `$${(product.priceCZK / 100).toFixed(2)}`}
             </p>
           </div>
-
-          {/* Actions */}
-          <div>
-            <div className="flex gap-3">
-              <TranslatedLink
-                href={`/products/${product.id}`}
-                className="btn btn-secondary w-fit "
-              >
-                {locale === "cs" ? "Zobrazit Detaily" : "View Details"}
-              </TranslatedLink>
-              <BuyButton
-                productId={product.id}
-                locale={locale}
-                variant="primary"
-                className="w-full flex-1"
-              />
-            </div>
-          </div>
         </div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex gap-3 p-4">
+        <TranslatedLink
+          href={`/products/${product.id}`}
+          className="btn btn-secondary w-fit "
+        >
+          {locale === "cs" ? "Zobrazit Detaily" : "View Details"}
+        </TranslatedLink>
+        <BuyButton
+          productId={product.id}
+          locale={locale}
+          variant="primary"
+          className="w-full flex-1"
+        />
       </div>
     </div>
   );

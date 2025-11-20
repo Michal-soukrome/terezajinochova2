@@ -91,7 +91,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {/* Left - Image */}
@@ -205,13 +205,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Testimonial */}
-          <div className="bg-linear-to-br from-amber-50 to-white border border-amber-200 rounded-2xl p-6">
+          <div className="bg-linear-to-br from-amber-50 to-white border border-amber-800/10 rounded-2xl p-6">
             <h3 className="text-xl font-bold mb-4 font-deluxe text-gray-900">
               {t.testimonials}
             </h3>
             <blockquote className="relative">
               <svg
-                className="absolute -top-2 -left-2 w-8 h-8 text-amber-200"
+                className="absolute -top-2 -left-2 w-8 h-8 text-amber-800/10"
                 fill="currentColor"
                 viewBox="0 0 32 32"
               >

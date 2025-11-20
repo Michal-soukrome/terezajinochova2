@@ -40,7 +40,7 @@ export default async function PrivacyPage({ params }: PageProps) {
   if (!isValidLocale(locale)) notFound();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
@@ -54,7 +54,7 @@ export default async function PrivacyPage({ params }: PageProps) {
       </div>
 
       {/* Last Updated */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-center">
+      <div className="bg-amber-50 border border-amber-800/10 rounded-xl p-4 mb-8 text-center">
         <p className="text-amber-800 font-medium">
           {locale === "cs"
             ? "Naposledy aktualizováno: 19. listopadu 2025"
@@ -237,7 +237,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           </section>
 
           {/* Contact */}
-          <section className="bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-2xl p-8">
+          <section className="bg-gradient-to-br from-amber-50 to-white border border-amber-800/10 rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
               <svg
                 className="w-6 h-6 text-amber-600"

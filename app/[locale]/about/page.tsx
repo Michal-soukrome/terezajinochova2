@@ -38,12 +38,12 @@ export default async function AboutPage({ params }: PageProps) {
   if (!isValidLocale(locale)) notFound();
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
+        <h3 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
           {locale === "cs" ? "O deníku" : "About the Planner"}
-        </h1>
+        </h3>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           {locale === "cs"
             ? "Vaše cesta k dokonale zorganizované svatbě začíná zde"
@@ -127,7 +127,7 @@ export default async function AboutPage({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-amber-50 to-white rounded-2xl shadow-lg border border-amber-200 p-8 md:p-12">
+        <div className="bg-gradient-to-br from-amber-50 to-white rounded-2xl shadow-lg border border-amber-800/10 p-8 md:p-12">
           <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-6 flex items-center gap-3">
             <svg
               className="w-6 h-6 text-amber-600"

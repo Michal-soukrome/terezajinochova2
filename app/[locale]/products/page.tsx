@@ -114,36 +114,21 @@ export default async function ProductsPage({ params }: PageProps) {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-200 rounded-full mb-6">
+            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 font-deluxe mb-4">
+              {t.title}
+            </h3>
+
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
+              {t.subtitle}
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-800/10 rounded-full mb-6">
               <Star className="w-5 h-5 text-amber-600" />
               <span className="text-sm font-semibold text-amber-900">
                 {locale === "cs"
                   ? "Plánujte svatbu snadno"
                   : "Plan Your Wedding Easily"}
               </span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 font-deluxe leading-tight">
-              {t.title}
-            </h1>
-
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
-              {t.subtitle}
-            </p>
-
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-2 ">
-                <Check className="w-5 h-5 text-amber-600" />
-                <span>
-                  {locale === "cs" ? "Okamžitý přístup" : "Instant access"}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-5 h-5 text-amber-600" />
-                <span>
-                  {locale === "cs" ? "Bezpečná platba" : "Secure payment"}
-                </span>
-              </div>
             </div>
           </div>
         </div>
@@ -197,7 +182,7 @@ export default async function ProductsPage({ params }: PageProps) {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-t border-amber-200 mt-16">
+      <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 border-t border-amber-800/10 mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-deluxe">
             {locale === "cs"
@@ -213,7 +198,7 @@ export default async function ProductsPage({ params }: PageProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="flex items-center gap-2 text-gray-700">
               <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full bg-amber-200 border-2 border-white"></div>
+                <div className="w-10 h-10 rounded-full bg-amber-800/10 border-2 border-white"></div>
                 <div className="w-10 h-10 rounded-full bg-amber-300 border-2 border-white"></div>
                 <div className="w-10 h-10 rounded-full bg-amber-400 border-2 border-white"></div>
               </div>

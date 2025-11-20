@@ -98,8 +98,13 @@ footer a {
   @apply !capitalize;
 }
 
+p {
+  @apply leading-tight font-light;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* 80px to match header height */
 }
 
 h3::first-letter {
