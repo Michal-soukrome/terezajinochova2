@@ -86,13 +86,13 @@ export function LanguageSwitcher({
             <ReactCountryFlag
               countryCode="CZ"
               svg
-              style={{ width: "1em", height: "1em" }}
+              style={{ width: "1.5em", height: "1.5em" }}
             />
           ) : (
             <ReactCountryFlag
               countryCode="GB"
               svg
-              style={{ width: "1em", height: "1em" }}
+              style={{ width: "1.5em", height: "1.5em" }}
             />
           )}
         </Link>
