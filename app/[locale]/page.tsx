@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { PRODUCT_LIST } from "@/lib/products";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/HeroSection";
+import { ReviewsCarousel } from "@/components/ReviewsCarousel";
 
 interface PageProps {
   params: Promise<{
@@ -446,8 +447,10 @@ export default async function HomePage({ params }: PageProps) {
         id="products"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
-          {PRODUCT_LIST.map((product) => (
-            <ProductCard key={product.id} product={product} locale={locale} />
+          {PRODUCT_LIST.map((product, idx) => (
+            <div key={product.id} style={{ animationDelay: `${idx * 100}ms` }}>
+              <ProductCard product={product} locale={locale} />
+            </div>
           ))}
         </div>
       </section>
@@ -504,107 +507,25 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* reviews, maybe with offset carousel on scroll or just bento grid */}
+      {/* reviews, offset carousel with horizontal scroll */}
       <section className="bg-gray-50 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-deluxe mb-4">
-              {locale === "cs"
-                ? "Co říkají naši klienti"
-                : "What Our Clients Say"}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {locale === "cs"
-                ? "Přečtěte si zkušenosti párů, které už využily naše služby"
-                : "Read the experiences of couples who have already used our services"}
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 fill-current"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 italic">
+        <div className=" px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-deluxe mb-4">
                 {locale === "cs"
-                  ? '"Plánovač nám ušetřil tolik času a stresu. Všechno bylo připravené a organizované."'
-                  : '"The planner saved us so much time and stress. Everything was prepared and organized."'}
-              </p>
-              <div className="font-semibold text-gray-900">
-                {locale === "cs" ? "Marie a Tomáš" : "Marie and Tomáš"}
-              </div>
-              <div className="text-gray-600 text-sm">
-                {locale === "cs" ? "Svatba 2024" : "Wedding 2024"}
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 fill-current"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 italic">
+                  ? "Recenze spokojených svatebčanů"
+                  : "What Our Clients Say"}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 {locale === "cs"
-                  ? '"Skvělé nástroje a podpora. Doporučujeme všem, kteří plánují svatbu!"'
-                  : '"Great tools and support. We recommend it to everyone planning a wedding!"'}
+                  ? "Přečtěte si zkušenosti párů, které už využily naše služby"
+                  : "Read the experiences of couples who have already used our services"}
               </p>
-              <div className="font-semibold text-gray-900">
-                {locale === "cs" ? "Anna a Petr" : "Anna and Petr"}
-              </div>
-              <div className="text-gray-600 text-sm">
-                {locale === "cs" ? "Svatba 2024" : "Wedding 2024"}
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="flex text-amber-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 fill-current"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                {locale === "cs"
-                  ? '"Profesionální přístup a všechno na jednom místě. Perfektní služba!"'
-                  : '"Professional approach and everything in one place. Perfect service!"'}
-              </p>
-              <div className="font-semibold text-gray-900">
-                {locale === "cs" ? "Lucie a Michal" : "Lucie and Michal"}
-              </div>
-              <div className="text-gray-600 text-sm">
-                {locale === "cs" ? "Svatba 2024" : "Wedding 2024"}
-              </div>
             </div>
           </div>
+
+          <ReviewsCarousel locale={locale} />
         </div>
       </section>
 
@@ -631,12 +552,6 @@ export default async function HomePage({ params }: PageProps) {
                   ? "Pomohla jsem stovkám párům vytvořit svatební den jejich snů - od intimních obřadů po velkolepé oslavy."
                   : "I've helped hundreds of couples create their dream wedding day - from intimate ceremonies to grand celebrations."}
               </p>
-            </div>
-
-            <div className="mt-8">
-              <TranslatedLink href="/contact" className="btn btn-primary">
-                {locale === "cs" ? "Kontaktujte mě" : "Contact Me"}
-              </TranslatedLink>
             </div>
           </div>
 
