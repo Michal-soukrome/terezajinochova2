@@ -68,7 +68,7 @@ export function LanguageSwitcher({
   };
 
   return (
-    <div className="flex">
+    <div className="flex gap-2">
       {locales.map((locale) => (
         <Link
           key={locale}

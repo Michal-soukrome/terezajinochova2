@@ -1,56 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface ReviewsCarouselProps {
   locale: string;
 }
 
 export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
-  const [isDragging, setIsDragging] = useState(false);
-
-  useEffect(() => {
-    const preventScroll = (e: Event) => {
-      if (isDragging) {
-        e.preventDefault();
-      }
-    };
-
-    const preventWheel = (e: WheelEvent) => {
-      if (isDragging) {
-        e.preventDefault();
-      }
-    };
-
-    if (isDragging) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("touchmove", preventScroll, { passive: false });
-      document.addEventListener("wheel", preventWheel, { passive: false });
-    } else {
-      document.body.style.overflow = "";
-      document.removeEventListener("touchmove", preventScroll);
-      document.removeEventListener("wheel", preventWheel);
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("touchmove", preventScroll);
-      document.removeEventListener("wheel", preventWheel);
-    };
-  }, [isDragging]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-x-auto overscroll-contain scrollbar-hide">
       <motion.div
-        className="flex gap-8 pb-8 px-4 snap-x snap-mandatory cursor-grab active:cursor-grabbing"
-        drag="x"
-        dragConstraints={{ left: -1000, right: 0 }}
-        dragElastic={0.1}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        whileTap={{ cursor: "grabbing" }}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
+        ref={containerRef}
+        className="flex gap-8 py-8 px-4 snap-x snap-mandatory"
+        onWheel={(e) => {
+          if (e.shiftKey) {
+            e.preventDefault();
+            if (containerRef.current) {
+              const newScroll = containerRef.current.scrollLeft + e.deltaY;
+              containerRef.current.scrollLeft = Math.max(
+                0,
+                Math.min(
+                  newScroll,
+                  containerRef.current.scrollWidth -
+                    containerRef.current.clientWidth
+                )
+              );
+            }
+          }
+        }}
       >
         <motion.div
           className="shrink-0 w-60 md:w-72 bg-white rounded-xl shadow-lg p-6 border border-gray-100 snap-center"

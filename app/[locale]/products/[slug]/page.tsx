@@ -7,6 +7,8 @@ import { routes } from "@/lib/routes";
 import Image from "next/image";
 import { BuyButton } from "@/components/BuyButton";
 import { Badge } from "@/components/Badge";
+import { motion } from "framer-motion";
+import { AnimatedHeader } from "@/components/AnimatedHeader";
 
 interface PageProps {
   params: Promise<{
@@ -91,9 +93,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div className="py-16 md:py-24">
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {/* Left - Image */}
         <div className="relative">
           <div className="sticky top-8">
@@ -243,45 +245,48 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <p className="text-gray-700 leading-relaxed">{t.perfectForText}</p>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Image Gallery */}
       {product.gallery && product.gallery.length > 0 && (
-        <div className="mt-16 border-t border-gray-200 pt-12">
+        <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-10">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 font-deluxe text-gray-900 text-center">
-              {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {product.gallery.map((galleryImage, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="aspect-4/3 relative">
-                    <Image
-                      src={galleryImage}
-                      alt={`${
-                        product.names[locale as keyof typeof product.names]
-                      } - ${locale === "cs" ? "Ukázka" : "Preview"} ${
-                        index + 1
-                      }`}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
+            {" "}
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl font-bold mb-8 font-deluxe text-gray-900 text-center">
+                {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {product.gallery.map((galleryImage, index) => (
+                  <div
+                    key={index}
+                    className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="aspect-4/3 relative">
+                      <Image
+                        src={galleryImage}
+                        alt={`${
+                          product.names[locale as keyof typeof product.names]
+                        } - ${locale === "cs" ? "Ukázka" : "Preview"} ${
+                          index + 1
+                        }`}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                   </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       )}
 
       {/* Additional Info Section */}
-      <div className="mt-16 border-t border-gray-200 pt-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-6 font-deluxe text-gray-900 text-center">
             {locale === "cs" ? "Další informace" : "Additional Information"}
           </h2>
@@ -298,7 +303,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

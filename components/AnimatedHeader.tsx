@@ -21,7 +21,7 @@ export function AnimatedHeader({
   showBadge = false,
   badgeText,
 }: AnimatedHeaderProps) {
-  const HeadingTag = headingLevel === 1 ? motion.h1 : motion.h3;
+  const HeadingTag = headingLevel === 1 ? motion.h3 : motion.h3;
 
   return (
     <motion.div
@@ -52,7 +52,7 @@ export function AnimatedHeader({
 
       {showBadge && (
         <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-800/10 rounded-full mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 border border-amber-800/10 rounded-full"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}

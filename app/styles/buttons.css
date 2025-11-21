@@ -1,38 +1,64 @@
 /* BASE */
 .btn {
-  @apply font-deluxe inline-flex items-center justify-center 
-         px-6 py-3 rounded-lg transition-all duration-300 ease-out
-         font-medium tracking-wide select-none cursor-pointer text-sm;
+  @apply relative inline-flex items-center justify-center
+         px-6 py-3 text-sm font-medium tracking-wide select-none
+         transition-all duration-300 ease-out cursor-pointer
+         border bg-transparent overflow-hidden
+         rounded-full;
 }
 
-/* PRIMARY — minimalistický luxus */
+/* ------------------------------------------
+   PRIMARY – plný, teplý, luxusní
+------------------------------------------ */
 .btn-primary {
-  @apply bg-amber-800 text-white border border-amber-900/20;
-  @apply hover:bg-amber-900 hover:shadow-md;
-  @apply active:scale-95;
+  @apply bg-amber-800 text-white border-amber-900/30;
 }
 
-/* OUTLINE — decentní, čisté, elegantní */
+.btn-primary:hover {
+  @apply bg-amber-900 shadow-lg border-amber-900/40;
+  filter: brightness(1.05);
+}
+
+.btn-primary::after {
+  content: "";
+  @apply absolute inset-0 opacity-0;
+  box-shadow: 0 0 10px rgba(255, 220, 170, 0.3);
+  transition: opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+/* press efekt */
+.btn-primary:active {
+  @apply scale-95 shadow-md;
+}
+
+/* ------------------------------------------
+   SECONDARY – vzdušný, decentní, editorial
+------------------------------------------ */
 .btn-secondary {
-  @apply border border-amber-600 text-amber-700 bg-transparent;
-  @apply hover:bg-amber-50 hover:border-amber-700;
-  @apply active:scale-95;
+  @apply text-amber-900 bg-amber-50/40 border-amber-900/20;
 }
 
-/* GHOST — skoro neviditelný, ale pořád luxusní */
-.btn-ghost {
-  @apply text-amber-800 bg-transparent;
-  @apply hover:bg-amber-50;
-  @apply active:scale-95;
+.btn-secondary:hover {
+  @apply bg-amber-100/60 border-amber-900/30 shadow-sm;
+  filter: brightness(1.02);
 }
 
-/* ROUNDED FULL OPTION */
-.btn-roundedFull {
-  @apply rounded-full;
+.btn-secondary::after {
+  content: "";
+  @apply absolute inset-0 opacity-0;
+  box-shadow: 0 0 8px rgba(255, 230, 200, 0.15);
+  transition: opacity 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* DISABLED */
-.btn-disabled,
-.btn:disabled {
-  @apply opacity-50 pointer-events-none;
+.btn-secondary:hover::after {
+  opacity: 1;
+}
+
+/* press */
+.btn-secondary:active {
+  @apply scale-95;
 }

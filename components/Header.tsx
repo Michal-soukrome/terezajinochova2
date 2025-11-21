@@ -8,14 +8,7 @@ import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "./Button";
-import {
-  BookA,
-  BookOpen,
-  Home,
-  Mail,
-  ShoppingCart,
-  Shield,
-} from "lucide-react";
+import { BookOpen, Home, Mail, ShoppingCart, Shield } from "lucide-react";
 
 interface HeaderProps {
   locale: Locale;
@@ -136,7 +129,10 @@ export function Header({ locale }: HeaderProps) {
       initial={false}
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
-        backgroundColor: open ? "#ffffff" : "#fffbeb", // solid amber-50 when closed
+        backgroundColor: open
+          ? "rgba(255, 251, 235, 1)"
+          : "rgba(255, 255, 255, 0.5)",
+        // amber-50 stays solid, white gets 0.5 opacity
         backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}
       transition={{
@@ -147,6 +143,79 @@ export function Header({ locale }: HeaderProps) {
       className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top"
     >
       <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
+
+      {/* Subtle Floating Decorative Elements */}
+      <motion.div
+        className="absolute top-3 right-20 w-3 h-3 text-amber-300/40 pointer-events-none"
+        animate={{
+          y: [0, -8, 0],
+          x: [-5, 5, -5],
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <svg fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        className="absolute top-6 left-1/4 w-2 h-2 text-amber-400/30 pointer-events-none"
+        animate={{
+          y: [0, 6, 0],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-4 right-1/3 w-2.5 h-2.5 text-amber-500/35 pointer-events-none"
+        animate={{
+          rotate: [0, 360],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <svg fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        className="absolute top-2 left-1/2 w-2 h-2 text-amber-300/50 pointer-events-none"
+        animate={{
+          x: [-8, 8, -8],
+          y: [0, -4, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <svg fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+        </svg>
+      </motion.div>
+
       <div
         className="h-full flex justify-between items-center px-4 sm:px-6 lg:px-8"
         id="top-nav"
@@ -594,7 +663,7 @@ export function Header({ locale }: HeaderProps) {
 
                   {/* Bottom section with contact and language switcher - always at bottom */}
                   <div>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between py-5">
                       <div className="flex items-center gap-4">
                         <div className="text-amber-800">
                           <div className="text-xs text-amber-800">
@@ -602,11 +671,9 @@ export function Header({ locale }: HeaderProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <LanguageSwitcher
-                          onLanguageChange={() => setOpen(false)}
-                        />
-                      </div>
+                      <LanguageSwitcher
+                        onLanguageChange={() => setOpen(false)}
+                      />
                     </div>
                   </div>
                 </div>
