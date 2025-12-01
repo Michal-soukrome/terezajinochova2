@@ -391,7 +391,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-32 right-16 w-8 h-8 text-amber-400/40"
+                className="absolute top-32 right-16 w-8 h-8 text-amber-400/40 opacity-10"
                 animate={{
                   y: [0, 15, 0],
                   x: [0, -10, 0],
@@ -410,7 +410,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-32 left-20 w-5 h-5 text-amber-500/50"
+                className="absolute bottom-32 left-20 w-5 h-5 text-amber-500/50 opacity-10"
                 animate={{
                   rotate: [0, 360],
                   scale: [1, 1.2, 1],
@@ -427,7 +427,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-20 right-12 w-7 h-7 text-amber-200"
+                className="absolute bottom-20 right-12 w-7 h-7 text-amber-200 opacity-10"
                 animate={{
                   y: [0, -25, 0],
                   opacity: [0.7, 1, 0.7],
@@ -444,7 +444,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-40 left-1/4 w-4 h-4 text-amber-200"
+                className="absolute top-40 left-1/4 w-4 h-4 text-amber-200 opacity-10"
                 animate={{
                   x: [0, 10, 0],
                   y: [0, -10, 0],
@@ -497,7 +497,7 @@ export function Header({ locale }: HeaderProps) {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 left-10 w-7 h-7 text-amber-200"
+                className="absolute top-1/2 left-10 w-7 h-7 text-amber-200 opacity-10"
                 animate={{
                   x: [0, -15, 0],
                   rotate: [0, 360, 0],
@@ -667,7 +667,7 @@ export function Header({ locale }: HeaderProps) {
                       <div className="flex items-center gap-4">
                         <div className="text-amber-800">
                           <div className="text-xs text-amber-800">
-                            info@svatebnidenik.cz
+                            tereza.jinochova@gmail.com
                           </div>
                         </div>
                       </div>
@@ -714,7 +714,7 @@ export function Header({ locale }: HeaderProps) {
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
                           {locale === "cs"
-                            ? "Vítejte na naší stránce"
+                            ? "Vítejte na mém webu"
                             : "Welcome to our page"}
                         </div>
                       </div>
@@ -814,8 +814,8 @@ export function Header({ locale }: HeaderProps) {
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
                           {locale === "cs"
-                            ? "Spojte se s námi"
-                            : "Get in touch with us"}
+                            ? "Spojte se se mnou"
+                            : "Get in touch with me"}
                         </div>
                       </div>
                     </TranslatedLink>

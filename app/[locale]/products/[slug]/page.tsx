@@ -93,9 +93,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="py-16 md:py-24">
+    <div className="py-10 md:py-24">
       {/* Main Content */}
-      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-16">
         {/* Left - Image */}
         <div className="relative">
           <div className="sticky top-8">
@@ -113,10 +113,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </div>
 
         {/* Right - Details */}
-        <div className="space-y-8">
+        <div className="px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Header */}
           <div>
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="!hidden inline-flex items-center gap-2 mb-4">
               <Badge
                 variant={isPremium ? "premium" : "basic"}
                 locale={locale as "cs" | "en"}

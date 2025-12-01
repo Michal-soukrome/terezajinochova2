@@ -79,10 +79,10 @@ export default function ContactContent({ locale }: ContactContentProps) {
                 : "I'll respond within 24 hours"}
             </p>
             <a
-              href="mailto:hello@svatebnidenik.cz"
-              className="btn-deluxe inline-block"
+              href="mailto:tereza.jinochova@gmail.com"
+              className="!lowercase text-amber-600 transition-colors duration-200"
             >
-              hello@svatebnidenik.cz
+              tereza.jinochova@gmail.com
             </a>
           </div>
 

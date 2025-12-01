@@ -499,7 +499,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       {/* reviews, offset carousel with horizontal scroll */}
       <motion.section
         variants={itemVariants}
-        className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+        className="bg-amber-800/5 px-0 py-16 md:py-24"
         id="reviews"
       >
         <div className="w-full" id="reviews-inner">
@@ -616,7 +616,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
               <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
                 {locale === "cs" ? "Email" : "Email"}
               </h3>
-              <p className="text-gray-700">info@svatebnidenik.cz</p>
+              <p className="text-gray-700">tereza.jinochova@gmail.com</p>
             </div>
 
             <div className="text-center">

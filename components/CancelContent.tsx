@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useSearchParams, usePathname } from "next/navigation";
+import { useState } from "react";
 import TranslatedLink from "@/components/TranslatedLink";
 import { isValidLocale, defaultLocale, Locale } from "@/lib/i18n";
+import { Copy, Check } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,6 +30,16 @@ export default function CancelContent() {
   const locale: Locale = isValidLocale(localeFromPath)
     ? localeFromPath
     : defaultLocale;
+
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    if (sessionId) {
+      await navigator.clipboard.writeText(sessionId);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <motion.div
@@ -82,15 +94,42 @@ export default function CancelContent() {
 
           {sessionId && (
             <motion.div
-              className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-8 inline-block"
+              className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-8 w-full max-w-full"
               variants={itemVariants}
             >
-              <p className="text-sm text-gray-600">
-                {locale === "cs" ? "ID relace:" : "Session ID:"}{" "}
-                <span className="font-mono font-medium text-gray-900">
-                  {sessionId}
-                </span>
-              </p>
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-sm text-gray-600 flex-1">
+                  {locale === "cs" ? "ID relace:" : "Session ID:"} <br />
+                  <span className="font-mono font-medium text-gray-900 break-all">
+                    {sessionId}
+                  </span>
+                </p>
+                <button
+                  onClick={copyToClipboard}
+                  className="mt-4 p-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors cursor-pointer"
+                  title={locale === "cs" ? "Kopírovat ID" : "Copy ID"}
+                >
+                  {copied ? (
+                    <>
+                      <span className="flex items-center gap-1">
+                        <Check className="w-4 h-4 text-green-600" />
+                        <span className="text-sm text-green-600">
+                          {locale === "cs" ? "Zkopírováno" : "Copied"}
+                        </span>
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="flex items-center gap-1">
+                        <Copy className="w-4 h-4 text-gray-600" />
+                        <span className="text-sm text-gray-600">
+                          {locale === "cs" ? "Kopírovat ID" : "Copy ID"}
+                        </span>
+                      </span>
+                    </>
+                  )}
+                </button>
+              </div>
             </motion.div>
           )}
 
@@ -122,41 +161,6 @@ export default function CancelContent() {
               {locale === "cs" ? "Zobrazit produkty" : "View Products"}
             </TranslatedLink>
           </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Trust indicators */}
-      <motion.div
-        className="border-t border-gray-200 bg-white"
-        variants={itemVariants}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <motion.div variants={itemVariants}>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
-                100%
-              </div>
-              <div className="text-gray-600">
-                {locale === "cs" ? "Bezpečné" : "Secure"}
-              </div>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
-                24/7
-              </div>
-              <div className="text-gray-600">
-                {locale === "cs" ? "Podpora" : "Support"}
-              </div>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <div className="text-gray-600">
-                {locale === "cs" ? "Spokojenost" : "Satisfaction"}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </motion.div>
     </motion.div>

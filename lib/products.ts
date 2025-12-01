@@ -57,12 +57,7 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 20500,
     image: "/assets/cover.png",
-    gallery: [
-      "/assets/gallery1.png",
-      "/assets/gallery2.png",
-      "/assets/gallery3.png",
-      "/assets/gallery4.png",
-    ],
+    gallery: ["/assets/cover.png", "/assets/cover.png", "/assets/cover.png"],
     highlights: {
       cs: [
         "Praktické checklisty pro každý den",
@@ -96,14 +91,7 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 1490,
     image: "/assets/cover.png",
-    gallery: [
-      "/assets/gallery1.png",
-      "/assets/gallery2.png",
-      "/assets/gallery3.png",
-      "/assets/gallery4.png",
-      "/assets/gallery5.png",
-      "/assets/gallery6.png",
-    ],
+    gallery: ["/assets/cover.png", "/assets/cover.png", "/assets/cover.png"],
     highlights: {
       cs: [
         "Větší rozsah kapitol & bonusové návody",

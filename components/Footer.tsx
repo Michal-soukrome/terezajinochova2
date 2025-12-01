@@ -11,7 +11,7 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-white border-t border-gray-200">
+    <footer className="w-full bg-white border-t border-amber-800/25">
       {/* Footer Top Area */}
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
@@ -24,24 +24,17 @@ export function Footer({ locale }: FooterProps) {
 
               <div className="space-y-3">
                 <div className="text-gray-700 text-sm">
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-amber-600 transition-colors duration-200"
-                  >
-                    {locale === "cs"
-                      ? "Praha, Česká republika"
-                      : "Prague, Czech Republic"}
-                  </a>
+                  {locale === "cs"
+                    ? "Praha, Česká republika"
+                    : "Prague, Czech Republic"}
                 </div>
 
                 <div className="text-gray-700 text-sm">
                   <a
-                    href="mailto:info@svatebnidenik.cz"
-                    className="hover:text-amber-600 transition-colors duration-200"
+                    href="mailto:tereza.jinochova@gmail.com"
+                    className="!lowercase hover:text-amber-600 transition-colors duration-200"
                   >
-                    info@svatebnidenik.cz
+                    tereza.jinochova@gmail.com
                   </a>
                 </div>
 
