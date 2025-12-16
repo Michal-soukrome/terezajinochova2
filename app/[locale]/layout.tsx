@@ -1,8 +1,8 @@
 import { locales, isValidLocale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import RouteTransition from "@/components/RouteTransition";
+import { Header } from "@/components/layout";
+import { Footer } from "@/components/layout";
+import RouteTransition from "@/components/navigation";
 
 interface LayoutProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import TranslatedLink from "./TranslatedLink";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { Product } from "@/lib/products";
 import { BuyButton } from "./BuyButton";
 import Image from "next/image";
@@ -14,10 +14,8 @@ export function ProductCard({ product, locale }: ProductCardProps) {
 
   return (
     <div
-      className={`bg-white rounded border shadow overflow-hidden transition-all duration-300  ${
-        isPremium
-          ? "border-accent-1-contrast shadow-md"
-          : "border-gray-200 shadow-gray-100/50"
+      className={`bg-white rounded overflow-hidden border transition-all duration-300  ${
+        isPremium ? "border-accent-1" : "border-gray-200"
       }`}
       id="product-card"
     >
@@ -104,7 +102,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 p-4">
+      <div className="flex gap-3 p-6">
         <TranslatedLink
           href={`/products/${product.id}`}
           className="btn btn-secondary w-fit "

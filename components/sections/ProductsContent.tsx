@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { locales, isValidLocale } from "@/lib/i18n";
 import { PRODUCT_LIST } from "@/lib/products";
 import Image from "next/image";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCard } from "../ui/ProductCard";
 import { Star, Check, Lock } from "lucide-react";
-import { AnimatedHeader } from "@/components/AnimatedHeader";
+import { AnimatedHeader } from "../layout/AnimatedHeader";
 import { Locale } from "@/lib/i18n";
 import CONTENT from "@/lib/content";
 

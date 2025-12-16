@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useState } from "react";
-import TranslatedLink from "@/components/TranslatedLink";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { isValidLocale, defaultLocale, Locale } from "@/lib/i18n";
 import { Copy, Check } from "lucide-react";
 

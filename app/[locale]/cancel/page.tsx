@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import dynamicImport from "next/dynamic";
 
 const CancelContent = dynamicImport(
-  () => import("@/components/CancelContent"),
+  () => import("@/components/sections/CancelContent"),
   {
     ssr: false,
   }

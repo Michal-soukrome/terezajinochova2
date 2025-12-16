@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Button from "@/components/Button";
-import TranslatedLink from "@/components/TranslatedLink";
+import Button from "../ui/Button";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { isValidLocale, defaultLocale, Locale } from "@/lib/i18n";
 
 interface SessionData {

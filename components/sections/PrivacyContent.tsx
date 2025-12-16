@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import TranslatedLink from "@/components/TranslatedLink";
-import { AnimatedHeader } from "@/components/AnimatedHeader";
+import TranslatedLink from "../navigation/TranslatedLink";
+import { AnimatedHeader } from "../layout/AnimatedHeader";
 import { Locale } from "@/lib/i18n";
 
 interface PrivacyContentProps {

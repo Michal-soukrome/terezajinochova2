@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { routeTransition } from "@/lib/animations";
-import FullPageLoader from "./FullPageLoader";
+import FullPageLoader from "../common/FullPageLoader";
 
 interface Props {
   children: React.ReactNode;

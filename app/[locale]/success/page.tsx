@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import SuccessContent from "@/components/SuccessContent";
+import SuccessContent from "@/components/sections";
 
 export const dynamic = "force-dynamic";
 

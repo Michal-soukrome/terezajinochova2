@@ -5,10 +5,10 @@ import { PRODUCTS, getProductByLocalizedSlug } from "@/lib/products";
 import { Locale } from "@/lib/i18n";
 import { routes } from "@/lib/routes";
 import Image from "next/image";
-import { BuyButton } from "@/components/BuyButton";
-import { Badge } from "@/components/Badge";
+import { BuyButton } from "@/components/ui";
+import { Badge } from "@/components/ui";
 import { motion } from "framer-motion";
-import { AnimatedHeader } from "@/components/AnimatedHeader";
+import { AnimatedHeader } from "@/components/layout";
 import CONTENT from "@/lib/content";
 
 interface PageProps {

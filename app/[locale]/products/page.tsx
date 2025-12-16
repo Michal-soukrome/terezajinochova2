@@ -4,7 +4,9 @@ import dynamic from "next/dynamic";
 import { locales, isValidLocale } from "@/lib/i18n";
 import { generatePageMetadata } from "@/lib/metadata";
 
-const ProductsContent = dynamic(() => import("@/components/ProductsContent"));
+const ProductsContent = dynamic(
+  () => import("@/components/sections/ProductsContent")
+);
 
 interface PageProps {
   params: Promise<{

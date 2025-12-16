@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import TranslatedLink from "./TranslatedLink";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { Locale } from "@/lib/i18n";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
-import Button from "./Button";
+import Button from "../ui/Button";
 import { BookOpen, Home, Mail, ShoppingCart, Shield } from "lucide-react";
 
 interface HeaderProps {
@@ -160,12 +160,12 @@ export function Header({ locale }: HeaderProps) {
         </Link>
 
         {/* Desktop nav */}
-        <div className="flex items-center gap-10">
-          <nav className="hidden md:flex items-center gap-5 ">
-            <span className="relative z-10 transition-colors duration-300 ease-in-out group">
+        <div className="h-full flex items-center gap-10">
+          <nav className="h-full hidden md:flex items-center ">
+            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -181,11 +181,11 @@ export function Header({ locale }: HeaderProps) {
                 </span>
               </TranslatedLink>{" "}
             </span>
-            <span className="text-accent-1-contrast">|</span>
-            <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
+
+            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -201,11 +201,10 @@ export function Header({ locale }: HeaderProps) {
               </TranslatedLink>
             </span>
 
-            <span className="text-amber-700">|</span>
-            <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
+            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
-                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2 "
+                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={

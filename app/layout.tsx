@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { BackToTop } from "@/components/BackToTop";
+import { BackToTop } from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "Svatební deník | Plánovačka svateb od zásnub až k oltáři",

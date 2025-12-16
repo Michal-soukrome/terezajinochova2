@@ -1,9 +1,9 @@
 "use client";
 
-import { LanguageSwitcher } from "./LanguageSwitcher";
-import TranslatedLink from "./TranslatedLink";
+import { LanguageSwitcher } from "../ui/LanguageSwitcher";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { Locale } from "@/lib/i18n";
-import { SocialMediaIcons } from "./SocialMediaIcons";
+import { SocialMediaIcons } from "../common/SocialMediaIcons";
 
 interface FooterProps {
   locale: Locale;

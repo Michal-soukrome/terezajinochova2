@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import TranslatedLink from "@/components/TranslatedLink";
+import TranslatedLink from "../navigation/TranslatedLink";
 import { Locale } from "@/lib/i18n";
 
 interface HeroSectionProps {
