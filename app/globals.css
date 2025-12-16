@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Pinyon+Script&display=swap");
+@import "tailwindcss";
 
 /* Fallback: Use system fonts if Google Fonts fail to load */
 :root {
+  /* New accent palette (from design notes) */
+  --color-accent-1: #fef7f0; /* soft warm cream */
+  --color-accent-1-contrast: #dcab6f; /* warm amber */
+  --color-accent-2: #fdf0ed; /* pale blush */
+  --color-accent-2-contrast: #a08068; /* muted terracotta */
+  --color-accent-3: #f5e5db; /* soft beige */
+  --color-accent-3-contrast: #a08168; /* warm taupe */
+  --color-accent-4: #dcab6f; /* amber */
+  --color-accent-4-contrast: #fef7f0; /* cream */
+
   --font-cormorant: "Cormorant", "Times New Roman", serif;
   --font-pinyon: "Pinyon Script", "Brush Script MT", cursive;
 }
-@import "tailwindcss";
 
 :root {
   --background: #ffffff;
@@ -28,6 +38,17 @@
   --color-foreground: var(--foreground);
   --font-sans: "Cormorant", serif;
   --font-heading: "Pinyon Script", cursive;
+
+  /* Accent tokens */
+  --accent-1: var(--color-accent-1);
+  --accent-1-contrast: var(--color-accent-1-contrast);
+  --accent-2: var(--color-accent-2);
+  --accent-2-contrast: var(--color-accent-2-contrast);
+  --accent-3: var(--color-accent-3);
+  --accent-3-contrast: var(--color-accent-3-contrast);
+  --accent-4: var(--color-accent-4);
+  --accent-4-contrast: var(--color-accent-4-contrast);
+
   --font-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Consolas",
     "Courier New", monospace;
   --font-family-sans: "Cormorant", serif;
@@ -51,8 +72,10 @@ body {
 
 /* Headings use Pinyon Script */
 h1,
+h3,
 .heading {
-  font-family: var(--font-pinyon) !important;
+  font-family: var(--font-heading) !important;
+  color: var(--accent-1-contrast);
 }
 
 h2 {
@@ -63,6 +86,99 @@ h2 {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+}
+
+/* Accent color utilities */
+.bg-accent-1 {
+  background-color: var(--color-accent-1);
+}
+.bg-accent-1-contrast {
+  background-color: var(--color-accent-1-contrast);
+}
+.text-accent-1 {
+  color: var(--color-accent-1);
+}
+.text-accent-1-contrast {
+  color: var(--color-accent-1-contrast);
+}
+.border-accent-1 {
+  border-color: var(--color-accent-1-contrast);
+}
+.bg-accent-gradient-1 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-1),
+    var(--color-accent-1-contrast)
+  );
+}
+
+.bg-accent-2 {
+  background-color: var(--color-accent-2);
+}
+.bg-accent-2-contrast {
+  background-color: var(--color-accent-2-contrast);
+}
+.text-accent-2 {
+  color: var(--color-accent-2);
+}
+.text-accent-2-contrast {
+  color: var(--color-accent-2-contrast);
+}
+.border-accent-2 {
+  border-color: var(--color-accent-2-contrast);
+}
+.bg-accent-gradient-2 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-2),
+    var(--color-accent-2-contrast)
+  );
+}
+
+.bg-accent-3 {
+  background-color: var(--color-accent-3);
+}
+.bg-accent-3-contrast {
+  background-color: var(--color-accent-3-contrast);
+}
+.text-accent-3 {
+  color: var(--color-accent-3);
+}
+.text-accent-3-contrast {
+  color: var(--color-accent-3-contrast);
+}
+.border-accent-3 {
+  border-color: var(--color-accent-3-contrast);
+}
+.bg-accent-gradient-3 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-3),
+    var(--color-accent-3-contrast)
+  );
+}
+
+.bg-accent-4 {
+  background-color: var(--color-accent-4);
+}
+.bg-accent-4-contrast {
+  background-color: var(--color-accent-4-contrast);
+}
+.text-accent-4 {
+  color: var(--color-accent-4);
+}
+.text-accent-4-contrast {
+  color: var(--color-accent-4-contrast);
+}
+.border-accent-4 {
+  border-color: var(--color-accent-4-contrast);
+}
+.bg-accent-gradient-4 {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-4),
+    var(--color-accent-4-contrast)
+  );
 }
 
 header a,

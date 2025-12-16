@@ -18,7 +18,7 @@ export function Footer({ locale }: FooterProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Info Column */}
             <div>
-              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Info" : "Info"}
               </h6>
 
@@ -32,7 +32,7 @@ export function Footer({ locale }: FooterProps) {
                 <div className="text-gray-700 text-sm">
                   <a
                     href="mailto:tereza.jinochova@gmail.com"
-                    className="!lowercase hover:text-amber-600 transition-colors duration-200"
+                    className="!lowercase hover:text-accent-1-contrast transition-colors duration-200"
                   >
                     tereza.jinochova@gmail.com
                   </a>
@@ -41,7 +41,7 @@ export function Footer({ locale }: FooterProps) {
                 <div className="text-gray-700 text-sm">
                   <a
                     href="tel:+420123456789"
-                    className="hover:text-amber-600 transition-colors duration-200"
+                    className="hover:text-accent-1-contrast transition-colors duration-200"
                   >
                     +420 123 456 789
                   </a>
@@ -56,14 +56,14 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Products Column */}
             <div>
-              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Produkty" : "Products"}
               </h6>
 
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/products/zakladni"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
                     ? "Svatební Deník – Základní"
@@ -71,7 +71,7 @@ export function Footer({ locale }: FooterProps) {
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products/premium"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
                     ? "Svatební Deník – Prémiový"
@@ -79,7 +79,7 @@ export function Footer({ locale }: FooterProps) {
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Všechny produkty" : "All Products"}
                 </TranslatedLink>
@@ -88,32 +88,32 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Navigation Column */}
             <div>
-              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Navigace" : "Navigation"}
               </h6>
 
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Domů" : "Home"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/about"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "O deníku" : "About"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/contact"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Kontakt" : "Contact"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/privacy"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Soukromí" : "Privacy"}
                 </TranslatedLink>
@@ -122,26 +122,26 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Services Column */}
             <div>
-              <h6 className="text-sm font-deluxe font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Služby" : "Services"}
               </h6>
 
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/#benefits"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Plánování svatby" : "Wedding Planning"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/#products"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Svatební deníky" : "Wedding Diaries"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/contact"
-                  className="block text-gray-700 hover:text-amber-600 text-sm transition-colors duration-200"
+                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Konzultace" : "Consultation"}
                 </TranslatedLink>
@@ -158,7 +158,7 @@ export function Footer({ locale }: FooterProps) {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-xs text-gray-600">
                 &copy; {new Date().getFullYear()}{" "}
-                <span className="font-deluxe">
+                <span className="font-heading">
                   {locale === "cs" ? "Svatební deník" : "Wedding Todoist"}
                 </span>
                 <span className="mx-2">|</span>

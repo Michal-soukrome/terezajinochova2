@@ -16,7 +16,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
     <div
       className={`bg-white rounded border shadow overflow-hidden transition-all duration-300  ${
         isPremium
-          ? "border-amber-800/10 shadow-amber-100/50"
+          ? "border-accent-1-contrast shadow-md"
           : "border-gray-200 shadow-gray-100/50"
       }`}
       id="product-card"
@@ -53,7 +53,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           {/* Title */}
           <div>
             <TranslatedLink href={`/products/${product.id}`}>
-              <h3 className="text-xl font-bold text-gray-900 font-deluxe leading-tight hover:underline transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 font-heading leading-tight hover:underline transition-colors">
                 {product.names[locale as keyof typeof product.names]}
               </h3>
             </TranslatedLink>
@@ -77,7 +77,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
                   className="flex items-start gap-2 text-sm text-gray-700"
                 >
                   <svg
-                    className="w-4 h-4 text-amber-600 mt-0.5 shrink-0"
+                    className="w-4 h-4 text-accent-1-contrast mt-0.5 shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -94,7 +94,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
 
           {/* Price */}
           <div className="pt-2">
-            <p className="text-2xl font-bold text-gray-900 font-deluxe">
+            <p className="text-2xl font-bold text-gray-900 font-heading">
               {locale === "cs"
                 ? `${(product.priceCZK / 100).toFixed(0)} Kč`
                 : `$${(product.priceCZK / 100).toFixed(2)}`}

@@ -143,16 +143,16 @@ export default function SuccessContent() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen bg-linear-to-b from-amber-50/30 via-white to-white"
+        className="min-h-screen bg-linear-to-b from-accent-1 via-white to-white"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <motion.div
             variants={itemVariants}
             className="text-center max-w-2xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100  rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent-1 rounded-full mb-6">
               <svg
-                className="w-5 h-5 text-amber-600 animate-spin"
+                className="w-5 h-5 text-accent-1-contrast animate-spin"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -164,12 +164,12 @@ export default function SuccessContent() {
                   d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                 />
               </svg>
-              <span className="text-sm font-semibold text-amber-900">
+              <span className="text-sm font-semibold text-accent-1-contrast">
                 {locale === "cs" ? "Načítání údajů..." : "Loading details..."}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-deluxe leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-heading leading-tight">
               {locale === "cs"
                 ? "Zpracováváme vaši objednávku"
                 : "Processing Your Order"}
@@ -192,7 +192,7 @@ export default function SuccessContent() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen bg-linear-to-b from-amber-50/30 via-white to-white"
+        className="min-h-screen bg-linear-to-b from-accent-1 via-white to-white"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <motion.div
@@ -218,7 +218,7 @@ export default function SuccessContent() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-deluxe leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-heading leading-tight">
               {locale === "cs"
                 ? "Nelze načíst údaje o platbě"
                 : "Unable to Load Payment Details"}
@@ -267,7 +267,7 @@ export default function SuccessContent() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-linear-to-b from-amber-50/30 via-white to-white"
+      className="min-h-screen bg-linear-to-b from-accent-1 via-white to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Success Header */}
@@ -294,7 +294,7 @@ export default function SuccessContent() {
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 font-deluxe leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 font-heading leading-tight">
             {locale === "cs"
               ? "Děkujeme za vaši objednávku!"
               : "Thank You for Your Order!"}
@@ -306,7 +306,7 @@ export default function SuccessContent() {
               : "Your order has been received and will be processed. Find your receipt below."}
           </p>
 
-          <div className="bg-amber-800/2 rounded p-6 shadow inline-block">
+          <div className="bg-accent-1 rounded p-6 shadow inline-block">
             <div className="flex items-center justify-between gap-8">
               <div className="text-left">
                 <p className="text-sm text-gray-600 mb-1">
@@ -332,12 +332,12 @@ export default function SuccessContent() {
           {/* Customer Information */}
           <motion.div
             variants={itemVariants}
-            className="bg-amber-800/2 rounded p-8 shadow"
+            className="bg-accent-1-contrast rounded p-8 shadow"
           >
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+              <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -350,7 +350,7 @@ export default function SuccessContent() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading">
                 {locale === "cs"
                   ? "Informace o zákazníkovi"
                   : "Customer Information"}
@@ -389,12 +389,12 @@ export default function SuccessContent() {
           {/* Order Details */}
           <motion.div
             variants={itemVariants}
-            className="bg-amber-800/2 rounded p-8 shadow"
+            className="bg-accent-1-contrast rounded p-8 shadow"
           >
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+              <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -407,7 +407,7 @@ export default function SuccessContent() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading">
                 {locale === "cs" ? "Detail objednávky" : "Order Details"}
               </h2>
             </div>
@@ -426,7 +426,7 @@ export default function SuccessContent() {
                       {item.quantity}
                     </p>
                   </div>
-                  <p className="font-bold text-amber-600">
+                  <p className="font-bold text-accent-1-contrast">
                     {formatCurrency(
                       item.amount_total ?? 0,
                       sessionData.currency
@@ -439,7 +439,7 @@ export default function SuccessContent() {
                   <span className="text-lg font-semibold text-gray-900">
                     {locale === "cs" ? "Celkem:" : "Total:"}
                   </span>
-                  <span className="text-2xl font-bold text-amber-600">
+                  <span className="text-2xl font-bold text-accent-1-contrast">
                     {formatCurrency(
                       sessionData.amount_total,
                       sessionData.currency
@@ -458,12 +458,12 @@ export default function SuccessContent() {
             (sessionData as any).shipping?.address) && (
             <motion.div
               variants={itemVariants}
-              className="bg-amber-800/2 border rounded p-8 shadow"
+              className="bg-accent-1-contrast border rounded p-8 shadow"
             >
               <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+                <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                   <svg
-                    className="w-6 h-6 text-amber-600"
+                    className="w-6 h-6 text-accent-1-contrast"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -476,17 +476,17 @@ export default function SuccessContent() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+                <h2 className="text-2xl font-bold text-gray-900 font-heading">
                   {locale === "cs"
                     ? "Dodací informace"
                     : "Delivery Information"}
                 </h2>
               </div>
               <div className="space-y-4">
-                <div className="bg-amber-50 border border-amber-800/10 rounded-lg p-4">
+                <div className="bg-accent-1 border border-accent-1 rounded-lg p-4">
                   <div className="flex items-center mb-2">
                     <svg
-                      className="w-5 h-5 text-amber-600 mr-2"
+                      className="w-5 h-5 text-accent-1-contrast mr-2"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -498,13 +498,13 @@ export default function SuccessContent() {
                         d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                       />
                     </svg>
-                    <span className="font-semibold text-amber-900">
+                    <span className="font-semibold text-accent-1-contrast">
                       {locale === "cs"
                         ? "Standardní dodání"
                         : "Standard Delivery"}
                     </span>
                   </div>
-                  <p className="text-amber-800 text-sm">
+                  <p className="text-accent-1-contrast text-sm">
                     {locale === "cs"
                       ? "Vaše objednávka bude doručena během 3-5 pracovních dnů"
                       : "Your order will be delivered within 3-5 business days"}
@@ -575,12 +575,12 @@ export default function SuccessContent() {
           {/* Payment Method */}
           <motion.div
             variants={itemVariants}
-            className="bg-amber-800/2 rounded p-8 shadow"
+            className="bg-accent-1-contrast rounded p-8 shadow"
           >
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+              <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -593,7 +593,7 @@ export default function SuccessContent() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading">
                 {locale === "cs" ? "Způsob platby" : "Payment Method"}
               </h2>
             </div>
@@ -638,12 +638,12 @@ export default function SuccessContent() {
           {/* Payment Status */}
           <motion.div
             variants={itemVariants}
-            className="bg-amber-800/2  rounded p-8 shadow"
+            className="bg-accent-1-contrast rounded p-8 shadow"
           >
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+              <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                 <svg
-                  className="w-6 h-6 text-green-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -656,7 +656,7 @@ export default function SuccessContent() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading">
                 {locale === "cs" ? "Stav platby" : "Payment Status"}
               </h2>
             </div>
@@ -678,12 +678,12 @@ export default function SuccessContent() {
           {/* Action Buttons */}
           <motion.div
             variants={itemVariants}
-            className="bg-amber-800/2  rounded p-8 shadow"
+            className="bg-accent-1  rounded p-8 shadow"
           >
             <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+              <div className="w-10 h-10 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -696,7 +696,7 @@ export default function SuccessContent() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading">
                 {locale === "cs" ? "Akce" : "Actions"}
               </h2>
             </div>
@@ -722,12 +722,12 @@ export default function SuccessContent() {
         {/* Footer Message */}
         <motion.div
           variants={itemVariants}
-          className="mt-8 bg-amber-800/2  rounded shadow p-8 text-center"
+          className="mt-8 bg-accent-1-contrast rounded shadow p-8 text-center"
         >
           <div className="flex items-center justify-center mb-6">
-            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+            <div className="w-12 h-12 bg-accent-1 rounded-lg flex items-center justify-center mr-4">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -740,7 +740,7 @@ export default function SuccessContent() {
                 />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 font-deluxe">
+            <h3 className="text-2xl font-bold text-gray-900 font-heading">
               {locale === "cs" ? "Potřebujete pomoc?" : "Need Help?"}
             </h3>
           </div>

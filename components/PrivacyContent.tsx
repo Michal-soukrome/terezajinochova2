@@ -49,10 +49,10 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
       {/* Last Updated */}
       <motion.div
         variants={itemVariants}
-        className="bg-amber-50 border border-amber-800/10 rounded-xl p-4 mb-8 text-center"
+        className="bg-accent-1 border border-accent-1 rounded-xl p-4 mb-8 text-center"
       >
         <div className="max-w-7xl mx-auto">
-          <p className="text-amber-800 font-medium">
+          <p className="text-accent-1-contrast font-medium">
             {locale === "cs"
               ? "Naposledy aktualizováno: 19. listopadu 2025"
               : "Last updated: November 19, 2025"}
@@ -61,16 +61,13 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
       </motion.div>
 
       {/* Main Content */}
-      <motion.div
-        variants={itemVariants}
-        className="prose prose-amber max-w-none"
-      >
+      <motion.div variants={itemVariants} className="prose max-w-none">
         {/* Introduction */}
         <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4 flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -95,9 +92,9 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
         {/* Data Collection */}
         <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4 flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -111,7 +108,7 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
               </svg>
               {locale === "cs" ? "Shromažďování údajů" : "Data Collection"}
             </h2>
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6">
               <h3 className="font-semibold text-gray-900 mb-3">
                 {locale === "cs"
                   ? "Jaké údaje shromažďujeme:"
@@ -119,19 +116,19 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
               </h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 mt-1">•</span>
+                  <span className="text-accent-1-contrast mt-1">•</span>
                   {locale === "cs"
                     ? "Kontaktní údaje (jméno, email) pro komunikaci"
                     : "Contact information (name, email) for communication"}
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 mt-1">•</span>
+                  <span className="text-accent-1-contrast mt-1">•</span>
                   {locale === "cs"
                     ? "Platební údaje zpracované přes Stripe (nezachováváme)"
                     : "Payment information processed through Stripe (not stored)"}
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 mt-1">•</span>
+                  <span className="text-accent-1-contrast mt-1">•</span>
                   {locale === "cs"
                     ? "Údaje o používání aplikace pro zlepšení služeb"
                     : "App usage data to improve our services"}
@@ -142,11 +139,11 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
         </section>
 
         {/* Data Usage */}
-        <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4 flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -166,7 +163,7 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                 : "We use your data only for the following purposes:"}
             </p>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-amber-50/50 rounded-lg p-4 border border-amber-100">
+              <div className="bg-accent-1 rounded-lg p-4 border border-accent-1">
                 <h4 className="font-semibold text-gray-900 mb-2">
                   {locale === "cs" ? "Poskytování služeb" : "Service Delivery"}
                 </h4>
@@ -176,7 +173,7 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                     : "Processing orders and providing access to the planner"}
                 </p>
               </div>
-              <div className="bg-amber-50/50 rounded-lg p-4 border border-amber-100">
+              <div className="bg-accent-1 rounded-lg p-4 border border-accent-1">
                 <h4 className="font-semibold text-gray-900 mb-2">
                   {locale === "cs" ? "Komunikace" : "Communication"}
                 </h4>
@@ -193,9 +190,9 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
         {/* Data Protection */}
         <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4 flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -245,11 +242,11 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
         </section>
 
         {/* Contact */}
-        <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-4 flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 font-heading mb-4 flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-amber-600"
+                className="w-6 h-6 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

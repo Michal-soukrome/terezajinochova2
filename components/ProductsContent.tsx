@@ -8,6 +8,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Star, Check, Lock } from "lucide-react";
 import { AnimatedHeader } from "@/components/AnimatedHeader";
 import { Locale } from "@/lib/i18n";
+import CONTENT from "@/lib/content";
 
 interface ProductsContentProps {
   locale: Locale;
@@ -106,10 +107,10 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
 
       {/* Products Grid */}
       <motion.div variants={itemVariants}>
-        <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-deluxe">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
                 {t.chooseTitle}
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -140,7 +141,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-deluxe">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
               {t.featuresTitle}
             </h2>
           </div>
@@ -152,7 +153,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
                 className="bg-white border border-gray-200 rounded p-5 hover:shadow-lg transition-all duration-300"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-deluxe">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 text-sm">{feature.desc}</p>
@@ -162,9 +163,40 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
         </div>
       </section>
 
-      <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      {/* 'Co ve Svatebním deníku naleznete' - populated from internal content */}
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
+              {locale === "cs"
+                ? "Co ve Svatebním deníku naleznete:"
+                : "What's inside"}
+            </h2>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            {locale === "cs" ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                {CONTENT.cs.why.bullets.map((b, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="text-accent-1-contrast font-bold">•</div>
+                    <div>{b}</div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600">
+                A practical planner with checklists, budgets, seating charts and
+                more to guide you through your wedding preparation.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-deluxe">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
             {locale === "cs"
               ? "Začněte plánovat svatbu snů ještě dnes"
               : "Start Planning Your Dream Wedding Today"}
@@ -177,7 +209,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center my-10">
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
+              <div className="text-4xl font-bold text-accent-1-contrast mb-2 font-heading">
                 {locale === "cs" ? "100%" : "100%"}
               </div>
               <div className="text-gray-600">
@@ -185,7 +217,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
+              <div className="text-4xl font-bold text-accent-1-contrast mb-2 font-heading">
                 {locale === "cs" ? "24/7" : "24/7"}
               </div>
               <div className="text-gray-600">
@@ -193,7 +225,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
               </div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2 font-deluxe">
+              <div className="text-4xl font-bold text-accent-1-contrast mb-2 font-heading">
                 {locale === "cs" ? "⭐⭐⭐⭐⭐" : "⭐⭐⭐⭐⭐"}
               </div>
               <div className="text-gray-600">
@@ -201,12 +233,12 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
               </div>
             </div>
           </div>
-          <div className="inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-amber-100 to-amber-50 shadow text-amber-900 rounded-full text-xs font-semibold uppercase tracking-wide ">
+          <div className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent-gradient-1 shadow text-accent-1-contrast rounded-full text-xs font-semibold uppercase tracking-wide ">
             <div className="flex items-center gap-2 text-gray-700">
               <div className="flex -space-x-2">
-                <div className="w-10 h-10 rounded-full bg-amber-800/10 border-2 border-white"></div>
-                <div className="w-10 h-10 rounded-full bg-amber-300 border-2 border-white"></div>
-                <div className="w-10 h-10 rounded-full bg-amber-400 border-2 border-white"></div>
+                <div className="w-10 h-10 rounded-full bg-accent-1 border-2 border-white"></div>
+                <div className="w-10 h-10 rounded-full bg-accent-2 border-2 border-white"></div>
+                <div className="w-10 h-10 rounded-full bg-accent-3 border-2 border-white"></div>
               </div>
               <span className="text-sm font-medium">
                 {locale === "cs"

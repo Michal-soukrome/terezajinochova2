@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import TranslatedLink from "@/components/TranslatedLink";
 import { AnimatedHeader } from "@/components/AnimatedHeader";
+import CONTENT from "@/lib/content";
 
 interface AboutContentProps {
   locale: string;
@@ -58,9 +59,9 @@ export default function AboutContent({ locale }: AboutContentProps) {
         >
           <div className="max-w-7xl mx-auto" id="about-page-inner">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 md:p-12">
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-6 flex items-center gap-3">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading mb-6 flex items-center gap-3">
                 <svg
-                  className="w-6 h-6 text-amber-600"
+                  className="w-6 h-6 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -75,16 +76,24 @@ export default function AboutContent({ locale }: AboutContentProps) {
                 {locale === "cs" ? "Moje vize" : "Our Vision"}
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                {locale === "cs"
-                  ? "Svatební plánovač je nástroj vytvořený s láskou pro páry, které chtějí mít svůj velký den dokonale zorganizovaný. Moje aplikace kombinuje eleganci s funkčností, aby vám pomohla soustředit se na to nejdůležitější - na vzájemnou lásku a radost ze společného života."
-                  : "The wedding planner is a tool created with love for couples who want their big day perfectly organized. Our application combines elegance with functionality to help you focus on what's most important - mutual love and the joy of shared life."}
+                {locale === "cs" ? (
+                  <>
+                    {CONTENT.cs.why.intro.split("\n\n").map((p, idx) => (
+                      <span key={idx} className="block mb-4">
+                        {p}
+                      </span>
+                    ))}
+                  </>
+                ) : (
+                  "The wedding planner is a tool created with love for couples who want their big day perfectly organized. Our application combines elegance with functionality to help you focus on what's most important - mutual love and the joy of shared life."
+                )}
               </p>
 
               <div className="grid md:grid-cols-2 gap-8 mt-8">
-                <div className="bg-amber-50/50 rounded-xl p-6 border border-amber-100">
-                  <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3 flex items-center gap-2">
+                <div className="bg-accent-1 rounded-xl p-6 border border-accent-1">
+                  <h3 className="text-xl font-bold text-gray-900 font-heading mb-3 flex items-center gap-2">
                     <svg
-                      className="w-5 h-5 text-amber-600"
+                      className="w-5 h-5 text-accent-1-contrast"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -105,10 +114,10 @@ export default function AboutContent({ locale }: AboutContentProps) {
                   </p>
                 </div>
 
-                <div className="bg-amber-50/50 rounded-xl p-6 border border-amber-100">
-                  <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3 flex items-center gap-2">
+                <div className="bg-accent-1 rounded-xl p-6 border border-accent-1">
+                  <h3 className="text-xl font-bold text-gray-900 font-heading mb-3 flex items-center gap-2">
                     <svg
-                      className="w-5 h-5 text-amber-600"
+                      className="w-5 h-5 text-accent-1-contrast"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -134,14 +143,64 @@ export default function AboutContent({ locale }: AboutContentProps) {
         </section>
       </motion.div>
 
+      {/* Story Section (from internal files) */}
       <motion.div variants={itemVariants}>
         <section
-          className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+          className="px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+          id="about-story"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 md:p-12">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading mb-6">
+                {locale === "cs" ? "Příběh Svatebního deníku" : "Our Story"}
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                {locale === "cs"
+                  ? CONTENT.cs.story.split("\n\n").map((p, i) => (
+                      <span key={i} className="block mb-4">
+                        {p}
+                      </span>
+                    ))
+                  : "The wedding diary was born out of a love for organization and the stories of engaged couples."}
+              </p>
+            </div>
+          </div>
+        </section>
+      </motion.div>
+
+      {/* About Me Section */}
+      <motion.div variants={itemVariants}>
+        <section
+          className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+          id="about-me"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg border border-amber-800/10 p-8 md:p-12">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading mb-6">
+                {locale === "cs" ? "O mně" : "About Me"}
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                {locale === "cs"
+                  ? CONTENT.cs.about.split("\n\n").map((p, i) => (
+                      <span key={i} className="block mb-4">
+                        {p}
+                      </span>
+                    ))
+                  : "Biography and professional background with a passion for weddings and choreography."}
+              </p>
+            </div>
+          </div>
+        </section>
+      </motion.div>
+
+      <motion.div variants={itemVariants}>
+        <section
+          className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
           id="about"
         >
           <div className="max-w-7xl mx-auto" id="about-page-inner">
-            <div className="bg-linear-to-br from-amber-50 to-white rounded-2xl shadow-lg border border-amber-800/10 p-8 md:p-12">
-              <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-6 flex items-center gap-3">
+            <div className="bg-accent-gradient-1 rounded-2xl shadow-lg border border-accent-1 p-8 md:p-12">
+              <h2 className="text-2xl font-bold text-gray-900 font-heading mb-6 flex items-center gap-3">
                 <svg
                   className="w-6 h-6 text-amber-600"
                   fill="none"
@@ -165,9 +224,9 @@ export default function AboutContent({ locale }: AboutContentProps) {
 
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg
-                      className="w-6 h-6 text-amber-600"
+                      className="w-6 h-6 text-accent-1-contrast"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -191,9 +250,9 @@ export default function AboutContent({ locale }: AboutContentProps) {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg
-                      className="w-6 h-6 text-amber-600"
+                      className="w-6 h-6 text-accent-1-contrast"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -217,9 +276,9 @@ export default function AboutContent({ locale }: AboutContentProps) {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg
-                      className="w-6 h-6 text-amber-600"
+                      className="w-6 h-6 text-accent-1-contrast"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

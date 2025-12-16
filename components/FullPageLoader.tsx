@@ -19,11 +19,11 @@ export default function FullPageLoader({
       <div className="flex flex-col items-center space-y-6">
         {/* Subtle elegant loader */}
         <div className="relative h-6 w-6">
-          <div className="absolute inset-0 rounded-full bg-amber-800 animate-ping opacity-20"></div>
-          <div className="absolute inset-0 rounded-full bg-amber-700"></div>
+          <div className="absolute inset-0 rounded-full bg-accent-4 animate-ping opacity-20"></div>
+          <div className="absolute inset-0 rounded-full bg-accent-4"></div>
         </div>
 
-        <p className="font-deluxe text-amber-800 text-lg tracking-wide">
+        <p className="font-heading text-accent-1-contrast text-lg tracking-wide">
           {displayMessage}
         </p>
       </div>

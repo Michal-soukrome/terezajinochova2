@@ -77,7 +77,7 @@ export default function CancelContent() {
           </motion.div>
 
           <motion.h1
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-deluxe leading-tight"
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-heading leading-tight"
             variants={itemVariants}
           >
             {locale === "cs" ? "Platba byla zrušena" : "Payment Cancelled"}

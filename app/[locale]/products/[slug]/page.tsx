@@ -9,6 +9,7 @@ import { BuyButton } from "@/components/BuyButton";
 import { Badge } from "@/components/Badge";
 import { motion } from "framer-motion";
 import { AnimatedHeader } from "@/components/AnimatedHeader";
+import CONTENT from "@/lib/content";
 
 interface PageProps {
   params: Promise<{
@@ -123,7 +124,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               />
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-deluxe leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-heading leading-tight">
               {product.names[locale as keyof typeof product.names]}
             </h1>
 
@@ -137,9 +138,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Price & CTA */}
-          <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 space-y-4">
+          <div className="bg-accent-1 border border-accent-1 rounded-2xl p-6 space-y-4">
             <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold text-gray-900 font-deluxe">
+              <span className="text-5xl font-bold text-gray-900 font-heading">
                 {locale === "cs"
                   ? `${(product.priceCZK / 100).toFixed(0)}`
                   : `${(product.priceCZK / 100).toFixed(0)}`}
@@ -166,9 +167,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
           {/* Features */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 font-deluxe text-gray-900 flex items-center gap-2">
+            <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
               <svg
-                className="w-5 h-5 text-amber-600"
+                className="w-5 h-5 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -190,7 +191,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               ).map((h, i) => (
                 <li key={i} className="flex items-start gap-3 text-gray-700">
                   <svg
-                    className="w-5 h-5 text-amber-600 mt-0.5 shrink-0"
+                    className="w-5 h-5 text-accent-1-contrast mt-0.5 shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -207,13 +208,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Testimonial */}
-          <div className="bg-linear-to-br from-amber-50 to-white border border-amber-800/10 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 font-deluxe text-gray-900">
+          <div className="bg-accent-gradient-1 border border-accent-1 rounded-2xl p-6">
+            <h3 className="text-xl font-bold mb-4 font-heading text-gray-900">
               {t.testimonials}
             </h3>
             <blockquote className="relative">
               <svg
-                className="absolute -top-2 -left-2 w-8 h-8 text-amber-800/10"
+                className="absolute -top-2 -left-2 w-8 h-8 text-accent-1-contrast"
                 fill="currentColor"
                 viewBox="0 0 32 32"
               >
@@ -226,7 +227,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-amber-500"
+                    className="w-5 h-5 text-accent-4"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -239,7 +240,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
           {/* Perfect For */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-3 font-deluxe text-gray-900">
+            <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
               {t.perfectFor}
             </h3>
             <p className="text-gray-700 leading-relaxed">{t.perfectForText}</p>
@@ -249,11 +250,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
       {/* Image Gallery */}
       {product.gallery && product.gallery.length > 0 && (
-        <section className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-10">
+        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-10">
           <div className="max-w-7xl mx-auto">
             {" "}
             <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 font-deluxe text-gray-900 text-center">
+              <h2 className="text-3xl font-bold mb-8 font-heading text-gray-900 text-center">
                 {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -285,9 +286,30 @@ export default async function ProductDetailPage({ params }: PageProps) {
       )}
 
       {/* Additional Info Section */}
+      {/* Contents list from internal file (Czech) */}
+      {locale === "cs" && (
+        <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
+              Co ve Svatebním deníku naleznete
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto text-gray-700">
+              {CONTENT.cs.why.list.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="text-accent-1-contrast font-semibold">
+                    {i + 1}.
+                  </div>
+                  <div>{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 font-deluxe text-gray-900 text-center">
+          <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
             {locale === "cs" ? "Další informace" : "Additional Information"}
           </h2>
           <div className="prose prose-amber max-w-none text-gray-700 leading-relaxed">

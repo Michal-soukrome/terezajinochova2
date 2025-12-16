@@ -126,7 +126,7 @@ export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <div className="flex items-center mb-4">
-              <div className="flex text-amber-400">
+              <div className="flex text-accent-4">
                 {[...Array(5)].map((_, j) => (
                   <svg
                     key={j}
@@ -155,18 +155,18 @@ export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
       <div className="flex justify-center gap-4 pt-8">
         <button
           onClick={() => scrollByAmount(-300)}
-          className="p-4 rounded-full cursor-pointer bg-amber-800/10 hover:bg-amber-700/20 transition"
+          className="p-4 rounded-full cursor-pointer bg-accent-1 hover:bg-accent-1-contrast transition-colors"
         >
-          <span className="text-amber-800">
+          <span className="text-accent-1-contrast">
             <ChevronRight className="w-4 h-4 rotate-180" />
           </span>
         </button>
 
         <button
           onClick={() => scrollByAmount(300)}
-          className="p-4 rounded-full cursor-pointer bg-amber-800/10 hover:bg-amber-700/20 transition"
+          className="p-4 rounded-full cursor-pointer bg-accent-1 hover:bg-accent-1-contrast transition-colors"
         >
-          <span className="text-amber-800">
+          <span className="text-accent-1-contrast">
             <ChevronRight className="w-4 h-4" />
           </span>
         </button>

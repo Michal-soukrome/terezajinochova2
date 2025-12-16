@@ -7,7 +7,7 @@ interface SocialMediaIconsProps {
 
 export function SocialMediaIcons({
   className = "flex space-x-4",
-  iconClassName = "text-gray-600 hover:text-amber-600 transition-colors duration-200",
+  iconClassName = "text-gray-600 hover:text-accent-1-contrast transition-colors duration-200",
 }: SocialMediaIconsProps) {
   return (
     <div className={className}>

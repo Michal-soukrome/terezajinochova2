@@ -11,12 +11,14 @@
    PRIMARY – plný, teplý, luxusní
 ------------------------------------------ */
 .btn-primary {
-  @apply bg-amber-800 text-white border-amber-900/30;
+  background-color: var(--color-accent-4);
+  color: #fff;
+  border-color: var(--color-accent-4-contrast);
 }
 
 .btn-primary:hover {
-  @apply bg-amber-900 shadow-lg border-amber-900/40;
-  filter: brightness(1.05);
+  @apply shadow-lg;
+  filter: brightness(0.98);
 }
 
 .btn-primary::after {
@@ -39,11 +41,14 @@
    SECONDARY – vzdušný, decentní, editorial
 ------------------------------------------ */
 .btn-secondary {
-  @apply text-amber-900 bg-amber-50/40 border-amber-900/20;
+  color: var(--color-accent-4);
+  background-color: var(--color-accent-1);
+  border-color: var(--color-accent-4-contrast);
 }
 
 .btn-secondary:hover {
-  @apply bg-amber-100/60 border-amber-900/30 shadow-sm;
+  background-color: var(--color-accent-1-contrast);
+  @apply shadow-sm;
   filter: brightness(1.02);
 }
 

@@ -46,7 +46,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       {/* about diaries, benefits, stats */}
       <motion.section
         variants={itemVariants}
-        className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+        className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
         id="benefits"
       >
         <div className="max-w-7xl mx-auto" id="benefits-inner">
@@ -63,7 +63,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                       width="42.618"
                       height="42.524"
                       viewBox="0 0 42.618 42.524"
-                      className="w-full h-full text-amber-700 group-hover:text-amber-800 transition-colors duration-300"
+                      className="w-full h-full text-accent-1-contrast group-hover:text-accent-1-contrast transition-colors duration-300"
                     >
                       <g transform="translate(340.103 -651.623)">
                         <path
@@ -117,7 +117,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Dárky pro hosty" : "Gift for Guests"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -136,7 +136,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                       width="47.189"
                       height="42.526"
                       viewBox="0 0 47.189 42.526"
-                      className="w-full h-full text-amber-700 group-hover:text-amber-800 transition-colors duration-300"
+                      className="w-full h-full text-accent-1-contrast group-hover:text-accent-1-contrast transition-colors duration-300"
                     >
                       <path
                         data-name="Path 24785"
@@ -151,7 +151,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Organizace" : "Organisation"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -170,7 +170,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                       width="47.5"
                       height="37.79"
                       viewBox="0 0 47.5 37.79"
-                      className="w-full h-full text-amber-700 group-hover:text-amber-800 transition-colors duration-300"
+                      className="w-full h-full text-accent-1-contrast group-hover:text-accent-1-contrast transition-colors duration-300"
                     >
                       <g transform="translate(-1631.75 -866.078)">
                         <rect
@@ -209,7 +209,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Design & Video" : "Design & Video"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -228,7 +228,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                       width="40.942"
                       height="46.798"
                       viewBox="0 0 40.942 46.798"
-                      className="w-full h-full text-amber-700 group-hover:text-amber-800 transition-colors duration-300"
+                      className="w-full h-full text-accent-1-contrast group-hover:text-accent-4 transition-colors duration-300"
                     >
                       <g transform="translate(317.701 -436.542)">
                         <path
@@ -274,7 +274,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Dekorace" : "Decoration"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -360,7 +360,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Sledovací systém" : "Tracking System"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -406,7 +406,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                     </svg>
                   </div>
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 font-deluxe mb-3">
+                <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
                   {locale === "cs" ? "Fotografie" : "Photography"}
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -448,7 +448,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       >
         <div className="max-w-7xl mx-auto" id="stats-inner">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 font-deluxe mb-2">
+            <h3 className="text-2xl font-bold text-gray-900 font-heading mb-2">
               {locale === "cs"
                 ? "Naše čísla mluví za nás"
                 : "Our Numbers Speak for Themselves"}
@@ -474,7 +474,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-amber-600 font-deluxe">
+              <div className="text-4xl font-bold text-amber-600 font-heading">
                 24/7
               </div>
               <div className="text-gray-700 font-medium">
@@ -484,7 +484,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             <div className="text-center">
               <div className="flex items-center justify-center">
                 <CountUp end={4} duration={1500} />
-                <div className="text-4xl font-bold text-amber-600 font-deluxe ml-1">
+                <div className="text-4xl font-bold text-accent-1-contrast font-heading ml-1">
                   .9★
                 </div>
               </div>
@@ -499,12 +499,12 @@ export default function HomeContent({ locale }: HomeContentProps) {
       {/* reviews, offset carousel with horizontal scroll */}
       <motion.section
         variants={itemVariants}
-        className="bg-amber-800/5 px-0 py-16 md:py-24"
+        className="bg-accent-1 px-0 py-16 md:py-24"
         id="reviews"
       >
         <div className="w-full" id="reviews-inner">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-deluxe mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-4">
               {locale === "cs"
                 ? "Recenze spokojených svatebčanů"
                 : "What Our Clients Say"}
@@ -529,7 +529,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
         <div className="max-w-7xl mx-auto" id="about-inner">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-deluxe mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-6">
                 {locale === "cs" ? "O mně" : "About Me"}
               </h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
@@ -552,22 +552,13 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </div>
 
             <div className="relative">
-              <div className="aspect-square bg-linear-to-br from-amber-100 to-amber-800/10 rounded-2xl shadow-lg overflow-hidden">
+              <div className="aspect-square bg-accent-gradient-1 rounded-2xl shadow-lg overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center">
-                  <svg
-                    className="w-32 h-32 text-amber-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                  <img
+                    src="./assets/image1.webp"
+                    className="w-full h-full object-cover object-bottom"
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -583,7 +574,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       >
         <div className="max-w-7xl mx-auto" id="contact-inner">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-deluxe mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-4">
               {locale === "cs"
                 ? "Začněte plánovat svou svatbu"
                 : "Start Planning Your Wedding"}
@@ -597,9 +588,9 @@ export default function HomeContent({ locale }: HomeContentProps) {
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
-              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-8 h-8 text-amber-600"
+                  className="w-8 h-8 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -613,16 +604,16 @@ export default function HomeContent({ locale }: HomeContentProps) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
+              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
                 {locale === "cs" ? "Email" : "Email"}
               </h3>
               <p className="text-gray-700">tereza.jinochova@gmail.com</p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-8 h-8 text-amber-600"
+                  className="w-8 h-8 text-accent-1-contrast"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -636,7 +627,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
+              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
                 {locale === "cs" ? "Telefon" : "Phone"}
               </h3>
               <p className="text-gray-700">+420 123 456 789</p>
@@ -665,7 +656,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
+              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
                 {locale === "cs" ? "Lokace" : "Location"}
               </h3>
               <p className="text-gray-700">

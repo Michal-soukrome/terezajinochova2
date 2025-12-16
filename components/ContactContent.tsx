@@ -55,9 +55,9 @@ export default function ContactContent({ locale }: ContactContentProps) {
         >
           {/* Email Contact */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 text-center">
-            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-accent-1 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg
-                className="w-8 h-8 text-amber-600"
+                className="w-8 h-8 text-accent-1-contrast"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export default function ContactContent({ locale }: ContactContentProps) {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
+            <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
               {locale === "cs" ? "Email" : "Email"}
             </h3>
             <p className="text-gray-600 mb-4">
@@ -80,7 +80,7 @@ export default function ContactContent({ locale }: ContactContentProps) {
             </p>
             <a
               href="mailto:tereza.jinochova@gmail.com"
-              className="!lowercase text-amber-600 transition-colors duration-200"
+              className="!lowercase text-accent-1-contrast transition-colors duration-200"
             >
               tereza.jinochova@gmail.com
             </a>
@@ -103,7 +103,7 @@ export default function ContactContent({ locale }: ContactContentProps) {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 font-deluxe mb-3">
+            <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
               {locale === "cs" ? "Sociální sítě" : "Social Media"}
             </h3>
             <p className="text-gray-600 mb-4">
@@ -114,11 +114,11 @@ export default function ContactContent({ locale }: ContactContentProps) {
             <div className="flex justify-center gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800/10 transition-colors"
+                className="w-10 h-10 bg-accent-1 rounded-full flex items-center justify-center hover:bg-accent-1 transition-colors"
                 aria-label="Instagram"
               >
                 <svg
-                  className="w-5 h-5 text-amber-600"
+                  className="w-5 h-5 text-accent-1-contrast"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -127,11 +127,11 @@ export default function ContactContent({ locale }: ContactContentProps) {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center hover:bg-amber-800/10 transition-colors"
+                className="w-10 h-10 bg-accent-1 rounded-full flex items-center justify-center hover:bg-accent-1 transition-colors"
                 aria-label="Facebook"
               >
                 <svg
-                  className="w-5 h-5 text-amber-600"
+                  className="w-5 h-5 text-accent-1-contrast"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -146,11 +146,11 @@ export default function ContactContent({ locale }: ContactContentProps) {
       {/* FAQ Section */}
       <motion.section
         variants={itemVariants}
-        className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+        className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
         id="contact-page"
       >
         <div className="max-w-7xl mx-auto" id="contact-page-inner">
-          <h2 className="text-2xl font-bold text-gray-900 font-deluxe mb-8 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 font-heading mb-8 text-center">
             {locale === "cs"
               ? "Často kladené otázky"
               : "Frequently Asked Questions"}

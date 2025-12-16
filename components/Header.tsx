@@ -129,10 +129,8 @@ export function Header({ locale }: HeaderProps) {
       initial={false}
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
-        backgroundColor: open
-          ? "rgba(255, 251, 235, 1)"
-          : "rgba(255, 255, 255, 0.5)",
-        // amber-50 stays solid, white gets 0.5 opacity
+        backgroundColor: open ? "var(--accent-1)" : "rgba(255, 255, 255, 0.5)",
+        // open state uses the soft cream accent; closed uses translucent white
         backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}
       transition={{
@@ -142,79 +140,7 @@ export function Header({ locale }: HeaderProps) {
       }}
       className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top"
     >
-      <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-amber-800/30 via-amber-800/30 to-transparent"></span>
-
-      {/* Subtle Floating Decorative Elements */}
-      <motion.div
-        className="absolute top-3 right-20 w-3 h-3 text-amber-300/40 pointer-events-none"
-        animate={{
-          y: [0, -8, 0],
-          x: [-5, 5, -5],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <svg fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-6 left-1/4 w-2 h-2 text-amber-400/30 pointer-events-none"
-        animate={{
-          y: [0, 6, 0],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="10" />
-          <circle cx="12" cy="12" r="6" />
-          <circle cx="12" cy="12" r="2" />
-        </svg>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-4 right-1/3 w-2.5 h-2.5 text-amber-500/35 pointer-events-none"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
-        <svg fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-2 left-1/2 w-2 h-2 text-amber-300/50 pointer-events-none"
-        animate={{
-          x: [-8, 8, -8],
-          y: [0, -4, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <svg fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
-        </svg>
-      </motion.div>
+      <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-accent-1-contrast via-accent-1-contrast to-transparent"></span>
 
       <div
         className="h-full flex justify-between items-center px-4 sm:px-6 lg:px-8"
@@ -222,13 +148,15 @@ export function Header({ locale }: HeaderProps) {
       >
         <Link
           href={`/${locale}`}
-          className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-amber-800/10 shadow relative z-10"
+          className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10"
           onClick={() => setOpen(false)}
           title={
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
           }
         >
-          <span className="uppercase font-deluxe text-amber-800">logo</span>
+          <span className="uppercase font-heading text-accent-1-contrast">
+            logo
+          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -237,7 +165,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2"
+                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -252,13 +180,13 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "úvod" : "Home"}
                 </span>
               </TranslatedLink>{" "}
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
-            <span className="text-amber-700">|</span>
+            <span className="text-accent-1-contrast">|</span>
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2 "
+                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -279,7 +207,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/products`}
-                className="flex items-center gap-2 font-deluxe text-amber-800 hover:text-amber-900  p-2 "
+                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2 "
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -293,7 +221,7 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "Objednat" : "Order"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
           </nav>
           {/* Hamburger visible on all screen sizes */}
@@ -302,7 +230,7 @@ export function Header({ locale }: HeaderProps) {
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="p-3 rounded border cursor-pointer border-amber-800/10 hover:bg-amber-800/10 transition-colors duration-200 "
+            className="flex md:hidden p-3 rounded border cursor-pointer border-accent-1-contrast hover:bg-accent-1 transition-colors duration-200 "
           >
             <motion.svg
               className="h-6 w-6"
@@ -311,8 +239,12 @@ export function Header({ locale }: HeaderProps) {
               stroke="currentColor"
               animate={
                 open
-                  ? { scale: 1.05, rotate: 90, stroke: "#78350f" }
-                  : { scale: 1, rotate: 0, stroke: "#92400e" }
+                  ? {
+                      scale: 1.05,
+                      rotate: 90,
+                      stroke: "var(--accent-1-contrast)",
+                    }
+                  : { scale: 1, rotate: 0, stroke: "var(--accent-1-contrast)" }
               }
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
             >
@@ -364,7 +296,7 @@ export function Header({ locale }: HeaderProps) {
             {/* fullscreen menu */}
             <MotionDiv
               ref={overlayRef}
-              className="fixed w-full flex items-start justify-between bg-amber-50"
+              className="fixed w-full flex items-start justify-between bg-accent-1"
               id="fullscreen-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -372,147 +304,6 @@ export function Header({ locale }: HeaderProps) {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e: React.MouseEvent) => e.stopPropagation()} // Prevent scroll on overlay click
             >
-              {/* Floating Decorative Elements */}
-              <motion.div
-                className="absolute top-20 left-10 w-6 h-6 text-amber-100"
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-32 right-16 w-8 h-8 text-amber-400/40 opacity-10"
-                animate={{
-                  y: [0, 15, 0],
-                  x: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" />
-                  <circle cx="12" cy="12" r="6" />
-                  <circle cx="12" cy="12" r="2" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-32 left-20 w-5 h-5 text-amber-500/50 opacity-10"
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-20 right-12 w-7 h-7 text-amber-200 opacity-10"
-                animate={{
-                  y: [0, -25, 0],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-40 left-1/4 w-4 h-4 text-amber-200 opacity-10"
-                animate={{
-                  x: [0, 10, 0],
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 9,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/3 right-20 w-6 h-6 text-amber-100"
-                animate={{
-                  rotate: [0, -180, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 11,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" />
-                  <circle cx="12" cy="12" r="6" />
-                  <circle cx="12" cy="12" r="2" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-40 right-1/3 w-5 h-5 text-amber-500/40"
-                animate={{
-                  y: [0, 15, 0],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 left-10 w-7 h-7 text-amber-200 opacity-10"
-                animate={{
-                  x: [0, -15, 0],
-                  rotate: [0, 360, 0],
-                }}
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.36.78-4.5 2.05C10.86 3.78 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
-                </svg>
-              </motion.div>
-
               {/* desktop menu */}
               <div className="w-full hidden md:block h-full" id="desktop-menu">
                 <div className="h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-between">
@@ -521,14 +312,14 @@ export function Header({ locale }: HeaderProps) {
                     <div className="grid grid-cols-2 gap-12 max-w-4xl">
                       {/* Navigation Links */}
                       <div>
-                        <h3 className="text-2xl font-deluxe font-bold text-amber-900 mb-6 uppercase">
+                        <h3 className="text-2xl font-heading font-bold text-accent-4 mb-6 uppercase">
                           {locale === "cs" ? "Navigace" : "Navigation"}
                         </h3>
                         <nav className="space-y-4">
                           <TranslatedLink
                             href="/"
-                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
-                            activeClassName="text-amber-900 font-semibold"
+                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
+                            activeClassName="text-accent-4 font-semibold"
                             exact
                             onClick={() => setOpen(false)}
                           >
@@ -538,8 +329,8 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/about"
-                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
-                            activeClassName="text-amber-900 font-semibold"
+                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
+                            activeClassName="text-accent-4 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
                               locale === "cs"
@@ -553,8 +344,8 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/products"
-                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
-                            activeClassName="text-amber-900 font-semibold"
+                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
+                            activeClassName="text-accent-4 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
                               locale === "cs"
@@ -568,8 +359,8 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/contact"
-                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
-                            activeClassName="text-amber-900 font-semibold"
+                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
+                            activeClassName="text-accent-4 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
                               locale === "cs"
@@ -601,17 +392,17 @@ export function Header({ locale }: HeaderProps) {
 
                       {/* Interactive Content */}
                       <div>
-                        <h3 className="text-2xl font-deluxe font-bold text-amber-900 mb-6 uppercase">
+                        <h3 className="text-2xl font-heading font-bold text-accent-4 mb-6 uppercase">
                           {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
                         </h3>
                         <div className="space-y-3">
                           <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-800/10">
-                            <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
+                            <h4 className="font-heading font-semibold text-accent-4 mb-2">
                               {locale === "cs"
                                 ? "Začněte plánovat"
                                 : "Start Planning"}
                             </h4>
-                            <p className="text-amber-800 text-sm mb-4">
+                            <p className="text-accent-1-contrast text-sm mb-4">
                               {locale === "cs"
                                 ? "Objevte naše nástroje pro dokonalou svatbu"
                                 : "Discover our tools for the perfect wedding"}
@@ -632,12 +423,12 @@ export function Header({ locale }: HeaderProps) {
                           </div>
 
                           <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-800/10">
-                            <h4 className="font-deluxe font-semibold text-amber-900 mb-2">
+                            <h4 className="font-heading font-semibold text-accent-4 mb-2">
                               {locale === "cs"
                                 ? "Potřebujete pomoc?"
                                 : "Need Help?"}
                             </h4>
-                            <p className="text-amber-800 text-sm mb-4">
+                            <p className="text-accent-1-contrast text-sm mb-4">
                               {locale === "cs"
                                 ? "Kontaktujte nás pro osobní konzultaci"
                                 : "Contact us for personal consultation"}
@@ -665,8 +456,8 @@ export function Header({ locale }: HeaderProps) {
                   <div>
                     <div className="flex items-center justify-between py-5">
                       <div className="flex items-center gap-4">
-                        <div className="text-amber-800">
-                          <div className="text-xs text-amber-800">
+                        <div className="text-accent-1-contrast">
+                          <div className="text-xs text-accent-1-contrast">
                             tereza.jinochova@gmail.com
                           </div>
                         </div>
@@ -690,13 +481,13 @@ export function Header({ locale }: HeaderProps) {
                 >
                   <ul
                     role="navigation"
-                    className="w-full divide-y divide-amber-800/20 flex flex-col text-amber-900 pt-5"
+                    className="w-full divide-y divide-accent-1 flex flex-col text-accent-1-contrast pt-5"
                     id="mobile-navigation-links"
                   >
                     <TranslatedLink
                       href="/"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
-                      activeClassName="bg-amber-800/5 font-semibold"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      activeClassName="bg-accent-1 font-semibold"
                       exact
                       onClick={() => setOpen(false)}
                       title={
@@ -705,11 +496,11 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to homepage"
                       }
                     >
-                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                        <Home className="w-5 h-5 text-amber-800" />
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                        <Home className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-amber-900">
+                        <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Úvod" : "Home"}
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
@@ -721,8 +512,8 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/about"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
-                      activeClassName="bg-amber-800/5 font-semibold"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
                         locale === "cs"
@@ -730,11 +521,11 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to about page"
                       }
                     >
-                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                        <BookOpen className="w-5 h-5 text-amber-800" />
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                        <BookOpen className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-amber-900">
+                        <div className="font-medium text-accent-4">
                           {locale === "cs" ? "O deníku" : "About"}
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
@@ -746,8 +537,8 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/products"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
-                      activeClassName="bg-amber-800/5 font-semibold"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
                         locale === "cs"
@@ -755,11 +546,11 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to products page"
                       }
                     >
-                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                        <ShoppingCart className="w-5 h-5 text-amber-800" />
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                        <ShoppingCart className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-amber-900">
+                        <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Objednat" : "Order"}
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
@@ -771,8 +562,8 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/privacy"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
-                      activeClassName="bg-amber-800/5 font-semibold"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
                         locale === "cs"
@@ -780,11 +571,11 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to privacy page"
                       }
                     >
-                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                        <Shield className="w-5 h-5 text-amber-800" />
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                        <Shield className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-amber-900">
+                        <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Soukromí" : "Privacy"}
                         </div>
                         <div className="text-sm text-amber-800 font-light lowercase">
@@ -796,8 +587,8 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/contact"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-amber-800/5 transition-colors duration-200"
-                      activeClassName="bg-amber-800/5 font-semibold"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
                         locale === "cs"
@@ -805,8 +596,8 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to contact page"
                       }
                     >
-                      <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                        <Mail className="w-5 h-5 text-amber-800" />
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                        <Mail className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-amber-900">

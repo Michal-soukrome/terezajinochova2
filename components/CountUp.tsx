@@ -22,7 +22,10 @@ export function CountUp({
   });
 
   return (
-    <div ref={ref} className="text-4xl font-bold text-amber-600 font-deluxe">
+    <div
+      ref={ref}
+      className="text-4xl font-bold text-accent-1-contrast font-heading"
+    >
       {inView ? (
         <ReactCountUp
           end={end}
