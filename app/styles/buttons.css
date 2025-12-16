@@ -47,7 +47,7 @@
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-accent-1-contrast);
+  background-color: var(--color-accent-1);
   @apply shadow-sm;
   filter: brightness(1.02);
 }

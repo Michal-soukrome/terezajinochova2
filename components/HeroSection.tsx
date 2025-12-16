@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export function HeroSection({ title, description, locale }: HeroSectionProps) {
   return (
     <section
-      className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden "
+      className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden border-b border-accent-1"
       id="cover"
     >
       {/* Main Content */}

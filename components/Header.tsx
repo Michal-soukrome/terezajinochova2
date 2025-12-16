@@ -138,9 +138,9 @@ export function Header({ locale }: HeaderProps) {
         backgroundColor: { duration: 0.5, ease: "easeInOut" },
         backdropFilter: { duration: 0.3, ease: "easeInOut" }, // smooth backdrop blur transition
       }}
-      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top"
+      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top border-b border-accent-1"
     >
-      <span className="absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-accent-1-contrast via-accent-1-contrast to-transparent"></span>
+      <span className="hidden absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-accent-1 via-accent-1 to-transparent"></span>
 
       <div
         className="h-full flex justify-between items-center px-4 sm:px-6 lg:px-8"
@@ -165,7 +165,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group">
               <TranslatedLink
                 href="/"
-                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2"
+                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
                 activeClassName="font-semibold"
                 exact
                 onClick={() => setOpen(false)}
@@ -186,7 +186,7 @@ export function Header({ locale }: HeaderProps) {
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
               <TranslatedLink
                 href={`/about`}
-                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1  p-2 "
+                className="flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
                 activeClassName="font-semibold"
                 onClick={() => setOpen(false)}
                 title={
@@ -200,7 +200,7 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "O deníku" : "About"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-amber-800 transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
 
             <span className="text-amber-700">|</span>

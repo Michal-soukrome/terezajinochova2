@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { PRODUCT_LIST } from "@/lib/products";
 import { HeroSection } from "@/components/HeroSection";
 import { ReviewsCarousel } from "@/components/ReviewsCarousel";
+import { FullHeightSection } from "@/components/FullHeightSection";
 import { Locale } from "@/lib/i18n";
 
 interface HomeContentProps {
@@ -43,10 +44,42 @@ export default function HomeContent({ locale }: HomeContentProps) {
     >
       <HeroSection title={title} description={description} locale={locale} />
 
+      {/* Full Height Sections */}
+      <FullHeightSection
+        title={locale === "cs" ? "Proč svatební deník?" : "Why Wedding Diary?"}
+        description={
+          locale === "cs"
+            ? "Organizace svatby je fascinující, ale náročná cesta. Svatební deník vám pomůže zvládat všechny detaily s lehkostí."
+            : "Organizing a wedding is a fascinating but challenging journey. A wedding diary helps you manage all the details with ease."
+        }
+        imageUrl="./assets/image3.webp"
+        imageAlt="Wedding planning"
+        imageSide="right"
+        backgroundColor="bg-white"
+        textColor="text-gray-900"
+        cta={{
+          text: locale === "cs" ? "Zjistit více" : "Learn More",
+          href: `/${locale}/products`,
+        }}
+      />
+
+      <FullHeightSection
+        title={locale === "cs" ? "Váš příběh" : "Your Story"}
+        description={
+          locale === "cs"
+            ? "Každá svatba je jedinečná. Naš deník se přizpůsobí vaší představě a stane se součástí vašeho nezapomenutelného dne."
+            : "Every wedding is unique. Our diary adapts to your vision and becomes part of your unforgettable day."
+        }
+        imageUrl="./assets/image2.webp"
+        imageAlt="Wedding story"
+        imageSide="left"
+        backgroundColor="bg-accent-1"
+        textColor="text-gray-900"
+      />
+
       {/* about diaries, benefits, stats */}
-      <motion.section
-        variants={itemVariants}
-        className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+      <section
+        className="bg-white px-4 sm:px-6 lg:px-8 py-16 md:py-24 border-y border-accent-1"
         id="benefits"
       >
         <div className="max-w-7xl mx-auto" id="benefits-inner">
@@ -418,14 +451,10 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* product list, just duplicating products page */}
-      <motion.section
-        variants={itemVariants}
-        className=" px-4 sm:px-6 lg:px-8 py-16 md:py-24"
-        id="products"
-      >
+      <section className=" px-4 sm:px-6 lg:px-8 py-16 md:py-24" id="products">
         <div className="max-w-7xl mx-auto" id="products-inner">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
             {PRODUCT_LIST.map((product, idx) => (
@@ -438,14 +467,10 @@ export default function HomeContent({ locale }: HomeContentProps) {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Stats Section */}
-      <motion.section
-        variants={itemVariants}
-        className=" px-4 sm:px-6 lg:px-8 py-16 md:py-24"
-        id="stats"
-      >
+      <section className=" px-4 sm:px-6 lg:px-8 py-16 md:py-24" id="stats">
         <div className="max-w-7xl mx-auto" id="stats-inner">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-gray-900 font-heading mb-2">
@@ -494,14 +519,10 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* reviews, offset carousel with horizontal scroll */}
-      <motion.section
-        variants={itemVariants}
-        className="bg-accent-1 px-0 py-16 md:py-24"
-        id="reviews"
-      >
+      <section className="bg-accent-1 px-0 py-16 md:py-24" id="reviews">
         <div className="w-full" id="reviews-inner">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-4">
@@ -518,16 +539,12 @@ export default function HomeContent({ locale }: HomeContentProps) {
 
           <ReviewsCarousel locale={locale} />
         </div>
-      </motion.section>
+      </section>
 
       {/* about the author */}
-      <motion.section
-        variants={itemVariants}
-        className="px-4 sm:px-6 lg:px-8 py-16 md:py-24"
-        id="about"
-      >
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24" id="about">
         <div className="max-w-7xl mx-auto" id="about-inner">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col items-center justify-center text-center gap-5 md:gap-10">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-6">
                 {locale === "cs" ? "O mně" : "About Me"}
@@ -552,11 +569,11 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </div>
 
             <div className="relative">
-              <div className="aspect-square bg-accent-gradient-1 rounded-2xl shadow-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center">
+              <div className="max-w-72 aspect-square overflow-hidden">
+                <div className="w-full h-full flex items-center rounded-full justify-center">
                   <img
                     src="./assets/image1.webp"
-                    className="w-full h-full object-cover object-bottom"
+                    className="w-full h-full object-cover object-bottom rounded-full"
                     alt=""
                   />
                 </div>
@@ -564,11 +581,10 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* contact */}
-      <motion.section
-        variants={itemVariants}
+      <section
         className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
         id="contact"
       >
@@ -673,7 +689,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </TranslatedLink>
           </div>
         </div>
-      </motion.section>
+      </section>
     </motion.main>
   );
 }
