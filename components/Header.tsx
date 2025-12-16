@@ -180,7 +180,6 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "úvod" : "Home"}
                 </span>
               </TranslatedLink>{" "}
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
             <span className="text-accent-1-contrast">|</span>
             <span className="relative z-10 transition-colors duration-300 ease-in-out group ">
@@ -200,7 +199,6 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "O deníku" : "About"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
 
             <span className="text-amber-700">|</span>
@@ -221,7 +219,6 @@ export function Header({ locale }: HeaderProps) {
                   {locale === "cs" ? "Objednat" : "Order"}
                 </span>
               </TranslatedLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent-1-contrast transition-[width] duration-200 ease-in-out group-hover:w-full"></span>
             </span>
           </nav>
           {/* Hamburger visible on all screen sizes */}

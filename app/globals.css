@@ -72,7 +72,6 @@ body {
 
 /* Headings use Pinyon Script */
 h1,
-h3,
 .heading {
   font-family: var(--font-heading) !important;
   color: var(--accent-1-contrast);

@@ -13,9 +13,10 @@ interface HeroSectionProps {
 export function HeroSection({ title, description, locale }: HeroSectionProps) {
   return (
     <section
-      className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden border-b border-accent-1"
+      className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden border-b border-accent-1 "
       id="cover"
     >
+      {/* bg-[url('/assets/cover.png')] bg-cover bg-center bg-no-repeat flex items-center justify-center */}
       {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <motion.div

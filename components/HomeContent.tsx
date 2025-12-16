@@ -485,7 +485,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             <div className="text-center">
               <CountUp end={500} suffix="+" />
               <div className="text-gray-700 font-medium">
@@ -498,14 +498,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
                 {locale === "cs" ? "Šablon" : "Templates"}
               </div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-amber-600 font-heading">
-                24/7
-              </div>
-              <div className="text-gray-700 font-medium">
-                {locale === "cs" ? "Podpora" : "Support"}
-              </div>
-            </div>
+
             <div className="text-center">
               <div className="flex items-center justify-center">
                 <CountUp end={4} duration={1500} />
