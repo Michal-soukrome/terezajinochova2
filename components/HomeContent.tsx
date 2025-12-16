@@ -29,7 +29,7 @@ const itemVariants = {
 
 export default function HomeContent({ locale }: HomeContentProps) {
   const title =
-    locale === "cs" ? "VÁŠ SVATEBNÍ PLÁNOVAČ" : "YOUR WEDDING PLANNER";
+    locale === "cs" ? "Váš svatební plánovač" : "Your wedding planner";
   const description =
     locale === "cs"
       ? "Naplánujte si svůj svatební den s lehkostí a radostí"

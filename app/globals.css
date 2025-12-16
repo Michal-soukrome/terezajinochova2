@@ -1,49 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Pinyon+Script&display=swap");
+
+/* Fallback: Use system fonts if Google Fonts fail to load */
+:root {
+  --font-cormorant: "Cormorant", "Times New Roman", serif;
+  --font-pinyon: "Pinyon Script", "Brush Script MT", cursive;
+}
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-/* Safe area support for modern devices */
-@supports (padding: max(0px)) {
-  .safe-area-top {
-    padding-top: max(env(safe-area-inset-top), 0px);
-  }
-  .safe-area-bottom {
-    padding-bottom: max(env(safe-area-inset-bottom), 0px);
-  }
-  .safe-area-left {
-    padding-left: max(env(safe-area-inset-left), 0px);
-  }
-  .safe-area-right {
-    padding-right: max(env(safe-area-inset-right), 0px);
-  }
-  .safe-area-x {
-    padding-left: max(env(safe-area-inset-left), 0px);
-    padding-right: max(env(safe-area-inset-right), 0px);
-  }
-  .safe-area-y {
-    padding-top: max(env(safe-area-inset-top), 0px);
-    padding-bottom: max(env(safe-area-inset-bottom), 0px);
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  scroll-behavior: smooth;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter); /* Inter for body text */
-  --font-heading: var(--font-poppins); /* Poppins for headings */
-  --font-deluxe: var(--font-deluxe); /* Playfair Display for deluxe text */
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Cormorant", serif;
+  --font-heading: "Pinyon Script", cursive;
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Consolas",
+    "Courier New", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,54 +23,51 @@ body {
   }
 }
 
-@import "./styles/buttons.css";
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Cormorant", serif;
+  --font-heading: "Pinyon Script", cursive;
+  --font-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Consolas",
+    "Courier New", monospace;
+  --font-family-sans: "Cormorant", serif;
+  --font-family-mono: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono",
+    "Consolas", "Courier New", monospace;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: var(--font-cormorant) !important;
+  font-weight: 600 !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  scroll-behavior: smooth;
 }
 
-/* Headings use Poppins for a friendly, rounded look */
+/* Force all text to use our fonts */
+* {
+  font-family: var(--font-cormorant) !important;
+}
+
+/* Headings use Pinyon Script */
 h1,
-h2,
-h3,
 .heading {
-  font-family: var(--font-heading), var(--font-sans);
-  letter-spacing: -0.01em;
+  font-family: var(--font-pinyon) !important;
 }
 
-/* Deluxe font for special text */
-.font-deluxe {
-  font-family: var(--font-deluxe), serif;
+h2 {
+  font-weight: 600 !important ;
 }
 
-/* Print styles for receipt */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-  }
-
-  .receipt-container {
-    box-shadow: none !important;
-    border: 1px solid #ccc !important;
-  }
+/* Utility classes */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 header a,
 footer a {
   @apply !capitalize;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* 80px to match header height */
 }
 
 h3::first-letter {
@@ -110,10 +77,9 @@ h3::first-letter {
 #fullscreen-menu,
 #mobile-menu-subwrap {
   height: calc(100svh - 80px);
-  /* Full viewport height minus header height */
 }
 
-/* BackToTop bounce-in animation */
+/* Animations */
 @keyframes bounce-in {
   0% {
     transform: translateY(100px) scale(0.3);
@@ -136,12 +102,28 @@ h3::first-letter {
   animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Hide scrollbar for carousel */
+/* Hide scrollbar */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .receipt-container {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+@import "./styles/buttons.css";

@@ -107,7 +107,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
           ></motion.div>
 
           <motion.h1
-            className="font-deluxe font-medium text-center text-4xl text-amber-900 uppercase leading-tight mb-6"
+            className="font-deluxe font-medium text-center text-6xl text-amber-900 leading-tight mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -116,7 +116,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
           </motion.h1>
 
           <motion.h2
-            className="font-deluxe text-center text-xl text-amber-800 font-light uppercase tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-center text-xl text-amber-800 font-light uppercase tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
