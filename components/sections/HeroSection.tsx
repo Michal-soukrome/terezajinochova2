@@ -34,7 +34,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
           ></motion.div>
 
           <motion.h1
-            className="font-heading font-medium text-center text-6xl text-accent-1-contrast leading-tight mb-6"
+            className="font-heading font-medium text-center text-5xl md:text-6xl text-accent-1-contrast leading-tight mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -43,7 +43,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
           </motion.h1>
 
           <motion.h2
-            className="text-center text-xl text-accent-1-contrast font-light uppercase tracking-wide mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-center text-lg md:text-xl text-accent-1-contrast font-light uppercase tracking-wide mb-6 md:mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -68,7 +68,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
 
           {/* Decorative line below buttons */}
           <motion.div
-            className="w-16 h-0.5 bg-linear-to-r from-accent-1-contrast to-accent-4 mx-auto mt-12 rounded-full"
+            className="w-16 h-0.5 bg-accent-1-contrast to-accent-4 mx-auto mt-12 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: 64 }}
             transition={{ duration: 1, delay: 0.8 }}

@@ -148,15 +148,17 @@ export function Header({ locale }: HeaderProps) {
       >
         <Link
           href={`/${locale}`}
-          className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10"
+          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10"
           onClick={() => setOpen(false)}
           title={
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
           }
         >
-          <span className="uppercase font-heading text-accent-1-contrast">
-            logo
-          </span>
+          <img
+            src="./assets/logo.webp"
+            className="w-full h-full object-cover rounded-full object-center aspect-square"
+            alt="Logo"
+          />
         </Link>
 
         {/* Desktop nav */}

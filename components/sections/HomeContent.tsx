@@ -94,7 +94,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
         <div className="w-11/12 mx-auto" id="benefits-inner">
           {/* Services Section */}
           <div className=" px-4 sm:px-6 lg:px-8">
-            <div className="flex items-start justify-between gap-5 md:gap-20">
+            <div className="flex flex-col md:flex-row items-start justify-between gap-5 md:gap-20">
               {/* Memories & Keepsakes (Diary) */}
               <div className="text-center group">
                 <div className="mb-6 flex justify-center">

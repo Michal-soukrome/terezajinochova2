@@ -72,7 +72,7 @@ export function FullHeightSection({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className={`p-5 md:p-8 lg:p-32 ${
+          className={`p-8 lg:p-32 ${
             imageSide === "left" ? "lg:col-start-2" : ""
           }`}
         >
