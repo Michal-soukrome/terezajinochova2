@@ -9,6 +9,8 @@ import { Star, Check, Lock } from "lucide-react";
 import { AnimatedHeader } from "../layout/AnimatedHeader";
 import { Locale } from "@/lib/i18n";
 import CONTENT from "@/lib/content";
+import BenefitsSection from "../common/BenefitsSection";
+import ProductGridSection from "../common/ProductGridSection";
 
 interface ProductsContentProps {
   locale: Locale;
@@ -33,54 +35,16 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
     title: locale === "cs" ? "Moje svatební deníky" : "Our Wedding Planners",
     subtitle:
       locale === "cs"
-        ? "Deník, který vám pomůže plánovat každý krok svatby — od rozpočtu po seznam hostů."
-        : "A planner that guides you through every step of your wedding — from budget to guest list.",
+        ? "Deník, který vám pomůže plánovat každý krok svatby\n\nod rozpočtu po seznam hostů."
+        : "A planner that guides you through every step of your wedding\n\nfrom budget to guest list.",
     featuresTitle:
       locale === "cs" ? "Proč si vybrat náš deník?" : "Why choose our planner?",
-    features:
-      locale === "cs"
-        ? [
-            {
-              icon: "✓",
-              title: "Přehledné plánování",
-              desc: "Vše na jednom místě",
-            },
-            {
-              icon: "💰",
-              title: "Kontrola rozpočtu",
-              desc: "Sledujte každou korunu",
-            },
-            {
-              icon: "📋",
-              title: "Checklist úkolů",
-              desc: "Nezapomeňte na žádný detail",
-            },
-            {
-              icon: "👥",
-              title: "Seznam hostů",
-              desc: "Organizujte pozvánky snadno",
-            },
-          ]
-        : [
-            {
-              icon: "✓",
-              title: "Clear Planning",
-              desc: "Everything in one place",
-            },
-            { icon: "💰", title: "Budget Control", desc: "Track every penny" },
-            {
-              icon: "📋",
-              title: "Task Checklist",
-              desc: "Don't miss any detail",
-            },
-            {
-              icon: "👥",
-              title: "Guest List",
-              desc: "Organize invitations easily",
-            },
-          ],
     chooseTitle:
       locale === "cs" ? "Vyberte si svůj deník" : "Choose Your Planner",
+    chooseSubtitle:
+      locale === "cs"
+        ? "Vyberte si verzi, která nejlépe vyhovuje vašim potřebám a začněte plánovat svůj velký den ještě dnes."
+        : "Choose the version that best fits your needs and start planning your big day today.",
   };
 
   return (
@@ -90,78 +54,19 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
       animate="visible"
       id="products-page-wrap"
     >
-      {/* Header */}
-      <motion.div variants={itemVariants} id="products-page-inner">
-        <div className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto">
-            <AnimatedHeader
-              title={t.title}
-              subtitle={t.subtitle}
-              locale={locale}
-              headingLevel={3}
-              showBadge={true}
-            />
-          </div>
-        </div>
-      </motion.div>
-
       {/* Products Grid */}
       <motion.div variants={itemVariants}>
-        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
-                {t.chooseTitle}
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                {locale === "cs"
-                  ? "Vyberte si verzi, která nejlépe vyhovuje vašim potřebám a začněte plánovat svůj velký den ještě dnes."
-                  : "Choose the version that best fits your needs and start planning your big day today."}
-              </p>
-            </div>
-          </div>
-
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
-            id="products-grid"
-          >
-            {PRODUCT_LIST.map((product, idx) => (
-              <div
-                key={product.id}
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <ProductCard product={product} locale={locale} />
-              </div>
-            ))}
-          </div>
-        </section>
+        <ProductGridSection
+          locale={locale}
+          title={t.title}
+          subtitle={t.subtitle}
+          products={PRODUCT_LIST}
+          background="white"
+        />
       </motion.div>
 
       {/* Features Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
-              {t.featuresTitle}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {t.features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-gray-200 rounded p-5 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <BenefitsSection locale={locale} background="themed" />
 
       {/* 'Co ve Svatebním deníku naleznete' - populated from internal content */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -194,7 +99,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
         </div>
       </section>
 
-      <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <section className=" px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
             {locale === "cs"
@@ -203,8 +108,13 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             {locale === "cs"
-              ? "Přidejte se k tisícům spokojených párů, které si s naším deníkem zjednodušily plánování svatby."
-              : "Join thousands of happy couples who simplified their wedding planning with our planner."}
+              ? "Přidejte se k tisícům spokojených párů,"
+              : "Join thousands of happy couples"}
+          </p>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            {locale === "cs"
+              ? "které si s naším deníkem zjednodušily plánování svatby."
+              : "who simplified their wedding planning with our planner."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center my-10">

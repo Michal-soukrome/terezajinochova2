@@ -84,7 +84,11 @@ export function FullHeightSection({
           <p
             className={`text-lg md:text-xl ${textColor} opacity-90 mb-8 leading-relaxed`}
           >
-            {description}
+            {description.split("\n\n").map((p, idx) => (
+              <span key={idx} className="block mb-4">
+                {p}
+              </span>
+            ))}
           </p>
 
           {content && <div className={`${textColor} mb-8`}>{content}</div>}

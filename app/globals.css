@@ -63,6 +63,7 @@ body {
   font-weight: 600 !important;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Force all text to use our fonts */
@@ -71,7 +72,7 @@ body {
 }
 
 /* Headings use Pinyon Script */
-h1,
+
 .heading {
   font-family: var(--font-heading) !important;
   color: var(--accent-1-contrast);
@@ -99,6 +100,12 @@ html {
 }
 .text-accent-1-contrast {
   color: var(--color-accent-1-contrast);
+}
+.fill-accent-1 {
+  fill: var(--color-accent-1);
+}
+.fill-accent-1-contrast {
+  fill: var(--color-accent-1-contrast);
 }
 
 .border-accent-1 {
@@ -240,6 +247,11 @@ h3::first-letter {
     box-shadow: none !important;
     border: 1px solid #ccc !important;
   }
+}
+
+#footer-links a:hover {
+  text-decoration: underline;
+  color: var(--color-accent-1-contrast) !important;
 }
 
 @import "./styles/buttons.css";

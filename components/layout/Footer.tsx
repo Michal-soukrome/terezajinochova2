@@ -4,6 +4,7 @@ import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import TranslatedLink from "../navigation/TranslatedLink";
 import { Locale } from "@/lib/i18n";
 import { SocialMediaIcons } from "../common/SocialMediaIcons";
+import { Heart } from "lucide-react";
 
 interface FooterProps {
   locale: Locale;
@@ -15,7 +16,10 @@ export function Footer({ locale }: FooterProps) {
       {/* Footer Top Area */}
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+            id="footer-links"
+          >
             {/* Info Column */}
             <div>
               <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
@@ -63,7 +67,7 @@ export function Footer({ locale }: FooterProps) {
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/products/zakladni"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
                     ? "Svatební Deník – Základní"
@@ -71,7 +75,7 @@ export function Footer({ locale }: FooterProps) {
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products/premium"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
                     ? "Svatební Deník – Prémiový"
@@ -79,7 +83,7 @@ export function Footer({ locale }: FooterProps) {
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Všechny produkty" : "All Products"}
                 </TranslatedLink>
@@ -95,25 +99,25 @@ export function Footer({ locale }: FooterProps) {
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Domů" : "Home"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/about"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "O deníku" : "About"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/contact"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Kontakt" : "Contact"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/privacy"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Soukromí" : "Privacy"}
                 </TranslatedLink>
@@ -129,19 +133,19 @@ export function Footer({ locale }: FooterProps) {
               <nav className="space-y-3">
                 <TranslatedLink
                   href="/#benefits"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Plánování svatby" : "Wedding Planning"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/#products"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Svatební deníky" : "Wedding Diaries"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/contact"
-                  className="block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "Konzultace" : "Consultation"}
                 </TranslatedLink>
@@ -166,9 +170,27 @@ export function Footer({ locale }: FooterProps) {
               </div>
 
               <div className="text-xs text-gray-500">
-                {locale === "cs"
-                  ? "Vytvořeno s ❤️ pro nezapomenutelné svatby"
-                  : "Made with ❤️ for unforgettable weddings"}
+                {locale === "cs" ? (
+                  <>
+                    <span className="flex gap-1">
+                      Vytvořeno s{" "}
+                      <Heart
+                        strokeWidth={0.5}
+                        className="w-3 h-3 fill-accent-1-contrast text-accent-1 "
+                      />{" "}
+                      pro nezapomenutelné momenty
+                    </span>
+                  </>
+                ) : (
+                  <span className="flex gap-1">
+                    Made with{" "}
+                    <Heart
+                      strokeWidth={0.5}
+                      className="w-3 h-3 fill-accent-1-contrast text-accent-1 "
+                    />{" "}
+                    for unforgettable moments
+                  </span>
+                )}
               </div>
             </div>
           </div>

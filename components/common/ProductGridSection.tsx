@@ -1,0 +1,62 @@
+"use client";
+
+import { Product } from "@/lib/products";
+import { ProductCard } from "../ui/ProductCard";
+import { motion } from "framer-motion";
+
+interface ProductGridSectionProps {
+  locale: string;
+  title: string;
+  subtitle: string;
+  products: Product[];
+  background?: "accent" | "white";
+}
+
+export default function ProductGridSection({
+  locale,
+  title,
+  subtitle,
+  products,
+  background = "accent",
+}: ProductGridSectionProps) {
+  const sectionClass =
+    background === "accent"
+      ? "bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+      : "px-4 sm:px-6 lg:px-8 py-16 md:py-24";
+
+  return (
+    <section className={sectionClass}>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-6">
+          <motion.h3
+            className="heading font-medium text-center text-5xl text-accent-1-contrast leading-tight mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {title}
+          </motion.h3>
+          <motion.h4
+            className="text-center text-lg md:text-xl text-accent-1-contrast font-light uppercase tracking-wide mb-6 md:mb-12 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {subtitle}
+          </motion.h4>
+        </div>
+      </div>
+
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+        id="products-grid"
+      >
+        {products.map((product, idx) => (
+          <div key={product.id} style={{ animationDelay: `${idx * 100}ms` }}>
+            <ProductCard product={product} locale={locale} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

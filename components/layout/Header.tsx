@@ -148,7 +148,7 @@ export function Header({ locale }: HeaderProps) {
       >
         <Link
           href={`/${locale}`}
-          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10"
+          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10 group"
           onClick={() => setOpen(false)}
           title={
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
@@ -156,7 +156,7 @@ export function Header({ locale }: HeaderProps) {
         >
           <img
             src="./assets/logo.webp"
-            className="w-full h-full object-cover rounded-full object-center aspect-square"
+            className="w-full h-full object-cover rounded-full object-center aspect-square group-hover:scale-105 transition-transform duration-300 ease-in-out"
             alt="Logo"
           />
         </Link>
@@ -164,63 +164,55 @@ export function Header({ locale }: HeaderProps) {
         {/* Desktop nav */}
         <div className="h-full flex items-center gap-10">
           <nav className="h-full hidden md:flex items-center ">
-            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group">
-              <TranslatedLink
-                href="/"
-                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-                activeClassName="font-semibold"
-                exact
-                onClick={() => setOpen(false)}
-                title={
-                  locale === "cs"
-                    ? "Přejít na domovskou stránku"
-                    : "Go to homepage"
-                }
-              >
-                <Home className="w-4 h-4" />
-                <span className="uppercase">
-                  {locale === "cs" ? "úvod" : "Home"}
-                </span>
-              </TranslatedLink>{" "}
-            </span>
-
-            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group ">
-              <TranslatedLink
-                href={`/about`}
-                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-                activeClassName="font-semibold"
-                onClick={() => setOpen(false)}
-                title={
-                  locale === "cs"
-                    ? "Přejít na stránku o deníku"
-                    : "Go to about page"
-                }
-              >
-                <BookOpen className="w-4 h-4" />
-                <span className="uppercase">
-                  {locale === "cs" ? "O deníku" : "About"}
-                </span>
-              </TranslatedLink>
-            </span>
-
-            <span className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group ">
-              <TranslatedLink
-                href={`/products`}
-                className="h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-                activeClassName="font-semibold"
-                onClick={() => setOpen(false)}
-                title={
-                  locale === "cs"
-                    ? "Přejít na stránku produktů"
-                    : "Go to products page"
-                }
-              >
-                <ShoppingCart className="w-4 h-4" />
-                <span className="uppercase">
-                  {locale === "cs" ? "Objednat" : "Order"}
-                </span>
-              </TranslatedLink>
-            </span>
+            <TranslatedLink
+              href="/"
+              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="font-semibold"
+              exact
+              onClick={() => setOpen(false)}
+              title={
+                locale === "cs"
+                  ? "Přejít na domovskou stránku"
+                  : "Go to homepage"
+              }
+            >
+              <Home className="w-4 h-4" />
+              <span className="uppercase">
+                {locale === "cs" ? "úvod" : "Home"}
+              </span>
+            </TranslatedLink>{" "}
+            <TranslatedLink
+              href={`/about`}
+              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="font-semibold"
+              onClick={() => setOpen(false)}
+              title={
+                locale === "cs"
+                  ? "Přejít na stránku o deníku"
+                  : "Go to about page"
+              }
+            >
+              <BookOpen className="w-4 h-4" />
+              <span className="uppercase">
+                {locale === "cs" ? "O deníku" : "About"}
+              </span>
+            </TranslatedLink>
+            <TranslatedLink
+              href={`/products`}
+              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="font-semibold"
+              onClick={() => setOpen(false)}
+              title={
+                locale === "cs"
+                  ? "Přejít na stránku produktů"
+                  : "Go to products page"
+              }
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span className="uppercase">
+                {locale === "cs" ? "Objednat" : "Order"}
+              </span>
+            </TranslatedLink>
           </nav>
           {/* Hamburger visible on all screen sizes */}
           <button

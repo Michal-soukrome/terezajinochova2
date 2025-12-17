@@ -17,6 +17,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
       className={`bg-white rounded overflow-hidden border transition-all duration-300  ${
         isPremium ? "border-accent-1" : "border-gray-200"
       }`}
+      style={{ cornerShape: "bevel" } as any}
       id="product-card"
     >
       <div className="h-full flex flex-col md:flex-row">

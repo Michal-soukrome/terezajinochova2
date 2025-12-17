@@ -46,7 +46,11 @@ export function AnimatedHeader({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {subtitle}
+          {subtitle.split("\n\n").map((p, idx) => (
+            <span key={idx} className="block mb-4">
+              {p}
+            </span>
+          ))}
         </motion.p>
       )}
 
