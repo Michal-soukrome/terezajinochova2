@@ -8,7 +8,14 @@ import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "../ui/Button";
-import { BookOpen, Home, Mail, ShoppingCart, Shield } from "lucide-react";
+import {
+  BookOpen,
+  Home,
+  Mail,
+  ShoppingCart,
+  Shield,
+  Asterisk,
+} from "lucide-react";
 import Image from "next/image";
 
 interface HeaderProps {
@@ -76,15 +83,19 @@ export function Header({ locale }: HeaderProps) {
       // Store scroll position for restoration
       document.body.dataset.scrollY = scrollY.toString();
     } else {
-      // Restore scroll position when closing
+      // Restore scroll position after a brief delay to ensure animation completes
       const scrollY = parseInt(document.body.dataset.scrollY || "0", 10);
+
+      // First restore body styles
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflow = "";
 
-      // Restore scroll position
-      window.scrollTo(0, scrollY);
+      // Then restore scroll position with a small delay
+      setTimeout(() => {
+        window.scrollTo(0, scrollY);
+      }, 50);
     }
 
     return () => {
@@ -189,7 +200,7 @@ export function Header({ locale }: HeaderProps) {
           <nav className="h-full hidden md:flex items-center ">
             <TranslatedLink
               href="/"
-              className="hover:bg-amber-400/5 px-5 relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               exact
               onClick={() => setOpen(false)}
@@ -203,10 +214,16 @@ export function Header({ locale }: HeaderProps) {
               <span className="uppercase">
                 {locale === "cs" ? "úvod" : "Home"}
               </span>
-            </TranslatedLink>{" "}
+            </TranslatedLink>
+            <span>
+              <Asterisk
+                className="w-5 h-5 text-accent-1-contrast"
+                strokeWidth={0.5}
+              />
+            </span>
             <TranslatedLink
               href={`/about`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               onClick={() => setOpen(false)}
               title={
@@ -220,9 +237,15 @@ export function Header({ locale }: HeaderProps) {
                 {locale === "cs" ? "O deníku" : "About"}
               </span>
             </TranslatedLink>
+            <span>
+              <Asterisk
+                className="w-5 h-5 text-accent-1-contrast"
+                strokeWidth={0.5}
+              />
+            </span>
             <TranslatedLink
               href={`/products`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               onClick={() => setOpen(false)}
               title={
@@ -236,9 +259,15 @@ export function Header({ locale }: HeaderProps) {
                 {locale === "cs" ? "Objednat" : "Order"}
               </span>
             </TranslatedLink>
+            <span>
+              <Asterisk
+                className="w-5 h-5 text-accent-1-contrast"
+                strokeWidth={0.5}
+              />
+            </span>
             <TranslatedLink
               href={`/contact`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               onClick={() => setOpen(false)}
               title={
@@ -259,7 +288,7 @@ export function Header({ locale }: HeaderProps) {
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="flex md:hidden p-3 rounded border cursor-pointer border-accent-1-contrast hover:bg-accent-1 transition-colors duration-200 "
+            className="flex md:hidden p-3 rounded cursor-pointer focus:outline-none focus:ring-0"
           >
             <motion.svg
               className="h-6 w-6"

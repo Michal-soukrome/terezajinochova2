@@ -30,7 +30,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
                 alt={product.names[locale as keyof typeof product.names]}
                 width={192}
                 height={192}
-                className="h-full object-contain transition-transform duration-300 hover:scale-105"
+                className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
                 priority={false}
               />
               {/* Overlay gradient */}
