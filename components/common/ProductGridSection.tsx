@@ -9,7 +9,7 @@ interface ProductGridSectionProps {
   title: string;
   subtitle: string;
   products: Product[];
-  background?: "accent" | "white";
+  background?: "themed" | "white";
 }
 
 export default function ProductGridSection({
@@ -17,10 +17,10 @@ export default function ProductGridSection({
   title,
   subtitle,
   products,
-  background = "accent",
+  background = "themed",
 }: ProductGridSectionProps) {
   const sectionClass =
-    background === "accent"
+    background === "themed"
       ? "bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
       : "px-4 sm:px-6 lg:px-8 py-16 md:py-24";
 

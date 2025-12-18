@@ -82,7 +82,7 @@ export function LanguageSwitcher({
           className={
             mode === "text"
               ? "w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200 "
-              : "btn btn-ghost"
+              : "btn btn-outline"
           }
           title={locale === "cs" ? "Přepnout na češtinu" : "Switch to English"}
           // když nepoužiju vlajky tak můžu odkomentovat

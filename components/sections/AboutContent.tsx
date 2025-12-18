@@ -10,6 +10,8 @@ import { CountUp } from "../common/CountUp";
 import BenefitsSection from "../common/BenefitsSection";
 
 import { Locale } from "@/lib/i18n";
+import ProductGridSection from "../common/ProductGridSection";
+import { PRODUCT_LIST } from "@/lib/products";
 
 interface AboutContentProps {
   locale: Locale;
@@ -23,6 +25,14 @@ export default function AboutContent({ locale }: AboutContentProps) {
         title={CONTENT[locale].why.intro.title}
         imageUrl="/assets/image3.webp"
         description={CONTENT[locale].why.intro.challenge}
+      />
+
+      <ProductGridSection
+        locale={locale}
+        title={locale === "cs" ? "Produkty" : "Products"}
+        subtitle={locale === "cs" ? "Vyberte si" : "Choose Your Products"}
+        products={PRODUCT_LIST}
+        background="themed"
       />
 
       {/* Challenge Section */}

@@ -5,6 +5,7 @@
 :root {
   /* New accent palette (from design notes) */
   --color-accent-1: #fef7f0; /* soft warm cream */
+  --color-accent-1-50: #dcab6f48;
   --color-accent-1-contrast: #dcab6f; /* warm amber */
   --color-accent-2: #fdf0ed; /* pale blush */
   --color-accent-2-contrast: #a08068; /* muted terracotta */
@@ -41,6 +42,7 @@
 
   /* Accent tokens */
   --accent-1: var(--color-accent-1);
+  --accent-1-50: var(--color-accent-1-50);
   --accent-1-contrast: var(--color-accent-1-contrast);
   --accent-2: var(--color-accent-2);
   --accent-2-contrast: var(--color-accent-2-contrast);
@@ -110,6 +112,9 @@ html {
 
 .border-accent-1 {
   border-color: var(--color-accent-1-contrast);
+}
+.border-accent-1-50 {
+  border-color: var(--color-accent-1-50);
 }
 .bg-accent-gradient-1 {
   background: linear-gradient(

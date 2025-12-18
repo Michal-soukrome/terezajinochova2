@@ -66,12 +66,32 @@ export function Header({ locale }: HeaderProps) {
 
   useEffect(() => {
     if (open) {
-      // lock body scroll while open
+      // Save current scroll position and lock body scroll while open
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+
+      // Store scroll position for restoration
+      document.body.dataset.scrollY = scrollY.toString();
     } else {
+      // Restore scroll position when closing
+      const scrollY = parseInt(document.body.dataset.scrollY || "0", 10);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+
+      // Restore scroll position
+      window.scrollTo(0, scrollY);
     }
+
     return () => {
+      // Cleanup on unmount
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
     };
   }, [open]);
@@ -157,9 +177,9 @@ export function Header({ locale }: HeaderProps) {
         >
           <Image
             src="/assets/logo.webp"
-            width={80}
-            height={80}
-            className="rounded-full object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
+            width={200}
+            height={200}
+            className="aspect-square rounded-full object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
             alt="Logo"
           />
         </Link>
@@ -169,7 +189,7 @@ export function Header({ locale }: HeaderProps) {
           <nav className="h-full hidden md:flex items-center ">
             <TranslatedLink
               href="/"
-              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 border-l border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               exact
               onClick={() => setOpen(false)}
@@ -179,14 +199,14 @@ export function Header({ locale }: HeaderProps) {
                   : "Go to homepage"
               }
             >
-              <Home className="w-4 h-4" />
+              <Home className="hidden w-4 h-4" />
               <span className="uppercase">
                 {locale === "cs" ? "úvod" : "Home"}
               </span>
             </TranslatedLink>{" "}
             <TranslatedLink
               href={`/about`}
-              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 border-x border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               onClick={() => setOpen(false)}
               title={
@@ -195,14 +215,14 @@ export function Header({ locale }: HeaderProps) {
                   : "Go to about page"
               }
             >
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="hidden w-4 h-4" />
               <span className="uppercase">
                 {locale === "cs" ? "O deníku" : "About"}
               </span>
             </TranslatedLink>
             <TranslatedLink
               href={`/products`}
-              className="hover:bg-amber-400/5 px-5 h-full relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              className="hover:bg-amber-400/5 px-5 relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
               activeClassName="font-semibold"
               onClick={() => setOpen(false)}
               title={
@@ -211,9 +231,25 @@ export function Header({ locale }: HeaderProps) {
                   : "Go to products page"
               }
             >
-              <ShoppingCart className="w-4 h-4" />
+              <ShoppingCart className="hidden w-4 h-4" />
               <span className="uppercase">
                 {locale === "cs" ? "Objednat" : "Order"}
+              </span>
+            </TranslatedLink>
+            <TranslatedLink
+              href={`/contact`}
+              className="hover:bg-amber-400/5 px-5 relative z-10 border-r border-accent-1 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="font-semibold"
+              onClick={() => setOpen(false)}
+              title={
+                locale === "cs"
+                  ? "Přejít na stránku kontaktů"
+                  : "Go to contact page"
+              }
+            >
+              <ShoppingCart className="hidden w-4 h-4" />
+              <span className="uppercase">
+                {locale === "cs" ? "Kontakt" : "Contact"}
               </span>
             </TranslatedLink>
           </nav>
@@ -367,7 +403,7 @@ export function Header({ locale }: HeaderProps) {
                           </TranslatedLink>
                           <TranslatedLink
                             href="/privacy"
-                            className="block text-lg text-amber-800 hover:text-amber-900  transition-colors duration-200 group"
+                            className="block text-lg text-accent-1-contrast hover:text-amber-900  transition-colors duration-200 group"
                             activeClassName="text-amber-900 font-semibold"
                             onClick={() => setOpen(false)}
                             title={
@@ -410,7 +446,7 @@ export function Header({ locale }: HeaderProps) {
                                   : "Explore products"
                               }
                             >
-                              <BookOpen className="w-4 h-4 mr-2" />
+                              <BookOpen className="hidden w-4 h-4 mr-2" />
                               {locale === "cs" ? "Prozkoumat" : "Explore"}
                             </TranslatedLink>
                           </div>
@@ -436,7 +472,7 @@ export function Header({ locale }: HeaderProps) {
                                   : "Contact us"
                               }
                             >
-                              <Mail className="w-4 h-4 mr-2" />
+                              <Mail className="hidden w-4 h-4 mr-2" />
                               {locale === "cs" ? "Napište mi" : "Let me know"}
                             </TranslatedLink>
                           </div>
@@ -465,7 +501,7 @@ export function Header({ locale }: HeaderProps) {
 
               {/* mobile menu */}
               <div
-                className="w-full h-full md:hidden bg-white overflow-y-auto"
+                className="w-full h-full md:hidden bg-white overflow-y-auto border-t border-accent-1"
                 id="mobile-menu"
               >
                 <div
@@ -474,12 +510,12 @@ export function Header({ locale }: HeaderProps) {
                 >
                   <ul
                     role="navigation"
-                    className="w-full divide-y divide-accent-1 flex flex-col text-accent-1-contrast pt-5"
+                    className="w-full flex flex-col pt-5"
                     id="mobile-navigation-links"
                   >
                     <TranslatedLink
                       href="/"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
                       activeClassName="bg-accent-1 font-semibold"
                       exact
                       onClick={() => setOpen(false)}
@@ -489,14 +525,14 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to homepage"
                       }
                     >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
                         <Home className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Úvod" : "Home"}
                         </div>
-                        <div className="text-sm text-amber-800 font-light lowercase">
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
                           {locale === "cs"
                             ? "Vítejte na mém webu"
                             : "Welcome to our page"}
@@ -505,7 +541,7 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/about"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
                       activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -514,14 +550,14 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to about page"
                       }
                     >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
                         <BookOpen className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-accent-4">
                           {locale === "cs" ? "O deníku" : "About"}
                         </div>
-                        <div className="text-sm text-amber-800 font-light lowercase">
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
                           {locale === "cs"
                             ? "Zjistěte více o svatebním deníku"
                             : "Learn more about wedding diary"}
@@ -530,7 +566,7 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/products"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
                       activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -539,14 +575,14 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to products page"
                       }
                     >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
                         <ShoppingCart className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Objednat" : "Order"}
                         </div>
-                        <div className="text-sm text-amber-800 font-light lowercase">
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
                           {locale === "cs"
                             ? "Vyberte si svůj svatební deník"
                             : "Choose your wedding diary"}
@@ -555,7 +591,7 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/privacy"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
                       activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -564,14 +600,14 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to privacy page"
                       }
                     >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
                         <Shield className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
                         <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Soukromí" : "Privacy"}
                         </div>
-                        <div className="text-sm text-amber-800 font-light lowercase">
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
                           {locale === "cs"
                             ? "Informace o ochraně osobních údajů"
                             : "Personal data protection information"}
@@ -580,7 +616,7 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                     <TranslatedLink
                       href="/contact"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 hover:bg-accent-1 transition-colors duration-200"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
                       activeClassName="bg-accent-1 font-semibold"
                       onClick={() => setOpen(false)}
                       title={
@@ -589,14 +625,14 @@ export function Header({ locale }: HeaderProps) {
                           : "Go to contact page"
                       }
                     >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
                         <Mail className="w-5 h-5 text-accent-1-contrast" />
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-amber-900">
+                        <div className="font-medium text-accent-4">
                           {locale === "cs" ? "Kontakt" : "Contact"}
                         </div>
-                        <div className="text-sm text-amber-800 font-light lowercase">
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
                           {locale === "cs"
                             ? "Spojte se se mnou"
                             : "Get in touch with me"}
@@ -605,7 +641,7 @@ export function Header({ locale }: HeaderProps) {
                     </TranslatedLink>
                   </ul>
 
-                  <div className="w-full flex items-center justify-start p-4">
+                  <div className="w-full flex items-center justify-end p-4">
                     <LanguageSwitcher onLanguageChange={() => setOpen(false)} />
                   </div>
                 </div>

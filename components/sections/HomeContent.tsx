@@ -66,7 +66,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             ? "Organizace svatby je fascinující, ale náročná cesta. Svatební deník vám pomůže zvládat všechny detaily s lehkostí."
             : "Organizing a wedding is a fascinating but challenging journey. A wedding diary helps you manage all the details with ease."
         }
-        imageUrl="./assets/image3.webp"
+        imageUrl="/assets/image3.webp"
         imageAlt="Wedding planning"
         imageSide="right"
         backgroundColor="bg-accent-1"
@@ -84,7 +84,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             ? "Každá svatba je jedinečná. Naš deník se přizpůsobí vaší představě a stane se součástí vašeho nezapomenutelného dne."
             : "Every wedding is unique. Our diary adapts to your vision and becomes part of your unforgettable day."
         }
-        imageUrl="./assets/image2.webp"
+        imageUrl="/assets/image2.webp"
         imageAlt="Wedding story"
         imageSide="left"
         backgroundColor="bg-white"
