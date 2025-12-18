@@ -23,8 +23,8 @@ export default function BenefitsSection({
     <section className={sectionClass}>
       <div className="max-w-7xl mx-auto">
         {title && (
-          <div className="text-center mb-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {title}
             </h2>
           </div>
@@ -34,7 +34,7 @@ export default function BenefitsSection({
           {/* Memories & Keepsakes (Diary) */}
           <div className="text-center group">
             <div className="mb-6 flex justify-center">
-              <div className="w-12 md:w-20 h-12 md:h-20 flex items-center justify-center">
+              <div className="w-12 md:w-14 h-12 md:h-14 flex items-center justify-center">
                 <Gift
                   strokeWidth={0.5}
                   className="w-full h-full text-accent-1-contrast "
@@ -54,7 +54,7 @@ export default function BenefitsSection({
           {/* Planner & Checklists (Diary) */}
           <div className="text-center group">
             <div className="mb-6 flex justify-center">
-              <div className="w-12 md:w-20 h-12 md:h-20 flex items-center justify-center">
+              <div className="w-12 md:w-14 h-12 md:h-14 flex items-center justify-center">
                 <NotebookPen
                   strokeWidth={0.5}
                   className="w-full h-full text-accent-1-contrast "
@@ -76,7 +76,7 @@ export default function BenefitsSection({
           {/* Inspiration & Ideas (Diary) */}
           <div className="text-center group">
             <div className="mb-6 flex justify-center">
-              <div className="w-12 md:w-20 h-12 md:h-20 flex items-center justify-center">
+              <div className="w-12 md:w-14 h-12 md:h-14 flex items-center justify-center">
                 <Palette
                   strokeWidth={0.5}
                   className="w-full h-full text-accent-1-contrast group-hover:text-accent-4 transition-colors duration-300"
@@ -96,7 +96,7 @@ export default function BenefitsSection({
           {/* Tracking & Budget (Diary) */}
           <div className="text-center group">
             <div className="mb-6 flex justify-center">
-              <div className="w-12 md:w-20 h-12 md:h-20 flex items-center justify-center">
+              <div className="w-12 md:w-14 h-12 md:h-14 flex items-center justify-center">
                 <MapPin
                   strokeWidth={0.5}
                   className="w-full h-full text-accent-1-contrast group-hover:text-accent-4 transition-colors duration-300"

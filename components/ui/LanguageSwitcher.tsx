@@ -10,8 +10,10 @@ import ReactCountryFlag from "react-country-flag";
 
 export function LanguageSwitcher({
   onLanguageChange,
+  mode = "flag",
 }: {
   onLanguageChange?: () => void;
+  mode?: "flag" | "text";
 }) {
   const pathname = usePathname();
 
@@ -68,7 +70,7 @@ export function LanguageSwitcher({
   };
 
   return (
-    <div className="flex gap-2">
+    <div className={mode === "text" ? "flex flex-col gap-2" : "flex gap-2"}>
       {locales.map((locale) => (
         <Link
           key={locale}
@@ -77,12 +79,22 @@ export function LanguageSwitcher({
             setLocaleCookie(locale);
             onLanguageChange?.();
           }}
-          className="btn btn-ghost"
+          className={
+            mode === "text"
+              ? "w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200 "
+              : "btn btn-ghost"
+          }
           title={locale === "cs" ? "Přepnout na češtinu" : "Switch to English"}
           // když nepoužiju vlajky tak můžu odkomentovat
           // className={locale === "cs" ? "btn-ghost" : "btn-secondary"}
         >
-          {locale === "cs" ? (
+          {mode === "text" ? (
+            locale === "cs" ? (
+              "Čeština"
+            ) : (
+              "English"
+            )
+          ) : locale === "cs" ? (
             <ReactCountryFlag
               countryCode="CZ"
               svg

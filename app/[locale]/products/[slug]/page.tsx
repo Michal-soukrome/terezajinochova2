@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui";
 import { motion } from "framer-motion";
 import { AnimatedHeader } from "@/components/layout";
 import CONTENT from "@/lib/content";
+import BenefitsSection from "@/components/common/BenefitsSection";
 
 interface PageProps {
   params: Promise<{
@@ -100,15 +101,64 @@ export default async function ProductDetailPage({ params }: PageProps) {
         {/* Left - Image */}
         <div className="relative">
           <div className="sticky top-8">
-            <div className="relative rounded overflow-hidden shadow">
+            <div className="relative overflow-hidden pb-20">
               <Image
                 src={product.image}
                 alt={product.names[locale as keyof typeof product.names]}
                 width={720}
                 height={820}
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover border"
                 priority
               />
+              <div
+                className="px-5 md:px-0 flex gap-3"
+                id="additional-images-grid"
+              >
+                <div
+                  className="grow aspect-square border relative"
+                  id="product-additional-image"
+                >
+                  <Image
+                    src="/assets/logo.webp"
+                    fill
+                    className="object-cover object-center"
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="grow aspect-square border relative"
+                  id="product-additional-image"
+                >
+                  <Image
+                    src="/assets/logo.webp"
+                    fill
+                    className="object-cover object-center"
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="grow aspect-square border relative"
+                  id="product-additional-image"
+                >
+                  <Image
+                    src="/assets/logo.webp"
+                    fill
+                    className="object-cover object-center"
+                    alt=""
+                  />
+                </div>
+                <div
+                  className="grow aspect-square border relative"
+                  id="product-additional-image"
+                >
+                  <Image
+                    src="/assets/logo.webp"
+                    fill
+                    className="object-cover object-center"
+                    alt=""
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +188,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Price & CTA */}
-          <div className="bg-accent-1 border border-accent-1 rounded-2xl p-6 space-y-4">
+          <div
+            className="bg-accent-1 border border-accent-1 rounded-2xl p-6 space-y-4"
+            style={{ cornerShape: "bevel" } as any}
+          >
             <div className="flex items-baseline gap-2">
               <span className="text-5xl font-bold text-gray-900 font-heading">
                 {locale === "cs"
@@ -159,14 +212,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
             />
 
             <p className="text-sm text-gray-500 text-center">
-              {locale === "cs"
-                ? "🔒 Bezpečná platba • Okamžitý přístup"
-                : "🔒 Secure payment • Instant access"}
+              {locale === "cs" ? "🔒 Bezpečná platba" : "🔒 Secure payment"}
             </p>
           </div>
 
           {/* Features */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+          <div
+            className="bg-white border border-gray-200 rounded-2xl p-6"
+            style={{ cornerShape: "bevel" } as any}
+          >
             <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
               <svg
                 className="w-5 h-5 text-accent-1-contrast"
@@ -207,39 +261,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </ul>
           </div>
 
-          {/* Testimonial */}
-          <div className="bg-accent-gradient-1 border border-accent-1 rounded-2xl p-6">
-            <h3 className="text-xl font-bold mb-4 font-heading text-gray-900">
-              {t.testimonials}
-            </h3>
-            <blockquote className="relative">
-              <svg
-                className="absolute -top-2 -left-2 w-8 h-8 text-accent-1-contrast"
-                fill="currentColor"
-                viewBox="0 0 32 32"
-              >
-                <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-              </svg>
-              <p className="italic text-gray-700 pl-6 text-lg leading-relaxed">
-                {t.testimonialText}
-              </p>
-              <div className="flex items-center gap-1 mt-3 pl-6">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className="w-5 h-5 text-accent-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </blockquote>
-          </div>
-
           {/* Perfect For */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+          <div
+            className="bg-white border border-gray-200 rounded-2xl p-6"
+            style={{ cornerShape: "bevel" } as any}
+          >
             <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
               {t.perfectFor}
             </h3>
@@ -248,22 +274,64 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Interactive Preview Section */}
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-heading">
+            {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
+          </h2>
+          <div
+            id="flipbook-container"
+            className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4"
+            style={{ minHeight: "600px" }}
+          >
+            {/* Placeholder for FlipHTML5 or PDF flipbook embed */}
+            <p className="text-gray-500">
+              {locale === "cs"
+                ? "Zde bude interaktivní náhled svatebního deníku. Přidejte URL nebo embed kód FlipHTML5."
+                : "Interactive preview of the wedding planner will be here. Add FlipHTML5 URL or embed code."}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Image Gallery */}
       {product.gallery && product.gallery.length > 0 && (
         <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-10">
           <div className="max-w-7xl mx-auto">
-            {" "}
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 font-heading text-gray-900 text-center">
-                {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {product.gallery.map((galleryImage, index) => (
+            <h2 className="text-3xl font-bold mb-8 font-heading text-gray-900 text-center">
+              {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
+              {product.gallery.map((galleryImage, index) => {
+                // Bento grid layout patterns
+                const getGridClasses = (index: number) => {
+                  const patterns = [
+                    // Pattern for 4+ images
+                    "md:col-span-2 md:row-span-2", // Large feature image
+                    "md:col-span-1 md:row-span-1", // Small square
+                    "md:col-span-1 md:row-span-1", // Small square
+                    "md:col-span-2 md:row-span-1", // Wide rectangle
+                    "md:col-span-1 md:row-span-1", // Small square
+                    "md:col-span-1 md:row-span-1", // Small square
+                    "md:col-span-2 md:row-span-1", // Wide rectangle
+                    "md:col-span-2 md:row-span-1", // Wide rectangle
+                  ];
+
+                  return (
+                    patterns[index % patterns.length] ||
+                    "md:col-span-1 md:row-span-1"
+                  );
+                };
+
+                return (
                   <div
                     key={index}
-                    className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                    className={`group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${getGridClasses(
+                      index
+                    )}`}
                   >
-                    <div className="aspect-4/3 relative">
+                    <div className="relative w-full h-full">
                       <Image
                         src={galleryImage}
                         alt={`${
@@ -273,39 +341,54 @@ export default async function ProductDetailPage({ params }: PageProps) {
                         }`}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                    {/* Optional overlay with number */}
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {index + 1}
+                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </section>
       )}
 
       {/* Additional Info Section */}
-      {/* Contents list from internal file (Czech) */}
-      {locale === "cs" && (
-        <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
-              Co ve Svatebním deníku naleznete
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto text-gray-700">
-              {CONTENT.cs.why.list.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="text-accent-1-contrast font-semibold">
-                    {i + 1}.
-                  </div>
-                  <div>{item}</div>
+      {/* Contents list from internal file */}
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
+            {locale === "cs"
+              ? "Co ve Svatebním deníku naleznete"
+              : "What's inside the Wedding Diary"}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto text-gray-700">
+            {CONTENT[locale].why.list.map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="text-accent-1-contrast font-semibold">
+                  {i + 1}.
                 </div>
-              ))}
-            </div>
+                <div>{item}</div>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <BenefitsSection
+        locale={locale}
+        title={
+          locale === "cs"
+            ? "Proč si vybrat svatební deník?"
+            : "Why Choose Wedding Planner?"
+        }
+        background="themed"
+      />
 
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
@@ -315,13 +398,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <div className="prose prose-amber max-w-none text-gray-700 leading-relaxed">
             <p>
               {locale === "cs"
-                ? "Svatební deník je navržen tak, aby vám pomohl organizovat každý aspekt vašeho velkého dne. Od rozpočtu přes seznam hostů až po časový harmonogram - vše najdete na jednom místě. Moje šablony jsou profesionálně navržené a snadno přizpůsobitelné vašim potřebám."
-                : "The wedding planner is designed to help you organize every aspect of your big day. From budget to guest list to timeline - everything in one place. Our templates are professionally designed and easily customizable to your needs."}
+                ? "Svatební deník je navržen tak, aby vám pomohl organizovat každý aspekt vašeho velkého dne."
+                : "The wedding planner is designed to help you organize every aspect of your big day."}
+            </p>
+            <p>
+              {locale === "cs"
+                ? "Od rozpočtu přes seznam hostů až po časový harmonogram - vše najdete na jednom místě."
+                : "From budget to guest list to timeline - everything in one place."}
+            </p>
+            <p>
+              {locale === "cs"
+                ? "Moje šablony jsou profesionálně navržené a snadno přizpůsobitelné vašim potřebám."
+                : "Our templates are professionally designed and easily customizable to your needs."}
             </p>
             <p className="mt-4">
               {locale === "cs"
-                ? "S naším plánovačem už nezapomenete na žádný detail a budete mít vždy přehled o tom, co je potřeba udělat. Ušetříte čas, nervy a užijete si přípravu svatby naplno."
-                : "With our planner, you won't forget any details and you'll always have an overview of what needs to be done. Save time, stress less, and enjoy the wedding planning process."}
+                ? "S naším plánovačem už nezapomenete na žádný detail a budete mít vždy přehled o tom, co je potřeba udělat."
+                : "With our planner, you won't forget any details and you'll always have an overview of what needs to be done."}
+            </p>
+            <p>
+              {locale === "cs"
+                ? "Ušetříte čas, nervy a užijete si přípravu svatby naplno."
+                : "Save time, stress less, and enjoy the wedding planning process."}
             </p>
           </div>
         </div>

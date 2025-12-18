@@ -124,32 +124,13 @@ export function Footer({ locale }: FooterProps) {
               </nav>
             </div>
 
-            {/* Services Column */}
+            {/* Language Column */}
             <div>
               <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
-                {locale === "cs" ? "Služby" : "Services"}
+                {locale === "cs" ? "Jazyk" : "Language"}
               </h6>
 
-              <nav className="space-y-3">
-                <TranslatedLink
-                  href="/#benefits"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Plánování svatby" : "Wedding Planning"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/#products"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Svatební deníky" : "Wedding Diaries"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/contact"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Konzultace" : "Consultation"}
-                </TranslatedLink>
-              </nav>
+              <LanguageSwitcher mode="text" />
             </div>
           </div>
         </div>

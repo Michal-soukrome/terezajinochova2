@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import Image from "next/image";
 
 interface FullHeightSectionProps {
   title: string;
@@ -113,10 +114,11 @@ export function FullHeightSection({
               imageSide === "left" ? "lg:col-start-1 lg:row-start-1" : ""
             }`}
           >
-            <img
+            <Image
               src={imageUrl}
               alt={imageAlt}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           </motion.div>
         )}

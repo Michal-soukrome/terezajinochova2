@@ -9,79 +9,46 @@ import { ReviewsCarousel } from "../ui/ReviewsCarousel";
 import { CountUp } from "../common/CountUp";
 import BenefitsSection from "../common/BenefitsSection";
 
+import { Locale } from "@/lib/i18n";
+
 interface AboutContentProps {
-  locale: string;
+  locale: Locale;
 }
 
 export default function AboutContent({ locale }: AboutContentProps) {
   return (
     <div id="about-page-wrap">
-      {/* Vision Section */}
+      {/* Title Section */}
       <FullHeightSection
-        title={locale === "cs" ? "Moje vize" : "Our Vision"}
+        title={CONTENT[locale].why.intro.title}
         imageUrl="/assets/image3.webp"
-        description={
-          locale === "cs"
-            ? CONTENT.cs.why.intro
-            : "The wedding planner is a tool created with love for couples who want their big day perfectly organized. Our application combines elegance with functionality to help you focus on what's most important - mutual love and the joy of shared life."
-        }
-        content={
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            <div
-              className="bg-accent-1 rounded-xl p-6 border border-accent-1"
-              style={{ cornerShape: "bevel" } as any}
-            >
-              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3 flex items-center gap-2">
-                <svg
-                  className="w-5 h-5 text-accent-1-contrast"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-                {locale === "cs" ? "Rychlost" : "Speed"}
-              </h3>
-              <p className="text-gray-700">
-                {locale === "cs"
-                  ? "Okamžitý přístup k vašemu plánovači ihned po zakoupení"
-                  : "Instant access to your planner immediately after purchase"}
-              </p>
-            </div>
+        description={CONTENT[locale].why.intro.challenge}
+      />
 
-            <div
-              className="bg-accent-1 rounded-xl p-6 border border-accent-1"
-              style={{ cornerShape: "bevel" } as any}
-            >
-              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3 flex items-center gap-2">
-                <svg
-                  className="w-5 h-5 text-accent-1-contrast"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-                {locale === "cs" ? "Elegance" : "Elegance"}
-              </h3>
-              <p className="text-gray-700">
-                {locale === "cs"
-                  ? "Krásně navržené šablony, které odrážejí eleganci vašeho dne"
-                  : "Beautifully designed templates that reflect the elegance of your day"}
-              </p>
-            </div>
-          </div>
+      {/* Challenge Section */}
+      <FullHeightSection
+        title={locale === "cs" ? "Výzva plánování" : "The Planning Challenge"}
+        description={CONTENT[locale].why.intro.challenge}
+        backgroundColor="bg-white"
+        textColor="text-gray-900"
+      />
+
+      {/* Description Section */}
+      <FullHeightSection
+        title={
+          locale === "cs" ? "Co je Svatební deník" : "What is the Wedding Diary"
         }
+        description={CONTENT[locale].why.intro.description}
+        backgroundColor="bg-accent-1"
+        textColor="text-gray-900"
+      />
+
+      {/* Keepsake Section */}
+      <FullHeightSection
+        title={
+          locale === "cs" ? "Více než jen plánovač" : "More Than Just a Planner"
+        }
+        description={CONTENT[locale].why.intro.keepsake}
         backgroundColor="bg-white"
         textColor="text-gray-900"
       />
@@ -92,24 +59,40 @@ export default function AboutContent({ locale }: AboutContentProps) {
       {/* Story Section */}
       <FullHeightSection
         title={locale === "cs" ? "Příběh Svatebního deníku" : "Our Story"}
-        description={
-          locale === "cs"
-            ? CONTENT.cs.story
-            : "The wedding diary was born out of a love for organization and the stories of engaged couples."
-        }
+        description={CONTENT[locale].story}
         backgroundColor="bg-white"
         textColor="text-gray-900"
       />
 
-      {/* About Me Section */}
+      {/* Background Section */}
       <FullHeightSection
-        title={locale === "cs" ? "O mně" : "About Me"}
-        description={
-          locale === "cs"
-            ? CONTENT.cs.about
-            : "Biography and professional background with a passion for weddings and choreography."
-        }
+        title={locale === "cs" ? "Mé začátky" : "My Background"}
+        description={CONTENT[locale].about.background}
         backgroundColor="bg-accent-1"
+        textColor="text-gray-900"
+      />
+
+      {/* Dance Journey Section */}
+      <FullHeightSection
+        title={locale === "cs" ? "Cesta přes tanec" : "Dance Journey"}
+        description={CONTENT[locale].about.dance}
+        backgroundColor="bg-white"
+        textColor="text-gray-900"
+      />
+
+      {/* Coordination Section */}
+      <FullHeightSection
+        title={locale === "cs" ? "Svatební koordinace" : "Wedding Coordination"}
+        description={CONTENT[locale].about.coordination}
+        backgroundColor="bg-accent-1"
+        textColor="text-gray-900"
+      />
+
+      {/* Personality Section */}
+      <FullHeightSection
+        title={locale === "cs" ? "Mé vlastnosti" : "My Personality"}
+        description={CONTENT[locale].about.personality}
+        backgroundColor="bg-white"
         textColor="text-gray-900"
       />
 
@@ -200,7 +183,6 @@ export default function AboutContent({ locale }: AboutContentProps) {
             </TranslatedLink>
           </div>
         }
-        backgroundColor="bg-accent-gradient-1"
         textColor="text-gray-900"
       />
     </div>

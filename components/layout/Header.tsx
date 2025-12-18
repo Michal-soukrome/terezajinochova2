@@ -9,6 +9,7 @@ import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "../ui/Button";
 import { BookOpen, Home, Mail, ShoppingCart, Shield } from "lucide-react";
+import Image from "next/image";
 
 interface HeaderProps {
   locale: Locale;
@@ -154,9 +155,11 @@ export function Header({ locale }: HeaderProps) {
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
           }
         >
-          <img
-            src="./assets/logo.webp"
-            className="w-full h-full object-cover rounded-full object-center aspect-square group-hover:scale-105 transition-transform duration-300 ease-in-out"
+          <Image
+            src="/assets/logo.webp"
+            width={80}
+            height={80}
+            className="rounded-full object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
             alt="Logo"
           />
         </Link>
