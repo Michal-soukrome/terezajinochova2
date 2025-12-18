@@ -58,7 +58,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             {" "}
-            <a href="#benefits" className="btn btn-secondary">
+            <a href="#diary" className="btn btn-secondary">
               {locale === "cs" ? "Chci vědět více" : "More information"}
             </a>
             <TranslatedLink href="/products" className="btn btn-primary">

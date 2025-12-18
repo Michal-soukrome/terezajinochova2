@@ -75,6 +75,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
           text: locale === "cs" ? "Zjistit více" : "Learn More",
           href: `/${locale}/products`,
         }}
+        sectionId="diary"
       />
 
       <FullHeightSection

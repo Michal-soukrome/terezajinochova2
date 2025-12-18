@@ -161,7 +161,7 @@ export function Header({ locale }: HeaderProps) {
       initial={false}
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
-        backgroundColor: open ? "var(--accent-1)" : "rgba(255, 255, 255, 0.5)",
+        backgroundColor: open ? "var(--accent-1)" : "rgba(255, 255, 255, 0.9)",
         // open state uses the soft cream accent; closed uses translucent white
         backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}

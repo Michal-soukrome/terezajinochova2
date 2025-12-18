@@ -6,6 +6,7 @@ import Image from "next/image";
 
 interface FullHeightSectionProps {
   title: string;
+  sectionId?: string;
   description: string;
   content?: React.ReactNode;
   imageUrl?: string;
@@ -22,6 +23,7 @@ interface FullHeightSectionProps {
 
 export function FullHeightSection({
   title,
+  sectionId,
   description,
   content,
   imageUrl,
@@ -65,6 +67,7 @@ export function FullHeightSection({
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className={`relative min-h-screen w-full flex items-center justify-center ${backgroundColor}`}
+      id={sectionId}
     >
       <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
         {/* Text Content */}
