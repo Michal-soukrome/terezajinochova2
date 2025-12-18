@@ -3,8 +3,9 @@
   @apply relative inline-flex items-center justify-center
          px-6 py-3 text-sm font-medium tracking-wide select-none
          transition-all duration-300 ease-out cursor-pointer
-         bg-transparent overflow-hidden
-         rounded-full;
+         bg-transparent overflow-hidden;
+  border-radius: 0.75rem;
+  corner-shape: bevel;
 }
 
 /* ------------------------------------------

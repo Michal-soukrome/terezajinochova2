@@ -116,6 +116,9 @@ html {
 .border-accent-1-50 {
   border-color: var(--color-accent-1-50);
 }
+.bg-accent-1-50 {
+  background-color: var(--color-accent-1-50);
+}
 .bg-accent-gradient-1 {
   background: linear-gradient(
     90deg,

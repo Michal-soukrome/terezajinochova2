@@ -23,8 +23,7 @@ const WHY_INTRO_EN = {
 const WHY_BULLETS_CS = [
   "elegantní a přehledné rozvržení stránek",
   "prostor pro vlastní poznámky, checklisty a fotografie",
-  "jemný a moderní design, který potěší oko",
-  "ideální dárek pro sebe nebo pro kamarádku, která se právě zasnoubila",
+  "ideální dárek pro čerstvě zasnoubené",
   "kvalitní zpracování, které vydrží i časté listování",
 ];
 

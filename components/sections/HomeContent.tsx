@@ -73,7 +73,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
         textColor="text-gray-900"
         cta={{
           text: locale === "cs" ? "Zjistit více" : "Learn More",
-          href: `/${locale}/products`,
+          href: `/products`,
         }}
         sectionId="diary"
       />

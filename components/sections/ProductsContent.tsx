@@ -70,23 +70,40 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
       {/* Features Section */}
       <BenefitsSection locale={locale} background="themed" />
 
-      {/* 'Co ve Svatebním deníku naleznete' - populated from internal content */}
+      {/* 'Co ve Svatebním deníku naleznete' - redesigned with card components */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-6">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
               {locale === "cs"
                 ? "Co ve Svatebním deníku naleznete:"
                 : "What's inside"}
             </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === "cs"
+                ? "Elegantní design a praktické funkce pro dokonalou organizaci svatby"
+                : "Elegant design and practical features for perfect wedding organization"}
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
-              {CONTENT[locale].why.bullets.map((b, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="text-accent-1-contrast font-bold">•</div>
-                  <div>{b}</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {CONTENT[locale].why.bullets.map((feature, i) => (
+                <div
+                  key={i}
+                  className="bg-accent-1-50 border border-accent-1 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+                  style={{ cornerShape: "bevel" } as any}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <Check className="w-6 h-6 text-accent-1-contrast mt-1" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-gray-700 leading-relaxed font-medium">
+                        {feature}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

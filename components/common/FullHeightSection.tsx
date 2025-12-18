@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import Image from "next/image";
+import { TranslatedLink } from "../navigation";
 
 interface FullHeightSectionProps {
   title: string;
@@ -100,9 +101,12 @@ export function FullHeightSection({
           {children && <div className="mb-8">{children}</div>}
 
           {cta && (
-            <a href={cta.href} className="btn btn-primary inline-block">
+            <TranslatedLink
+              href={cta.href}
+              className="btn btn-primary inline-block"
+            >
               {cta.text}
-            </a>
+            </TranslatedLink>
           )}
         </motion.div>
 
