@@ -12,7 +12,7 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-white border-t border-amber-800/25">
+    <footer className="w-full bg-white border-t border-accent-1-50">
       {/* Footer Top Area */}
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
@@ -137,7 +137,7 @@ export function Footer({ locale }: FooterProps) {
       </div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-gray-200">
+      <div className="border-t border-accent-1-50">
         <div className="px-4 sm:px-6 lg:px-8 py-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">

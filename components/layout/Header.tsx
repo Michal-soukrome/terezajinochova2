@@ -170,7 +170,7 @@ export function Header({ locale }: HeaderProps) {
         backgroundColor: { duration: 0.5, ease: "easeInOut" },
         backdropFilter: { duration: 0.3, ease: "easeInOut" }, // smooth backdrop blur transition
       }}
-      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top border-b border-accent-1"
+      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top border-b border-accent-1-50"
     >
       <span className="hidden absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-accent-1 via-accent-1 to-transparent"></span>
 
@@ -180,7 +180,7 @@ export function Header({ locale }: HeaderProps) {
       >
         <Link
           href={`/${locale}`}
-          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1 shadow relative z-10 group"
+          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1-50 shadow relative z-10 group"
           onClick={() => setOpen(false)}
           title={
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"

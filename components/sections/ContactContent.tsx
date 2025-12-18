@@ -50,17 +50,6 @@ export default function ContactContent({ locale }: ContactContentProps) {
         backgroundColor="bg-white"
         textColor="text-gray-900"
       />
-
-      {/* Benefits Section */}
-      <BenefitsSection
-        locale={locale}
-        title={
-          locale === "cs"
-            ? "Proč si vybrat naše služby?"
-            : "Why Choose Our Services?"
-        }
-        background="themed"
-      />
     </div>
   );
 }
