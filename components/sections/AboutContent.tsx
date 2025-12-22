@@ -30,7 +30,7 @@ export default function AboutContent({ locale }: AboutContentProps) {
       <ProductGridSection
         locale={locale}
         title={locale === "cs" ? "Produkty" : "Products"}
-        subtitle={locale === "cs" ? "Vyberte si" : "Choose Your Products"}
+        subtitle=""
         products={PRODUCT_LIST}
         background="themed"
       />

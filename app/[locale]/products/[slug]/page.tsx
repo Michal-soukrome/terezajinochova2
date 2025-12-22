@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui";
 import { AnimatedHeader } from "@/components/layout";
 import CONTENT from "@/lib/content";
 import BenefitsSection from "@/components/common/BenefitsSection";
-import { Star } from "lucide-react";
+import { Check, ChessKing, Star } from "lucide-react";
 
 interface PageProps {
   params: Promise<{
@@ -430,14 +430,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {CONTENT[locale].why.list.map((item, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:border-accent-1/20 transition-all duration-300 group"
+                className="bg-accent-1 border border-accent-1 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+                style={{ cornerShape: "bevel" } as any}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-accent-1 text-accent-1-contrast rounded-full flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
-                    {i + 1}
+                  <div className="flex-shrink-0">
+                    <Check className="w-6 h-6 text-accent-1-contrast mt-1" />
                   </div>
-                  <div className="text-gray-700 leading-relaxed pt-1">
-                    {item}
+                  <div className="flex-1">
+                    <p className="text-gray-700 leading-relaxed font-medium">
+                      {item}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -456,41 +459,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
         }
         background="themed"
       />
-
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
-            {locale === "cs" ? "Další informace" : "Additional Information"}
-          </h2>
-          <div className="prose prose-amber max-w-none text-gray-700 leading-relaxed">
-            <p>
-              {locale === "cs"
-                ? "Svatební deník je navržen tak, aby vám pomohl organizovat každý aspekt vašeho velkého dne."
-                : "The wedding planner is designed to help you organize every aspect of your big day."}
-            </p>
-            <p>
-              {locale === "cs"
-                ? "Od rozpočtu přes seznam hostů až po časový harmonogram - vše najdete na jednom místě."
-                : "From budget to guest list to timeline - everything in one place."}
-            </p>
-            <p>
-              {locale === "cs"
-                ? "Moje šablony jsou profesionálně navržené a snadno přizpůsobitelné vašim potřebám."
-                : "Our templates are professionally designed and easily customizable to your needs."}
-            </p>
-            <p className="mt-4">
-              {locale === "cs"
-                ? "S naším plánovačem už nezapomenete na žádný detail a budete mít vždy přehled o tom, co je potřeba udělat."
-                : "With our planner, you won't forget any details and you'll always have an overview of what needs to be done."}
-            </p>
-            <p>
-              {locale === "cs"
-                ? "Ušetříte čas, nervy a užijete si přípravu svatby naplno."
-                : "Save time, stress less, and enjoy the wedding planning process."}
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

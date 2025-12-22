@@ -22,9 +22,9 @@ export function Footer({ locale }: FooterProps) {
           >
             {/* Info Column */}
             <div>
-              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
-                {locale === "cs" ? "Info" : "Info"}
-              </h6>
+              <h1 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
+                Tereza Jinochová
+              </h1>
 
               <div className="space-y-3">
                 <div className="text-gray-700 text-sm">
