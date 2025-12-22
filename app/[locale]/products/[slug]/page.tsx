@@ -275,29 +275,46 @@ export default async function ProductDetailPage({ params }: PageProps) {
       </section>
 
       {/* Interactive Preview Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-gray-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-heading">
             {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
           </h2>
-          <div
-            id="flipbook-container"
-            className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4"
-            style={{ minHeight: "600px" }}
-          >
-            {/* Placeholder for FlipHTML5 or PDF flipbook embed */}
-            <p className="text-gray-500">
-              {locale === "cs"
-                ? "Zde bude interaktivní náhled svatebního deníku. Přidejte URL nebo embed kód FlipHTML5."
-                : "Interactive preview of the wedding planner will be here. Add FlipHTML5 URL or embed code."}
-            </p>
+        </div>
+        <div className="text-center">
+          <div id="flipbook-container" style={{ minHeight: "600px" }}>
+            <div
+              style={{
+                position: "relative",
+                paddingTop: "max(60%,324px)",
+                width: "100%",
+                height: 0,
+              }}
+            >
+              <iframe
+                style={{
+                  position: "absolute",
+                  left: "0",
+                  top: "0",
+                  width: "100%",
+                  height: "800px",
+                  border: "none",
+                }}
+                src="https://online.fliphtml5.com/naplh/kxmh/"
+                seamless={true}
+                scrolling="no"
+                frameBorder="0"
+                allowTransparency={true}
+                allowFullScreen={true}
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Image Gallery */}
       {product.gallery && product.gallery.length > 0 && (
-        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24 mt-10">
+        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 font-heading text-gray-900 text-center">
               {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}

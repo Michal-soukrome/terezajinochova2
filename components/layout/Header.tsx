@@ -15,6 +15,7 @@ import {
   ShoppingCart,
   Shield,
   Asterisk,
+  Dot,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -216,7 +217,7 @@ export function Header({ locale }: HeaderProps) {
               </span>
             </TranslatedLink>
             <span>
-              <Asterisk
+              <Dot
                 className="w-5 h-5 text-accent-1-contrast"
                 strokeWidth={0.5}
               />
@@ -238,7 +239,7 @@ export function Header({ locale }: HeaderProps) {
               </span>
             </TranslatedLink>
             <span>
-              <Asterisk
+              <Dot
                 className="w-5 h-5 text-accent-1-contrast"
                 strokeWidth={0.5}
               />
@@ -260,7 +261,7 @@ export function Header({ locale }: HeaderProps) {
               </span>
             </TranslatedLink>
             <span>
-              <Asterisk
+              <Dot
                 className="w-5 h-5 text-accent-1-contrast"
                 strokeWidth={0.5}
               />
