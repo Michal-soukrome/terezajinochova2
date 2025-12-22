@@ -24,7 +24,8 @@ export default function BenefitsSection({
       <div className="max-w-7xl mx-auto">
         {title && (
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
+            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+              {" "}
               {title}
             </h2>
           </div>

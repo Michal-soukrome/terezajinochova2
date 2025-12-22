@@ -7,10 +7,10 @@ import { routes } from "@/lib/routes";
 import Image from "next/image";
 import { BuyButton } from "@/components/ui";
 import { Badge } from "@/components/ui";
-import { motion } from "framer-motion";
 import { AnimatedHeader } from "@/components/layout";
 import CONTENT from "@/lib/content";
 import BenefitsSection from "@/components/common/BenefitsSection";
+import { Star } from "lucide-react";
 
 interface PageProps {
   params: Promise<{
@@ -111,7 +111,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 priority
               />
               <div
-                className="px-5 md:px-0 flex gap-3"
+                className="!hidden px-5 md:px-0 flex gap-3"
                 id="additional-images-grid"
               >
                 <div
@@ -275,38 +275,77 @@ export default async function ProductDetailPage({ params }: PageProps) {
       </section>
 
       {/* Interactive Preview Section */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 font-heading">
-            {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
-          </h2>
-        </div>
-        <div className="text-center">
-          <div id="flipbook-container" style={{ minHeight: "600px" }}>
-            <div
-              style={{
-                position: "relative",
-                paddingTop: "max(60%,324px)",
-                width: "100%",
-                height: 0,
-              }}
-            >
-              <iframe
+      <section
+        className="relative px-4 sm:px-6 lg:px-8 py-16 md:py-24 overflow-hidden bg-accent-1"
+        id="interactive"
+      >
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 bg-gradient-to-b from-accent-1/50 via-white to-accent-1/40 -z-10" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-1/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-1/60 rounded-full blur-3xl -z-10" />
+
+        <div className="max-w-7xl mx-auto">
+          {/* Header Section */}
+          <div className="text-center mb-4">
+            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+              {" "}
+              {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
+            </h2>
+          </div>
+
+          {/* Flipbook Container with enhanced styling */}
+          <div className="relative">
+            {/* Decorative corner elements */}
+            <div className="absolute -top-3 -left-3 w-20 h-20 border-t-4 border-l-4 border-accent-1 rounded-tl-2xl opacity-50" />
+            <div className="absolute -top-3 -right-3 w-20 h-20 border-t-4 border-r-4 border-accent-1 rounded-tr-2xl opacity-50" />
+            <div className="absolute -bottom-3 -left-3 w-20 h-20 border-b-4 border-l-4 border-accent-1 rounded-bl-2xl opacity-50" />
+            <div className="absolute -bottom-3 -right-3 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
+
+            {/* Main container with shadow and border */}
+            <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+              {/* Optional: Loading indicator overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-1/50 to-accent-1/40 flex items-center justify-center z-0">
+                <div className="text-center">
+                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-accent-1 border-t-transparent mb-4"></div>
+                  <p className="text-gray-600 font-medium">
+                    {locale === "cs" ? "Načítání..." : "Loading..."}
+                  </p>
+                </div>
+              </div>
+
+              {/* Iframe container */}
+              <div
+                id="flipbook-container"
+                className="relative"
                 style={{
-                  position: "absolute",
-                  left: "0",
-                  top: "0",
+                  paddingTop: "max(60%, 324px)",
                   width: "100%",
-                  height: "800px",
-                  border: "none",
+                  height: 0,
+                  minHeight: "600px",
                 }}
-                src="https://online.fliphtml5.com/naplh/kxmh/"
-                seamless={true}
-                scrolling="no"
-                frameBorder="0"
-                allowTransparency={true}
-                allowFullScreen={true}
-              ></iframe>
+              >
+                <iframe
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                  src="https://online.fliphtml5.com/naplh/kxmh/"
+                  seamless={true}
+                  scrolling="no"
+                  frameBorder="0"
+                  allowTransparency={true}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  title={
+                    locale === "cs" ? "Interaktivní kniha" : "Interactive Book"
+                  }
+                  className="z-10"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -314,9 +353,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
       {/* Image Gallery */}
       {product.gallery && product.gallery.length > 0 && (
-        <section className="bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <section className="hidden bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 font-heading text-gray-900 text-center">
+            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
               {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
@@ -378,18 +417,29 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Contents list from internal file */}
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 font-heading text-gray-900 text-center">
-            {locale === "cs"
-              ? "Co ve Svatebním deníku naleznete"
-              : "What's inside the Wedding Diary"}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto text-gray-700">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+              {" "}
+              {locale === "cs"
+                ? "Co ve Svatebním deníku naleznete"
+                : "What's inside the Wedding Diary"}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {CONTENT[locale].why.list.map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className="text-accent-1-contrast font-semibold">
-                  {i + 1}.
+              <div
+                key={i}
+                className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:border-accent-1/20 transition-all duration-300 group"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-accent-1 text-accent-1-contrast rounded-full flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+                    {i + 1}
+                  </div>
+                  <div className="text-gray-700 leading-relaxed pt-1">
+                    {item}
+                  </div>
                 </div>
-                <div>{item}</div>
               </div>
             ))}
           </div>

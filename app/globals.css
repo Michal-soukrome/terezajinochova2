@@ -77,12 +77,13 @@ body {
 
 .heading {
   font-family: var(--font-heading) !important;
-  color: var(--accent-1-contrast);
 }
 
+/* 
 h2 {
   font-weight: 600 !important ;
 }
+  */
 
 /* Utility classes */
 html {
