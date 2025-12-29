@@ -4,6 +4,9 @@ import { locales, isValidLocale } from "@/lib/i18n";
 import { PRODUCTS, getProductByLocalizedSlug } from "@/lib/products";
 import { Locale } from "@/lib/i18n";
 import { routes } from "@/lib/routes";
+
+// Revalidate every 24 hours
+export const revalidate = 86400;
 import Image from "next/image";
 import { BuyButton } from "@/components/ui";
 import { Badge } from "@/components/ui";
@@ -41,14 +44,27 @@ export async function generateMetadata({
     product.descriptions[locale as keyof typeof product.descriptions];
   const image = product.image || "/favicon.ico";
 
+  // Generate alternate language links for the product
+  const alternates: Record<string, string> = {};
+  locales.forEach((loc) => {
+    const localizedSlug = product.slugs[loc];
+    const localizedRoute = routes.products[loc as keyof typeof routes.products];
+    alternates[loc] = `${siteUrl}/${loc}/${localizedRoute}/${localizedSlug}`;
+  });
+
   return {
     title: `${titleLocalized} | Tereza Jinochová`,
     description: descLocalized,
+    alternates: {
+      canonical: url,
+      languages: alternates,
+    },
     openGraph: {
       title: `${titleLocalized} | Tereza Jinochová`,
       description: descLocalized,
       url,
       siteName: "svatební deník",
+      locale: locale === "cs" ? "cs_CZ" : "en_US",
       images: [
         {
           url: `${siteUrl}${image}`,

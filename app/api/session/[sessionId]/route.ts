@@ -3,6 +3,9 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
+// Cache successful session retrievals for 1 hour
+export const revalidate = 3600;
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ sessionId: string }> }
@@ -22,7 +25,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       id: session.id,
       payment_status: session.payment_status,
       amount_total: session.amount_total,
@@ -38,6 +41,14 @@ export async function GET(
       line_items: session.line_items?.data,
       created: session.created,
     });
+
+    // Add cache-control headers for paid sessions
+    response.headers.set(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=7200"
+    );
+
+    return response;
   } catch (error) {
     console.error("Error retrieving session:", error);
     return NextResponse.json({ error: "Session not found" }, { status: 404 });

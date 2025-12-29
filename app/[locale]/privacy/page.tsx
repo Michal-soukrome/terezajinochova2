@@ -4,6 +4,9 @@ import dynamic from "next/dynamic";
 import { locales, isValidLocale } from "@/lib/i18n";
 import { generatePageMetadata } from "@/lib/metadata";
 
+// Revalidate every 24 hours
+export const revalidate = 86400;
+
 const PrivacyContent = dynamic(
   () => import("@/components/sections/PrivacyContent")
 );
