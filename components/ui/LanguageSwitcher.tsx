@@ -6,6 +6,7 @@ import { locales, Locale } from "@/lib/i18n";
 import { setCookie } from "@/lib/cookies";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
+import { WEDDING_LIST } from "@/lib/weddings";
 import ReactCountryFlag from "react-country-flag";
 
 export function LanguageSwitcher({
@@ -40,6 +41,18 @@ export function LanguageSwitcher({
       }
       // No product slug found — fall back to top-level products page
       return `/${newLocale}/${routes.products[newLocale]}`;
+    }
+
+    // If we are on a wedding gallery page (/en/gallery/:slug), handle it
+    if (slug === routes.gallery[currentLocale]) {
+      const wedding = WEDDING_LIST.find(
+        (w) => w.slugs[currentLocale] === maybeProductSlug
+      );
+      if (wedding) {
+        return `/${newLocale}/${routes.gallery[newLocale]}/${wedding.slugs[newLocale]}`;
+      }
+      // No wedding slug found — fall back to top-level gallery page
+      return `/${newLocale}/${routes.gallery[newLocale]}`;
     }
 
     // Find the route key for current slug

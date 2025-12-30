@@ -19,7 +19,6 @@ import {
   MapPin,
   Camera,
   Mail,
-  Phone,
   LocationEdit,
 } from "lucide-react";
 import BenefitsSection from "../common/BenefitsSection";
@@ -55,6 +54,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      className="overflow-x-hidden"
     >
       <HeroSection title={title} description={description} locale={locale} />
 
@@ -82,8 +82,8 @@ export default function HomeContent({ locale }: HomeContentProps) {
         title={locale === "cs" ? "Váš příběh" : "Your Story"}
         description={
           locale === "cs"
-            ? "Každá svatba je jedinečná. Naš deník se přizpůsobí vaší představě a stane se součástí vašeho nezapomenutelného dne."
-            : "Every wedding is unique. Our diary adapts to your vision and becomes part of your unforgettable day."
+            ? "Každá svatba je jedinečná. Můj deník se přizpůsobí vaší představě a stane se součástí vašeho nezapomenutelného dne."
+            : "Every wedding is unique. My diary adapts to your vision and becomes part of your unforgettable day."
         }
         imageUrl="/assets/image2.webp"
         imageAlt="Wedding story"
@@ -114,15 +114,15 @@ export default function HomeContent({ locale }: HomeContentProps) {
       <section className="bg-accent-1 px-0 py-16 md:py-24" id="reviews">
         <div className="w-full" id="reviews-inner">
           <div className="text-center ">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-4">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {locale === "cs"
                 ? "Recenze spokojených svatebčanů"
-                : "What Our Clients Say"}
-            </h2>
+                : "What My Clients Say"}
+            </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {locale === "cs"
                 ? "Přečtěte si zkušenosti párů, které už využily naše služby"
-                : "Read the experiences of couples who have already used our services"}
+                : "Read the experiences of couples who have already used my services"}
             </p>
           </div>
 
@@ -142,13 +142,14 @@ export default function HomeContent({ locale }: HomeContentProps) {
       </section>
 
       {/* about the author */}
+      {/* 
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24" id="about">
         <div className="max-w-7xl mx-auto" id="about-inner">
           <div className="flex flex-col items-center justify-center text-center gap-5 md:gap-10">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-6">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-6">
                 {locale === "cs" ? "O mně" : "About Me"}
-              </h2>
+              </h3>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
                   {locale === "cs"
@@ -183,69 +184,25 @@ export default function HomeContent({ locale }: HomeContentProps) {
           </div>
         </div>
       </section>
+      */}
 
       {/* contact */}
       <section
-        className="bg-amber-800/5 px-4 sm:px-6 lg:px-8 py-16 md:py-24"
+        className="bg-white px-4 sm:px-6 lg:px-8 py-16 md:py-24"
         id="contact"
       >
         <div className="max-w-7xl mx-auto" id="contact-inner">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-heading mb-4">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {locale === "cs"
                 ? "Začněte plánovat svou svatbu"
                 : "Start Planning Your Wedding"}
-            </h2>
+            </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {locale === "cs"
                 ? "Kontaktujte mě ještě dnes a začněme společně plánovat váš speciální den"
                 : "Contact me today and let's start planning your special day together"}
             </p>
-          </div>
-
-          <div className="hidden grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-4">
-                <Mail
-                  strokeWidth={1}
-                  className="w-full h-full text-accent-1-contrast "
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
-                {locale === "cs" ? "Email" : "Email"}
-              </h3>
-              <p className="text-gray-700">tereza.jinochova@gmail.com</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-4">
-                <Phone
-                  strokeWidth={1}
-                  className="w-full h-full text-accent-1-contrast "
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
-                {locale === "cs" ? "Telefon" : "Phone"}
-              </h3>
-              <p className="text-gray-700">+420 123 456 789</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 md:w-16 h-12 md:h-16 mx-auto mb-4">
-                <LocationEdit
-                  strokeWidth={1}
-                  className="w-full h-full text-accent-1-contrast "
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 font-heading mb-3">
-                {locale === "cs" ? "Lokace" : "Location"}
-              </h3>
-              <p className="text-gray-700">
-                {locale === "cs"
-                  ? "Praha, Česká republika"
-                  : "Prague, Czech Republic"}
-              </p>
-            </div>
           </div>
 
           <div className="text-center">

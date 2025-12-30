@@ -81,11 +81,15 @@ export function FullHeightSection({
             imageSide === "left" ? "lg:col-start-2" : ""
           }`}
         >
-          <h2
-            className={`text-4xl md:text-5xl font-bold font-heading ${textColor} mb-6 leading-tight`}
+          <motion.h2
+            className={`heading font-medium  text-5xl md:text-6xl text-accent-1-contrast leading-tight mb-2 ${textColor} mb-6 leading-tight`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             {title}
-          </h2>
+          </motion.h2>
           <p
             className={`text-lg md:text-xl ${textColor} opacity-90 mb-8 leading-relaxed`}
           >

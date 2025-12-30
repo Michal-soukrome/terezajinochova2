@@ -7,4 +7,5 @@ export const routes = {
   privacy: { cs: "soukromi", en: "privacy" },
   contact: { cs: "kontakt", en: "contact" },
   about: { cs: "o-deniku", en: "about" },
+  gallery: { cs: "galerie", en: "gallery" },
 };

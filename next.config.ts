@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import { routes } from "./lib/routes";
 import { locales } from "./lib/i18n";
 import { PRODUCTS } from "./lib/products";
+import { WEDDING_LIST } from "./lib/weddings";
 
 const nextConfig: NextConfig = {
   // We're using file-system localized routes (`app/[locale]`); don't set
@@ -53,6 +54,23 @@ const nextConfig: NextConfig = {
           source: `/${locale}/${routes.products[locale]}/${localizedSlug}`,
           // preserve localized product slug but map top portion to canonical `products`
           destination: `/${locale}/${routes.products.en}/${localizedSlug}`,
+          locale: false,
+        });
+      }
+
+      // Rewrites for localized wedding slugs -> canonical gallery page
+      for (const wedding of WEDDING_LIST) {
+        const localizedSlug =
+          wedding.slugs[locale as keyof typeof wedding.slugs];
+        const canonical = wedding.slugs.en;
+
+        // Only rewrite if different
+        if (localizedSlug === canonical) continue;
+
+        rules.push({
+          source: `/${locale}/${routes.gallery[locale]}/${localizedSlug}`,
+          // preserve localized wedding slug but map top portion to canonical `gallery`
+          destination: `/${locale}/${routes.gallery.en}/${localizedSlug}`,
           locale: false,
         });
       }

@@ -29,7 +29,7 @@ export async function generateMetadata({
     "Produkty | Tereza Jinochová",
     "Products | Tereza Jinochová",
     "Objevte Moje svatební deníky a plánovače - vaše dokonalé svatby začíná zde",
-    "Discover our wedding planners - your perfect wedding starts here"
+    "Discover my wedding planning services - your perfect wedding starts here"
   );
 }
 

@@ -84,7 +84,7 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
             <p className="text-gray-700 text-lg leading-relaxed">
               {locale === "cs"
                 ? "Tato zásady ochrany osobních údajů vysvětlují, jak shromažďujeme, používáme a chráníme vaše osobní údaje při používání našich služeb pro plánování svateb."
-                : "This privacy policy explains how we collect, use, and protect your personal information when using our wedding planning services."}
+                : "This privacy policy explains how we collect, use, and protect your personal information when using my wedding planning services."}
             </p>
           </div>
         </section>
@@ -131,7 +131,7 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                   <span className="text-accent-1-contrast mt-1">•</span>
                   {locale === "cs"
                     ? "Údaje o používání aplikace pro zlepšení služeb"
-                    : "App usage data to improve our services"}
+                    : "App usage data to improve my services"}
                 </li>
               </ul>
             </div>
@@ -164,9 +164,9 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-accent-1 rounded-lg p-4 border border-accent-1">
-                <h4 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-semibold text-gray-900 mb-2">
                   {locale === "cs" ? "Poskytování služeb" : "Service Delivery"}
-                </h4>
+                </h3>
                 <p className="text-sm text-gray-700">
                   {locale === "cs"
                     ? "Zpracování objednávek a poskytování přístupu k plánovači"
@@ -174,9 +174,9 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                 </p>
               </div>
               <div className="bg-accent-1 rounded-lg p-4 border border-accent-1">
-                <h4 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-semibold text-gray-900 mb-2">
                   {locale === "cs" ? "Komunikace" : "Communication"}
-                </h4>
+                </h3>
                 <p className="text-sm text-gray-700">
                   {locale === "cs"
                     ? "Odpovídání na vaše dotazy a poskytování podpory"
@@ -222,9 +222,9 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                   />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-green-900 mb-2">
+                  <h3 className="font-semibold text-green-900 mb-2">
                     {locale === "cs" ? "SSL šifrování" : "SSL Encryption"}
-                  </h4>
+                  </h3>
                   <p className="text-green-800 text-sm">
                     {locale === "cs"
                       ? "Všechna data jsou přenášena přes zabezpečené HTTPS připojení"
@@ -266,10 +266,10 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                 : "Have questions about privacy? Contact me at:"}
             </p>
             <a
-              href="mailto:privacy@svatebnidenik.cz"
+              href="mailto:svatebnipribehy@gmail.com"
               className="btn-deluxe inline-block"
             >
-              privacy@svatebnidenik.cz
+              svatebnipribehy@gmail.com
             </a>
           </div>
         </section>

@@ -16,6 +16,7 @@ import {
   Shield,
   Asterisk,
   Dot,
+  Camera,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -171,7 +172,8 @@ export function Header({ locale }: HeaderProps) {
         backgroundColor: { duration: 0.5, ease: "easeInOut" },
         backdropFilter: { duration: 0.3, ease: "easeInOut" }, // smooth backdrop blur transition
       }}
-      className="fixed top-0 left-0 right-0 z-50 w-full h-20 safe-area-top border-b border-accent-1-50"
+      className="fixed top-0 left-0 right-0 z-50 w-full h-16 md:h-20 safe-area-top border-b border-accent-1-50"
+      suppressHydrationWarning
     >
       <span className="hidden absolute bottom-0 left-0 w-full h-px bg-linear-to-l from-accent-1 via-accent-1 to-transparent"></span>
 
@@ -181,7 +183,7 @@ export function Header({ locale }: HeaderProps) {
       >
         <Link
           href={`/${locale}`}
-          className="text-base md:text-xl text-black font-bold bg-white mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1-50 shadow relative z-10 group"
+          className="text-base md:text-xl text-black font-bold bg-white mt-12 md:mt-18 h-20 md:h-30 w-20 md:w-30 flex items-center justify-center  rounded-full border border-accent-1-50 shadow relative z-10 group"
           onClick={() => setOpen(false)}
           title={
             locale === "cs" ? "Přejít na domovskou stránku" : "Go to homepage"
@@ -201,8 +203,8 @@ export function Header({ locale }: HeaderProps) {
           <nav className="h-full hidden md:flex items-center ">
             <TranslatedLink
               href="/"
-              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="font-semibold"
+              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="bg-amber-400/10"
               exact
               onClick={() => setOpen(false)}
               title={
@@ -216,16 +218,11 @@ export function Header({ locale }: HeaderProps) {
                 {locale === "cs" ? "úvod" : "Home"}
               </span>
             </TranslatedLink>
-            <span>
-              <Dot
-                className="w-5 h-5 text-accent-1-contrast"
-                strokeWidth={0.5}
-              />
-            </span>
+
             <TranslatedLink
               href={`/about`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="font-semibold"
+              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="bg-amber-400/10"
               onClick={() => setOpen(false)}
               title={
                 locale === "cs"
@@ -238,16 +235,28 @@ export function Header({ locale }: HeaderProps) {
                 {locale === "cs" ? "O deníku" : "About"}
               </span>
             </TranslatedLink>
-            <span>
-              <Dot
-                className="w-5 h-5 text-accent-1-contrast"
-                strokeWidth={0.5}
-              />
-            </span>
+
+            <TranslatedLink
+              href={`/gallery`}
+              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="bg-amber-400/10"
+              onClick={() => setOpen(false)}
+              title={
+                locale === "cs"
+                  ? "Přejít na svatební galerii"
+                  : "Go to wedding gallery"
+              }
+            >
+              <Camera className="hidden w-4 h-4" />
+              <span className="uppercase">
+                {locale === "cs" ? "Galerie" : "Gallery"}
+              </span>
+            </TranslatedLink>
+
             <TranslatedLink
               href={`/products`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="font-semibold"
+              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="bg-amber-400/10"
               onClick={() => setOpen(false)}
               title={
                 locale === "cs"
@@ -260,16 +269,11 @@ export function Header({ locale }: HeaderProps) {
                 {locale === "cs" ? "Objednat" : "Order"}
               </span>
             </TranslatedLink>
-            <span>
-              <Dot
-                className="w-5 h-5 text-accent-1-contrast"
-                strokeWidth={0.5}
-              />
-            </span>
+
             <TranslatedLink
               href={`/contact`}
-              className="hover:bg-amber-400/5 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="font-semibold"
+              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
+              activeClassName="bg-amber-400/10"
               onClick={() => setOpen(false)}
               title={
                 locale === "cs"
@@ -402,6 +406,21 @@ export function Header({ locale }: HeaderProps) {
                             </span>
                           </TranslatedLink>
                           <TranslatedLink
+                            href="/gallery"
+                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
+                            activeClassName="text-accent-4 font-semibold"
+                            onClick={() => setOpen(false)}
+                            title={
+                              locale === "cs"
+                                ? "Přejít na svatební galerii"
+                                : "Go to wedding gallery"
+                            }
+                          >
+                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
+                              {locale === "cs" ? "Galerie" : "Gallery"}
+                            </span>
+                          </TranslatedLink>
+                          <TranslatedLink
                             href="/products"
                             className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
                             activeClassName="text-accent-4 font-semibold"
@@ -456,11 +475,11 @@ export function Header({ locale }: HeaderProps) {
                         </h3>
                         <div className="space-y-3">
                           <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-800/10">
-                            <h4 className="font-heading font-semibold text-accent-4 mb-2">
+                            <h3 className="font-heading font-semibold text-accent-4 mb-2">
                               {locale === "cs"
                                 ? "Začněte plánovat"
                                 : "Start Planning"}
-                            </h4>
+                            </h3>
                             <p className="text-accent-1-contrast text-sm mb-4">
                               {locale === "cs"
                                 ? "Objevte naše nástroje pro dokonalou svatbu"
@@ -482,11 +501,11 @@ export function Header({ locale }: HeaderProps) {
                           </div>
 
                           <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-800/10">
-                            <h4 className="font-heading font-semibold text-accent-4 mb-2">
+                            <h3 className="font-heading font-semibold text-accent-4 mb-2">
                               {locale === "cs"
                                 ? "Potřebujete pomoc?"
                                 : "Need Help?"}
-                            </h4>
+                            </h3>
                             <p className="text-accent-1-contrast text-sm mb-4">
                               {locale === "cs"
                                 ? "Kontaktujte nás pro osobní konzultaci"
@@ -591,6 +610,31 @@ export function Header({ locale }: HeaderProps) {
                           {locale === "cs"
                             ? "Zjistěte více o svatebním deníku"
                             : "Learn more about wedding diary"}
+                        </div>
+                      </div>
+                    </TranslatedLink>
+                    <TranslatedLink
+                      href="/gallery"
+                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
+                      activeClassName="bg-accent-1 font-semibold"
+                      onClick={() => setOpen(false)}
+                      title={
+                        locale === "cs"
+                          ? "Přejít na svatební galerii"
+                          : "Go to wedding gallery"
+                      }
+                    >
+                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
+                        <Camera className="w-5 h-5 text-accent-1-contrast" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-accent-4">
+                          {locale === "cs" ? "Galerie" : "Gallery"}
+                        </div>
+                        <div className="text-sm text-accent-1-contrast font-light lowercase">
+                          {locale === "cs"
+                            ? "Prohlédněte si svatby"
+                            : "Browse wedding photos"}
                         </div>
                       </div>
                     </TranslatedLink>

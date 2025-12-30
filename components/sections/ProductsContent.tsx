@@ -32,7 +32,7 @@ const itemVariants = {
 
 export default function ProductsContent({ locale }: ProductsContentProps) {
   const t = {
-    title: locale === "cs" ? "Moje svatební deníky" : "Our Wedding Planners",
+    title: locale === "cs" ? "Moje svatební deníky" : "My Wedding Planners",
     subtitle:
       locale === "cs"
         ? "Deník, který vám pomůže plánovat každý krok svatby\n\nod rozpočtu po seznam hostů."
@@ -55,6 +55,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
       initial="hidden"
       animate="visible"
       id="products-page-wrap"
+      className="overflow-x-hidden"
     >
       {/* Products Grid */}
       <motion.div variants={itemVariants}>
@@ -74,11 +75,11 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-heading">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {locale === "cs"
-                ? "Co ve Svatebním deníku naleznete:"
+                ? "Co ve Svatebním deníku naleznete"
                 : "What's inside"}
-            </h2>
+            </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {locale === "cs"
                 ? "Elegantní design a praktické funkce pro dokonalou organizaci svatby"

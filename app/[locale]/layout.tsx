@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout";
 import { Footer } from "@/components/layout";
 import RouteTransition from "@/components/navigation";
+import { HtmlLangSetter } from "@/components/layout/HtmlLangSetter";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,23 +19,22 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   }
 
   return (
-    <html lang={locale}>
-      <body>
-        <div className="w-full bg-white" id="layout-master">
-          <div className="flex flex-col items-start justify-between min-h-svh w-full h-full">
-            <Header locale={locale} />
+    <>
+      <HtmlLangSetter locale={locale} />
+      <div className="w-full bg-white" id="layout-master">
+        <div className="flex flex-col items-start justify-between min-h-svh w-full h-full">
+          <Header locale={locale} />
 
-            {/* exclude homepage from layout as it has to be fullwidth */}
+          {/* exclude homepage from layout as it has to be fullwidth */}
 
-            <main className="w-full flex-1 pt-20">
-              <RouteTransition locale={locale}>{children}</RouteTransition>
-            </main>
+          <main className="w-full flex-1 pt-20">
+            <RouteTransition locale={locale}>{children}</RouteTransition>
+          </main>
 
-            <Footer locale={locale} />
-          </div>
+          <Footer locale={locale} />
         </div>
-      </body>
-    </html>
+      </div>
+    </>
   );
 }
 

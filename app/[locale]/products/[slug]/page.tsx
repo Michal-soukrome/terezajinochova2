@@ -111,7 +111,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="py-10 md:py-24">
+    <div className="py-10 md:py-24 !pb-0">
       {/* Main Content */}
       <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-16">
         {/* Left - Image */}
@@ -123,11 +123,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 alt={product.names[locale as keyof typeof product.names]}
                 width={720}
                 height={820}
-                className="w-full h-auto object-cover border"
+                className="w-full h-auto object-cover border border-accent-1"
                 priority
               />
               <div
-                className="!hidden px-5 md:px-0 flex gap-3"
+                className="mt-3 px-5 md:px-0 flex gap-3"
                 id="additional-images-grid"
               >
                 <div
@@ -135,7 +135,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   id="product-additional-image"
                 >
                   <Image
-                    src="/assets/logo.webp"
+                    src="/assets/cover-1.JPG"
                     fill
                     className="object-cover object-center"
                     alt=""
@@ -146,29 +146,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   id="product-additional-image"
                 >
                   <Image
-                    src="/assets/logo.webp"
-                    fill
-                    className="object-cover object-center"
-                    alt=""
-                  />
-                </div>
-                <div
-                  className="grow aspect-square border relative"
-                  id="product-additional-image"
-                >
-                  <Image
-                    src="/assets/logo.webp"
-                    fill
-                    className="object-cover object-center"
-                    alt=""
-                  />
-                </div>
-                <div
-                  className="grow aspect-square border relative"
-                  id="product-additional-image"
-                >
-                  <Image
-                    src="/assets/logo.webp"
+                    src="/assets/cover-2.jpg"
                     fill
                     className="object-cover object-center"
                     alt=""
@@ -303,10 +281,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-4">
-            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+            <h3 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
               {" "}
               {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
-            </h2>
+            </h3>
           </div>
 
           {/* Flipbook Container with enhanced styling */}
@@ -353,7 +331,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   seamless={true}
                   scrolling="no"
                   frameBorder="0"
-                  allowTransparency={true}
                   allowFullScreen={true}
                   loading="lazy"
                   title={
@@ -434,12 +411,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {" "}
               {locale === "cs"
                 ? "Co ve Svatebním deníku naleznete"
                 : "What's inside the Wedding Diary"}
-            </h2>
+            </h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">

@@ -29,7 +29,7 @@ export default function ProductGridSection({
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-6">
           <motion.h3
-            className="heading font-medium text-center text-5xl text-accent-1-contrast leading-tight mb-6"
+            className="heading font-medium text-center text-5xl md:text-6xl text-accent-1-contrast leading-tight mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}

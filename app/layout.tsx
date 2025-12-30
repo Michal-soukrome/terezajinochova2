@@ -92,7 +92,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="cs" suppressHydrationWarning>
+    <html suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <script
           type="application/ld+json"
@@ -101,7 +101,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased safe-area-y">
+      <body className="antialiased safe-area-y overflow-x-hidden">
         {children}
         <BackToTop />
       </body>

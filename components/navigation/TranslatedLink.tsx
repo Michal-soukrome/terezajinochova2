@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { routes } from "@/lib/routes";
 import { PRODUCT_LIST } from "@/lib/products";
+import { WEDDING_LIST } from "@/lib/weddings";
 
 interface TranslatedLinkProps {
   href: string;
@@ -106,6 +107,31 @@ export default function TranslatedLink({
         return (
           <Link
             href={`/${locale}/${localizedTop}/${localizedProductSlug}`}
+            className={className}
+            onClick={handleClick}
+            title={title}
+          >
+            {children}
+          </Link>
+        );
+      }
+    }
+
+    // Gallery path: map wedding slug if present
+    if (top === routes.gallery.en && segments[1]) {
+      const weddingIdentifier = segments[1];
+      const wedding = WEDDING_LIST.find(
+        (w) =>
+          w.id === weddingIdentifier ||
+          w.slugs.en === weddingIdentifier ||
+          w.slugs.cs === weddingIdentifier
+      );
+      if (wedding) {
+        const localizedWeddingSlug =
+          wedding.slugs[locale as keyof typeof wedding.slugs];
+        return (
+          <Link
+            href={`/${locale}/${localizedTop}/${localizedWeddingSlug}`}
             className={className}
             onClick={handleClick}
             title={title}

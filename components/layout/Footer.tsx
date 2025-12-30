@@ -12,7 +12,10 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   return (
-    <footer className="w-full bg-white border-t border-accent-1-50">
+    <footer
+      className="w-full bg-white border-t border-accent-1-50"
+      suppressHydrationWarning
+    >
       {/* Footer Top Area */}
       <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-7xl mx-auto">
@@ -28,26 +31,15 @@ export function Footer({ locale }: FooterProps) {
 
               <div className="space-y-3">
                 <div className="text-gray-700 text-sm">
-                  {locale === "cs"
-                    ? "Praha, Česká republika"
-                    : "Prague, Czech Republic"}
+                  {locale === "cs" ? "Česká republika" : "Czech Republic"}
                 </div>
 
                 <div className="text-gray-700 text-sm">
                   <a
-                    href="mailto:tereza.jinochova@gmail.com"
+                    href="mailto:svatebnipribehy@gmail.com"
                     className="!lowercase hover:text-accent-1-contrast transition-colors duration-200"
                   >
-                    tereza.jinochova@gmail.com
-                  </a>
-                </div>
-
-                <div className="text-gray-700 text-sm">
-                  <a
-                    href="tel:+420123456789"
-                    className="hover:text-accent-1-contrast transition-colors duration-200"
-                  >
-                    +420 123 456 789
+                    svatebnipribehy@gmail.com{" "}
                   </a>
                 </div>
               </div>
@@ -60,9 +52,9 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Products Column */}
             <div>
-              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <div className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Produkty" : "Products"}
-              </h6>
+              </div>
 
               <nav className="space-y-3">
                 <TranslatedLink
@@ -92,9 +84,9 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Navigation Column */}
             <div>
-              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <div className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Navigace" : "Navigation"}
-              </h6>
+              </div>
 
               <nav className="space-y-3">
                 <TranslatedLink
@@ -126,9 +118,9 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Language Column */}
             <div>
-              <h6 className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
+              <div className="text-sm font-heading font-bold text-gray-900 uppercase mb-6 tracking-wider">
                 {locale === "cs" ? "Jazyk" : "Language"}
-              </h6>
+              </div>
 
               <LanguageSwitcher mode="text" />
             </div>
