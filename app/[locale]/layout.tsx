@@ -27,7 +27,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
           {/* exclude homepage from layout as it has to be fullwidth */}
 
-          <main className="w-full flex-1 pt-20">
+          <main className="w-full flex-1 pt-16 md:pt-20">
             <RouteTransition locale={locale}>{children}</RouteTransition>
           </main>
 

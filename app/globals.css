@@ -13,9 +13,18 @@
   --color-accent-3-contrast: #a08168; /* warm taupe */
   --color-accent-4: #dcab6f; /* amber */
   --color-accent-4-contrast: #fef7f0; /* cream */
+  --color-new-text: #a08168;
+  --color-new-bg: #f5e5db;
 
   --font-cormorant: "Cormorant", "Times New Roman", serif;
   --font-pinyon: "Pinyon Script", "Brush Script MT", cursive;
+}
+
+.color-new-text {
+  color: var(--color-new-text);
+}
+.color-new-bg {
+  background: var(--color-new-bg);
 }
 
 :root {
@@ -100,6 +109,9 @@ html {
 }
 .text-accent-1 {
   color: var(--color-accent-1);
+}
+.text-accent-1-50 {
+  color: var(--color-accent-1-50);
 }
 .text-accent-1-contrast {
   color: var(--color-accent-1-contrast);
@@ -208,7 +220,7 @@ h3::first-letter {
 
 #fullscreen-menu,
 #mobile-menu-subwrap {
-  height: calc(100svh - 80px);
+  height: calc(100dvh - 4rem);
 }
 
 /* Animations */
@@ -261,6 +273,13 @@ h3::first-letter {
 #footer-links a:hover {
   text-decoration: underline;
   color: var(--color-accent-1-contrast) !important;
+}
+
+#cover {
+  height: calc(100dvh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @import "./styles/buttons.css";

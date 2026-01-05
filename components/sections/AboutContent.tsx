@@ -2,17 +2,90 @@
 
 import TranslatedLink from "../navigation/TranslatedLink";
 import { AnimatedHeader } from "../layout/AnimatedHeader";
-import CONTENT from "@/lib/content";
 import { NotebookPen } from "lucide-react";
 import { FullHeightSection } from "../common/FullHeightSection";
 import { ReviewsCarousel } from "../ui/ReviewsCarousel";
 import { CountUp } from "../common/CountUp";
 import BenefitsSection from "../common/BenefitsSection";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { Locale } from "@/lib/i18n";
 import ProductGridSection from "../common/ProductGridSection";
 import { PRODUCT_LIST } from "@/lib/products";
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
+const WHY_INTRO_CS = {
+  title: "Svatební deník aneb od zásnub až k oltáři",
+  challenge:
+    "Plánování svatby je jedním z nejkrásnějších období v životě. Aby se však nezměnilo v chaos plný stresu a zapomenutých detailů, je tu Svatební deník – praktický a zároveň stylový pomocník, který vás provede každým krokem na cestě ke dni D.",
+};
+
+const WHY_INTRO_EN = {
+  title: "Wedding Diary or From Engagement to the Altar",
+  challenge:
+    "Wedding planning is one of the most beautiful periods in life. However, to prevent it from turning into chaos full of stress and forgotten details, there's the Wedding Diary – a practical yet stylish helper that guides you through every step towards your big day.",
+};
+
+const STORY_CS = `Příběh Svatebního deníku
+
+Svatební deník vznikl z mé lásky k organizaci, detailům a především k samotným příběhům snoubenců.
+
+Po letech práce se svatebními páry jsem si uvědomila, že mnoho nevěst touží mít všechny důležité informace, poznámky a inspiraci přehledně na jednom místě – v krásné a praktické podobě, která je bude provázet celým obdobím příprav.
+
+Deník je navržen tak, aby se stal nejen průvodcem a rádcem, ale také vzpomínkou. Pomůže naplánovat každý krok s lehkostí, přehledem a elegancí.`;
+
+const STORY_EN = `The Story of the Wedding Diary
+
+The Wedding Diary was born from my love for organization, details, and above all, the stories of engaged couples.
+
+After years of working with wedding couples, I realized that many brides long to have all important information, notes, and inspiration clearly in one place – in a beautiful and practical form that will accompany them throughout the preparation period.
+
+The diary is designed to become not only a guide and advisor, but also a memory. It will help plan every step with ease, overview, and elegance.`;
+
+const ABOUT_CS = {
+  background: `Po studiu vysoké školy jsem byla přesvědčená, že mě práce s dětmi bude naplňovat. Osud a má povaha se mnou měly ale jiné plány.`,
+  dance: `Do světa svateb jsem se dostala díky své dlouholeté vášni ke společenskému tanci. Standardním a latinsko - americkým tancům jsem se na profesionální úrovni věnovala více než 15 let. Postupem času jsem přešla od výuky společenského tance k tvorbě svatebních choreografií.`,
+  coordination: `S každou další svatbou jsem chtěla být součástí nejen tanečního příběhu, ale celého svatebního dne. Proto jsem se rozhodla absolvovat kurzy svatební koordinace pod záštitou Wedding & Academy Fields a začala se věnovat organizaci a koordinaci svateb.`,
+  personality: `Jsem pozitivní, energická a miluji pohyb, tanec i cestování. Díky práci v oblasti privátního létání, kde působím jako letuška, jsem se naučila preciznosti, empatii i schopnosti zachovat klid v každé situaci. Právě tyto zkušenosti nyní zúročuji i při přípravě svateb, kde je stejně jako v letadle důležitý každý detail.`,
+};
+
+const ABOUT_EN = {
+  background: `After university studies, I was convinced that working with children would fulfill me. However, fate and my personality had other plans.`,
+  dance: `I entered the world of weddings thanks to my long-term passion for ballroom dancing. I dedicated myself to standard and Latin-American dances at a professional level for more than 15 years. Over time, I transitioned from teaching ballroom dancing to creating wedding choreographies.`,
+  coordination: `With each subsequent wedding, I wanted to be part of not only the dance story, but the entire wedding day. That's why I decided to complete wedding coordination courses under the auspices of Wedding & Academy Fields and began dedicating myself to the organization and coordination of weddings.`,
+  personality: `I am positive, energetic, and love movement, dance, and travel. Thanks to my work in private aviation, where I work as a flight attendant, I learned precision, empathy, and the ability to stay calm in every situation. I now utilize these experiences in wedding preparations, where every detail is as important as it is in an airplane.`,
+};
+
+const CONTENT = {
+  cs: {
+    why: {
+      intro: WHY_INTRO_CS,
+    },
+    story: STORY_CS,
+    about: ABOUT_CS,
+  },
+  en: {
+    why: {
+      intro: WHY_INTRO_EN,
+    },
+    story: STORY_EN,
+    about: ABOUT_EN,
+  },
+};
 
 interface AboutContentProps {
   locale: Locale;
@@ -20,12 +93,17 @@ interface AboutContentProps {
 
 export default function AboutContent({ locale }: AboutContentProps) {
   return (
-    <div id="about-page-wrap" className="overflow-x-hidden">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="overflow-x-hidden"
+    >
       {/* Title Section */}
       <FullHeightSection
         title={CONTENT[locale].why.intro.title}
         imageUrl="/assets/image3.webp"
-        description={CONTENT[locale].why.intro.challenge}
+        description={CONTENT[locale].story}
       />
 
       <ProductGridSection
@@ -36,110 +114,14 @@ export default function AboutContent({ locale }: AboutContentProps) {
         background="themed"
       />
 
-      {/* Story Section - Image Right */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-                {locale === "cs" ? "Příběh Svatebního deníku" : "Our Story"}
-              </h3>
-              <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                {CONTENT[locale].story}
-              </p>
-            </div>
-            <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden">
-              <Image
-                src="/assets/image1.webp"
-                alt="Wedding story"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+      {/* Pattern Background Container */}
+      <div className="relative">
+        {/* Layered Pattern Background */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-gradient-to-br from-accent-1 via-accent-2 to-accent-3" />
+          <div className="absolute inset-0 bg-gradient-to-tl from-accent-4/20 via-transparent to-accent-1/20" />
         </div>
-      </section>
-
-      {/* Background Section - Image Left */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-accent-1">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden order-2 lg:order-1">
-              <Image
-                src="/assets/image2.webp"
-                alt="My background"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-                {locale === "cs" ? "Mé začátky" : "My Background"}
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                {CONTENT[locale].about.background}
-              </p>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-heading">
-                {locale === "cs" ? "Cesta přes tanec" : "Dance Journey"}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                {CONTENT[locale].about.dance}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Coordination & Personality Section - Image Right */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-                {locale === "cs"
-                  ? "Svatební koordinace"
-                  : "Wedding Coordination"}
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                {CONTENT[locale].about.coordination}
-              </p>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-heading">
-                {locale === "cs" ? "Mé vlastnosti" : "My Personality"}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                {CONTENT[locale].about.personality}
-              </p>
-            </div>
-            <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden">
-              <Image
-                src="/assets/image3.webp"
-                alt="Wedding coordination"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-accent-1">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-            {locale === "cs"
-              ? "Připraveni začít plánovat?"
-              : "Ready to Start Planning?"}
-          </h3>
-          <p className="text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
-            {locale === "cs"
-              ? "Vyberte si svatební deník, který vám pomůže s organizací vašeho velkého dne."
-              : "Choose a wedding diary that will help you organize your big day."}
-          </p>
-          <TranslatedLink href="/products" className="btn btn-primary">
-            {locale === "cs" ? "Zobrazit produkty" : "View Products"}
-          </TranslatedLink>
-        </div>
-      </section>
-    </div>
+      </div>
+    </motion.div>
   );
 }

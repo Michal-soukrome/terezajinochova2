@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Locale, isValidLocale } from "@/lib/i18n";
 import { WEDDINGS } from "@/lib/weddings";
 import WeddingGalleryGrid from "@/components/sections/WeddingGalleryGrid";
-import WeddingCoordinationBenefits from "@/components/common/WeddingCoordinationBenefits";
 import { GalleryHeader } from "@/components/common/GalleryHeader";
 
 type Props = {
@@ -21,12 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title =
     locale === "cs"
-      ? "Svatební Galerie | Tereza Jinochová"
-      : "Wedding Gallery | Tereza Jinochová";
+      ? "Svatební příběhy | Tereza Jinochová"
+      : "Wedding Stories | Tereza Jinochová";
   const description =
     locale === "cs"
-      ? "Prohlédněte si svatby, které jsem měla tu čest koordinovat."
-      : "Browse through weddings we had the honor to coordinate.";
+      ? "Nahlédněte do krásných svatebních příběhů a inspirujte se pro váš speciální den."
+      : "Take a look at beautiful wedding stories and get inspired for your special day.";
 
   return {
     title,
@@ -46,14 +45,11 @@ export default async function GalleryPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen pt-20 overflow-x-hidden">
+    <main className="min-h-screen py-20 overflow-x-hidden">
       <div className="container mx-auto px-4">
         <GalleryHeader locale={locale as Locale} />
 
         <WeddingGalleryGrid weddings={WEDDINGS} locale={locale as Locale} />
-      </div>
-      <div>
-        <WeddingCoordinationBenefits locale={locale} background="themed" />
       </div>
     </main>
   );

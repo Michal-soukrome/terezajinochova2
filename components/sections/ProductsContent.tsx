@@ -8,9 +8,36 @@ import { ProductCard } from "../ui/ProductCard";
 import { Star, Check, Lock } from "lucide-react";
 import { AnimatedHeader } from "../layout/AnimatedHeader";
 import { Locale } from "@/lib/i18n";
-import CONTENT from "@/lib/content";
 import BenefitsSection from "../common/BenefitsSection";
 import ProductGridSection from "../common/ProductGridSection";
+
+const WHY_BULLETS_CS = [
+  "elegantní a přehledné rozvržení stránek",
+  "prostor pro vlastní poznámky, checklisty a fotografie",
+  "ideální dárek pro čerstvě zasnoubené",
+  "kvalitní zpracování, které vydrží i časté listování",
+];
+
+const WHY_BULLETS_EN = [
+  "elegant and clear page layout",
+  "space for your own notes, checklists, and photos",
+  "gentle and modern design that pleases the eye",
+  "ideal gift for yourself or a friend who just got engaged",
+  "quality processing that withstands frequent flipping",
+];
+
+const CONTENT = {
+  cs: {
+    why: {
+      bullets: WHY_BULLETS_CS,
+    },
+  },
+  en: {
+    why: {
+      bullets: WHY_BULLETS_EN,
+    },
+  },
+};
 
 interface ProductsContentProps {
   locale: Locale;
@@ -90,11 +117,7 @@ export default function ProductsContent({ locale }: ProductsContentProps) {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {CONTENT[locale].why.bullets.map((feature, i) => (
-                <div
-                  key={i}
-                  className="bg-accent-1-50 border border-accent-1 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
-                  style={{ cornerShape: "bevel" } as any}
-                >
+                <div key={i} className="p-5 shadow">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">
                       <Check className="w-6 h-6 text-accent-1-contrast mt-1" />

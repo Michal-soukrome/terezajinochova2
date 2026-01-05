@@ -204,12 +204,17 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <div className="bg-gray-50 rounded-lg p-8 text-sm text-gray-600 space-y-3">
+        <div className="bg-gray-50 rounded-lg p-8 text-sm text-gray-600 space-y-3 font-serif">
           <p>
             {locale === "cs"
               ? `Za zachycení těchto krásných momentů děkuji ${photographerText} `
               : `I thank the photographer `}
             <span className="font-semibold">{wedding.photographerName}</span>.
+          </p>
+          <p>
+            {locale === "cs"
+              ? "Svatební koordinace byla realizována ve spolupráci s agenturou Svatební Guru."
+              : "Wedding coordination was realized in cooperation with Svatební Guru agency."}
           </p>
         </div>
       </motion.div>
@@ -222,16 +227,9 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <div className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-accent-1">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-              {locale === "cs"
-                ? "Recenze od snoubenců"
-                : "Review from the couple"}
-            </h3>
-            <p className="text-gray-700 italic text-lg leading-relaxed">
-              "{wedding.review[locale]}"
-            </p>
-            <p className="text-right text-gray-600 mt-4 font-medium">
+          <div className="bg-white rounded-lg p-8 border-l-4 border-accent-1 italic text-lg leading-relaxed text-gray-700">
+            "{wedding.review[locale]}"
+            <p className="text-right text-gray-600 mt-4 font-medium not-italic">
               — {wedding.coupleNames[locale]}
             </p>
           </div>

@@ -42,8 +42,7 @@ const itemVariants = {
 };
 
 export default function HomeContent({ locale }: HomeContentProps) {
-  const title =
-    locale === "cs" ? "Váš svatební plánovač" : "Your wedding planner";
+  const title = locale === "cs" ? "Váš svatební deník" : "Your wedding diary";
   const description =
     locale === "cs"
       ? "Naplánujte si svůj svatební den s lehkostí a radostí"
@@ -63,8 +62,8 @@ export default function HomeContent({ locale }: HomeContentProps) {
         title={locale === "cs" ? "Proč svatební deník?" : "Why Wedding Diary?"}
         description={
           locale === "cs"
-            ? "Organizace svatby je fascinující, ale náročná cesta. Svatební deník vám pomůže zvládat všechny detaily s lehkostí."
-            : "Organizing a wedding is a fascinating but challenging journey. A wedding diary helps you manage all the details with ease."
+            ? "Plánování svatby je krásná, ale zároveň náročná cesta. Svatební deník vám pomůže udržet přehled, zachytit důležité okamžiky a projít celými přípravami s lehkostí a radostí."
+            : "Wedding planning is a beautiful but also demanding journey. The wedding diary will help you keep track, capture important moments, and go through all preparations with ease and joy."
         }
         imageUrl="/assets/image3.webp"
         imageAlt="Wedding planning"
@@ -82,8 +81,8 @@ export default function HomeContent({ locale }: HomeContentProps) {
         title={locale === "cs" ? "Váš příběh" : "Your Story"}
         description={
           locale === "cs"
-            ? "Každá svatba je jedinečná. Můj deník se přizpůsobí vaší představě a stane se součástí vašeho nezapomenutelného dne."
-            : "Every wedding is unique. My diary adapts to your vision and becomes part of your unforgettable day."
+            ? "Každá svatba vypráví svůj vlastní příběh. Svatební deník se stane přirozenou součástí vašich příprav i vzpomínek na tento výjimečný den."
+            : "Every wedding tells its own story. The wedding diary will become a natural part of your preparations and memories of this exceptional day."
         }
         imageUrl="/assets/image2.webp"
         imageAlt="Wedding story"
@@ -185,33 +184,6 @@ export default function HomeContent({ locale }: HomeContentProps) {
         </div>
       </section>
       */}
-
-      {/* contact */}
-      <section
-        className="bg-white px-4 sm:px-6 lg:px-8 py-16 md:py-24"
-        id="contact"
-      >
-        <div className="max-w-7xl mx-auto" id="contact-inner">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
-              {locale === "cs"
-                ? "Začněte plánovat svou svatbu"
-                : "Start Planning Your Wedding"}
-            </h3>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {locale === "cs"
-                ? "Kontaktujte mě ještě dnes a začněme společně plánovat váš speciální den"
-                : "Contact me today and let's start planning your special day together"}
-            </p>
-          </div>
-
-          <div className="text-center">
-            <TranslatedLink href="/contact" className="btn btn-primary">
-              {locale === "cs" ? "Kontaktujte mě" : "Contact Me"}
-            </TranslatedLink>
-          </div>
-        </div>
-      </section>
     </motion.main>
   );
 }

@@ -11,9 +11,85 @@ import Image from "next/image";
 import { BuyButton } from "@/components/ui";
 import { Badge } from "@/components/ui";
 import { AnimatedHeader } from "@/components/layout";
-import CONTENT from "@/lib/content";
 import BenefitsSection from "@/components/common/BenefitsSection";
 import { Check, ChessKing, Star } from "lucide-react";
+
+const WHY_LIST_CS = [
+  "Jsme zasnoubení a co teď?",
+  "Rozpočet",
+  "Svatební koordinátor/ka",
+  "Kdo další nám pomůže svatbu zorganizovat?",
+  "Výběr svatebního místa",
+  "Seznam hostů",
+  "Obřad",
+  "Svědci",
+  "Družičky a mládenci",
+  "Svatební šaty",
+  "Svatební oblek",
+  "Zasedací pořádek",
+  "Uspořádání stolů na hostině",
+  "Svatební harmonogram",
+  "Seznam dodavatelů",
+  "Snubní prsteny",
+  "Tiskoviny",
+  "Floristka",
+  "Fotograf",
+  "Svatební menu",
+  "Nápojové menu",
+  "Svatební dort",
+  "Sladký bar",
+  "Hudba",
+  "Zábava na svatbě",
+  "Děti na svatbě",
+  "Rozlučka se svobodou",
+  "Kontrolní seznam",
+  "Kalendář",
+];
+
+const WHY_LIST_EN = [
+  "We're engaged, what now?",
+  "Budget",
+  "Wedding coordinator",
+  "Who else will help us organize the wedding?",
+  "Venue selection",
+  "Guest list",
+  "Ceremony",
+  "Witnesses",
+  "Bridesmaids and groomsmen",
+  "Wedding dress",
+  "Wedding suit",
+  "Seating arrangement",
+  "Table arrangement at the reception",
+  "Wedding schedule",
+  "Vendor list",
+  "Engagement rings",
+  "Print materials",
+  "Florist",
+  "Photographer",
+  "Wedding menu",
+  "Beverage menu",
+  "Wedding cake",
+  "Sweet bar",
+  "Music",
+  "Entertainment at the wedding",
+  "Children at the wedding",
+  "Bachelorette party",
+  "Checklist",
+  "Calendar",
+];
+
+const CONTENT = {
+  cs: {
+    why: {
+      list: WHY_LIST_CS,
+    },
+  },
+  en: {
+    why: {
+      list: WHY_LIST_EN,
+    },
+  },
+};
 
 interface PageProps {
   params: Promise<{
@@ -423,7 +499,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {CONTENT[locale].why.list.map((item, i) => (
               <div
                 key={i}
-                className="bg-accent-1 border border-accent-1 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+                className="p-5 "
                 style={{ cornerShape: "bevel" } as any}
               >
                 <div className="flex items-start gap-4">

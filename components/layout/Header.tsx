@@ -8,16 +8,11 @@ import { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import { overlayVariants, menuItemVariants } from "@/lib/animations";
 import Button from "../ui/Button";
-import {
-  BookOpen,
-  Home,
-  Mail,
-  ShoppingCart,
-  Shield,
-  Asterisk,
-  Dot,
-  Camera,
-} from "lucide-react";
+import { DesktopNav } from "./DesktopNav";
+import { MobileNav } from "./MobileNav";
+import { FullscreenMenu } from "./FullscreenMenu";
+import { HEADER_CONTENT } from "@/lib/headerData";
+import { BookOpen, Mail } from "lucide-react";
 import Image from "next/image";
 
 interface HeaderProps {
@@ -163,7 +158,9 @@ export function Header({ locale }: HeaderProps) {
       initial={false}
       animate={{
         y: isVisible ? 0 : -80, // slide up/down
-        backgroundColor: open ? "var(--accent-1)" : "rgba(255, 255, 255, 0.9)",
+        backgroundColor: open
+          ? "rgba(255, 255, 255, 0.9)"
+          : "rgba(255, 255, 255, 0.9)",
         // open state uses the soft cream accent; closed uses translucent white
         backdropFilter: isScrollingUp ? "blur(3px)" : "blur(0px)", // apply backdrop blur when scrolling up
       }}
@@ -190,7 +187,7 @@ export function Header({ locale }: HeaderProps) {
           }
         >
           <Image
-            src="/assets/logo.webp"
+            src="/assets/logo/01-2026/logo1.webp"
             width={200}
             height={200}
             className="aspect-square rounded-full object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
@@ -199,159 +196,71 @@ export function Header({ locale }: HeaderProps) {
         </Link>
 
         {/* Desktop nav */}
-        <div className="h-full flex items-center gap-10">
-          <nav className="h-full hidden md:flex items-center ">
-            <TranslatedLink
-              href="/"
-              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="bg-amber-400/10"
-              exact
-              onClick={() => setOpen(false)}
-              title={
-                locale === "cs"
-                  ? "Přejít na domovskou stránku"
-                  : "Go to homepage"
-              }
-            >
-              <Home className="hidden w-4 h-4" />
-              <span className="uppercase">
-                {locale === "cs" ? "úvod" : "Home"}
-              </span>
-            </TranslatedLink>
-
-            <TranslatedLink
-              href={`/about`}
-              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="bg-amber-400/10"
-              onClick={() => setOpen(false)}
-              title={
-                locale === "cs"
-                  ? "Přejít na stránku o deníku"
-                  : "Go to about page"
-              }
-            >
-              <BookOpen className="hidden w-4 h-4" />
-              <span className="uppercase">
-                {locale === "cs" ? "O deníku" : "About"}
-              </span>
-            </TranslatedLink>
-
-            <TranslatedLink
-              href={`/gallery`}
-              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="bg-amber-400/10"
-              onClick={() => setOpen(false)}
-              title={
-                locale === "cs"
-                  ? "Přejít na svatební galerii"
-                  : "Go to wedding gallery"
-              }
-            >
-              <Camera className="hidden w-4 h-4" />
-              <span className="uppercase">
-                {locale === "cs" ? "Galerie" : "Gallery"}
-              </span>
-            </TranslatedLink>
-
-            <TranslatedLink
-              href={`/products`}
-              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="bg-amber-400/10"
-              onClick={() => setOpen(false)}
-              title={
-                locale === "cs"
-                  ? "Přejít na stránku produktů"
-                  : "Go to products page"
-              }
-            >
-              <ShoppingCart className="hidden w-4 h-4" />
-              <span className="uppercase">
-                {locale === "cs" ? "Objednat" : "Order"}
-              </span>
-            </TranslatedLink>
-
-            <TranslatedLink
-              href={`/contact`}
-              className="hover:bg-amber-400/10 px-5 relative z-10 transition-colors duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-1-contrast hover:text-accent-1 p-2"
-              activeClassName="bg-amber-400/10"
-              onClick={() => setOpen(false)}
-              title={
-                locale === "cs"
-                  ? "Přejít na stránku kontaktů"
-                  : "Go to contact page"
-              }
-            >
-              <ShoppingCart className="hidden w-4 h-4" />
-              <span className="uppercase">
-                {locale === "cs" ? "Kontakt" : "Contact"}
-              </span>
-            </TranslatedLink>
-          </nav>
-          {/* Hamburger visible on all screen sizes */}
-          <button
-            ref={closeButtonRef}
-            aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-            className="flex md:hidden p-3 rounded cursor-pointer focus:outline-none focus:ring-0"
+        <DesktopNav locale={locale} onClose={() => setOpen(false)} />
+        {/* Hamburger visible on all screen sizes */}
+        <button
+          ref={closeButtonRef}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+          className="flex md:hidden p-3 rounded cursor-pointer focus:outline-none focus:ring-0"
+        >
+          <motion.svg
+            className="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            animate={
+              open
+                ? {
+                    scale: 1.05,
+                    rotate: 90,
+                    stroke: "var(--accent-1-contrast)",
+                  }
+                : { scale: 1, rotate: 0, stroke: "var(--accent-1-contrast)" }
+            }
+            transition={{ type: "spring", stiffness: 150, damping: 18 }}
           >
-            <motion.svg
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              animate={
-                open
-                  ? {
-                      scale: 1.05,
-                      rotate: 90,
-                      stroke: "var(--accent-1-contrast)",
-                    }
-                  : { scale: 1, rotate: 0, stroke: "var(--accent-1-contrast)" }
-              }
-              transition={{ type: "spring", stiffness: 150, damping: 18 }}
-            >
-              {/* Top line */}
-              <motion.path
-                animate={open ? "open" : "closed"}
-                variants={{
-                  closed: { d: "M4 6h16" },
-                  open: { d: "M6 6l12 12" },
-                }}
-                transition={{ duration: 0.25 }}
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            {/* Top line */}
+            <motion.path
+              animate={open ? "open" : "closed"}
+              variants={{
+                closed: { d: "M4 6h16" },
+                open: { d: "M6 6l12 12" },
+              }}
+              transition={{ duration: 0.25 }}
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
 
-              {/* Middle line */}
-              <motion.path
-                animate={open ? "open" : "closed"}
-                variants={{
-                  closed: { opacity: 1, d: "M4 12h16" },
-                  open: { opacity: 0 },
-                }}
-                transition={{ duration: 0.25, delay: 0.05 }}
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            {/* Middle line */}
+            <motion.path
+              animate={open ? "open" : "closed"}
+              variants={{
+                closed: { opacity: 1, d: "M4 12h16" },
+                open: { opacity: 0 },
+              }}
+              transition={{ duration: 0.25, delay: 0.05 }}
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
 
-              {/* Bottom line */}
-              <motion.path
-                animate={open ? "open" : "closed"}
-                variants={{
-                  closed: { d: "M4 18h16" },
-                  open: { d: "M6 18l12-12" },
-                }}
-                transition={{ duration: 0.25, delay: 0.1 }}
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </motion.svg>
-          </button>
-        </div>
+            {/* Bottom line */}
+            <motion.path
+              animate={open ? "open" : "closed"}
+              variants={{
+                closed: { d: "M4 18h16" },
+                open: { d: "M6 18l12-12" },
+              }}
+              transition={{ duration: 0.25, delay: 0.1 }}
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </motion.svg>
+        </button>
       </div>
       <AnimatePresence>
         {open && (
@@ -376,114 +285,26 @@ export function Header({ locale }: HeaderProps) {
                       {/* Navigation Links */}
                       <div>
                         <h3 className="text-2xl font-heading font-bold text-accent-4 mb-6 uppercase">
-                          {locale === "cs" ? "Navigace" : "Navigation"}
+                          {HEADER_CONTENT[locale].navigation}
                         </h3>
-                        <nav className="space-y-4">
-                          <TranslatedLink
-                            href="/"
-                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
-                            activeClassName="text-accent-4 font-semibold"
-                            exact
-                            onClick={() => setOpen(false)}
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "Úvod" : "Home"}
-                            </span>
-                          </TranslatedLink>
-                          <TranslatedLink
-                            href="/about"
-                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
-                            activeClassName="text-accent-4 font-semibold"
-                            onClick={() => setOpen(false)}
-                            title={
-                              locale === "cs"
-                                ? "Přejít na stránku o deníku"
-                                : "Go to about page"
-                            }
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "O deníku" : "About"}
-                            </span>
-                          </TranslatedLink>
-                          <TranslatedLink
-                            href="/gallery"
-                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
-                            activeClassName="text-accent-4 font-semibold"
-                            onClick={() => setOpen(false)}
-                            title={
-                              locale === "cs"
-                                ? "Přejít na svatební galerii"
-                                : "Go to wedding gallery"
-                            }
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "Galerie" : "Gallery"}
-                            </span>
-                          </TranslatedLink>
-                          <TranslatedLink
-                            href="/products"
-                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
-                            activeClassName="text-accent-4 font-semibold"
-                            onClick={() => setOpen(false)}
-                            title={
-                              locale === "cs"
-                                ? "Přejít na stránku produktů"
-                                : "Go to products page"
-                            }
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "Objednat" : "Order"}
-                            </span>
-                          </TranslatedLink>
-                          <TranslatedLink
-                            href="/contact"
-                            className="block text-lg text-accent-1-contrast hover:text-accent-4  transition-colors duration-200 group"
-                            activeClassName="text-accent-4 font-semibold"
-                            onClick={() => setOpen(false)}
-                            title={
-                              locale === "cs"
-                                ? "Přejít na kontaktní stránku"
-                                : "Go to contact page"
-                            }
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "Kontakt" : "Contact"}
-                            </span>
-                          </TranslatedLink>
-                          <TranslatedLink
-                            href="/privacy"
-                            className="block text-lg text-accent-1-contrast hover:text-amber-900  transition-colors duration-200 group"
-                            activeClassName="text-amber-900 font-semibold"
-                            onClick={() => setOpen(false)}
-                            title={
-                              locale === "cs"
-                                ? "Přejít na stránku soukromí"
-                                : "Go to privacy page"
-                            }
-                          >
-                            <span className="group-hover:translate-x-2 transition-transform duration-200 inline-block">
-                              {locale === "cs" ? "Soukromí" : "Privacy"}
-                            </span>
-                          </TranslatedLink>
-                        </nav>
+                        <FullscreenMenu
+                          locale={locale}
+                          onClose={() => setOpen(false)}
+                        />
                       </div>
 
                       {/* Interactive Content */}
                       <div>
                         <h3 className="text-2xl font-heading font-bold text-accent-4 mb-6 uppercase">
-                          {locale === "cs" ? "Svatba snů" : "Dream Wedding"}
+                          {HEADER_CONTENT[locale].dreamWedding}
                         </h3>
                         <div className="space-y-3">
                           <div className="bg-linear-to-br from-amber-50 to-amber-800/20 p-6 rounded-xl border border-amber-800/10">
                             <h3 className="font-heading font-semibold text-accent-4 mb-2">
-                              {locale === "cs"
-                                ? "Začněte plánovat"
-                                : "Start Planning"}
+                              {HEADER_CONTENT[locale].startPlanning.title}
                             </h3>
                             <p className="text-accent-1-contrast text-sm mb-4">
-                              {locale === "cs"
-                                ? "Objevte naše nástroje pro dokonalou svatbu"
-                                : "Discover our tools for the perfect wedding"}
+                              {HEADER_CONTENT[locale].startPlanning.description}
                             </p>
                             <TranslatedLink
                               href="/products"
@@ -496,20 +317,16 @@ export function Header({ locale }: HeaderProps) {
                               }
                             >
                               <BookOpen className="hidden w-4 h-4 mr-2" />
-                              {locale === "cs" ? "Prozkoumat" : "Explore"}
+                              {HEADER_CONTENT[locale].startPlanning.button}
                             </TranslatedLink>
                           </div>
 
                           <div className="bg-linear-to-br from-amber-800/10 to-amber-50 p-6 rounded-xl border border-amber-800/10">
                             <h3 className="font-heading font-semibold text-accent-4 mb-2">
-                              {locale === "cs"
-                                ? "Potřebujete pomoc?"
-                                : "Need Help?"}
+                              {HEADER_CONTENT[locale].needHelp.title}
                             </h3>
                             <p className="text-accent-1-contrast text-sm mb-4">
-                              {locale === "cs"
-                                ? "Kontaktujte nás pro osobní konzultaci"
-                                : "Contact us for personal consultation"}
+                              {HEADER_CONTENT[locale].needHelp.description}
                             </p>
                             <TranslatedLink
                               href="/contact"
@@ -522,7 +339,7 @@ export function Header({ locale }: HeaderProps) {
                               }
                             >
                               <Mail className="hidden w-4 h-4 mr-2" />
-                              {locale === "cs" ? "Napište mi" : "Let me know"}
+                              {HEADER_CONTENT[locale].needHelp.button}
                             </TranslatedLink>
                           </div>
                         </div>
@@ -557,163 +374,7 @@ export function Header({ locale }: HeaderProps) {
                   className="w-full flex flex-col justify-between items-start p-0"
                   id="mobile-menu-subwrap"
                 >
-                  <ul
-                    role="navigation"
-                    className="w-full flex flex-col pt-5"
-                    id="mobile-navigation-links"
-                  >
-                    <TranslatedLink
-                      href="/"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      exact
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na domovskou stránku"
-                          : "Go to homepage"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <Home className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "Úvod" : "Home"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Vítejte na mém webu"
-                            : "Welcome to our page"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                    <TranslatedLink
-                      href="/about"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na stránku o deníku"
-                          : "Go to about page"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <BookOpen className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "O deníku" : "About"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Zjistěte více o svatebním deníku"
-                            : "Learn more about wedding diary"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                    <TranslatedLink
-                      href="/gallery"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na svatební galerii"
-                          : "Go to wedding gallery"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <Camera className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "Galerie" : "Gallery"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Prohlédněte si svatby"
-                            : "Browse wedding photos"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                    <TranslatedLink
-                      href="/products"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na stránku produktů"
-                          : "Go to products page"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <ShoppingCart className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "Objednat" : "Order"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Vyberte si svůj svatební deník"
-                            : "Choose your wedding diary"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                    <TranslatedLink
-                      href="/privacy"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na stránku soukromí"
-                          : "Go to privacy page"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <Shield className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "Soukromí" : "Privacy"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Informace o ochraně osobních údajů"
-                            : "Personal data protection information"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                    <TranslatedLink
-                      href="/contact"
-                      className="px-5 py-6 mobile-navigation-link flex items-center gap-4 border-b border-accent-1-50"
-                      activeClassName="bg-accent-1 font-semibold"
-                      onClick={() => setOpen(false)}
-                      title={
-                        locale === "cs"
-                          ? "Přejít na kontaktní stránku"
-                          : "Go to contact page"
-                      }
-                    >
-                      <div className="w-8 h-8 bg-accent-1 rounded-lg flex items-center justify-center shrink-0 shadow">
-                        <Mail className="w-5 h-5 text-accent-1-contrast" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-accent-4">
-                          {locale === "cs" ? "Kontakt" : "Contact"}
-                        </div>
-                        <div className="text-sm text-accent-1-contrast font-light lowercase">
-                          {locale === "cs"
-                            ? "Spojte se se mnou"
-                            : "Get in touch with me"}
-                        </div>
-                      </div>
-                    </TranslatedLink>
-                  </ul>
+                  <MobileNav locale={locale} onClose={() => setOpen(false)} />
 
                   <div className="w-full flex items-center justify-end p-4">
                     <LanguageSwitcher onLanguageChange={() => setOpen(false)} />
