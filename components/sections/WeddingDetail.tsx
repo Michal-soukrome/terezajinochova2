@@ -6,9 +6,10 @@ import { routes } from "@/lib/routes";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Lightbox } from "@/components/common";
+import { Divider } from "@/components/ui";
 
 interface WeddingDetailProps {
   wedding: Wedding;
@@ -120,34 +121,49 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
       </div>
 
       {/* Wedding title */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <motion.h1
-          className="heading font-medium  text-5xl md:text-6xl text-accent-1-contrast mb-2 text-gray-900 leading-tight"
+          className="heading font-medium text-5xl md:text-6xl text-accent-1-contrast mb-4 text-gray-900 leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           {wedding.coupleNames[locale]}
         </motion.h1>
-        <motion.p
-          className="text-xl text-gray-600"
+        <motion.div
+          className="text-xl text-gray-600 space-y-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {wedding.location[locale]}
-        </motion.p>
-        {wedding.date && (
-          <motion.p
-            className="text-gray-500 mt-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            {wedding.date}
-          </motion.p>
-        )}
+          <p>{wedding.location[locale]}</p>
+          {wedding.date && <p className="text-gray-500">{wedding.date}</p>}
+        </motion.div>
       </div>
+
+      {/* Divider */}
+      <motion.div
+        className="mb-12"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <Divider icon={Heart} />
+      </motion.div>
+
+      {/* Review if available */}
+      {wedding.review && (
+        <motion.div
+          className="max-w-4xl mx-auto mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <blockquote className="font-serif text-2xl md:text-3xl leading-relaxed text-gray-800 italic">
+            "{wedding.review[locale]}"
+          </blockquote>
+        </motion.div>
+      )}
 
       {/* Photo gallery */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -203,23 +219,6 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
           </p>
         </div>
       </motion.div>
-
-      {/* Review if available */}
-      {wedding.review && (
-        <motion.div
-          className="max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <div className="bg-white rounded-lg p-8 border-l-4 border-accent-1 italic text-lg leading-relaxed text-gray-700">
-            "{wedding.review[locale]}"
-            <p className="text-right text-gray-600 mt-4 font-medium not-italic">
-              — {wedding.coupleNames[locale]}
-            </p>
-          </div>
-        </motion.div>
-      )}
 
       {/* Lightbox modal */}
       <Lightbox
