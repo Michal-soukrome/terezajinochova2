@@ -120,7 +120,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </h3>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {locale === "cs"
-                ? "Přečtěte si zkušenosti párů, které už využily naše služby"
+                ? "Přečtěte si zkušenosti párů, které už využily mé služby"
                 : "Read the experiences of couples who have already used my services"}
             </p>
           </div>

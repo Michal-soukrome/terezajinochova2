@@ -116,6 +116,14 @@ html {
 .text-accent-1-contrast {
   color: var(--color-accent-1-contrast);
 }
+.gradient-accent-1 {
+  --tw-gradient-via: var(--color-accent-1);
+}
+
+.gradient-accent-1-contrast {
+  --tw-gradient-via: var(--color-accent-1-contrast);
+}
+
 .fill-accent-1 {
   fill: var(--color-accent-1);
 }
@@ -276,10 +284,8 @@ h3::first-letter {
 }
 
 #cover {
-  height: calc(100dvh - 5rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-height: calc(100dvh - 5rem);
+  height: 100%;
 }
 
 @import "./styles/buttons.css";

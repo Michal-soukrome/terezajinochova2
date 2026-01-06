@@ -13,9 +13,9 @@ interface HeroSectionProps {
 
 export function HeroSection({ title, description, locale }: HeroSectionProps) {
   return (
-    <section id="cover" className="w-full">
+    <section id="cover" className="w-full flex flex-col justify-start">
       {/* IMAGE SECTION */}
-      <div className="relative w-full h-[60vh]  overflow-hidden">
+      <div className="relative w-full h-full min-h-[45vh] md:min-h-[60vh]  overflow-hidden">
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ scale: 1.1 }}
@@ -46,7 +46,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
       <div className="relative z-10 px-0 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         <div className="w-full max-w-auto md:max-w-6xl mx-auto">
           {/* Glass-morphism Content Container */}
-          <div className="inline-block w-full max-w-full md:max-w-4xl pt-3 pb-6 ">
+          <div className="inline-block w-full max-w-full md:max-w-4xl py-5 md:py-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

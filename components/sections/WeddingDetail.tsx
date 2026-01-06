@@ -8,6 +8,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Lightbox } from "@/components/common";
 
 interface WeddingDetailProps {
   wedding: Wedding;
@@ -21,7 +22,6 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
   const [imageLoadingStates, setImageLoadingStates] = useState<boolean[]>(
     new Array(wedding.galleryImages.length).fill(true)
   );
-  const [lightboxLoading, setLightboxLoading] = useState(false);
 
   const photographerText =
     wedding.photographerGender === "female" ? "fotografce" : "fotografovi";
@@ -40,14 +40,6 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
       newStates[index] = false;
       return newStates;
     });
-  };
-
-  const handleLightboxImageLoad = () => {
-    setLightboxLoading(false);
-  };
-
-  const handleLightboxImageError = () => {
-    setLightboxLoading(false);
   };
 
   // Prevent body scroll when lightbox is open
@@ -77,7 +69,6 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
               ? prev - 1
               : wedding.galleryImages.length - 1
           );
-          setLightboxLoading(true);
           break;
         case "ArrowRight":
           event.preventDefault();
@@ -86,7 +77,6 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
               ? prev + 1
               : 0
           );
-          setLightboxLoading(true);
           break;
         case "Escape":
           event.preventDefault();
@@ -108,14 +98,12 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
     setSelectedImageIndex((prev) =>
       prev !== null && prev > 0 ? prev - 1 : wedding.galleryImages.length - 1
     );
-    setLightboxLoading(true);
   };
 
   const goToNext = () => {
     setSelectedImageIndex((prev) =>
       prev !== null && prev < wedding.galleryImages.length - 1 ? prev + 1 : 0
     );
-    setLightboxLoading(true);
   };
 
   return (
@@ -170,10 +158,7 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="relative aspect-4/3 overflow-hidden shadow cursor-pointer hover:shadow-md transition-shadow bg-gray-100"
-            onClick={() => {
-              setSelectedImageIndex(index);
-              setLightboxLoading(true);
-            }}
+            onClick={() => setSelectedImageIndex(index)}
           >
             {/* Loading spinner */}
             {imageLoadingStates[index] && (
@@ -237,75 +222,16 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
       )}
 
       {/* Lightbox modal */}
-      {selectedImageIndex !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center">
-          {/* Close button */}
-          <button
-            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-60"
-            onClick={() => setSelectedImageIndex(null)}
-          >
-            ×
-          </button>
-
-          {/* Previous button */}
-          {wedding.galleryImages.length > 1 && (
-            <button
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrevious();
-              }}
-            >
-              ‹
-            </button>
-          )}
-
-          {/* Next button */}
-          {wedding.galleryImages.length > 1 && (
-            <button
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNext();
-              }}
-            >
-              ›
-            </button>
-          )}
-
-          {/* Image counter */}
-          {wedding.galleryImages.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg bg-black bg-opacity-50 px-3 py-1 rounded-full z-60">
-              {selectedImageIndex + 1} / {wedding.galleryImages.length}
-            </div>
-          )}
-
-          {/* Main image */}
-          <div
-            className="relative max-w-7xl max-h-[90vh] w-full h-full cursor-pointer"
-            onClick={() => setSelectedImageIndex(null)}
-          >
-            {/* Loading overlay */}
-            {lightboxLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-              </div>
-            )}
-
-            <Image
-              src={wedding.galleryImages[selectedImageIndex]}
-              alt={`${wedding.coupleNames[locale]} - foto ${
-                selectedImageIndex + 1
-              }`}
-              fill
-              className="object-contain"
-              sizes="100vw"
-              onLoad={handleLightboxImageLoad}
-              onError={handleLightboxImageError}
-            />
-          </div>
-        </div>
-      )}
+      <Lightbox
+        isOpen={selectedImageIndex !== null}
+        images={wedding.galleryImages}
+        currentIndex={selectedImageIndex || 0}
+        onClose={() => setSelectedImageIndex(null)}
+        onPrevious={goToPrevious}
+        onNext={goToNext}
+        locale={locale}
+        alt={wedding.coupleNames[locale]}
+      />
     </div>
   );
 }

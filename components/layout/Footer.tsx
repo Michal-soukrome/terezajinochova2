@@ -31,10 +31,6 @@ export function Footer({ locale }: FooterProps) {
 
               <div className="space-y-3">
                 <div className="text-gray-700 text-sm">
-                  {locale === "cs" ? "Česká republika" : "Czech Republic"}
-                </div>
-
-                <div className="text-gray-700 text-sm">
                   <a
                     href="mailto:svatebnipribehy@gmail.com"
                     className="!lowercase hover:text-accent-1-contrast transition-colors duration-200"
@@ -100,6 +96,18 @@ export function Footer({ locale }: FooterProps) {
                   className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs" ? "O deníku" : "About"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/about-me"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "O mně" : "About Me"}
+                </TranslatedLink>
+                <TranslatedLink
+                  href="/gallery"
+                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                >
+                  {locale === "cs" ? "Svatební příběhy" : "Wedding Stories"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/contact"

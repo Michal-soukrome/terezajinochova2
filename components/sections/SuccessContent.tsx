@@ -318,9 +318,9 @@ export default function SuccessContent() {
           variants={itemVariants}
           className="bg-white rounded-lg shadow-sm p-6 mb-6 border border-gray-200"
         >
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">
             {locale === "cs" ? "Souhrn objednávky" : "Order Summary"}
-          </h2>
+          </h3>
 
           <div className="space-y-3 mb-4">
             {sessionData.line_items?.map((item, index) => (
@@ -359,9 +359,9 @@ export default function SuccessContent() {
           variants={itemVariants}
           className="bg-white rounded-lg shadow-sm p-6 mb-6 border border-gray-200"
         >
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">
             {locale === "cs" ? "Kontaktní údaje" : "Contact Details"}
-          </h2>
+          </h3>
 
           <div className="space-y-3">
             <div className="flex justify-between py-2 border-b border-gray-100">

@@ -39,8 +39,8 @@ export function DesktopNav({ locale, onClose }: DesktopNavProps) {
           <TranslatedLink
             key={item.href}
             href={item.href}
-            className="hover:bg-accent-1/20 px-4 relative z-10 transition-all duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-2-contrast hover:text-accent-4 p-2 rounded-md"
-            activeClassName="bg-accent-1/20 text-accent-4"
+            className="hover:bg-amber-700/10 px-4 relative z-10 transition-all duration-300 ease-in-out group h-full flex items-center gap-2 font-heading text-accent-2-contrast p-2"
+            activeClassName="bg-amber-700/20 "
             exact={item.exact || false}
             onClick={onClose}
             title={item.title}

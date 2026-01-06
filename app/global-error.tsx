@@ -76,9 +76,9 @@ Timestamp: ${new Date().toISOString()}
           </div>
 
           <div className="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
-            <h2 className="text-sm font-semibold text-gray-700 mb-2">
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">
               Detaily chyby:
-            </h2>
+            </h3>
             <div className="bg-white rounded border border-gray-200 p-3 max-h-48 overflow-y-auto">
               <pre className="text-xs text-gray-800 whitespace-pre-wrap break-words font-mono">
                 {error.message}

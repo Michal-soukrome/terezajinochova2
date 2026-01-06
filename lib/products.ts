@@ -30,6 +30,8 @@ export interface Product {
   image: string;
   // Gallery images for product showcase
   gallery?: string[];
+  // Additional thumbnail images for product detail page
+  additionalImages?: string[];
   // Short bullet points to highlight benefits
   highlights?: {
     cs: string[];
@@ -55,12 +57,20 @@ export const PRODUCTS: Record<string, Product> = {
       en: "A practical wedding diary for modern couples — checklists, budget templates and space for your favorite memories.",
     },
 
-    priceCZK: 20500,
+    priceCZK: 150000,
     image: "/assets/cover.png",
     gallery: [
       "/assets/cover.png",
       "/assets/cover-1.JPG",
       "/assets/cover-2.jpg",
+    ],
+    additionalImages: [
+      "/assets/cover-1.JPG",
+      "/assets/cover-2.jpg",
+      "/assets/diary/DSC05217.jpg",
+      "/assets/diary/DSC05284.jpg",
+      "/assets/diary/DSC05324.jpg",
+      "/assets/diary/DSC05339.jpg",
     ],
     highlights: {
       cs: [
@@ -93,12 +103,22 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Premium edition with extended chapters, print-ready layouts and bonus pages for advanced planning.",
     },
 
-    priceCZK: 1490,
+    priceCZK: 149000,
     image: "/assets/cover.png",
     gallery: [
       "/assets/cover.png",
       "/assets/cover-1.JPG",
       "/assets/cover-2.jpg",
+    ],
+    additionalImages: [
+      "/assets/cover-1.JPG",
+      "/assets/cover-2.jpg",
+      "/assets/diary/DSC05217.jpg",
+      "/assets/diary/DSC05284.jpg",
+      "/assets/diary/DSC05324.jpg",
+      "/assets/diary/DSC05339.jpg",
+      "/assets/diary/premium1.png",
+      "/assets/diary/premium2.png",
     ],
     highlights: {
       cs: [

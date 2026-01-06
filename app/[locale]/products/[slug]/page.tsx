@@ -8,11 +8,12 @@ import { routes } from "@/lib/routes";
 // Revalidate every 24 hours
 export const revalidate = 86400;
 import Image from "next/image";
-import { BuyButton } from "@/components/ui";
+import { BuyButton, Divider } from "@/components/ui";
 import { Badge } from "@/components/ui";
 import { AnimatedHeader } from "@/components/layout";
 import BenefitsSection from "@/components/common/BenefitsSection";
-import { Check, ChessKing, Star } from "lucide-react";
+import { ProductImageGallery } from "@/components/common";
+import { Check, ChessKing, Star, Heart } from "lucide-react";
 
 const WHY_LIST_CS = [
   "Jsme zasnoubení a co teď?",
@@ -169,6 +170,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }
 
   const isPremium = product.id === "premium";
+  const additionalImages = product.additionalImages || [];
   const t = {
     premium: locale === "cs" ? "Premium" : "Premium",
     basic: locale === "cs" ? "Základní" : "Basic",
@@ -191,47 +193,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Main Content */}
       <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-16">
         {/* Left - Image */}
-        <div className="relative">
-          <div className="sticky top-8">
-            <div className="relative overflow-hidden pb-20">
-              <Image
-                src={product.image}
-                alt={product.names[locale as keyof typeof product.names]}
-                width={720}
-                height={820}
-                className="w-full h-auto object-cover border border-accent-1"
-                priority
-              />
-              <div
-                className="mt-3 px-5 md:px-0 flex gap-3"
-                id="additional-images-grid"
-              >
-                <div
-                  className="grow aspect-square border relative"
-                  id="product-additional-image"
-                >
-                  <Image
-                    src="/assets/cover-1.JPG"
-                    fill
-                    className="object-cover object-center"
-                    alt=""
-                  />
-                </div>
-                <div
-                  className="grow aspect-square border relative"
-                  id="product-additional-image"
-                >
-                  <Image
-                    src="/assets/cover-2.jpg"
-                    fill
-                    className="object-cover object-center"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductImageGallery
+          mainImage={product.image}
+          additionalImages={additionalImages}
+          alt={product.names[locale as keyof typeof product.names]}
+          locale={locale}
+        />
 
         {/* Right - Details */}
         <div className="px-4 sm:px-6 lg:px-8 space-y-8">
@@ -292,19 +259,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
             style={{ cornerShape: "bevel" } as any}
           >
             <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-accent-1-contrast"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
               {t.whatYouGet}
             </h3>
             <ul className="space-y-3">
@@ -424,9 +378,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {product.gallery && product.gallery.length > 0 && (
         <section className="hidden bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+            <h3 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
               {locale === "cs" ? "Ukázky z deníku" : "Diary Preview"}
-            </h2>
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
               {product.gallery.map((galleryImage, index) => {
                 // Bento grid layout patterns
@@ -465,7 +419,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                           index + 1
                         }`}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
@@ -487,24 +441,22 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
+            <h3 className="heading text-3xl md:text-5xl font-light text-accent-1-contrast mb-4">
               {" "}
               {locale === "cs"
                 ? "Co ve Svatebním deníku naleznete"
                 : "What's inside the Wedding Diary"}
             </h3>
+
+            <Divider icon={Heart} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
             {CONTENT[locale].why.list.map((item, i) => (
-              <div
-                key={i}
-                className="p-5 "
-                style={{ cornerShape: "bevel" } as any}
-              >
-                <div className="flex items-start gap-4">
+              <div key={i} className="p-5">
+                <div className="flex items-center gap-2">
                   <div className="flex-shrink-0">
-                    <Check className="w-6 h-6 text-accent-1-contrast mt-1" />
+                    <Check className="w-4 h-4 text-accent-1-contrast" />
                   </div>
                   <div className="flex-1">
                     <p className="text-gray-700 leading-relaxed font-medium">
