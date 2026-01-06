@@ -311,7 +311,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-4">
-            <h3 className="text-3xl md:text-5xl font-thin mb-6 font-heading text-gray-900 heading">
+            <h3 className="text-3xl md:text-5xl font-thin mb-6 text-accent-1-contrast heading">
               {" "}
               {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
             </h3>

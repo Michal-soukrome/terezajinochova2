@@ -38,6 +38,7 @@ export function Footer({ locale }: FooterProps) {
                     svatebnipribehy@gmail.com{" "}
                   </a>
                 </div>
+                <div className="text-gray-700 text-sm">IČO: 17902754</div>
               </div>
 
               {/* Social Links */}
