@@ -29,7 +29,7 @@ const itemVariants = {
 };
 
 const WHY_INTRO_CS = {
-  title: "Svatební deník aneb od zásnub až k oltáři",
+  title: "Příběh svatebního deníku",
   challenge:
     "Plánování svatby je jedním z nejkrásnějších období v životě. Aby se však nezměnilo v chaos plný stresu a zapomenutých detailů, je tu Svatební deník – praktický a zároveň stylový pomocník, který vás provede každým krokem na cestě ke dni D.",
 };
@@ -40,9 +40,7 @@ const WHY_INTRO_EN = {
     "Wedding planning is one of the most beautiful periods in life. However, to prevent it from turning into chaos full of stress and forgotten details, there's the Wedding Diary – a practical yet stylish helper that guides you through every step towards your big day.",
 };
 
-const STORY_CS = `Příběh Svatebního deníku
-
-Svatební deník vznikl z mé lásky k organizaci, detailům a především k samotným příběhům snoubenců.
+const STORY_CS = `Svatební deník vznikl z mé lásky k organizaci, detailům a především k samotným příběhům snoubenců.
 
 Po letech práce se svatebními páry jsem si uvědomila, že mnoho nevěst touží mít všechny důležité informace, poznámky a inspiraci přehledně na jednom místě – v krásné a praktické podobě, která je bude provázet celým obdobím příprav.
 

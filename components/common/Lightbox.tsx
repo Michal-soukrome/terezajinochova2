@@ -53,7 +53,7 @@ export function Lightbox({
     <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center">
       {/* Close button */}
       <button
-        className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-60"
+        className="cursor-pointer absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-60"
         onClick={onClose}
       >
         ×
@@ -62,7 +62,7 @@ export function Lightbox({
       {/* Previous button */}
       {images.length > 1 && (
         <button
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
+          className="cursor-pointer absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
           onClick={handlePrevious}
         >
           ‹
@@ -72,7 +72,7 @@ export function Lightbox({
       {/* Next button */}
       {images.length > 1 && (
         <button
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
+          className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-60"
           onClick={handleNext}
         >
           ›

@@ -33,7 +33,7 @@ export const NAV: Record<string, Record<string, NavItem>> = {
     },
     gallery: {
       href: "/gallery",
-      label: "Svatební příběhy",
+      label: "Koordinace svateb",
       title: "Přejít na svatební příběhy",
       description: "Prohlédněte si svatební příběhy a inspiraci",
       icon: "Camera",
