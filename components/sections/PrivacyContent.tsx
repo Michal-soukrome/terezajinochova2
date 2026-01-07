@@ -162,6 +162,19 @@ export default function PrivacyContent({ locale }: PrivacyContentProps) {
                   : "Your personal information is stored on secure servers with SSL encryption and is never shared with third parties without your consent. All data is transmitted through secure HTTPS connections."}
               </p>
             </div>
+
+            {/* Analytics */}
+            <div>
+              <h4 className="font-semibold text-gray-900 text-xl mb-3">
+                {locale === "cs" ? "Analytika" : "Analytics"}
+              </h4>
+
+              <p>
+                {locale === "cs"
+                  ? "Používáme Google Analytics prostřednictvím Google Tag Manager pro sledování návštěvnosti webu a chování uživatelů, abychom mohli zlepšit naše služby a uživatelskou zkušenost."
+                  : "We use Google Analytics through Google Tag Manager to track website traffic and user behavior to improve our services and user experience."}
+              </p>
+            </div>
           </div>
         </motion.section>
       </motion.div>

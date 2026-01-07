@@ -1,0 +1,66 @@
+{
+  "name": "Svatební příběhy - Tereza Jinochová",
+  "short_name": "Svatební deník",
+  "description": "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f8f5f0",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "cs",
+  "dir": "ltr",
+  "categories": ["lifestyle", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/assets/logo/01-2026/logo1.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo/01-2026/logo2.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Produkty",
+      "short_name": "Produkty",
+      "description": "Prohlédněte si naše svatební deníky",
+      "url": "/products",
+      "icons": [
+        {
+          "src": "/assets/logo/01-2026/logo-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Galerie",
+      "short_name": "Galerie",
+      "description": "Inspirujte se svatebními příběhy",
+      "url": "/gallery",
+      "icons": [
+        {
+          "src": "/assets/logo/01-2026/logo-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Spojte se s námi",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/assets/logo/01-2026/logo-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

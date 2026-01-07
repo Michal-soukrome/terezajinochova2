@@ -17,15 +17,35 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Tereza Jinochová" }],
   creator: "Tereza Jinochová",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-  ),
+  metadataBase: new URL("https://svatebnipribehy.com"),
+  manifest: "/manifest.json",
+  icons: {
+    icon: [
+      {
+        url: "/assets/logo/01-2026/logo1.webp",
+        sizes: "192x192",
+        type: "image/webp",
+      },
+      {
+        url: "/assets/logo/01-2026/logo2.webp",
+        sizes: "512x512",
+        type: "image/webp",
+      },
+    ],
+    apple: [
+      {
+        url: "/assets/logo/01-2026/logo1.webp",
+        sizes: "192x192",
+        type: "image/webp",
+      },
+    ],
+  },
   openGraph: {
     title: "Svatební deník | Plánovačka svateb od zásnub až k oltáři",
     description:
       "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
     type: "website",
-    siteName: "Svatební deník",
+    siteName: "Svatební příběhy",
     locale: "cs_CZ",
     images: [
       {
@@ -43,7 +63,11 @@ export const metadata: Metadata = {
     images: ["/assets/wedding-diary-preview.jpg"],
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    canonical: "https://svatebnipribehy.com",
+    languages: {
+      cs: "https://svatebnipribehy.com/cs",
+      en: "https://svatebnipribehy.com/en",
+    },
   },
   robots: {
     index: true,
@@ -66,13 +90,11 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Svatební deník",
+    name: "Svatební příběhy",
     description:
-      "Elegantní svatební deník pro organizaci svatby od zásnub až k oltáři. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-    logo: `${
-      process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-    }/assets/logo.png`,
+      "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
+    url: "https://svatebnipribehy.com",
+    logo: "https://svatebnipribehy.com/assets/logo.png",
     founder: {
       "@type": "Person",
       name: "Tereza Jinochová",
@@ -94,6 +116,18 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning className="overflow-x-hidden">
       <head>
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-PWGSH24M');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -102,6 +136,15 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased safe-area-y overflow-x-hidden">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PWGSH24M"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         <BackToTop />
       </body>
