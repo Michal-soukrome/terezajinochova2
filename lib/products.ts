@@ -49,8 +49,8 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "zakladni",
       en: "basic",
     },
-    stripePriceId: "price_1ST6XmEZ9QJo6JyeKEHn4qSm", // TEST SANDBOX
-    // stripePriceId: "price_1Smr1g7YygHD1QH4dG1yWokC", // PRODUCTION
+    // stripePriceId: "price_1ST6XmEZ9QJo6JyeKEHn4qSm", // TEST SANDBOX
+    stripePriceId: "price_1Smr1g7YygHD1QH4dG1yWokC", // PRODUCTION
 
     names: {
       cs: "Svatební Deník – Základní",
@@ -97,8 +97,8 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "premium",
       en: "premium",
     },
-    stripePriceId: "price_1ST6lJEZ9QJo6Jyey7YROR26", // TEST SANDBOX
-    // stripePriceId: "price_1Smr2O7YygHD1QH42Sm5K8FM", // PRODUCTION
+    // stripePriceId: "price_1ST6lJEZ9QJo6Jyey7YROR26", // TEST SANDBOX
+    stripePriceId: "price_1Smr2O7YygHD1QH42Sm5K8FM", // PRODUCTION
 
     names: {
       cs: "Svatební Deník – Prémiový",
@@ -147,7 +147,7 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "test",
       en: "test",
     },
-    stripePriceId: "price_1SmrRn7YygHD1QH4GDRv93Tg", // Test product - no shipping
+    stripePriceId: "price_1SmwI37YygHD1QH4V0gW1wTl", // Test product - no shipping
 
     names: {
       cs: "Test Product",
@@ -158,7 +158,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Test product for payment gateway verification.",
     },
 
-    priceCZK: 10000, // 100 CZK for testing
+    priceCZK: 1500, // 100 CZK for testing
     requiresShipping: false, // No shipping for test product
     image: "/assets/cover.png",
     gallery: ["/assets/cover.png"],
