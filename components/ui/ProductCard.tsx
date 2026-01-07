@@ -94,9 +94,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           {/* Price */}
           <div className="pt-2">
             <p className="text-4xl font-bold text-gray-900 font-heading">
-              {locale === "cs"
-                ? `${(product.priceCZK / 100).toFixed(0)} Kč`
-                : `$${(product.priceCZK / 100).toFixed(2)}`}
+              {(product.priceCZK / 100).toFixed(0)} Kč
             </p>
           </div>
         </div>
