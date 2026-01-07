@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
       line_items: [
         {
@@ -22,12 +22,23 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: "payment",
-      shipping_address_collection: {
-        allowed_countries: ["CZ", "SK", "US", "DE"],
-      },
       success_url: `${request.nextUrl.origin}/${locale}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}/${locale}/cancel?session_id={CHECKOUT_SESSION_ID}`,
-    });
+    };
+
+    // Only add shipping for products that require it
+    if (product.requiresShipping) {
+      sessionConfig.shipping_address_collection = {
+        allowed_countries: ["CZ", "SK"],
+      };
+      sessionConfig.shipping_options = [
+        {
+          shipping_rate: process.env.STRIPE_PACKETA_SHIPPING_RATE!,
+        },
+      ];
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     return NextResponse.json({ url: session.url });
   } catch (error) {

@@ -29,7 +29,9 @@ interface DesktopNavProps {
 }
 
 export function DesktopNav({ locale, onClose }: DesktopNavProps) {
-  const navItems = Object.values(NAV[locale]);
+  const navItems = Object.values(NAV[locale]).filter(
+    (item) => item.href !== "/privacy"
+  );
 
   return (
     <nav className="h-full hidden md:flex items-center ">

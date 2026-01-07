@@ -49,15 +49,9 @@ export default function BenefitsSection({
                 />
               </div>
             </div>
-            <motion.h4
-              className="text-lg font-bold text-gray-900 font-heading mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
               {locale === "cs" ? "Zápisky a vzpomínky" : "Memories & Keepsakes"}
-            </motion.h4>
+            </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
                 ? "Prostor v deníku pro vaše vzpomínky, nálady a fotky vytvořte trvalou památku na váš den."
@@ -75,17 +69,11 @@ export default function BenefitsSection({
                 />
               </div>
             </div>
-            <motion.h4
-              className="text-lg font-bold text-gray-900 font-heading mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
               {locale === "cs"
                 ? "Plánovač a kontrolní seznamy"
                 : "Planner & Checklists"}
-            </motion.h4>
+            </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
                 ? "Šablony, kontrolní seznamy a milníky přímo v deníku připomínky a přehledy, které vám pomohou udržet pořádek."
@@ -103,15 +91,9 @@ export default function BenefitsSection({
                 />
               </div>
             </div>
-            <motion.h4
-              className="text-lg font-bold text-gray-900 font-heading mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
               {locale === "cs" ? "Inspirace a nápady" : "Inspiration & Ideas"}
-            </motion.h4>
+            </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
                 ? "Sekce s nápady na výzdobu, barvy a styl inspirace, kterou si poznamenáte přímo do deníku."
@@ -129,15 +111,9 @@ export default function BenefitsSection({
                 />
               </div>
             </div>
-            <motion.h4
-              className="text-lg font-bold text-gray-900 font-heading mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
+            <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
               {locale === "cs" ? "Sledování a rozpočet" : "Tracking & Budget"}
-            </motion.h4>
+            </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
                 ? "Nástroje pro sledování rozpočtu, termínů a poznámek k dodavatelům vše zaznamenáte přímo v deníku."

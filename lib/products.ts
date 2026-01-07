@@ -26,6 +26,9 @@ export interface Product {
   // zobrazuje se cena v centech/halířích (?)
   priceCZK: number;
 
+  // Whether this product requires shipping
+  requiresShipping?: boolean;
+
   // Frontend assets
   image: string;
   // Gallery images for product showcase
@@ -46,7 +49,8 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "zakladni",
       en: "basic",
     },
-    stripePriceId: "price_1ST6XmEZ9QJo6JyeKEHn4qSm",
+    stripePriceId: "price_1ST6XmEZ9QJo6JyeKEHn4qSm", // TEST SANDBOX
+    // stripePriceId: "price_1Smr1g7YygHD1QH4dG1yWokC", // PRODUCTION
 
     names: {
       cs: "Svatební Deník – Základní",
@@ -57,7 +61,8 @@ export const PRODUCTS: Record<string, Product> = {
       en: "A practical wedding diary for modern couples — checklists, budget templates and space for your favorite memories.",
     },
 
-    priceCZK: 150000,
+    priceCZK: 84900,
+    requiresShipping: true,
     image: "/assets/cover.png",
     gallery: [
       "/assets/cover.png",
@@ -92,18 +97,20 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "premium",
       en: "premium",
     },
-    stripePriceId: "price_1ST6lJEZ9QJo6Jyey7YROR26",
+    stripePriceId: "price_1ST6lJEZ9QJo6Jyey7YROR26", // TEST SANDBOX
+    // stripePriceId: "price_1Smr2O7YygHD1QH42Sm5K8FM", // PRODUCTION
 
     names: {
       cs: "Svatební Deník – Prémiový",
       en: "Wedding Diary – Premium",
     },
     descriptions: {
-      cs: "Prémiové vydání s rozšířenými kapitolami, tiskově připravenými návrhy a bonusovými stránkami pro plánování.",
-      en: "Premium edition with extended chapters, print-ready layouts and bonus pages for advanced planning.",
+      cs: "Prémiové vydání v dárkovém balení — stejný obsah jako základní verze, zabalený v elegantní krabici se stuhou.",
+      en: "Premium edition in gift packaging — same content as the basic version, wrapped in an elegant box with a ribbon.",
     },
 
-    priceCZK: 149000,
+    priceCZK: 94900,
+    requiresShipping: true,
     image: "/assets/cover.png",
     gallery: [
       "/assets/cover.png",
@@ -122,14 +129,50 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     highlights: {
       cs: [
-        "Větší rozsah kapitol & bonusové návody",
-        "Prémiová tisková kvalita a extra stránky",
-        "Stylové návrhy svatebního harmonogramu",
+        "Stejný obsah jako základní verze",
+        "Elegantní dárkové balení v krabici se stuhou",
+        "Perfektní pro darování nebo speciální příležitost",
       ],
       en: [
-        "Extended chapters & bonus guides",
-        "Premium print-ready layouts & extra pages",
-        "Stylish timeline and planning templates",
+        "Same content as the basic version",
+        "Elegant gift packaging in a box with ribbon",
+        "Perfect for gifting or special occasions",
+      ],
+    },
+  },
+
+  test: {
+    id: "test",
+    slugs: {
+      cs: "test",
+      en: "test",
+    },
+    stripePriceId: "price_1SmrRn7YygHD1QH4GDRv93Tg", // Test product - no shipping
+
+    names: {
+      cs: "Test Product",
+      en: "Test Product",
+    },
+    descriptions: {
+      cs: "Testovací produkt pro ověření platební brány.",
+      en: "Test product for payment gateway verification.",
+    },
+
+    priceCZK: 10000, // 100 CZK for testing
+    requiresShipping: false, // No shipping for test product
+    image: "/assets/cover.png",
+    gallery: ["/assets/cover.png"],
+    additionalImages: [],
+    highlights: {
+      cs: [
+        "Pouze pro testování",
+        "Bez dopravy",
+        "Nízká cena pro testovací účely",
+      ],
+      en: [
+        "Testing purposes only",
+        "No shipping required",
+        "Low price for testing",
       ],
     },
   },

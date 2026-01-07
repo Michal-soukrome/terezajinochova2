@@ -5,6 +5,7 @@ import TranslatedLink from "../navigation/TranslatedLink";
 import { Locale } from "@/lib/i18n";
 import { SocialMediaIcons } from "../common/SocialMediaIcons";
 import { Heart } from "lucide-react";
+import { NAV } from "@/lib/headerData";
 
 interface FooterProps {
   locale: Locale;
@@ -86,42 +87,17 @@ export function Footer({ locale }: FooterProps) {
               </div>
 
               <nav className="space-y-3">
-                <TranslatedLink
-                  href="/"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Domů" : "Home"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/about"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "O deníku" : "About"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/about-me"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "O mně" : "About Me"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/gallery"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Svatební příběhy" : "Wedding Stories"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/contact"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Kontakt" : "Contact"}
-                </TranslatedLink>
-                <TranslatedLink
-                  href="/privacy"
-                  className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
-                >
-                  {locale === "cs" ? "Soukromí" : "Privacy"}
-                </TranslatedLink>
+                {Object.values(NAV[locale])
+                  .filter((item) => item.href !== "/products")
+                  .map((item) => (
+                    <TranslatedLink
+                      key={item.href}
+                      href={item.href}
+                      className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                    >
+                      {item.label}
+                    </TranslatedLink>
+                  ))}
               </nav>
             </div>
 

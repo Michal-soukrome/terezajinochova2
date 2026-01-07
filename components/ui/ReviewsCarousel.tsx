@@ -11,75 +11,66 @@ interface ReviewsCarouselProps {
 const cards = [
   {
     text: {
-      cs: '"Plánovač nám ušetřil tolik času a stresu. Všechno bylo připravené a organizované."',
-      en: '"The planner saved us so much time and stress. Everything was prepared and organized."',
+      cs: '"Svatební deník se pro nás stal krásnou součástí celých svatebních příprav. Zapisovali jsme si do něj drobné detaily i momenty, na které nechceme nikdy zapomenout. Je nádherně zpracovaný a má v sobě něco kouzelného – pokaždé, když ho otevřeme, vrátíme se zpět k našemu „ano"."',
+      en: "\"The wedding diary became a beautiful part of our entire wedding preparations. We wrote down small details and moments we never want to forget. It is beautifully crafted and has something magical about it – every time we open it, we return to our 'I do'.\"",
     },
-    name: { cs: "Marie a Tomáš", en: "Marie and Tomáš" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
+    name: { cs: "I.", en: "I." },
+    date: { cs: "", en: "" },
     transform: "translateY(-20px) rotate(-2deg)",
   },
   {
     text: {
-      cs: '"Skvělé nástroje a podpora. Doporučujeme všem, kteří plánují svatbu!"',
-      en: '"Great tools and support. We recommend it to everyone planning a wedding!"',
+      cs: '"Příruček a manuálů ke svatbě je spousta, ale tento Deník je sám o sobě jiný. Provede vás velkou svatbou tak, abyste na nic nezapomněli, a zároveň je skvělým průvodcem i pro menší svatby. Do Deníku si lze zapsat prakticky vše, díky čemuž budete mít vše přehledně na jednom místě a svůj den si pak můžete naplno užít."',
+      en: "\"There are many wedding guides and manuals, but this Diary is unique. It will guide you through a big wedding so you don't forget anything, and it's also a great companion for smaller weddings. You can write practically everything in the Diary, which means you'll have everything clearly in one place and can fully enjoy your day.\"",
     },
-    name: { cs: "Anna a Petr", en: "Anna and Petr" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
+    name: { cs: "Patricie", en: "Patricie" },
+    date: { cs: "", en: "" },
     transform: "translateY(10px) rotate(1deg)",
   },
   {
     text: {
-      cs: '"Profesionální přístup a všechno na jednom místě. Perfektní služba!"',
-      en: '"Professional approach and everything in one place. Perfect service!"',
+      cs: '"Pro člověka jako jsem já, který byl na svatbách jen párkrát a úplně neví, co vše je potřeba a jaké jsou možnosti, je Deník velkým pomocníkem. Za mě jde o velmi praktický projekt, který vyplnil mezeru na trhu, a budoucím nevěstám ho s radostí doporučuji 😊"',
+      en: "\"For someone like me, who has only been to a few weddings and doesn't really know what is needed and what the options are, the Diary is a great helper. For me, it's a very practical project that filled a gap in the market, and I happily recommend it to future brides 😊\"",
     },
-    name: { cs: "Lucie a Michal", en: "Lucie and Michal" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
+    name: { cs: "Patricie", en: "Patricie" },
+    date: { cs: "", en: "" },
     transform: "translateY(-15px) rotate(-1deg)",
   },
   {
     text: {
-      cs: '"Tereza je skvělá! Pomohla nám zorganizovat svatbu našich snů bez stresu."',
-      en: '"Tereza is amazing! She helped us organize our dream wedding without stress."',
+      cs: '"Ze svatebního deníku jsem byla naprosto nadšená! Už na první pohled mě velmi upoutal krásný design 🙂 Deník je velmi praktický a máte vše, co při plánování svatby potřebujete, na jednom místě. Ocenila jsem také všechny tabulky k zapisování. S deníkem se vám nemůže stát, že byste na něco důležitého zapomněli."',
+      en: '"I was absolutely thrilled with the wedding diary! The beautiful design immediately caught my attention 🙂 The diary is very practical and you have everything you need for wedding planning in one place. I also appreciated all the writing tables. With this diary, you can\'t forget anything important."',
     },
-    name: { cs: "Kateřina a David", en: "Kateřina and David" },
-    date: { cs: "Svatba 2023", en: "Wedding 2023" },
+    name: { cs: "Markéta", en: "Markéta" },
+    date: { cs: "", en: "" },
     transform: "translateY(25px) rotate(2.5deg)",
   },
   {
     text: {
-      cs: '"Všechno bylo dokonale zorganizované. Nemuseli jsme se o nic starat!"',
-      en: '"Everything was perfectly organized. We didn\'t have to worry about anything!"',
+      cs: '"Svatební deník od Terezky mi od začátku dodával pocit, že plánování svatby nemusí být chaos, ale může to být krásná a klidná cesta. Krok po kroku mě provedl vším důležitým - od prvních představ, přes rozpočet a organizaci, až po drobné detaily, na které bych jinak snadno zapomněla."',
+      en: "\"Terezka's wedding diary gave me the feeling from the beginning that wedding planning doesn't have to be chaos, but can be a beautiful and calm journey. Step by step, it guided me through everything important - from initial ideas, through budget and organization, to small details I would otherwise easily forget.\"",
     },
-    name: { cs: "Barbora a Jan", en: "Barbora and Jan" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
+    name: { cs: "Martina", en: "Martina" },
+    date: { cs: "", en: "" },
     transform: "translateY(-30px) rotate(-3deg)",
   },
   {
     text: {
-      cs: '"Fantastická spolupráce! Tereza rozumí potřebám každého páru."',
-      en: '"Fantastic collaboration! Tereza understands every couple\'s needs."',
+      cs: '"Moc se mi líbí, jak je deník přehledný, ale zároveň lidský a milý. Není to jen „sešit s úkoly", ale spíš parťák, ke kterému se člověk rád vrací. Vše má své místo, nic se neztratí a člověk má pořád pocit, že má svatbu pod kontrolou."',
+      en: "\"I really like how clear the diary is, yet human and kind. It's not just a 'task notebook', but rather a companion you like to return to. Everything has its place, nothing gets lost, and you always feel you have your wedding under control.\"",
     },
-    name: { cs: "Veronika a Martin", en: "Veronika and Martin" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
+    name: { cs: "Martina", en: "Martina" },
+    date: { cs: "", en: "" },
     transform: "translateY(15px) rotate(-1.5deg)",
   },
   {
     text: {
-      cs: '"Díky Tereze byla naše svatba nezapomenutelná. Vřele doporučujeme!"',
-      en: '"Thanks to Tereza, our wedding was unforgettable. Highly recommend!"',
+      cs: '"Pokud hledáte pomocníka, který vám ušetří nervy a zároveň si v něm uchováte krásné vzpomínky, můžu ho s klidných svědomím doporučit."',
+      en: '"If you\'re looking for a helper that will save your nerves and at the same time preserve beautiful memories, I can recommend it with a clear conscience."',
     },
-    name: { cs: "Simona a Pavel", en: "Simona and Pavel" },
-    date: { cs: "Svatba 2023", en: "Wedding 2023" },
+    name: { cs: "Martina", en: "Martina" },
+    date: { cs: "", en: "" },
     transform: "translateY(-10px) rotate(2deg)",
-  },
-  {
-    text: {
-      cs: '"Profesionální, kreativní a pozorná. Naše svatba předčila očekávání!"',
-      en: '"Professional, creative and attentive. Our wedding exceeded expectations!"',
-    },
-    name: { cs: "Eva a Tomáš", en: "Eva and Tomáš" },
-    date: { cs: "Svatba 2024", en: "Wedding 2024" },
-    transform: "translateY(20px) rotate(-2.5deg)",
   },
 ];
 
