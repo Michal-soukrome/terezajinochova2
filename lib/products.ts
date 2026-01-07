@@ -49,9 +49,7 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "zakladni",
       en: "basic",
     },
-    // stripePriceId: "price_1ST6XmEZ9QJo6JyeKEHn4qSm", // TEST SANDBOX
-    stripePriceId: "price_1Smr1g7YygHD1QH4dG1yWokC", // PRODUCTION
-
+    stripePriceId: process.env.STRIPE_PRICE_BASIC!,
     names: {
       cs: "Svatební Deník – Základní",
       en: "Wedding Diary – Basic",
@@ -97,9 +95,7 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "premium",
       en: "premium",
     },
-    // stripePriceId: "price_1ST6lJEZ9QJo6Jyey7YROR26", // TEST SANDBOX
-    stripePriceId: "price_1Smr2O7YygHD1QH42Sm5K8FM", // PRODUCTION
-
+    stripePriceId: process.env.STRIPE_PRICE_PREMIUM!,
     names: {
       cs: "Svatební Deník – Prémiový",
       en: "Wedding Diary – Premium",
@@ -147,8 +143,7 @@ export const PRODUCTS: Record<string, Product> = {
       cs: "test",
       en: "test",
     },
-    stripePriceId: "price_1SmwI37YygHD1QH4V0gW1wTl", // Test product - no shipping
-
+    stripePriceId: process.env.STRIPE_PRICE_TEST!,
     names: {
       cs: "Test Product",
       en: "Test Product",
