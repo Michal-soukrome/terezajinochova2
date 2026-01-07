@@ -31,6 +31,10 @@ export async function GET(
       amount_total: session.amount_total,
       currency: session.currency,
       customer_email: session.customer_details?.email,
+      payment_intent:
+        typeof session.payment_intent === "string"
+          ? session.payment_intent
+          : session.payment_intent?.id,
       customer_details: session.customer_details,
       shipping_details:
         (session as any).shipping_details || (session as any).shipping,

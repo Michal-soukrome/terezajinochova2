@@ -14,6 +14,7 @@ interface SessionData {
   amount_total: number;
   currency: string;
   customer_email: string;
+  payment_intent?: string;
   customer_details?: {
     name?: string;
     email?: string;
@@ -305,10 +306,10 @@ export default function SuccessContent() {
 
           <div className="inline-block bg-white rounded-lg shadow-sm p-4 border border-gray-200">
             <p className="text-sm text-gray-600 mb-1">
-              {locale === "cs" ? "Číslo objednávky" : "Order Number"}
+              {locale === "cs" ? "Reference objednávky" : "Order reference"}
             </p>
             <p className="font-mono font-bold text-xl text-gray-900">
-              #{sessionData.id.slice(-8)}
+              #{sessionData.payment_intent || sessionData.id.slice(-8)}
             </p>
           </div>
         </motion.div>
