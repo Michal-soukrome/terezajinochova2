@@ -181,11 +181,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
         ? "Skvělý pomocník při plánování - vše na jednom místě a přehledné."
         : "An amazing planner — everything in one place, simple and elegant.",
     features: locale === "cs" ? "Funkce" : "Features",
-    perfectFor: locale === "cs" ? "Ideální pro" : "Perfect for",
+    perfectFor: locale === "cs" ? "Pro koho je deník určen" : "Perfect for",
     perfectForText:
       locale === "cs"
-        ? "Páry, které chtějí mít svatbu organizovanou a nezapomenout na žádný detail."
-        : "Couples who want their wedding organized without missing any detail.",
+        ? "Svatební deník je ideální pro páry, které chtějí mít svatbu zorganizovanou a nezapomenout na žádný detail."
+        : "The Wedding Diary is perfect for couples who want to have their wedding organized and not miss any details.",
   };
 
   return (
@@ -201,7 +201,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         />
 
         {/* Right - Details */}
-        <div className="px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="px-4 sm:px-6 lg:px-8 space-y-8 pb-10">
           {/* Header */}
           <div>
             <div className="!hidden inline-flex items-center gap-2 mb-4">
@@ -254,14 +254,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Features */}
-          <div
-            className="bg-white border border-gray-200 rounded-2xl p-6"
-            style={{ cornerShape: "bevel" } as any}
-          >
+          <div className="p-5" id="detail-what-you-get">
             <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
               {t.whatYouGet}
             </h3>
-            <ul className="space-y-3">
+            <ul className="lowercase space-y-3">
               {(
                 product.highlights?.[
                   locale as keyof typeof product.highlights
@@ -286,10 +283,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           {/* Perfect For */}
-          <div
-            className="bg-white border border-gray-200 rounded-2xl p-6"
-            style={{ cornerShape: "bevel" } as any}
-          >
+          <div className="p-5" id="detail-perfect-for">
             <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
               {t.perfectFor}
             </h3>
@@ -375,6 +369,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       </section>
 
       {/* Image Gallery */}
+      {/* 
       {product.gallery && product.gallery.length > 0 && (
         <section className="hidden bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
@@ -424,7 +419,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
                       />
                     </div>
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                    {/* Optional overlay with number */}
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold text-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {index + 1}
                     </div>
@@ -433,8 +427,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
               })}
             </div>
           </div>
+        </sec
         </section>
       )}
+      */}
 
       {/* Additional Info Section */}
       {/* Contents list from internal file */}

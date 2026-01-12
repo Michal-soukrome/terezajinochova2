@@ -51,7 +51,7 @@ export default function WeddingGalleryGrid({
               />
             </div>
             <div className="bg-white p-6">
-              <h3 className="text-xl font-semibold font-heading text-amber-800 mb-2 leading-tight text-center">
+              <h3 className="heading font-medium text-center text-2xl text-accent-1-contrast leading-tight">
                 {wedding.coupleNames[locale]}
               </h3>
               <p className="text-gray-700 font-light text-center">

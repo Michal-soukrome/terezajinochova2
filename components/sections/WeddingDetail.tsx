@@ -159,7 +159,7 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <blockquote className="font-serif text-2xl md:text-3xl leading-relaxed text-gray-800 italic">
+          <blockquote className="font-serif text-xl leading-relaxed text-gray-800 italic">
             "{wedding.review[locale]}"
           </blockquote>
         </motion.div>
@@ -205,18 +205,20 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <div className="bg-gray-50 rounded-lg p-8 text-sm text-gray-600 space-y-3 font-serif">
+        <div className=" p-8 text-sm text-gray-600 space-y-3 font-serif">
           <p>
             {locale === "cs"
               ? `Za zachycení těchto krásných momentů děkuji ${photographerText} `
               : `I thank the photographer `}
             <span className="font-semibold">{wedding.photographerName}</span>.
           </p>
-          <p>
-            {locale === "cs"
-              ? "Svatební koordinace byla realizována ve spolupráci s agenturou Svatební Guru."
-              : "Wedding coordination was realized in cooperation with Svatební Guru agency."}
-          </p>
+          {wedding.coordinatedByAgency && (
+            <p>
+              {locale === "cs"
+                ? "Svatební koordinace byla realizována ve spolupráci s agenturou Svatební Guru."
+                : "Wedding coordination was realized in cooperation with Svatební Guru agency."}
+            </p>
+          )}
         </div>
       </motion.div>
 

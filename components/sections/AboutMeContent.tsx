@@ -21,21 +21,21 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
-const PERSONAL_STORY_CS = `Mé jméno je Tereza Jinochová a svatební plánování je mou vášní už více než 10 let.
+const PERSONAL_STORY_CS_PART1 = `Mé jméno je Tereza a svatební plánování je mou dlouhodobou vášní.
 
-Všechno začalo mou láskou k tanci. Standardním a latinsko-americkým tancům jsem se věnovala profesionálně více než 15 let. Během této doby jsem přešla od výuky tance k tvorbě svatebních choreografií, což mě přivedlo blíže ke svatebnímu světu.
+Všechno začalo mou láskou k tanci. Standardním a latinsko-americkým tancům jsem se věnovala profesionálně více než 15 let. Během této doby jsem přešla od výuky tance k tvorbě svatebních choreografií, což mě přivedlo blíže ke svatebnímu světu.`;
 
-Postupem času jsem si uvědomila, že chci být součástí nejen tanečního příběhu, ale celého svatebního dne. Proto jsem absolvovala kurzy svatební koordinace pod záštitou Wedding & Academy Fields a začala se věnovat organizaci a koordinaci svateb.
+const PERSONAL_STORY_CS_PART2 = `Postupem času jsem si uvědomila, že chci být součástí nejen tanečního příběhu, ale celého svatebního dne. Proto jsem absolvovala kurzy svatební koordinace pod záštitou Wedding & Academy Fields a začala se věnovat organizaci a koordinaci svateb.
 
 Jsem pozitivní, energická a miluji pohyb, tanec i cestování. Díky práci v oblasti privátního létání, kde působím jako letuška, jsem se naučila preciznosti, empatii i schopnosti zachovat klid v každé situaci. Právě tyto zkušenosti nyní zúročuji při přípravě svateb.
 
-Věřím, že každý detail má svůj význam a že dokonalá svatba je výsledkem pečlivého plánování a lásky k detailům. Pomohla jsem stovkám párům vytvořit svatební den jejich snů - od intimních obřadů po velkolepé oslavy.`;
+Věřím, že každý detail má svůj význam a že krásná svatba je výsledkem promyšleného plánování i lásky k detailům. Pomohla jsem stovkám párů vytvořit svatební den jejich snů – od intimních obřadů až po velkolepé oslavy.`;
 
-const PERSONAL_STORY_EN = `My name is Tereza Jinochová and wedding planning has been my passion for more than 10 years.
+const PERSONAL_STORY_EN_PART1 = `My name is Tereza Jinochová and wedding planning has been my passion for more than 10 years.
 
-It all started with my love for dance. I dedicated myself to standard and Latin-American dances professionally for more than 15 years. During this time, I transitioned from teaching dance to creating wedding choreographies, which brought me closer to the wedding world.
+It all started with my love for dance. I dedicated myself to standard and Latin-American dances professionally for more than 15 years. During this time, I transitioned from teaching dance to creating wedding choreographies, which brought me closer to the wedding world.`;
 
-Over time, I realized that I wanted to be part of not just the dance story, but the entire wedding day. That's why I completed wedding coordination courses under the auspices of Wedding & Academy Fields and began dedicating myself to the organization and coordination of weddings.
+const PERSONAL_STORY_EN_PART2 = `Over time, I realized that I wanted to be part of not just the dance story, but the entire wedding day. That's why I completed wedding coordination courses under the auspices of Wedding & Academy Fields and began dedicating myself to the organization and coordination of weddings.
 
 I am positive, energetic, and love movement, dance, and travel. Thanks to my work in private aviation, where I work as a flight attendant, I learned precision, empathy, and the ability to stay calm in every situation. I now utilize these experiences in wedding preparations.
 
@@ -109,12 +109,41 @@ export default function AboutMeContent({ locale }: AboutMeContentProps) {
       animate="visible"
       className="overflow-x-hidden"
     >
-      {/* Personal Story Section */}
+      {/* Personal Story Section Part 1 */}
       <FullHeightSection
         title={locale === "cs" ? "O mně" : "About Me"}
         imageUrl="/assets/image1.webp"
-        description={locale === "cs" ? PERSONAL_STORY_CS : PERSONAL_STORY_EN}
+        description={
+          locale === "cs" ? PERSONAL_STORY_CS_PART1 : PERSONAL_STORY_EN_PART1
+        }
       />
+
+      {/* Personal Story Section Part 2 */}
+      <motion.section
+        className="relative w-full flex items-center justify-center bg-white py-16 lg:py-32"
+        variants={itemVariants}
+      >
+        <div className="w-full max-w-4xl px-8 lg:px-0">
+          <motion.p
+            className="text-lg md:text-xl text-gray-900 opacity-90 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {(locale === "cs"
+              ? PERSONAL_STORY_CS_PART2
+              : PERSONAL_STORY_EN_PART2
+            )
+              .split("\n\n")
+              .map((p, idx) => (
+                <span key={idx} className="block mb-4">
+                  {p}
+                </span>
+              ))}
+          </motion.p>
+        </div>
+      </motion.section>
     </motion.div>
   );
 }

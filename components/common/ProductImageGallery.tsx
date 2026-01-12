@@ -88,18 +88,18 @@ export function ProductImageGallery({
             alt={alt}
             width={720}
             height={820}
-            className="w-full h-auto object-cover shadow cursor-pointer"
+            className="w-full h-auto object-cover cursor-pointer"
             priority
             onClick={() => openLightbox(0)}
           />
           <div
-            className="mt-3 px-5 md:px-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
+            className="mt-3 px-5 md:px-0 flex flex-wrap gap-3"
             id="additional-images-grid"
           >
             {additionalImages.map((image, index) => (
               <div
                 key={index}
-                className="aspect-square border relative cursor-pointer"
+                className="flex-1 min-w-0 aspect-square border relative cursor-pointer"
                 id="product-additional-image"
                 onClick={() => openLightbox(index + 1)}
               >

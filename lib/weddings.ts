@@ -31,6 +31,9 @@ export interface Wedding {
   photographerName: string;
   photographerGender: "male" | "female"; // for fotografovi/fotografce
 
+  // Whether the wedding was coordinated by Svatební Guru agency
+  coordinatedByAgency: boolean;
+
   // Optional review from the couple
   review?: {
     cs: string;
@@ -70,6 +73,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Andrea Kadlecová Volárová (Byandreav)",
     photographerGender: "female",
+    coordinatedByAgency: true,
     review: {
       cs: "Svatba byla naprosto dokonalá! Strašně moc děkujeme, vše vyšlo perfektně a s Verčou jste byly skvělé.",
       en: "The wedding was absolutely perfect! Thank you so much, everything turned out perfectly and you and Verča were amazing.",
@@ -99,6 +103,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Erik Doby",
     photographerGender: "male",
+    coordinatedByAgency: true,
   },
   {
     id: "jana-david",
@@ -124,6 +129,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Norbert Smutný",
     photographerGender: "male",
+    coordinatedByAgency: true,
     review: {
       cs: "S koordinátorkou Terezou jsme začali s manželem spolupracovat pár měsíců před svatbou. Měla na starosti průběh obřadu a organizaci hostů před ním, rychlý přesun kolonou vozidel na místo hostiny a následnou hostinu a oslavu. Všechno proběhlo naprosto bez problémů, komunikace byla vždy příjemná a koordinace profesionální. V den svatby pomáhala i druhá koordinátorka Veronika. Oběma dodatečně ještě jednou děkujeme za vše a opravdu moc Svatební guru doporučujeme dalším párům! Tetourovi",
       en: "We started working with coordinator Tereza a few months before the wedding. She was in charge of the ceremony, guest organization, quick vehicle convoy transfer to the reception venue, and the subsequent reception and celebration. Everything went absolutely smoothly, communication was always pleasant and coordination professional. On the wedding day, the second coordinator Veronika also helped. We thank both of them once again for everything and really highly recommend Svatební Guru to other couples! The Tetours",
@@ -158,6 +164,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Fotky od Lů",
     photographerGender: "female",
+    coordinatedByAgency: true,
   },
   {
     id: "sarka-jakub",
@@ -184,6 +191,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Martin Menšík",
     photographerGender: "male",
+    coordinatedByAgency: true,
   },
   {
     id: "lucie-martin",
@@ -216,6 +224,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Eva Klobouček",
     photographerGender: "female",
+    coordinatedByAgency: true,
     review: {
       cs: "Postupně zpracováváme celý ten krásný den a shodli jsme se na tom, že to byl opravdu jeden z nejkrásnějších dnů našeho života a nepochybně v obrovské míře i díky Vám a za to Vám chceme ze srdce ještě jednou velmi poděkovat. Jste absolutní profesionálka, jde z Vás dokonalý klid a řád. Jsme nadšeni, že jsme mohli tento den strávit právě s Vámi.",
       en: "We are gradually processing that beautiful day and agreed that it was truly one of the most beautiful days of our lives, undoubtedly to a great extent thanks to you, and for that we want to thank you from the bottom of our hearts once again. You are an absolute professional, perfect calm and order emanate from you. We are thrilled that we could spend this day with you.",
@@ -250,6 +259,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Miroslav Belančin",
     photographerGender: "male",
+    coordinatedByAgency: true,
   },
   {
     id: "tereza-tomas",
@@ -279,6 +289,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Michaela Sonntagová",
     photographerGender: "female",
+    coordinatedByAgency: true,
     review: {
       cs: "Tereza se svým týmem působili naprosto profesionálně, ale zároveň s lehkostí a lidským přístupem, díky kterému jsme se cítili klidně a uvolněně. Vše měli perfektně zorganizované, každý detail byl dotažený, a my jsme si díky nim mohli náš den opravdu užít bez stresu. Lepší koordinaci jsme si nemohli přát. Moc děkujeme!",
       en: "Tereza and her team were completely professional, yet with an ease and human approach that made us feel calm and relaxed. Everything was perfectly organized, every detail was perfect, and thanks to them we could truly enjoy our day without stress. We couldn't have asked for better coordination. Thank you so much!",
@@ -313,6 +324,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Vladislav Surmaj",
     photographerGender: "male",
+    coordinatedByAgency: true,
   },
   {
     id: "martina-kuba",
@@ -339,6 +351,7 @@ export const WEDDINGS: Wedding[] = [
     ],
     photographerName: "Ladislav Pejchar",
     photographerGender: "male",
+    coordinatedByAgency: false,
   },
 ];
 

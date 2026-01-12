@@ -54,8 +54,8 @@ export default function BenefitsSection({
             </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
-                ? "Prostor v deníku pro vaše vzpomínky, nálady a fotky vytvořte trvalou památku na váš den."
-                : "A place in the diary for your memories, moods and photos create a lasting keepsake of your day."}
+                ? "Místo v deníku určené pro vaše vzpomínky, pocity a fotografie, které se stanou trvalou památkou na váš svatební den."
+                : "A dedicated space in the diary for your memories, feelings, and photographs that will become a lasting memento of your wedding day."}
             </p>
           </div>
 
@@ -71,13 +71,13 @@ export default function BenefitsSection({
             </div>
             <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
               {locale === "cs"
-                ? "Plánovač a kontrolní seznamy"
+                ? "Šablony, kontrolní seznamy a milníky"
                 : "Planner & Checklists"}
             </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
-                ? "Šablony, kontrolní seznamy a milníky přímo v deníku připomínky a přehledy, které vám pomohou udržet pořádek."
-                : "Templates, checklists and milestones right in the diary reminders and overviews to help you stay organized."}
+                ? "Přehledné připomínky a checklisty, které vám pomohou udržet pořádek a mít vše pod kontrolou."
+                : "Clear reminders and checklists that will help you stay organized and have everything under control."}
             </p>
           </div>
 
@@ -92,12 +92,12 @@ export default function BenefitsSection({
               </div>
             </div>
             <h4 className="text-lg font-bold text-gray-900 font-heading mb-3">
-              {locale === "cs" ? "Inspirace a nápady" : "Inspiration & Ideas"}
+              {locale === "cs" ? "Nápady a inspirace" : "Inspiration & Ideas"}
             </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
-                ? "Sekce s nápady na výzdobu, barvy a styl inspirace, kterou si poznamenáte přímo do deníku."
-                : "Sections for decor ideas, color palettes and styling prompts inspiration you can note directly in the diary."}
+                ? "Sekce plná nápadů a inspirace, které si můžete poznamenat přímo do deníku."
+                : "Sections full of ideas and inspiration that you can note directly in the diary."}
             </p>
           </div>
 
@@ -116,8 +116,8 @@ export default function BenefitsSection({
             </h4>
             <p className="text-gray-600 text-sm leading-relaxed">
               {locale === "cs"
-                ? "Nástroje pro sledování rozpočtu, termínů a poznámek k dodavatelům vše zaznamenáte přímo v deníku."
-                : "Tools to track budget, deadlines and vendor notes everything recorded directly in the diary."}
+                ? "Nástroje pro sledování rozpočtu, důležitých termínů a poznámek k dodavatelům."
+                : "Tools for tracking budget, important deadlines, and notes about vendors."}
             </p>
           </div>
         </div>

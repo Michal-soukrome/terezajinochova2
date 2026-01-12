@@ -20,17 +20,16 @@ export function ProductCard({ product, locale }: ProductCardProps) {
       style={{ cornerShape: "bevel" } as any}
       id="product-card"
     >
-      <div className="h-full flex flex-col md:flex-row">
+      <div className="h-full flex flex-col">
         {/* Image Section */}
-        <div className="">
+        <div className="h-70">
           <TranslatedLink href={`/products/${product.id}`}>
-            <div className="relative overflow-hidden rounded-t-2xl">
+            <div className="relative overflow-hidden rounded-t h-full">
               <Image
                 src={product.image}
                 alt={product.names[locale as keyof typeof product.names]}
-                width={192}
-                height={192}
-                className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                fill
+                className="object-cover"
                 priority={false}
               />
               {/* Overlay gradient */}
