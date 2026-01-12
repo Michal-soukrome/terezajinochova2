@@ -33,7 +33,10 @@ export async function POST(request: NextRequest) {
       };
       sessionConfig.shipping_options = [
         {
-          shipping_rate: process.env.STRIPE_PACKETA_SHIPPING_RATE!,
+          shipping_rate: process.env.STRIPE_PACKETA_PICKUP_RATE!, // Zásilkovna - výdejní místo: 89 CZK
+        },
+        {
+          shipping_rate: process.env.STRIPE_PACKETA_DELIVERY_RATE!, // Zásilkovna - doručení na adresu: 129 CZK
         },
       ];
     }
