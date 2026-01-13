@@ -112,10 +112,11 @@ export default function AboutMeContent({ locale }: AboutMeContentProps) {
       {/* Personal Story Section Part 1 */}
       <FullHeightSection
         title={locale === "cs" ? "O mně" : "About Me"}
-        imageUrl="/assets/image1.webp"
+        imageUrl="/assets/tereza/tj.jpg"
         description={
           locale === "cs" ? PERSONAL_STORY_CS_PART1 : PERSONAL_STORY_EN_PART1
         }
+        imagePosition="object-top"
       />
 
       {/* Personal Story Section Part 2 */}
