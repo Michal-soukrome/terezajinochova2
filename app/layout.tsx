@@ -128,6 +128,11 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Packeta Widget */}
+        <script
+          src="https://widget.packeta.com/v6/www/js/library.js"
+          async
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

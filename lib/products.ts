@@ -155,7 +155,7 @@ export const PRODUCTS: Record<string, Product> = {
     },
 
     priceCZK: 1500, // 100 CZK for testing
-    requiresShipping: false, // No shipping for test product
+    requiresShipping: false, // shipping for test product
     image: "/assets/cover.png",
     gallery: ["/assets/cover.png"],
     additionalImages: [],

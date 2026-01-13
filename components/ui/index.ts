@@ -6,5 +6,6 @@ export { Badge } from "./Badge";
 export { LanguageSwitcher } from "./LanguageSwitcher";
 export { BuyButton } from "./BuyButton";
 export { Divider } from "./Divider";
+export { PacketaPickerButton } from "./PacketaPickerButton";
 // Default export for Button (most commonly imported as default)
 export { default } from "./Button";
