@@ -208,8 +208,8 @@ export default function WeddingDetail({ wedding, locale }: WeddingDetailProps) {
         <div className=" p-8 text-sm text-gray-600 space-y-3 font-serif">
           <p>
             {locale === "cs"
-              ? `Za zachycení těchto krásných momentů děkuji ${photographerText} `
-              : `I thank the photographer `}
+              ? `Za zachycení těchto krásných momentů děkuji ${photographerText}: `
+              : `I thank the photographer: `}
             <span className="font-semibold">{wedding.photographerName}</span>.
           </p>
           {wedding.coordinatedByAgency && (
