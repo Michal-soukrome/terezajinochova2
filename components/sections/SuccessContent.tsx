@@ -39,6 +39,13 @@ interface SessionData {
     amount_total?: number;
   }>;
   created: number;
+  metadata?: {
+    packeta_point_id?: string;
+    packeta_point_name?: string;
+    packeta_point_address?: string;
+    delivery_method?: string;
+  };
+  shipping_cost?: number;
 }
 
 const containerVariants = {
@@ -400,51 +407,92 @@ export default function SuccessContent() {
               (sessionData as any).shipping?.address) && (
               <div className="py-2">
                 <p className="text-gray-600 mb-2">
-                  {locale === "cs" ? "Dodací adresa" : "Shipping Address"}
+                  {sessionData.metadata?.delivery_method === "packeta_pickup"
+                    ? locale === "cs"
+                      ? "Výdejní místo Zásilkovna"
+                      : "Packeta Pickup Point"
+                    : locale === "cs"
+                      ? "Dodací adresa"
+                      : "Shipping Address"}
                 </p>
-                <div className="text-gray-900 text-sm space-y-1">
-                  {(sessionData.shipping_details?.name ||
-                    (sessionData as any).shipping?.name) && (
-                    <p className="font-medium">
-                      {sessionData.shipping_details?.name ||
-                        (sessionData as any).shipping?.name}
+                {sessionData.metadata?.packeta_point_name ? (
+                  <div className="text-gray-900 text-sm space-y-1 bg-blue-50 p-3 rounded border border-blue-200">
+                    <p className="font-medium flex items-center gap-2">
+                      <svg
+                        className="w-4 h-4 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                      {sessionData.metadata.packeta_point_name}
                     </p>
-                  )}
-                  {(sessionData.shipping_details?.address?.line1 ||
-                    (sessionData as any).shipping?.address?.line1) && (
-                    <p>
-                      {sessionData.shipping_details?.address?.line1 ||
-                        (sessionData as any).shipping?.address?.line1}
+                    <p className="text-gray-700">
+                      {sessionData.metadata.packeta_point_address}
                     </p>
-                  )}
-                  {(sessionData.shipping_details?.address?.line2 ||
-                    (sessionData as any).shipping?.address?.line2) && (
-                    <p>
-                      {sessionData.shipping_details?.address?.line2 ||
-                        (sessionData as any).shipping?.address?.line2}
+                    <p className="text-xs text-gray-500">
+                      ID: {sessionData.metadata.packeta_point_id}
                     </p>
-                  )}
-                  {(sessionData.shipping_details?.address?.city ||
-                    (sessionData as any).shipping?.address?.city) && (
-                    <p>
-                      {sessionData.shipping_details?.address?.city ||
-                        (sessionData as any).shipping?.address?.city}
-                      {(sessionData.shipping_details?.address?.postal_code ||
-                        (sessionData as any).shipping?.address?.postal_code) &&
-                        `, ${
-                          sessionData.shipping_details?.address?.postal_code ||
-                          (sessionData as any).shipping?.address?.postal_code
-                        }`}
-                    </p>
-                  )}
-                  {(sessionData.shipping_details?.address?.country ||
-                    (sessionData as any).shipping?.address?.country) && (
-                    <p>
-                      {sessionData.shipping_details?.address?.country ||
-                        (sessionData as any).shipping?.address?.country}
-                    </p>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div className="text-gray-900 text-sm space-y-1">
+                    {(sessionData.shipping_details?.name ||
+                      (sessionData as any).shipping?.name) && (
+                      <p className="font-medium">
+                        {sessionData.shipping_details?.name ||
+                          (sessionData as any).shipping?.name}
+                      </p>
+                    )}
+                    {(sessionData.shipping_details?.address?.line1 ||
+                      (sessionData as any).shipping?.address?.line1) && (
+                      <p>
+                        {sessionData.shipping_details?.address?.line1 ||
+                          (sessionData as any).shipping?.address?.line1}
+                      </p>
+                    )}
+                    {(sessionData.shipping_details?.address?.line2 ||
+                      (sessionData as any).shipping?.address?.line2) && (
+                      <p>
+                        {sessionData.shipping_details?.address?.line2 ||
+                          (sessionData as any).shipping?.address?.line2}
+                      </p>
+                    )}
+                    {(sessionData.shipping_details?.address?.city ||
+                      (sessionData as any).shipping?.address?.city) && (
+                      <p>
+                        {sessionData.shipping_details?.address?.city ||
+                          (sessionData as any).shipping?.address?.city}
+                        {(sessionData.shipping_details?.address?.postal_code ||
+                          (sessionData as any).shipping?.address
+                            ?.postal_code) &&
+                          `, ${
+                            sessionData.shipping_details?.address
+                              ?.postal_code ||
+                            (sessionData as any).shipping?.address?.postal_code
+                          }`}
+                      </p>
+                    )}
+                    {(sessionData.shipping_details?.address?.country ||
+                      (sessionData as any).shipping?.address?.country) && (
+                      <p>
+                        {sessionData.shipping_details?.address?.country ||
+                          (sessionData as any).shipping?.address?.country}
+                      </p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>

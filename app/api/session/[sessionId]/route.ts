@@ -44,6 +44,8 @@ export async function GET(
           : null,
       line_items: session.line_items?.data,
       created: session.created,
+      metadata: session.metadata,
+      shipping_cost: session.total_details?.amount_shipping,
     });
 
     // Add cache-control headers for paid sessions

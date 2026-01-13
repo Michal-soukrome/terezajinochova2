@@ -8,10 +8,24 @@ export async function POST(request: NextRequest) {
   try {
     const { productId, locale, pickupPoint } = await request.json();
 
+    console.log("🛒 Checkout request:", {
+      productId,
+      locale,
+      hasPickupPoint: !!pickupPoint,
+    });
+
     const product = PRODUCTS[productId as keyof typeof PRODUCTS];
     if (!product) {
+      console.error("❌ Product not found:", productId);
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
+
+    console.log(
+      "✅ Product found:",
+      product.names.cs,
+      "| Shipping required:",
+      product.requiresShipping
+    );
 
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
@@ -35,20 +49,27 @@ export async function POST(request: NextRequest) {
             shipping_rate: process.env.STRIPE_PACKETA_PICKUP_RATE!, // Zásilkovna - výdejní místo: 89 CZK
           },
         ];
-        
-        // Store pickup point details in metadata
-        sessionConfig.metadata = {
+
+        // Store pickup point details in metadata (both session and payment intent)
+        const metadata = {
           packeta_point_id: pickupPoint.id,
           packeta_point_name: pickupPoint.name,
           packeta_point_address: `${pickupPoint.street}, ${pickupPoint.city}, ${pickupPoint.zip}`,
-          delivery_method: 'packeta_pickup',
+          delivery_method: "packeta_pickup",
+        };
+
+        sessionConfig.metadata = metadata;
+
+        // Also add metadata to payment intent so it shows in Stripe dashboard
+        sessionConfig.payment_intent_data = {
+          metadata: metadata,
         };
 
         // Collect shipping address but with note about pickup
         sessionConfig.shipping_address_collection = {
           allowed_countries: ["CZ", "SK"],
         };
-        
+
         // Add custom field to show selected pickup point
         sessionConfig.custom_text = {
           shipping_address: {
@@ -71,13 +92,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    console.log("📋 Session config:", JSON.stringify(sessionConfig, null, 2));
+
     const session = await stripe.checkout.sessions.create(sessionConfig);
 
+    console.log("✅ Checkout session created:", session.id);
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error("Error creating checkout session:", error);
+    console.error("❌ Error creating checkout session:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      {
+        error: "Internal server error",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

@@ -21,12 +21,14 @@ export function BuyButton({
   roundedFull,
 }: BuyButtonProps) {
   const [loading, setLoading] = useState(false);
-  const [selectedPickup, setSelectedPickup] = useState<PacketaPickupPoint | null>(null);
-  
+  const [selectedPickup, setSelectedPickup] =
+    useState<PacketaPickupPoint | null>(null);
+
   const product = PRODUCTS[productId as keyof typeof PRODUCTS];
   const requiresShipping = product?.requiresShipping;
 
   const handlePickupSelected = (pickup: PacketaPickupPoint) => {
+    console.log("📦 Pickup point selected:", pickup);
     setSelectedPickup(pickup);
     // Automatically proceed to checkout after pickup selection
     handleCheckout(pickup);
@@ -34,22 +36,32 @@ export function BuyButton({
 
   const handleCheckout = async (pickup?: PacketaPickupPoint) => {
     setLoading(true);
+    console.log("🚀 Starting checkout with:", {
+      productId,
+      locale,
+      pickup,
+      selectedPickup,
+    });
     try {
+      const payload = {
+        productId,
+        locale,
+        pickupPoint: pickup || selectedPickup,
+      };
+      console.log("📤 Sending to /api/checkout:", payload);
+
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
-          productId, 
-          locale,
-          pickupPoint: pickup || selectedPickup
-        }),
+        body: JSON.stringify(payload),
       });
       const { url } = await response.json();
+      console.log("✅ Checkout response:", url);
       if (url) window.location.href = url;
     } catch (error) {
-      console.error("Error:", error);
+      console.error("❌ Checkout error:", error);
     } finally {
       setLoading(false);
     }
