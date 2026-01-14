@@ -23,7 +23,7 @@ export function HeroSection({ title, description, locale }: HeroSectionProps) {
           transition={{ duration: 1.5, ease: "easeOut" }}
         >
           <Image
-            src="/assets/diary/DSC05217.jpg"
+            src="/assets/diary/basic0.jpg"
             alt="Wedding planning background"
             fill
             className="object-cover object-center"
