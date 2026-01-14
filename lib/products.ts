@@ -61,17 +61,19 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 84900,
     requiresShipping: true,
-    image: "/assets/diary/DSC05217.jpg",
+    image: "/assets/diary/basic0.jpg",
 
-    gallery: [
-      "/assets/cover.png",
-      "/assets/cover-1.JPG",
-      "/assets/cover-2.jpg",
-    ],
+    gallery: [],
     additionalImages: [
-      "/assets/diary/DSC05284.jpg",
-      "/assets/diary/DSC05324.jpg",
-      "/assets/diary/DSC05339.jpg",
+      "/assets/diary/basic0.jpg",
+      "/assets/diary/basic1.jpg",
+      "/assets/diary/basic2.jpg",
+      "/assets/diary/basic3.jpg",
+      "/assets/diary/basic4.jpg",
+      "/assets/diary/basic5.jpg",
+      "/assets/diary/basic6.jpg",
+      "/assets/diary/basic7.jpg",
+      "/assets/diary/basic8.jpg",
     ],
     highlights: {
       cs: [
@@ -109,12 +111,8 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 94900,
     requiresShipping: true,
-    image: "/assets/cover-1.JPG",
-    gallery: [
-      "/assets/cover.png",
-      "/assets/cover-1.JPG",
-      "/assets/cover-2.jpg",
-    ],
+    image: "/assets/diary/premium.jpg",
+    gallery: [],
     additionalImages: [
       "/assets/diary/premium1.png",
       "/assets/diary/premium2.png",

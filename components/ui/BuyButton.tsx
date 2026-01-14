@@ -84,7 +84,7 @@ export function BuyButton({
       <PacketaPickerButton
         locale={locale}
         onPickupSelected={handlePickupSelected}
-        className={className}
+        className="flex-1 btn btn-primary"
       >
         {loading ? (locale === "cs" ? "Strpení..." : "Loading...") : label}
       </PacketaPickerButton>

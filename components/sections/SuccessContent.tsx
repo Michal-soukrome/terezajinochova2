@@ -350,6 +350,20 @@ export default function SuccessContent() {
                 </p>
               </div>
             ))}
+
+            {sessionData.shipping_cost && sessionData.shipping_cost > 0 && (
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="font-medium text-gray-900">
+                  {locale === "cs" ? "Doprava" : "Shipping"}
+                </span>
+                <span className="font-semibold text-gray-900">
+                  {formatCurrency(
+                    sessionData.shipping_cost,
+                    sessionData.currency
+                  )}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="border-t border-gray-200 pt-4 flex justify-between items-center">
@@ -403,7 +417,8 @@ export default function SuccessContent() {
               </div>
             )}
 
-            {(sessionData.shipping_details?.address ||
+            {(sessionData.metadata?.delivery_method === "packeta_pickup" ||
+              sessionData.shipping_details?.address ||
               (sessionData as any).shipping?.address) && (
               <div className="py-2">
                 <p className="text-gray-600 mb-2">
@@ -416,7 +431,7 @@ export default function SuccessContent() {
                       : "Shipping Address"}
                 </p>
                 {sessionData.metadata?.packeta_point_name ? (
-                  <div className="text-gray-900 text-sm space-y-1 bg-blue-50 p-3 rounded border border-blue-200">
+                  <div className="text-gray-900 text-sm space-y-1 ">
                     <p className="font-medium flex items-center gap-2">
                       <svg
                         className="w-4 h-4 text-blue-600"
@@ -514,24 +529,6 @@ export default function SuccessContent() {
             <Button variant="primary" className="btn btn-primary">
               {locale === "cs" ? "Zpět na úvodní stránku" : "Back to Homepage"}
             </Button>
-          </TranslatedLink>
-        </motion.div>
-
-        {/* Help Section */}
-        <motion.div
-          variants={itemVariants}
-          className="text-center bg-accent-1 rounded-lg p-6 border border-accent-1"
-        >
-          <p className="text-gray-700 mb-3">
-            {locale === "cs"
-              ? "Máte otázky ohledně vaší objednávky?"
-              : "Have questions about your order?"}
-          </p>
-          <TranslatedLink
-            href="/contact"
-            className="text-accent-1-contrast hover:underline font-medium"
-          >
-            {locale === "cs" ? "Kontaktujte nás" : "Contact Us"}
           </TranslatedLink>
         </motion.div>
       </div>

@@ -65,15 +65,15 @@ export async function POST(request: NextRequest) {
           metadata: metadata,
         };
 
-        // Collect shipping address but with note about pickup
-        sessionConfig.shipping_address_collection = {
-          allowed_countries: ["CZ", "SK"],
+        // Collect phone number for pickup notifications (no shipping address needed for pickup)
+        sessionConfig.phone_number_collection = {
+          enabled: true,
         };
 
-        // Add custom field to show selected pickup point
+        // Add custom text to display selected pickup point
         sessionConfig.custom_text = {
-          shipping_address: {
-            message: `Výdejní místo: ${pickupPoint.name}, ${pickupPoint.street}, ${pickupPoint.city}`,
+          submit: {
+            message: `${locale === "cs" ? "Výdejní místo" : "Pickup point"}: ${pickupPoint.name}, ${pickupPoint.street}, ${pickupPoint.city}`,
           },
         };
       } else {

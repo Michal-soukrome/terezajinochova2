@@ -447,9 +447,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <Divider icon={Heart} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          <div className="flex flex-wrap gap-5 md:gap-10 ">
             {CONTENT[locale].why.list.map((item, i) => (
-              <div key={i} className="p-5">
+              <div key={i} className="p-2">
                 <div className="flex items-center gap-2">
                   <div className="flex-shrink-0">
                     <Check className="w-4 h-4 text-accent-1-contrast" />
