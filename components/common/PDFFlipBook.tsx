@@ -2,12 +2,6 @@
 
 import { useEffect, useRef, useState, useCallback, forwardRef } from "react";
 import HTMLFlipBook from "react-pageflip";
-import * as pdfjsLib from "pdfjs-dist";
-
-// Configure PDF.js worker - using unpkg CDN
-if (typeof window !== "undefined") {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
-}
 
 interface PageProps {
   pageNumber: number;
@@ -31,6 +25,7 @@ const Page = forwardRef<HTMLDivElement, PageProps>(
 Page.displayName = "Page";
 
 interface PDFFlipBookProps {
+  locale: string;
   pdfUrl: string;
   width?: number;
   height?: number;
@@ -38,6 +33,7 @@ interface PDFFlipBookProps {
 }
 
 export default function PDFFlipBook({
+  locale,
   pdfUrl,
   width = 600,
   height = 800,
@@ -107,6 +103,12 @@ export default function PDFFlipBook({
       try {
         setLoading(true);
         setError(null);
+
+        // Dynamically import PDF.js to avoid SSR issues
+        const pdfjsLib = await import("pdfjs-dist");
+
+        // Configure PDF.js worker - using unpkg CDN
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
         // Load the PDF document
         const loadingTask = pdfjsLib.getDocument(pdfUrl);
@@ -180,7 +182,11 @@ export default function PDFFlipBook({
       >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading PDF...</p>
+          <p className="text-gray-600">
+            {locale === "cs"
+              ? "Načítání náhledu..."
+              : "Loading preview..."}{" "}
+          </p>
         </div>
       </div>
     );

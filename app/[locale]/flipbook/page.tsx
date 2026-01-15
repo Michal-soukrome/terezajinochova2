@@ -1,6 +1,13 @@
 import { PDFFlipBook } from "@/components/common";
 
-export default function FlipBookPage() {
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function FlipBookPage({ params }: Props) {
+  const { locale } = await params;
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100 py-12 px-4">
       <div className="max-w-7xl mx-auto">
@@ -13,6 +20,7 @@ export default function FlipBookPage() {
         </p>
 
         <PDFFlipBook
+          locale={locale}
           pdfUrl="/assets/merged.pdf"
           width={600}
           height={800}

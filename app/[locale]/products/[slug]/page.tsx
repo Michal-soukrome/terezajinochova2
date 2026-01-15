@@ -332,6 +332,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 className="flex justify-center items-center w-full px-5 py-5"
               >
                 <PDFFlipBook
+                  locale={locale}
                   pdfUrl="/assets/merged.pdf"
                   width={600}
                   height={800}
