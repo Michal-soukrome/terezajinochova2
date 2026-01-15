@@ -57,6 +57,14 @@ export default function ProductGridSection({
           </div>
         ))}
       </div>
+
+      <div className="text-center mt-8">
+        <p className="text-sm text-gray-700">
+          {locale === "cs"
+            ? "📍 Kliknutím na nákupní tlačítko otevřete mapu Zásilkovny pro výběr místa"
+            : "📍 Click the buy button to open Packeta map and select pickup location"}
+        </p>
+      </div>
     </section>
   );
 }

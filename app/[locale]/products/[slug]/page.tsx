@@ -251,6 +251,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <p className="text-sm text-gray-500 text-center">
               {locale === "cs" ? "🔒 Bezpečná platba" : "🔒 Secure payment"}
             </p>
+            <p className="text-sm text-gray-500 text-center">
+              {locale === "cs"
+                ? "📍 Kliknutím otevřete mapu Zásilkovny pro výběr místa"
+                : "📍 Click to open Packeta map and select pickup location"}
+            </p>
           </div>
 
           {/* Features */}
