@@ -144,7 +144,7 @@ export const PRODUCTS: Record<string, Product> = {
     },
     stripePriceId: process.env.STRIPE_PRICE_TEST!,
     names: {
-      cs: "Test Product",
+      cs: "Testovací produkt",
       en: "Test Product",
     },
     descriptions: {
@@ -167,6 +167,43 @@ export const PRODUCTS: Record<string, Product> = {
         "Testing purposes only",
         "No shipping required",
         "Low price for testing",
+      ],
+    },
+  },
+
+  "test-shipping": {
+    id: "test-shipping",
+    slugs: {
+      cs: "test-doprava",
+      en: "test-shipping",
+    },
+    stripePriceId: process.env.STRIPE_PRICE_TEST_SHIPPING!,
+    names: {
+      cs: "Testovací produkt s dopravou",
+      en: "Test Product with Shipping",
+    },
+    descriptions: {
+      cs: "Testovací produkt pro ověření kompletního procesu nákupu včetně Zásilkovny.",
+      en: "Test product for verifying the complete purchase process including Packeta.",
+    },
+
+    priceCZK: 1500, // 15 CZK for testing
+    requiresShipping: true,
+    image: "/assets/cover.png",
+    gallery: ["/assets/diary/basic0.jpg"],
+    additionalImages: [],
+    highlights: {
+      cs: [
+        "Testování kompletního nákupního procesu",
+        "Včetně výběru Packeta výdejny",
+        "Ověření dopravy a platby",
+        "Nízká cena pro testovací účely",
+      ],
+      en: [
+        "Testing complete purchase process",
+        "Including Packeta pickup point selection",
+        "Verifying shipping and payment",
+        "Low price for testing purposes",
       ],
     },
   },
