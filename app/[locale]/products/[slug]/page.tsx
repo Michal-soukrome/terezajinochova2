@@ -318,24 +318,24 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
           {/* Flipbook Container with enhanced styling */}
           <div className="relative">
-            {/* Decorative corner elements */}
-            <div className="absolute -top-3 -left-3 w-20 h-20 border-t-4 border-l-4 border-accent-1 rounded-tl-2xl opacity-50" />
-            <div className="absolute -top-3 -right-3 w-20 h-20 border-t-4 border-r-4 border-accent-1 rounded-tr-2xl opacity-50" />
-            <div className="absolute -bottom-3 -left-3 w-20 h-20 border-b-4 border-l-4 border-accent-1 rounded-bl-2xl opacity-50" />
-            <div className="absolute -bottom-3 -right-3 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
-
             {/* Main container with shadow and border */}
-            <div className="relative rounded-2xl  overflow-hidden">
+            <div className="relative rounded-2xl overflow-hidden w-full max-w-4xl mx-auto">
+              {/* Decorative corner elements */}
+              <div className="hidden md:absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-accent-1 rounded-tl-2xl opacity-50" />
+              <div className="hidden md:absolute top-0 right-0 w-20 h-20 border-t-4 border-r-4 border-accent-1 rounded-tr-2xl opacity-50" />
+              <div className="hidden md:absolute bottom-0 left-0 w-20 h-20 border-b-4 border-l-4 border-accent-1 rounded-bl-2xl opacity-50" />
+              <div className="hidden md:absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
+
               {/* PDF Flip Book */}
               <div
                 id="flipbook-container"
-                className="flex justify-center items-center w-full py-8"
+                className="flex justify-center items-center w-full px-5 py-5"
               >
                 <PDFFlipBook
                   pdfUrl="/assets/merged.pdf"
                   width={600}
                   height={800}
-                  className="w-full"
+                  className="w-full max-w-full"
                 />
               </div>
             </div>
