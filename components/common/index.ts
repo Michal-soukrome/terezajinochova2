@@ -6,3 +6,4 @@ export { SocialMediaIcons } from "./SocialMediaIcons";
 export { GalleryHeader } from "./GalleryHeader";
 export { ProductImageGallery } from "./ProductImageGallery";
 export { Lightbox } from "./Lightbox";
+export { default as PDFFlipBook } from "./PDFFlipBook";

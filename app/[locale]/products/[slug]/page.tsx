@@ -12,7 +12,7 @@ import { BuyButton, Divider } from "@/components/ui";
 import { Badge } from "@/components/ui";
 import { AnimatedHeader } from "@/components/layout";
 import BenefitsSection from "@/components/common/BenefitsSection";
-import { ProductImageGallery } from "@/components/common";
+import { ProductImageGallery, PDFFlipBook } from "@/components/common";
 import { Check, ChessKing, Star, Heart } from "lucide-react";
 
 const WHY_LIST_CS = [
@@ -309,6 +309,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
               {" "}
               {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
             </h3>
+            <p className="text-gray-700 leading-relaxed font-medium">
+              {locale === "cs"
+                ? "K pohybu mezi stránkami využijte navigační tlačítka níže nebo tažení stránek."
+                : "Use the navigation buttons below or drag the pages to move between them."}
+            </p>
           </div>
 
           {/* Flipbook Container with enhanced styling */}
@@ -320,47 +325,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="absolute -bottom-3 -right-3 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
 
             {/* Main container with shadow and border */}
-            <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-              {/* Optional: Loading indicator overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-1/50 to-accent-1/40 flex items-center justify-center z-0">
-                <div className="text-center">
-                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-accent-1 border-t-transparent mb-4"></div>
-                  <p className="text-gray-600 font-medium">
-                    {locale === "cs" ? "Načítání..." : "Loading..."}
-                  </p>
-                </div>
-              </div>
-
-              {/* Iframe container */}
+            <div className="relative rounded-2xl  overflow-hidden">
+              {/* PDF Flip Book */}
               <div
                 id="flipbook-container"
-                className="relative"
-                style={{
-                  paddingTop: "max(60%, 324px)",
-                  width: "100%",
-                  height: 0,
-                  minHeight: "600px",
-                }}
+                className="flex justify-center items-center w-full py-8"
               >
-                <iframe
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: "100%",
-                    height: "100%",
-                    border: "none",
-                  }}
-                  src="https://online.fliphtml5.com/naplh/kxmh/"
-                  seamless={true}
-                  scrolling="no"
-                  frameBorder="0"
-                  allowFullScreen={true}
-                  loading="lazy"
-                  title={
-                    locale === "cs" ? "Interaktivní kniha" : "Interactive Book"
-                  }
-                  className="z-10"
+                <PDFFlipBook
+                  pdfUrl="/assets/merged.pdf"
+                  width={600}
+                  height={800}
+                  className="w-full"
                 />
               </div>
             </div>
