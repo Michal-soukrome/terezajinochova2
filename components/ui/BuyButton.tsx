@@ -86,7 +86,11 @@ export function BuyButton({
         onPickupSelected={handlePickupSelected}
         className="w-full flex-1 btn btn-primary"
       >
-        {loading ? (locale === "cs" ? "Strpení..." : "Loading...") : label}
+        {loading
+          ? locale === "cs"
+            ? "Strpení, načítám Zásilkovnu..."
+            : "Loading Packeta shipping..."
+          : label}
       </PacketaPickerButton>
     );
   }
@@ -101,7 +105,11 @@ export function BuyButton({
       roundedFull={roundedFull}
       aria-busy={loading}
     >
-      {loading ? (locale === "cs" ? "Strpení..." : "Loading...") : label}
+      {loading
+        ? locale === "cs"
+          ? "Strpení, načítám Zásilkovnu..."
+          : "Loading Packeta shipping..."
+        : label}
     </Button>
   );
 }
