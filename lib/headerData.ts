@@ -78,14 +78,14 @@ export const NAV: Record<string, Record<string, NavItem>> = {
     },
     aboutMe: {
       href: "/about-me",
-      label: "About Me",
+      label: "About me",
       title: "Go to about me page",
       description: "Read about me",
       icon: "Asterisk",
     },
     gallery: {
       href: "/gallery",
-      label: "Wedding Stories",
+      label: "Wedding stories",
       title: "Go to wedding stories",
       description: "Browse wedding stories and inspiration",
       icon: "Camera",

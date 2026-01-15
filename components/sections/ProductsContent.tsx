@@ -59,10 +59,10 @@ const itemVariants = {
 
 export default function ProductsContent({ locale }: ProductsContentProps) {
   const t = {
-    title: locale === "cs" ? "Moje svatební deníky" : "My Wedding Planners",
+    title: locale === "cs" ? "Mé svatební deníky" : "My Wedding planners",
     subtitle:
       locale === "cs"
-        ? "Deník, který vám pomůže plánovat každý krok svatby\n\nod rozpočtu po seznam hostů."
+        ? "Deník, který vám pomůže plánovat každý krok svatby od prvního rozpočtu až po závěrečné detaily."
         : "A planner that guides you through every step of your wedding\n\nfrom budget to guest list.",
     featuresTitle:
       locale === "cs"

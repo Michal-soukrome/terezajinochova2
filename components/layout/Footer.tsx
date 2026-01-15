@@ -34,7 +34,7 @@ export function Footer({ locale }: FooterProps) {
                 <div className="text-gray-700 text-sm">
                   <a
                     href="mailto:svatebnipribehy@gmail.com"
-                    className="!lowercase hover:text-accent-1-contrast transition-colors duration-200"
+                    className="lowercase hover:text-accent-1-contrast transition-colors duration-200"
                   >
                     svatebnipribehy@gmail.com{" "}
                   </a>
@@ -54,28 +54,28 @@ export function Footer({ locale }: FooterProps) {
                 {locale === "cs" ? "Produkty" : "Products"}
               </div>
 
-              <nav className="space-y-3">
+              <nav className="space-y-3" id="footer-nav-links">
                 <TranslatedLink
                   href="/products/zakladni"
                   className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
-                    ? "Svatební Deník – Základní"
-                    : "Wedding Diary – Basic"}
+                    ? "Svatební deník – základní"
+                    : "Wedding diary – basic"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products/premium"
                   className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
                   {locale === "cs"
-                    ? "Svatební Deník – Prémiový"
-                    : "Wedding Diary – Premium"}
+                    ? "Svatební deník – prémiový"
+                    : "Wedding diary – premium"}
                 </TranslatedLink>
                 <TranslatedLink
                   href="/products"
                   className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
                 >
-                  {locale === "cs" ? "Všechny produkty" : "All Products"}
+                  {locale === "cs" ? "Všechny produkty" : "All products"}
                 </TranslatedLink>
               </nav>
             </div>
@@ -86,14 +86,14 @@ export function Footer({ locale }: FooterProps) {
                 {locale === "cs" ? "Navigace" : "Navigation"}
               </div>
 
-              <nav className="space-y-3">
+              <nav className="space-y-3" id="footer-nav-links">
                 {Object.values(NAV[locale])
                   .filter((item) => item.href !== "/products")
                   .map((item) => (
                     <TranslatedLink
                       key={item.href}
                       href={item.href}
-                      className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200"
+                      className="w-fit block text-gray-700 hover:text-accent-1-contrast text-sm transition-colors duration-200 "
                     >
                       {item.label}
                     </TranslatedLink>
@@ -121,7 +121,7 @@ export function Footer({ locale }: FooterProps) {
               <div className="text-xs text-gray-600">
                 &copy; {new Date().getFullYear()}{" "}
                 <span className="font-heading">
-                  {locale === "cs" ? "Svatební deník" : "Wedding Todoist"}
+                  {locale === "cs" ? "Svatební deník" : "Wedding diary"}
                 </span>
                 <span className="mx-2">|</span>
                 <span className="italic">Tereza Jinochová</span>
