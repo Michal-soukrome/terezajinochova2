@@ -14,6 +14,28 @@ export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
 
+  // Password protection
+  if (process.env.SITE_PASSWORD) {
+    // Allow access to password page and auth API
+    if (pathname === "/password" || pathname.startsWith("/api/auth")) {
+      // Continue to i18n logic below
+    } else {
+      // Check if authenticated via cookie
+      const authenticated = request.cookies.get("authenticated")?.value;
+      if (authenticated !== "true") {
+        // Redirect to password page
+        const passwordUrl = new URL("/password", request.url);
+        passwordUrl.searchParams.set("redirect", pathname);
+        return NextResponse.redirect(passwordUrl);
+      }
+    }
+  }
+
+  // Allow direct access to password page without i18n redirection
+  if (pathname === "/password") {
+    return NextResponse.next();
+  }
+
   // Pokud jde o assety / API / _next, nech průchod nezměněný
   const isPublicFile =
     pathname.startsWith("/api/") ||

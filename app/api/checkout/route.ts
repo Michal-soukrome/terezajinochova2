@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       mode: "payment",
       success_url: `${request.nextUrl.origin}/${locale}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}/${locale}/cancel?session_id={CHECKOUT_SESSION_ID}`,
+      billing_address_collection: "required",
     };
 
     // Only add shipping for products that require it
