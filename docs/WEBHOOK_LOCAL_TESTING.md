@@ -78,6 +78,11 @@ npm run dev
 
 **Check your email!** Both customer and admin should receive emails! 📧
 
+**Note:** If invoice creation is enabled, you'll also receive:
+
+- Stripe's invoice email (English) with PDF link
+- Your custom emails (Czech) will also include the invoice PDF link
+
 ---
 
 ### Option 2: Use a Tunnel Service (ngrok, localtunnel)

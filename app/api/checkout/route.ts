@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       "✅ Product found:",
       product.names.cs,
       "| Shipping required:",
-      product.requiresShipping
+      product.requiresShipping,
     );
 
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
@@ -39,6 +39,9 @@ export async function POST(request: NextRequest) {
       success_url: `${request.nextUrl.origin}/${locale}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${request.nextUrl.origin}/${locale}/cancel?session_id={CHECKOUT_SESSION_ID}`,
       billing_address_collection: "required",
+      invoice_creation: {
+        enabled: true,
+      },
     };
 
     // Only add shipping for products that require it
@@ -106,7 +109,7 @@ export async function POST(request: NextRequest) {
         error: "Internal server error",
         message: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

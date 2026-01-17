@@ -71,7 +71,15 @@ Kód
 WEBHOOK_SECRET=your_local_webhook_secret
 This file is optional and never committed.
 
-🔐 Security Best Practices
+� Stripe Features
+Your checkout automatically includes:
+
+- Invoice creation (professional PDF invoices)
+- Automatic Packeta shipment creation
+- Custom email notifications (Czech + English)
+- Pickup point selection and storage
+
+�🔐 Security Best Practices
 ✅ DO:
 Keep .env.development and .env.production in git (team needs them)
 

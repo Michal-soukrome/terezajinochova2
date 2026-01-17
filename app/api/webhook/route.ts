@@ -165,16 +165,18 @@ export async function POST(request: NextRequest) {
         // Retrieve invoice PDF URL from Stripe (if invoice was generated)
         let invoicePdfUrl: string | undefined;
         try {
-          // List invoices for this customer/session
-          const invoices = await stripe.invoices.list({
-            customer: fullSession.customer as string,
-            limit: 1,
-          });
+          // Get invoice directly from session (more reliable than listing)
+          if (fullSession.invoice) {
+            const invoiceId =
+              typeof fullSession.invoice === "string"
+                ? fullSession.invoice
+                : fullSession.invoice.id;
 
-          if (invoices.data.length > 0) {
-            const invoice = invoices.data[0];
+            const invoice = await stripe.invoices.retrieve(invoiceId);
             invoicePdfUrl = invoice.hosted_invoice_url || undefined;
             console.log("📄 Found invoice PDF URL:", invoicePdfUrl);
+          } else {
+            console.log("ℹ️ No invoice attached to this session");
           }
         } catch (invoiceError) {
           console.error("❌ Failed to retrieve invoice:", invoiceError);

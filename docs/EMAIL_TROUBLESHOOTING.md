@@ -131,6 +131,24 @@ Go to Stripe Dashboard → Webhooks → Your production webhook → Send test we
 - Look for earlier errors in webhook processing
 - Verify the webhook handler is calling `sendOrderEmails()`
 
+#### Issue: "Invoice PDF link missing in emails"
+
+**Solution:**
+
+- Check if `invoice_creation: { enabled: true }` is set in checkout config
+- Look for log: `📄 Found invoice PDF URL: ...` in webhook logs
+- Verify invoice was created in Stripe Dashboard → Invoices
+- Invoice may take a few seconds to generate (usually immediate though)
+
+#### Issue: "Customer got 2 emails about invoice"
+
+**Solution:**
+
+- This is expected behavior:
+  - Stripe sends its default invoice email (English) with PDF
+  - Your custom email (Czech) also includes the invoice link
+- Both emails are intentional for better customer experience
+
 ---
 
 ## 🔍 Debugging Steps

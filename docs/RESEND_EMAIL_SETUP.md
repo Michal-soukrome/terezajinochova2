@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
   if (!email) {
     return NextResponse.json(
       { error: "Email parameter required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -91,6 +91,7 @@ Test it by visiting: `http://localhost:3000/api/test-email?email=your@email.com`
 - Itemized list of products
 - Shipping/pickup details
 - Total amount paid
+- **Invoice PDF download button** (if available)
 - What happens next (timeline)
 - Contact information
 
@@ -100,22 +101,25 @@ Test it by visiting: `http://localhost:3000/api/test-email?email=your@email.com`
 - Customer details
 - Complete order information
 - Shipping/pickup address
+- **Invoice PDF link** (if available)
 - Action items checklist
 - Timestamp
 
 ## 🔄 How It Works
 
 1. **Customer completes checkout** on Stripe
-2. **Stripe sends webhook** to `/api/webhook`
-3. **Webhook handler**:
+2. **Stripe creates invoice automatically** (if enabled)
+3. **Stripe sends webhook** to `/api/webhook`
+4. **Webhook handler**:
    - Verifies Stripe signature
    - Extracts order details
+   - Retrieves invoice PDF URL from Stripe
    - Calls `sendOrderEmails()`
-4. **Email service**:
-   - Renders HTML templates
+5. **Email service**:
+   - Renders HTML templates with invoice link
    - Sends email to customer via Resend
    - Sends notification to admin via Resend
-5. **Logs results** in console
+6. **Logs results** in console
 
 ## 🛡️ Security & Best Practices
 

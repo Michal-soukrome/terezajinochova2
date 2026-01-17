@@ -192,7 +192,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Test product for verifying the complete purchase process including Packeta.",
     },
 
-    priceCZK: 1500, // 15 CZK for testing
+    priceCZK: 10400, // 15 + 89 CZK shipping for testing
     requiresShipping: true,
     weight: 0.3, // 300g test package
     image: "/assets/cover.png",
@@ -223,7 +223,7 @@ import { Locale } from "@/lib/i18n";
 
 export function getProductByLocalizedSlug(
   locale: Locale,
-  slug: string
+  slug: string,
 ): Product | undefined {
   return Object.values(PRODUCTS).find((p) => p.slugs[locale] === slug);
 }

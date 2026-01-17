@@ -7,9 +7,10 @@ Your website now has **complete Packeta API integration**:
 - ✅ Packeta pickup point selection via widget
 - ✅ Pickup point details stored in Stripe metadata
 - ✅ Order confirmation emails with Packeta details
-- ✅ **NEW:** Automatic shipment creation in Packeta's system
-- ✅ **NEW:** Immediate label generation capability
-- ✅ **NEW:** Test endpoint for verification
+- ✅ Automatic shipment creation in Packeta's system
+- ✅ Immediate label generation capability
+- ✅ Test endpoint for verification
+- ✅ **NEW:** Stripe invoice integration with PDF links
 
 ## Setup Required
 
