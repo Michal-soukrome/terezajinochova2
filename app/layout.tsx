@@ -3,12 +3,12 @@ import "./globals.css";
 import { BackToTop } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "Svatební deník | Plánovačka svateb od zásnub až k oltáři",
+  title:
+    "Svatební deník | Naplánujte si svůj svatební den s lehkostí a radostí",
   description:
-    "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky. Od zásnub až k oltáři.",
+    "Plánování svatby je krásná, ale zároveň náročná cesta. Svatební deník vám pomůže udržet přehled, zachytit důležité okamžiky a projít celými přípravami s lehkostí a radostí.",
   keywords: [
     "svatební deník",
-    "plánovačka svateb",
     "svatební organizace",
     "wedding planner",
 
@@ -37,9 +37,10 @@ export const metadata: Metadata = {
     apple: "/assets/favicon/favicon/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Svatební deník | Plánovačka svateb od zásnub až k oltáři",
+    title:
+      "Svatební deník | Naplánujte si svůj svatební den s lehkostí a radostí",
     description:
-      "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
+      "Plánování svatby je krásná, ale zároveň náročná cesta. Svatební deník vám pomůže udržet přehled, zachytit důležité okamžiky a projít celými přípravami s lehkostí a radostí.",
     type: "website",
     siteName: "Svatební příběhy",
     locale: "cs_CZ",
@@ -48,14 +49,16 @@ export const metadata: Metadata = {
         url: "/assets/wedding-diary-preview.jpg",
         width: 1200,
         height: 630,
-        alt: "Svatební deník - plánovačka svateb",
+        alt: "Svatební deník - naplánujte si svůj svatební den s lehkostí a radostí",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Svatební deník | Plánovačka svateb",
-    description: "Elegantní svatební deník pro organizaci svatby od A do Z",
+    title:
+      "Svatební deník | Naplánujte si svůj svatební den s lehkostí a radostí",
+    description:
+      "Plánování svatby je krásná, ale zároveň náročná cesta. Svatební deník vám pomůže udržet přehled, zachytit důležité okamžiky a projít celými přípravami s lehkostí a radostí.",
     images: ["/assets/wedding-diary-preview.jpg"],
   },
   alternates: {
