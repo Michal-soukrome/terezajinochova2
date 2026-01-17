@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "plánovačka svateb",
     "svatební organizace",
     "wedding planner",
-    "svatební deník A5",
+
     "rozpočet svatby",
     "harmonogram svatby",
   ],
@@ -90,7 +90,7 @@ export default function RootLayout({
     description:
       "Elegantní svatební deník pro organizaci svatby od A do Z. Praktický pomocník s prostorem pro poznámky, rozpočet, harmonogram a vzpomínky.",
     url: "https://svatebnipribehy.com",
-    logo: "https://svatebnipribehy.com/assets/logo.png",
+    logo: "https://svatebnipribehy.com/assets/logo/01-2026/logo1.webp",
     founder: {
       "@type": "Person",
       name: "Tereza Jinochová",
@@ -99,9 +99,9 @@ export default function RootLayout({
     },
     offers: {
       "@type": "Product",
-      name: "Svatební deník A5",
+      name: "Svatební deník",
       description:
-        "Svatební deník ve velikosti A5 a s rozsáhlým obsahem (195 stran) vznikl s láskou k detailu a pochopením potřeb každé budoucí nevěsty.",
+        "Svatební deník s rozsáhlým obsahem vznikl s láskou k detailu a pochopením potřeb každé budoucí nevěsty.",
       category: "Wedding Planning Tools",
     },
     sameAs: [
