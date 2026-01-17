@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-email/render": "^2.0.2",
     "@stripe/stripe-js": "^8.4.0",
+    "axios": "^1.13.2",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.554.0",
     "mammoth": "^1.11.0",
@@ -24,13 +25,16 @@
     "react-intersection-observer": "^10.0.0",
     "react-pageflip": "^2.0.3",
     "resend": "^6.7.0",
-    "stripe": "^19.3.1"
+    "soap": "^1.6.3",
+    "stripe": "^19.3.1",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/xml2js": "^0.4.14",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",

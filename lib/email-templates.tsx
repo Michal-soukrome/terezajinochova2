@@ -28,6 +28,7 @@ interface OrderDetails {
     address: string;
   };
   deliveryMethod?: string;
+  invoicePdfUrl?: string; // Add invoice PDF URL
 }
 
 // Customer confirmation email template
@@ -41,6 +42,7 @@ export const CustomerOrderConfirmationEmail = ({
   shippingAddress,
   packetaPickupPoint,
   deliveryMethod,
+  invoicePdfUrl,
 }: OrderDetails) => (
   <html>
     <head>
@@ -173,6 +175,29 @@ export const CustomerOrderConfirmationEmail = ({
             </div>
           </div>
         </div>
+
+        {invoicePdfUrl && (
+          <div style={{ margin: "20px 0", textAlign: "center" }}>
+            <a
+              href={invoicePdfUrl}
+              className="button"
+              style={{
+                display: "inline-block",
+                padding: "12px 30px",
+                background: "#28a745",
+                color: "white",
+                textDecoration: "none",
+                borderRadius: "5px",
+                fontWeight: "bold",
+              }}
+            >
+              📄 Stáhnout fakturu (PDF)
+            </a>
+            <p style={{ margin: "10px 0", fontSize: "14px", color: "#666" }}>
+              Download Invoice (PDF)
+            </p>
+          </div>
+        )}
 
         {packetaPickupPoint && (
           <div className="address-box">

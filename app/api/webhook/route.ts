@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { sendOrderEmails } from "@/lib/email";
 import { PRODUCTS } from "@/lib/products";
+import { packetaAPI } from "@/lib/packeta-api";
 
 // Don't export deprecated `config` in app router. We keep reading the raw body
 // directly using `request.text()` for Stripe signature verification.
@@ -90,7 +91,96 @@ export async function POST(request: NextRequest) {
 
         const deliveryMethod = fullSession.metadata?.delivery_method;
 
+        // Create Packeta shipment automatically
+        console.log("🚚 Creating Packeta shipment...");
+        const nameParts = customerName.split(" ");
+        const firstName = nameParts[0] || "";
+        const lastName = nameParts.slice(1).join(" ") || "";
+
+        // Get product weight from line items
+        let packageWeight = 0.5; // Default 500g
+        if (lineItems.length > 0) {
+          // Find the product in our PRODUCTS catalog by matching Stripe price ID
+          for (const item of lineItems) {
+            const stripePriceId = item.price?.id;
+            if (stripePriceId) {
+              // Find product by stripe price ID
+              const productKey = Object.keys(PRODUCTS).find(
+                (key) => PRODUCTS[key].stripePriceId === stripePriceId
+              );
+              if (productKey) {
+                const product = PRODUCTS[productKey];
+                const itemWeight = product.weight || 0.5;
+                packageWeight += itemWeight * (item.quantity || 1);
+              }
+            }
+          }
+        }
+
+        const packetaShipmentData = {
+          orderNumber: session.id,
+          customerName: firstName,
+          customerSurname: lastName,
+          customerEmail: customerEmail,
+          customerPhone: fullSession.customer_details?.phone || "",
+          packetaAddressId: parseInt(packetaPickupPoint?.id || "0"),
+          packageValue: total,
+          weight: packageWeight,
+          codAmount: 0, // No COD for now
+        };
+
+        const packetaResult =
+          await packetaAPI.createShipment(packetaShipmentData);
+
+        if (packetaResult.success) {
+          console.log("✅ Packeta shipment created:", packetaResult.packetId);
+
+          // Optionally generate label immediately
+          if (packetaResult.packetId) {
+            const labelPdf = await packetaAPI.getShipmentLabel(
+              packetaResult.packetId
+            );
+            if (labelPdf) {
+              console.log("📄 Shipment label generated successfully");
+              // You could save this PDF or email it to yourself
+            }
+          }
+        } else {
+          console.error(
+            "❌ Failed to create Packeta shipment:",
+            packetaResult.error
+          );
+          // Continue with email sending even if Packeta creation fails
+        }
+
         // Send emails to customer and admin
+        console.log("📧 Preparing to send order emails...", {
+          orderId: session.id,
+          customerEmail,
+          customerName,
+          itemsCount: items.length,
+          total: total / 100, // Convert from cents
+        });
+
+        // Retrieve invoice PDF URL from Stripe (if invoice was generated)
+        let invoicePdfUrl: string | undefined;
+        try {
+          // List invoices for this customer/session
+          const invoices = await stripe.invoices.list({
+            customer: fullSession.customer as string,
+            limit: 1,
+          });
+
+          if (invoices.data.length > 0) {
+            const invoice = invoices.data[0];
+            invoicePdfUrl = invoice.hosted_invoice_url;
+            console.log("📄 Found invoice PDF URL:", invoicePdfUrl);
+          }
+        } catch (invoiceError) {
+          console.error("❌ Failed to retrieve invoice:", invoiceError);
+          // Continue without invoice URL
+        }
+
         const emailResult = await sendOrderEmails({
           orderId: session.id,
           customerEmail,
@@ -102,15 +192,17 @@ export async function POST(request: NextRequest) {
           shippingAddress,
           packetaPickupPoint,
           deliveryMethod,
+          invoicePdfUrl,
         });
 
         if (emailResult.success) {
-          console.log("Order emails sent successfully:", {
+          console.log("✅ Order emails sent successfully:", {
             customerEmailId: emailResult.customerEmailId,
             adminEmailId: emailResult.adminEmailId,
           });
         } else {
-          console.error("Failed to send order emails:", emailResult.error);
+          console.error("❌ Failed to send order emails:", emailResult.error);
+          // Continue webhook processing even if email fails
         }
 
         break;

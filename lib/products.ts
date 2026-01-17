@@ -29,6 +29,9 @@ export interface Product {
   // Whether this product requires shipping
   requiresShipping?: boolean;
 
+  // Package weight in kg (for Packeta API)
+  weight?: number;
+
   // Frontend assets
   image: string;
   // Gallery images for product showcase
@@ -51,8 +54,8 @@ export const PRODUCTS: Record<string, Product> = {
     },
     stripePriceId: process.env.STRIPE_PRICE_BASIC!,
     names: {
-      cs: "Svatební Deník – Základní",
-      en: "Wedding Diary – Basic",
+      cs: "Svatební deník – základní",
+      en: "Wedding diary – basic",
     },
     descriptions: {
       cs: "Praktický deník pro moderní páry — checklisty, rozpočtové šablony a místo pro vaše nejhezčí vzpomínky.",
@@ -61,6 +64,7 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 84900,
     requiresShipping: true,
+    weight: 0.8, // 800g wedding diary
     image: "/assets/diary/basic0.jpg",
 
     gallery: [],
@@ -101,8 +105,8 @@ export const PRODUCTS: Record<string, Product> = {
     },
     stripePriceId: process.env.STRIPE_PRICE_PREMIUM!,
     names: {
-      cs: "Svatební Deník – Prémiový",
-      en: "Wedding Diary – Premium",
+      cs: "Svatební deník – prémiový",
+      en: "Wedding diary – premium",
     },
     descriptions: {
       cs: "Prémiová volba pro ty, kteří chtějí darovat nejen deník, ale i výjimečný okamžik – krásnou památku, která potěší už při rozbalování a provede nevěstu celým obdobím svatebních příprav.",
@@ -111,6 +115,7 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 94900,
     requiresShipping: true,
+    weight: 1.2, // 1.2kg with gift box
     image: "/assets/diary/premium.jpg",
     gallery: [],
     additionalImages: [
@@ -145,7 +150,7 @@ export const PRODUCTS: Record<string, Product> = {
     stripePriceId: process.env.STRIPE_PRICE_TEST!,
     names: {
       cs: "Testovací produkt",
-      en: "Test Product",
+      en: "Test product",
     },
     descriptions: {
       cs: "Testovací produkt pro ověření platební brány.",
@@ -189,6 +194,7 @@ export const PRODUCTS: Record<string, Product> = {
 
     priceCZK: 1500, // 15 CZK for testing
     requiresShipping: true,
+    weight: 0.3, // 300g test package
     image: "/assets/cover.png",
     gallery: ["/assets/diary/basic0.jpg"],
     additionalImages: [],
