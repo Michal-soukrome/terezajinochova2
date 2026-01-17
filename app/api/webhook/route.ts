@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
           session.id,
           {
             expand: ["line_items", "line_items.data.price.product"],
-          }
+          },
         )) as Stripe.Checkout.Session;
 
         // Extract order details
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
             if (stripePriceId) {
               // Find product by stripe price ID
               const productKey = Object.keys(PRODUCTS).find(
-                (key) => PRODUCTS[key].stripePriceId === stripePriceId
+                (key) => PRODUCTS[key].stripePriceId === stripePriceId,
               );
               if (productKey) {
                 const product = PRODUCTS[productKey];
@@ -138,7 +138,7 @@ export async function POST(request: NextRequest) {
           // Optionally generate label immediately
           if (packetaResult.packetId) {
             const labelPdf = await packetaAPI.getShipmentLabel(
-              packetaResult.packetId
+              packetaResult.packetId,
             );
             if (labelPdf) {
               console.log("📄 Shipment label generated successfully");
@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         } else {
           console.error(
             "❌ Failed to create Packeta shipment:",
-            packetaResult.error
+            packetaResult.error,
           );
           // Continue with email sending even if Packeta creation fails
         }
@@ -173,7 +173,7 @@ export async function POST(request: NextRequest) {
 
           if (invoices.data.length > 0) {
             const invoice = invoices.data[0];
-            invoicePdfUrl = invoice.hosted_invoice_url;
+            invoicePdfUrl = invoice.hosted_invoice_url || undefined;
             console.log("📄 Found invoice PDF URL:", invoicePdfUrl);
           }
         } catch (invoiceError) {
@@ -212,7 +212,7 @@ export async function POST(request: NextRequest) {
         console.log(
           "Payment succeeded:",
           paymentIntent.id,
-          paymentIntent.amount
+          paymentIntent.amount,
         );
         break;
 

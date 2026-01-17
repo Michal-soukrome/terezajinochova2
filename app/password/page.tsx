@@ -2,6 +2,7 @@
 
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { getCookie } from "@/lib/cookies";
 
 function PasswordForm() {
   const [password, setPassword] = useState("");
@@ -28,10 +29,10 @@ function PasswordForm() {
         localStorage.setItem("site_authenticated", "true");
         window.location.href = redirect;
       } else {
-        setError("Incorrect password");
+        setError("Špatné heslo");
       }
     } catch (err) {
-      setError("An error occurred");
+      setError("Došlo k chybě, zkuste to prosím znovu.");
     } finally {
       setLoading(false);
     }
@@ -83,8 +84,12 @@ function PasswordForm() {
 }
 
 export default function PasswordPage() {
+  const locale = getCookie("NEXT_LOCALE") || "cs";
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={<div>{locale === "cs" ? "Načítání..." : "Loading..."}</div>}
+    >
       <PasswordForm />
     </Suspense>
   );
