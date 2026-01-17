@@ -13,15 +13,15 @@
   "categories": ["lifestyle", "productivity", "shopping"],
   "icons": [
     {
-      "src": "/assets/logo/01-2026/logo1.webp",
+      "src": "/assets/favicon/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/webp",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/logo/01-2026/logo2.webp",
+      "src": "/assets/favicon/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/webp",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
@@ -33,7 +33,7 @@
       "url": "/products",
       "icons": [
         {
-          "src": "/assets/logo/01-2026/logo-192.png",
+          "src": "/assets/favicon/favicon/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -45,7 +45,7 @@
       "url": "/gallery",
       "icons": [
         {
-          "src": "/assets/logo/01-2026/logo-192.png",
+          "src": "/assets/favicon/favicon/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]
@@ -57,7 +57,7 @@
       "url": "/contact",
       "icons": [
         {
-          "src": "/assets/logo/01-2026/logo-192.png",
+          "src": "/assets/favicon/favicon/android-chrome-192x192.png",
           "sizes": "192x192"
         }
       ]

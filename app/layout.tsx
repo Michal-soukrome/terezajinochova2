@@ -22,23 +22,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/assets/logo/01-2026/logo1.webp",
-        sizes: "192x192",
-        type: "image/webp",
+        url: "/assets/favicon/favicon/favicon.ico",
+        sizes: "any",
       },
       {
-        url: "/assets/logo/01-2026/logo2.webp",
-        sizes: "512x512",
-        type: "image/webp",
+        url: "/assets/favicon/favicon/favicon-16x16.png",
+        sizes: "16x16",
       },
-    ],
-    apple: [
       {
-        url: "/assets/logo/01-2026/logo1.webp",
-        sizes: "192x192",
-        type: "image/webp",
+        url: "/assets/favicon/favicon/favicon-32x32.png",
+        sizes: "32x32",
       },
     ],
+    apple: "/assets/favicon/favicon/apple-touch-icon.png",
   },
   openGraph: {
     title: "Svatební deník | Plánovačka svateb od zásnub až k oltáři",
@@ -129,10 +125,7 @@ export default function RootLayout({
           }}
         />
         {/* Packeta Widget */}
-        <script
-          src="https://widget.packeta.com/v6/www/js/library.js"
-          async
-        />
+        <script src="https://widget.packeta.com/v6/www/js/library.js" async />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
