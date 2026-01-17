@@ -21,11 +21,11 @@ export async function GET(request: NextRequest) {
     console.log("🧪 Testing Packeta API with data:", testShipmentData);
     console.log(
       "🧪 API Password from env:",
-      process.env.PACKET_API_PASSWORD ? "Set" : "Not set"
+      process.env.PACKETA_API_PASSWORD ? "Set" : "Not set"
     );
     console.log(
       "🧪 API Password length:",
-      process.env.PACKET_API_PASSWORD?.length
+      process.env.PACKETA_API_PASSWORD?.length
     );
 
     const result = await packetaAPI.createShipment(testShipmentData);
