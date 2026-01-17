@@ -86,17 +86,17 @@ export default function SuccessContent() {
                 throw new Error(
                   locale === "cs"
                     ? "Platba nebyla nalezena nebo vypršela. Zkuste to znovu nebo kontaktujte podporu."
-                    : "Payment session not found or expired. Please try again or contact support."
+                    : "Payment session not found or expired. Please try again or contact support.",
                 );
               } else if (res.status === 400) {
                 throw new Error(
                   locale === "cs"
                     ? "Platba nebyla dokončena. Zkontrolujte svůj email pro další instrukce."
-                    : "Payment was not completed. Check your email for further instructions."
+                    : "Payment was not completed. Check your email for further instructions.",
                 );
               } else {
                 throw new Error(
-                  errorData.error || `HTTP ${res.status}: ${res.statusText}`
+                  errorData.error || `HTTP ${res.status}: ${res.statusText}`,
                 );
               }
             });
@@ -141,7 +141,7 @@ export default function SuccessContent() {
         day: "numeric",
         hour: "2-digit",
         minute: "2-digit",
-      }
+      },
     );
   };
 
@@ -185,7 +185,7 @@ export default function SuccessContent() {
 
             <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8">
               {locale === "cs"
-                ? "Prosím počkejte, zatímco připravujeme váš účtenku"
+                ? "Prosím počkejte, zatímco připravujeme vaší účtenku"
                 : "Please wait while we prepare your receipt"}
             </p>
           </motion.div>
@@ -359,7 +359,7 @@ export default function SuccessContent() {
                 <span className="font-semibold text-gray-900">
                   {formatCurrency(
                     sessionData.shipping_cost,
-                    sessionData.currency
+                    sessionData.currency,
                   )}
                 </span>
               </div>
