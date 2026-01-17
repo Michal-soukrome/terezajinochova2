@@ -7,12 +7,12 @@ export async function POST(request: NextRequest) {
     if (password === process.env.SITE_PASSWORD) {
       const response = NextResponse.json({ success: true });
 
-      // Set cookie
+      // Set cookie for 30 days
       response.cookies.set("authenticated", "true", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
-        maxAge: 10 * 365 * 24 * 60 * 60, // 10 years
+        maxAge: 30 * 24 * 60 * 60, // 30 days
         path: "/",
       });
 
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     } else {
       return NextResponse.json(
         { error: "Incorrect password" },
-        { status: 401 }
+        { status: 401 },
       );
     }
   } catch (error) {

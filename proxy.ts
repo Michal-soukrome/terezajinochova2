@@ -16,10 +16,13 @@ export default function middleware(request: NextRequest) {
 
   // Password protection
   if (process.env.SITE_PASSWORD) {
-    // Allow access to password page and auth API
-    if (pathname === "/password" || pathname.startsWith("/api/auth")) {
-      // Continue to i18n logic below
-    } else {
+    // Allow access to password page, all API routes, and checkout-related pages
+    const isPasswordPage = pathname === "/password";
+    const isApiRoute = pathname.startsWith("/api/");
+    const isSuccessPage = pathname.includes("/success");
+    const isCancelPage = pathname.includes("/cancel");
+
+    if (isPasswordPage || isApiRoute || isSuccessPage || isCancelPage) {
       // Check if authenticated via cookie
       const authenticated = request.cookies.get("authenticated")?.value;
       if (authenticated !== "true") {
@@ -49,7 +52,7 @@ export default function middleware(request: NextRequest) {
 
   // Zkontroluj, jestli URL již obsahuje locale prefix
   const hasLocale = locales.some(
-    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
 
   if (hasLocale) {
