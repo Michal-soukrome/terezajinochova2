@@ -4,6 +4,7 @@ import { Header } from "@/components/layout";
 import { Footer } from "@/components/layout";
 import RouteTransition from "@/components/navigation";
 import { HtmlLangSetter } from "@/components/layout/HtmlLangSetter";
+import { ReferralTracker } from "@/components/layout";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <>
       <HtmlLangSetter locale={locale} />
+      <ReferralTracker />
       <div className="w-full bg-white" id="layout-master">
         <div className="flex flex-col items-start justify-between min-h-svh w-full h-full">
           <Header locale={locale} />

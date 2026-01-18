@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale, getPreferredLocale } from "@/lib/i18n";
 import { routes } from "@/lib/routes";
-import { captureReferralFromUrl } from "@/lib/referral-tracking";
 
 /**
  * Proxy handler pro i18n + canonical slug verificaton.
@@ -20,8 +19,8 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Capture referral data from URL parameters (only for non-API routes)
-  captureReferralFromUrl(url);
+  // Note: Referral tracking moved to client-side to avoid middleware issues
+  // captureReferralFromUrl(url) is called on the client
 
   // Pokud jde o assety / _next, nech průchod nezměněný
   const isPublicFile =

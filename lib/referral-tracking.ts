@@ -66,16 +66,13 @@ export function captureReferralFromUrl(url: URL): ReferralData | null {
     referralData.medium = referralData.medium || "social";
   }
 
-  // Store referrer URL if available
-  if (typeof document !== "undefined" && document.referrer) {
-    referralData.referrer = document.referrer;
+  // Store in cookie only on client side
+  if (typeof window !== "undefined") {
+    setCookie(REFERRAL_COOKIE_NAME, JSON.stringify(referralData), {
+      maxAge: REFERRAL_COOKIE_MAX_AGE,
+      path: "/",
+    });
   }
-
-  // Store in cookie
-  setCookie(REFERRAL_COOKIE_NAME, JSON.stringify(referralData), {
-    maxAge: REFERRAL_COOKIE_MAX_AGE,
-    path: "/",
-  });
 
   console.log("📊 Referral captured:", referralData);
   return referralData;
