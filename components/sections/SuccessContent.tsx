@@ -7,6 +7,7 @@ import Link from "next/link";
 import Button from "../ui/Button";
 import TranslatedLink from "../navigation/TranslatedLink";
 import { isValidLocale, defaultLocale, Locale } from "@/lib/i18n";
+import { clearReferral } from "@/lib/referral-tracking";
 
 interface SessionData {
   id: string;
@@ -105,6 +106,8 @@ export default function SuccessContent() {
         })
         .then((data) => {
           setSessionData(data);
+          // Clear referral data after successful purchase
+          clearReferral();
         })
         .catch((err) => {
           console.error("Error fetching session:", err);

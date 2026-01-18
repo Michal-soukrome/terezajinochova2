@@ -265,7 +265,7 @@ Private commercial project - All rights reserved
 **Tereza Jinochová**
 
 - Website: https://svatebnipribehy.com
-- Email: info@terezajinochova.cz
+- Email: info@svatebnipribehy.com
 
 ---
 

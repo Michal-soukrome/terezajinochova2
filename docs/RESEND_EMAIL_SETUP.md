@@ -23,7 +23,7 @@ When a customer completes a purchase:
 
 1. In Resend dashboard, go to **Domains**
 2. Click **Add Domain**
-3. Enter your domain (e.g., `terezajinochova.cz`)
+3. Enter your domain (e.g., `svatebnipribehy.com`)
 4. Add the DNS records provided by Resend to your domain registrar
 5. Wait for verification (usually takes a few minutes)
 
@@ -132,7 +132,7 @@ Test it by visiting: `http://localhost:3000/api/test-email?email=your@email.com`
 ### Resend Best Practices
 
 - Verify your domain for better deliverability
-- Use descriptive "from" names: `"Tereza Jinochová" <orders@terezajinochova.cz>`
+- Use descriptive "from" names: `"Tereza Jinochová" <orders@svatebnipribehy.com>`
 - Keep API keys secure
 - Monitor your sending limits (free tier: 100 emails/day)
 

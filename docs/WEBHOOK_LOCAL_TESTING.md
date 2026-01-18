@@ -122,9 +122,9 @@ STRIPE_WEBHOOK_SECRET=whsec_your_ngrok_secret
 The proper way for production:
 
 1. Deploy your app to Vercel/Netlify/etc.
-2. Get your production URL: `https://terezajinochova.cz`
+2. Get your production URL: `https://svatebnipribehy.com`
 3. In Stripe Dashboard → Webhooks:
-   - Add endpoint: `https://terezajinochova.cz/api/webhook`
+   - Add endpoint: `https://svatebnipribehy.com/api/webhook`
    - Select events: `checkout.session.completed`, `payment_intent.succeeded`
    - Copy the **production** webhook secret
 4. Add to production environment variables

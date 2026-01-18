@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { PRODUCTS } from "@/lib/products";
+import { getStoredReferral } from "@/lib/referral-tracking";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -55,11 +56,20 @@ export async function POST(request: NextRequest) {
         ];
 
         // Store pickup point details in metadata (both session and payment intent)
+        const referralData = getStoredReferral();
         const metadata = {
           packeta_point_id: pickupPoint.id,
           packeta_point_name: pickupPoint.name,
           packeta_point_address: `${pickupPoint.street}, ${pickupPoint.city}, ${pickupPoint.zip}`,
           delivery_method: "packeta_pickup",
+          // Add referral tracking data
+          ...(referralData && {
+            referral_source: referralData.source,
+            referral_medium: referralData.medium,
+            referral_campaign: referralData.campaign,
+            referral_ref: referralData.ref,
+            referral_timestamp: referralData.timestamp?.toString(),
+          }),
         };
 
         sessionConfig.metadata = metadata;
@@ -94,6 +104,37 @@ export async function POST(request: NextRequest) {
           },
         ];
       }
+    }
+
+    // Add referral tracking data to all sessions
+    const referralData = getStoredReferral();
+    if (referralData) {
+      const referralMetadata: Record<string, string> = {};
+
+      if (referralData.source)
+        referralMetadata.referral_source = referralData.source;
+      if (referralData.medium)
+        referralMetadata.referral_medium = referralData.medium;
+      if (referralData.campaign)
+        referralMetadata.referral_campaign = referralData.campaign;
+      if (referralData.ref) referralMetadata.referral_ref = referralData.ref;
+      if (referralData.timestamp)
+        referralMetadata.referral_timestamp = referralData.timestamp.toString();
+
+      // Merge with existing metadata or create new
+      sessionConfig.metadata = {
+        ...sessionConfig.metadata,
+        ...referralMetadata,
+      };
+
+      // Also add to payment intent metadata
+      sessionConfig.payment_intent_data = {
+        ...sessionConfig.payment_intent_data,
+        metadata: {
+          ...sessionConfig.payment_intent_data?.metadata,
+          ...referralMetadata,
+        },
+      };
     }
 
     console.log("📋 Session config:", JSON.stringify(sessionConfig, null, 2));

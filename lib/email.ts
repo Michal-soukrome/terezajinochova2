@@ -40,6 +40,7 @@ interface SendOrderEmailsParams {
   packetaPickupPoint?: PacketaPickupPoint;
   deliveryMethod?: string;
   invoicePdfUrl?: string; // Add invoice PDF URL
+  referralSummary?: string; // Add referral tracking info
 }
 
 /**
@@ -57,6 +58,7 @@ export async function sendOrderEmails({
   packetaPickupPoint,
   deliveryMethod,
   invoicePdfUrl,
+  referralSummary,
 }: SendOrderEmailsParams) {
   // Log environment variables (without exposing full API key)
   console.log("🔍 Email Configuration Check:", {
@@ -90,6 +92,7 @@ export async function sendOrderEmails({
       packetaPickupPoint,
       deliveryMethod,
       invoicePdfUrl,
+      referralSummary,
     };
 
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";

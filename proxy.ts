@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { locales, defaultLocale, getPreferredLocale } from "@/lib/i18n";
 import { routes } from "@/lib/routes";
+import { captureReferralFromUrl } from "@/lib/referral-tracking";
 
 /**
  * Proxy handler pro i18n + canonical slug verificaton.
@@ -14,30 +15,8 @@ export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
 
-  // Password protection
-  if (process.env.SITE_PASSWORD) {
-    // Allow access to password page, all API routes, and checkout-related pages
-    const isPasswordPage = pathname === "/password";
-    const isApiRoute = pathname.startsWith("/api/");
-    const isSuccessPage = pathname.includes("/success");
-    const isCancelPage = pathname.includes("/cancel");
-
-    if (isPasswordPage || isApiRoute || isSuccessPage || isCancelPage) {
-      // Check if authenticated via cookie
-      const authenticated = request.cookies.get("authenticated")?.value;
-      if (authenticated !== "true") {
-        // Redirect to password page
-        const passwordUrl = new URL("/password", request.url);
-        passwordUrl.searchParams.set("redirect", pathname);
-        return NextResponse.redirect(passwordUrl);
-      }
-    }
-  }
-
-  // Allow direct access to password page without i18n redirection
-  if (pathname === "/password") {
-    return NextResponse.next();
-  }
+  // Capture referral data from URL parameters
+  captureReferralFromUrl(url);
 
   // Pokud jde o assety / API / _next, nech průchod nezměněný
   const isPublicFile =

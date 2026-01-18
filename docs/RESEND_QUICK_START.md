@@ -84,13 +84,13 @@ For production, you should:
 
 1. **Verify your domain** in Resend:
    - Add DNS records
-   - Use `orders@terezajinochova.cz` instead of `onboarding@resend.dev`
+   - Use `orders@svatebnipribehy.com` instead of `onboarding@resend.dev`
 
 2. **Update `.env.local`**:
 
 ```bash
 RESEND_FROM_EMAIL=svatebnipribehy@gmail.com
-ADMIN_EMAIL=tereza@terezajinochova.cz
+ADMIN_EMAIL=tereza@svatebnipribehy.com
 ```
 
 ## 📧 Email Templates

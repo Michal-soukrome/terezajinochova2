@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import { sendOrderEmails } from "@/lib/email";
 import { PRODUCTS } from "@/lib/products";
 import { packetaAPI } from "@/lib/packeta-api";
+import { getReferralSummary } from "@/lib/referral-tracking";
 
 // Don't export deprecated `config` in app router. We keep reading the raw body
 // directly using `request.text()` for Stripe signature verification.
@@ -90,6 +91,23 @@ export async function POST(request: NextRequest) {
           : undefined;
 
         const deliveryMethod = fullSession.metadata?.delivery_method;
+
+        // Extract referral data from metadata
+        const referralData =
+          fullSession.metadata?.referral_source ||
+          fullSession.metadata?.referral_ref
+            ? {
+                source: fullSession.metadata.referral_source,
+                medium: fullSession.metadata.referral_medium,
+                campaign: fullSession.metadata.referral_campaign,
+                ref: fullSession.metadata.referral_ref,
+                timestamp: fullSession.metadata.referral_timestamp
+                  ? parseInt(fullSession.metadata.referral_timestamp)
+                  : undefined,
+              }
+            : null;
+
+        const referralSummary = getReferralSummary(referralData);
 
         // Create Packeta shipment automatically
         console.log("🚚 Creating Packeta shipment...");
@@ -195,6 +213,7 @@ export async function POST(request: NextRequest) {
           packetaPickupPoint,
           deliveryMethod,
           invoicePdfUrl,
+          referralSummary,
         });
 
         if (emailResult.success) {

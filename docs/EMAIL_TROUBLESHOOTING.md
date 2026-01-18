@@ -34,10 +34,10 @@ ADMIN_EMAIL=admin@youremail.com         # Required
 For production, you **cannot** use `onboarding@resend.dev`. You must:
 
 1. Go to [Resend Dashboard](https://resend.com/domains)
-2. Add your domain (e.g., `terezajinochova.cz`)
+2. Add your domain (e.g., `svatebnipribehy.com`)
 3. Add the DNS records to your domain registrar
 4. Wait for verification (usually 5-10 minutes)
-5. Use a verified email address like `orders@terezajinochova.cz`
+5. Use a verified email address like `orders@svatebnipribehy.com`
 
 **How to check:**
 

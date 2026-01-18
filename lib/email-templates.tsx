@@ -29,6 +29,7 @@ interface OrderDetails {
   };
   deliveryMethod?: string;
   invoicePdfUrl?: string; // Add invoice PDF URL
+  referralSummary?: string; // Add referral tracking info
 }
 
 // Customer confirmation email template
@@ -281,6 +282,7 @@ export const AdminOrderNotificationEmail = ({
   shippingAddress,
   packetaPickupPoint,
   deliveryMethod,
+  referralSummary,
 }: OrderDetails) => (
   <html>
     <head>
@@ -388,6 +390,15 @@ export const AdminOrderNotificationEmail = ({
                 {deliveryMethod === "packeta_pickup"
                   ? "Zásilkovna - výdejní místo"
                   : "Zásilkovna - doručení na adresu"}
+              </div>
+            </>
+          )}
+
+          {referralSummary && (
+            <>
+              <div className="info-label">Referral:</div>
+              <div style={{ fontWeight: "bold", color: "#dcab6f" }}>
+                {referralSummary}
               </div>
             </>
           )}
