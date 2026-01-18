@@ -3,12 +3,14 @@
 ## ✅ What's Been Implemented
 
 Your Stripe checkout now automatically sends transactional emails using Resend API:
+
 - **Customer**: Receives order confirmation with details
 - **Admin**: Receives notification about new orders
 
 ## 🎯 Quick Setup (5 minutes)
 
 ### 1. Get Resend API Key
+
 ```
 1. Go to https://resend.com and sign up
 2. Navigate to API Keys → Create API Key
@@ -16,7 +18,9 @@ Your Stripe checkout now automatically sends transactional emails using Resend A
 ```
 
 ### 2. Add Environment Variables
+
 Create/update `.env.local`:
+
 ```bash
 RESEND_API_KEY=re_your_api_key_here
 RESEND_FROM_EMAIL=onboarding@resend.dev  # or your verified domain
@@ -24,11 +28,13 @@ ADMIN_EMAIL=your@email.com               # where you want notifications
 ```
 
 ### 3. Test It Works
+
 Visit: `http://localhost:3000/api/test-email?email=your@email.com`
 
 You should receive a test email! ✉️
 
 ### 4. Make a Test Purchase
+
 ```
 1. Add product to cart
 2. Checkout with test card: 4242 4242 4242 4242
@@ -58,11 +64,13 @@ docs/
 ## 🔧 Files Modified
 
 ### `app/api/webhook/route.ts`
+
 - Added import for `sendOrderEmails`
 - Extracts order details from Stripe session
 - Sends customer and admin emails on successful checkout
 
 ### Key Features:
+
 - ✅ Bilingual emails (Czech/English)
 - ✅ Order details with itemized list
 - ✅ Shipping/pickup point information
@@ -79,14 +87,16 @@ For production, you should:
    - Use `orders@terezajinochova.cz` instead of `onboarding@resend.dev`
 
 2. **Update `.env.local`**:
+
 ```bash
-RESEND_FROM_EMAIL=orders@terezajinochova.cz
+RESEND_FROM_EMAIL=svatebnipribehy@gmail.com
 ADMIN_EMAIL=tereza@terezajinochova.cz
 ```
 
 ## 📧 Email Templates
 
 ### Customer Email Includes:
+
 - 💐 Friendly greeting
 - 📦 Order number and items
 - 💰 Price breakdown (subtotal, shipping, total)
@@ -95,6 +105,7 @@ ADMIN_EMAIL=tereza@terezajinochova.cz
 - 📞 Contact information
 
 ### Admin Email Includes:
+
 - 🔔 Alert-style notification
 - 👤 Customer details
 - 📋 Complete order info
@@ -104,16 +115,19 @@ ADMIN_EMAIL=tereza@terezajinochova.cz
 ## 🛠️ Troubleshooting
 
 **Emails not arriving?**
+
 - Check spam folder
 - Verify RESEND_API_KEY is correct
 - Check Resend dashboard for delivery status
 - Use test endpoint to verify configuration
 
 **"Invalid from email" error?**
+
 - Use `onboarding@resend.dev` for development
 - Or verify your domain in Resend dashboard
 
 **Webhook not triggering?**
+
 - Use Stripe CLI: `stripe listen --forward-to localhost:3000/api/webhook`
 - Check STRIPE_WEBHOOK_SECRET is correct
 

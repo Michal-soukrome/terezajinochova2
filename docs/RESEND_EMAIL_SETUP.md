@@ -48,8 +48,8 @@ Create a `.env.local` file in your project root (if it doesn't exist) and add:
 RESEND_API_KEY=re_your_api_key_here
 
 # Email addresses
-RESEND_FROM_EMAIL=orders@terezajinochova.cz  # Use your verified domain
-ADMIN_EMAIL=your.admin@email.com              # Where admin notifications go
+RESEND_FROM_EMAIL=svatebnipribehy@gmail.com  # Your Gmail address
+ADMIN_EMAIL=svatebnipribehy@gmail.com          # Where admin notifications go
 ```
 
 **Important:**

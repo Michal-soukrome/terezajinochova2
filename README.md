@@ -97,7 +97,7 @@ STRIPE_PACKETA_DELIVERY_RATE=shr_...
 
 # Resend (Email)
 RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL=orders@yourdomain.com
+RESEND_FROM_EMAIL=svatebnipribehy@gmail.com
 ADMIN_EMAIL=admin@youremail.com
 
 # Packeta

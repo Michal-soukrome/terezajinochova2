@@ -14,7 +14,7 @@ Your production environment (e.g., Vercel, AWS, etc.) **must** have these enviro
 
 ```bash
 RESEND_API_KEY=re_xxxxxxxxxxxxx        # Required
-RESEND_FROM_EMAIL=orders@yourdomain.com # Required
+RESEND_FROM_EMAIL=svatebnipribehy@gmail.com # Required
 ADMIN_EMAIL=admin@youremail.com         # Required
 ```
 

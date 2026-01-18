@@ -94,7 +94,7 @@ export async function sendOrderEmails({
 
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     console.log(
-      `📧 Attempting to send customer email to: ${customerEmail} from: ${fromEmail}`
+      `📧 Attempting to send customer email to: ${customerEmail} from: ${fromEmail}`,
     );
 
     // Send confirmation email to customer
@@ -110,13 +110,13 @@ export async function sendOrderEmails({
     // Send notification to admin
     const adminEmail = process.env.ADMIN_EMAIL || customerEmail; // Fallback to customer email for testing
     console.log(
-      `📧 Attempting to send admin email to: ${adminEmail} from: ${fromEmail}`
+      `📧 Attempting to send admin email to: ${adminEmail} from: ${fromEmail}`,
     );
 
     const adminEmailResult = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
-      subject: `🔔 Nová objednávka #${orderId}`,
+      subject: `Nová objednávka #${orderId}`,
       react: AdminOrderNotificationEmail(orderDetails),
     });
 

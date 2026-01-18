@@ -56,11 +56,16 @@ export const CustomerOrderConfirmationEmail = ({
           padding: 20px;
         }
         .header {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #dcab6f 0%, #a08168 100%);
           color: white;
           padding: 30px;
           text-align: center;
           border-radius: 10px 10px 0 0;
+        }
+        .logo {
+          max-width: 150px;
+          height: auto;
+          margin-bottom: 20px;
         }
         .content {
           background: #ffffff;
@@ -99,18 +104,11 @@ export const CustomerOrderConfirmationEmail = ({
           border-radius: 8px;
           margin: 15px 0;
         }
-        .footer {
-          background: #f8f9fa;
-          padding: 20px;
-          text-align: center;
-          font-size: 12px;
-          color: #666;
-          border-radius: 0 0 10px 10px;
-        }
+     
         .button {
           display: inline-block;
           padding: 12px 30px;
-          background: #667eea;
+          background: #dcab6f;
           color: white;
           text-decoration: none;
           border-radius: 5px;
@@ -120,21 +118,27 @@ export const CustomerOrderConfirmationEmail = ({
     </head>
     <body>
       <div className="header">
-        <h1 style={{ margin: 0 }}>Děkujeme za vaši objednávku! 💐</h1>
+        <img
+          src="https://www.svatebnipribehy.com/assets/logo.webp"
+          alt="Tereza Jinochová - logo"
+          className="logo"
+        />
+        <h1 style={{ margin: 0 }}>Děkujeme za vaši objednávku</h1>
         <p style={{ margin: "10px 0 0 0", opacity: 0.9 }}>
-          Thank you for your order!
+          Thank you for your order
         </p>
       </div>
 
       <div className="content">
-        <p>Milá/Milý {customerName},</p>
+        <p>Vážený/Vážená {customerName},</p>
         <p>
-          Vaše objednávka byla úspěšně přijata a brzy bude zpracována. Těšíme
-          se, že vám náš produkt přinese radost! 🌸
+          velmi si vážím, že jste si vybrali můj svatební deník. Vaše objednávka
+          byla úspěšně přijata a brzy bude zpracována. Těším se, že vám můj
+          deník pomůže zachovat vzpomínky na váš speciální den.
         </p>
 
         <div className="order-info">
-          <h2 style={{ marginTop: 0, color: "#667eea" }}>
+          <h2 style={{ marginTop: 0, color: "#dcab6f" }}>
             Detail objednávky #{orderId}
           </h2>
 
@@ -184,14 +188,14 @@ export const CustomerOrderConfirmationEmail = ({
               style={{
                 display: "inline-block",
                 padding: "12px 30px",
-                background: "#28a745",
+                background: "#dcab6f",
                 color: "white",
                 textDecoration: "none",
                 borderRadius: "5px",
                 fontWeight: "bold",
               }}
             >
-              📄 Stáhnout fakturu (PDF)
+              Stáhnout fakturu (PDF)
             </a>
             <p style={{ margin: "10px 0", fontSize: "14px", color: "#666" }}>
               Download Invoice (PDF)
@@ -201,8 +205,8 @@ export const CustomerOrderConfirmationEmail = ({
 
         {packetaPickupPoint && (
           <div className="address-box">
-            <h3 style={{ marginTop: 0, color: "#667eea" }}>
-              📦 Výdejní místo Zásilkovna
+            <h3 style={{ marginTop: 0, color: "#dcab6f" }}>
+              Výdejní místo Zásilkovna
             </h3>
             <p style={{ margin: "5px 0" }}>
               <strong>{packetaPickupPoint.name}</strong>
@@ -218,8 +222,8 @@ export const CustomerOrderConfirmationEmail = ({
 
         {shippingAddress && !packetaPickupPoint && (
           <div className="address-box">
-            <h3 style={{ marginTop: 0, color: "#667eea" }}>
-              📬 Doručovací adresa
+            <h3 style={{ marginTop: 0, color: "#dcab6f" }}>
+              Doručovací adresa
             </h3>
             <p style={{ margin: "5px 0" }}>{shippingAddress.name}</p>
             <p style={{ margin: "5px 0", color: "#666" }}>
@@ -249,21 +253,16 @@ export const CustomerOrderConfirmationEmail = ({
         </ul>
 
         <p style={{ marginTop: "30px" }}>
-          Máte-li jakékoli dotazy, neváhejte nás kontaktovat na{" "}
-          <a href="mailto:info@terezajinochova.cz">info@terezajinochova.cz</a>
+          Pokud máte jakékoli dotazy, neváhejte mě kontaktovat na{" "}
+          <a href="mailto:svatebnipribehy@gmail.com">
+            svatebnipribehy@gmail.com
+          </a>
         </p>
 
         <p style={{ marginTop: "30px" }}>
           S pozdravem,
           <br />
           <strong>Tereza Jinochová</strong>
-        </p>
-      </div>
-
-      <div className="footer">
-        <p style={{ margin: "5px 0" }}>© 2026 Tereza Jinochová</p>
-        <p style={{ margin: "5px 0" }}>
-          www.terezajinochova.cz | info@terezajinochova.cz
         </p>
       </div>
     </body>
@@ -295,7 +294,7 @@ export const AdminOrderNotificationEmail = ({
           padding: 20px;
         }
         .header {
-          background: #ff6b6b;
+          background: #dcab6f;
           color: white;
           padding: 30px;
           text-align: center;
@@ -352,29 +351,21 @@ export const AdminOrderNotificationEmail = ({
           border-radius: 8px;
           margin: 15px 0;
         }
-        .footer {
-          background: #f8f9fa;
-          padding: 20px;
-          text-align: center;
-          font-size: 12px;
-          color: #666;
-          border-radius: 0 0 10px 10px;
-        }
+      
       `}</style>
     </head>
     <body>
       <div className="header">
-        <h1 style={{ margin: 0 }}>🔔 Nová objednávka!</h1>
+        <h1 style={{ margin: 0 }}>Nová objednávka</h1>
         <p style={{ margin: "10px 0 0 0", opacity: 0.9 }}>New Order Received</p>
       </div>
 
       <div className="content">
         <div className="alert">
-          <strong>⚠️ Akce požadována:</strong> Nová objednávka čeká na
-          zpracování!
+          <strong>Akce požadována:</strong> Nová objednávka čeká na zpracování!
         </div>
 
-        <h2 style={{ color: "#ff6b6b" }}>Informace o objednávce</h2>
+        <h2 style={{ color: "#dcab6f" }}>Informace o objednávce</h2>
         <div className="info-grid">
           <div className="info-label">Číslo objednávky:</div>
           <div>#{orderId}</div>
@@ -402,7 +393,7 @@ export const AdminOrderNotificationEmail = ({
           )}
         </div>
 
-        <h3 style={{ color: "#ff6b6b" }}>Objednané produkty</h3>
+        <h3 style={{ color: "#dcab6f" }}>Objednané produkty</h3>
         {items.map((item, index) => (
           <div key={index} className="item">
             <div
@@ -449,8 +440,8 @@ export const AdminOrderNotificationEmail = ({
 
         {packetaPickupPoint && (
           <div className="address-box">
-            <h3 style={{ marginTop: 0, color: "#ff6b6b" }}>
-              📦 Výdejní místo Zásilkovna
+            <h3 style={{ marginTop: 0, color: "#dcab6f" }}>
+              Výdejní místo Zásilkovna
             </h3>
             <p style={{ margin: "5px 0" }}>
               <strong>{packetaPickupPoint.name}</strong>
@@ -466,8 +457,8 @@ export const AdminOrderNotificationEmail = ({
 
         {shippingAddress && !packetaPickupPoint && (
           <div className="address-box">
-            <h3 style={{ marginTop: 0, color: "#ff6b6b" }}>
-              📬 Doručovací adresa
+            <h3 style={{ marginTop: 0, color: "#dcab6f" }}>
+              Doručovací adresa
             </h3>
             <p style={{ margin: "5px 0" }}>
               <strong>{shippingAddress.name}</strong>
@@ -498,7 +489,7 @@ export const AdminOrderNotificationEmail = ({
           }}
         >
           <h4 style={{ margin: "0 0 10px 0", color: "#2e7d32" }}>
-            ✅ Další kroky:
+            Další kroky:
           </h4>
           <ol style={{ margin: 0, paddingLeft: "20px" }}>
             <li>Zabalit produkt a připravit k odeslání</li>
@@ -507,11 +498,6 @@ export const AdminOrderNotificationEmail = ({
             <li>Předat zásilku dopravci</li>
           </ol>
         </div>
-      </div>
-
-      <div className="footer">
-        <p style={{ margin: "5px 0" }}>Toto je automatický notifikační email</p>
-        <p style={{ margin: "5px 0" }}>Tereza Jinochová Admin Panel</p>
       </div>
     </body>
   </html>
