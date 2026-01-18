@@ -16,17 +16,44 @@ const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 const processedEvents = new Set<string>();
 
 export async function POST(request: NextRequest) {
+  console.log("🎯 Webhook endpoint hit!");
+  console.log("📍 Request URL:", request.url);
+  console.log("🔑 Has webhook secret:", !!endpointSecret);
+
   const body = await request.text();
-  const signature = request.headers.get("stripe-signature")!;
+  const signature = request.headers.get("stripe-signature");
+
+  console.log("📦 Body length:", body.length);
+  console.log("✍️ Has signature:", !!signature);
+
+  if (!signature) {
+    console.error("❌ No Stripe signature in request headers");
+    return NextResponse.json({ error: "No signature" }, { status: 400 });
+  }
+
+  if (!endpointSecret) {
+    console.error("❌ STRIPE_WEBHOOK_SECRET not configured in environment");
+    return NextResponse.json(
+      { error: "Webhook not configured" },
+      { status: 500 },
+    );
+  }
 
   let event: Stripe.Event;
 
   try {
     event = stripe.webhooks.constructEvent(body, signature, endpointSecret);
+    console.log("✅ Webhook signature verified successfully");
+    console.log("📋 Event type:", event.type);
+    console.log("🆔 Event ID:", event.id);
   } catch (err) {
     // `err` is unknown by default in TS; cast locally for message access
     const error = err as { message?: string };
-    console.error("Invalid webhook signature:", error.message);
+    console.error("❌ Invalid webhook signature:", error.message);
+    console.error(
+      "🔍 Webhook secret starts with:",
+      endpointSecret?.substring(0, 10),
+    );
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 

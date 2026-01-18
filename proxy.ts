@@ -15,12 +15,16 @@ export default function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const pathname = url.pathname;
 
-  // Capture referral data from URL parameters
+  // Early return for API routes - DO NOT redirect or modify
+  if (pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  // Capture referral data from URL parameters (only for non-API routes)
   captureReferralFromUrl(url);
 
-  // Pokud jde o assety / API / _next, nech průchod nezměněný
+  // Pokud jde o assety / _next, nech průchod nezměněný
   const isPublicFile =
-    pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
     pathname === "/favicon.ico" ||
     /\.[^\/]+$/.test(pathname); // simple file check
