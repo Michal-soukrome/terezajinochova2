@@ -96,7 +96,11 @@ export async function POST(request: NextRequest) {
         const customerEmail = fullSession.customer_details?.email || "";
         const customerName = fullSession.customer_details?.name || "Customer";
         const subtotal = fullSession.amount_subtotal || 0;
-        const shipping = fullSession.total_details?.amount_shipping || 0;
+        // Get shipping from shipping_cost if available, fallback to total_details
+        const shipping =
+          (fullSession as any).shipping_cost?.amount_total ||
+          fullSession.total_details?.amount_shipping ||
+          0;
         const total = fullSession.amount_total || 0;
 
         // Extract shipping address (using any to handle potential undefined)
