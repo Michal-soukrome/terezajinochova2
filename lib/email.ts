@@ -105,7 +105,7 @@ export async function sendOrderEmails({
       from: fromEmail,
       replyTo: process.env.ADMIN_EMAIL || fromEmail,
       to: customerEmail,
-      subject: `Potvrzení objednávky #${orderId} - Tereza Jinochová`,
+      subject: `Potvrzení objednávky svatebního deníku`,
       react: CustomerOrderConfirmationEmail(orderDetails),
     });
 
@@ -121,7 +121,7 @@ export async function sendOrderEmails({
       from: fromEmail,
       replyTo: customerEmail,
       to: adminEmail,
-      subject: `Nová objednávka #${orderId}`,
+      subject: `Nová objednávka svatebního deníku`,
       react: AdminOrderNotificationEmail(orderDetails),
     });
 
