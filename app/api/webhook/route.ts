@@ -8,6 +8,10 @@ import { getReferralSummary } from "@/lib/referral-tracking";
 // Don't export deprecated `config` in app router. We keep reading the raw body
 // directly using `request.text()` for Stripe signature verification.
 
+// Disable Edge runtime to avoid any potential redirects
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
