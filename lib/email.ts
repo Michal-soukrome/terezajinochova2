@@ -103,6 +103,7 @@ export async function sendOrderEmails({
     // Send confirmation email to customer
     const customerEmailResult = await resend.emails.send({
       from: fromEmail,
+      replyTo: process.env.ADMIN_EMAIL || fromEmail,
       to: customerEmail,
       subject: `Potvrzení objednávky #${orderId} - Tereza Jinochová`,
       react: CustomerOrderConfirmationEmail(orderDetails),
@@ -118,6 +119,7 @@ export async function sendOrderEmails({
 
     const adminEmailResult = await resend.emails.send({
       from: fromEmail,
+      replyTo: customerEmail,
       to: adminEmail,
       subject: `Nová objednávka #${orderId}`,
       react: AdminOrderNotificationEmail(orderDetails),
