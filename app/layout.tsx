@@ -100,13 +100,6 @@ export default function RootLayout({
       description:
         "Po studiu vysoké školy jsem byla přesvědčená, že mě práce s dětmi bude naplňovat. Osud a má povaha se mnou měly ale jiné plány. Do světa svateb jsem se dostala díky své dlouholeté vášni ke společenskému tanci.",
     },
-    offers: {
-      "@type": "Product",
-      name: "Svatební deník",
-      description:
-        "Svatební deník s rozsáhlým obsahem vznikl s láskou k detailu a pochopením potřeb každé budoucí nevěsty.",
-      category: "Wedding Planning Tools",
-    },
     sameAs: [
       // Add social media URLs here when available
     ],

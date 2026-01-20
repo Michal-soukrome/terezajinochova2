@@ -169,6 +169,31 @@ export default async function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  // Generate structured data for Product
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.names[locale as keyof typeof product.names],
+    description:
+      product.descriptions[locale as keyof typeof product.descriptions],
+    image: `${process.env.NEXT_PUBLIC_SITE_URL || "https://svatebnipribehy.com"}${product.image}`,
+    category: "Wedding Planning Tools",
+    brand: {
+      "@type": "Organization",
+      name: "Svatební příběhy",
+    },
+    offers: {
+      "@type": "Offer",
+      price: (product.priceCZK / 100).toFixed(2),
+      priceCurrency: "CZK",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Svatební příběhy",
+      },
+    },
+  };
+
   const isPremium = product.id === "premium";
   const additionalImages = product.additionalImages || [];
   const t = {
@@ -189,168 +214,180 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="py-10 md:py-24 !pb-0">
-      {/* Main Content */}
-      <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-16">
-        {/* Left - Image */}
-        <ProductImageGallery
-          mainImage={product.image}
-          additionalImages={additionalImages}
-          alt={product.names[locale as keyof typeof product.names]}
-          locale={locale}
-        />
+    <>
+      {/* Structured Data for Product */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productStructuredData),
+        }}
+      />
+      <div className="py-10 md:py-24 !pb-0">
+        {/* Main Content */}
+        <section className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-16">
+          {/* Left - Image */}
+          <ProductImageGallery
+            mainImage={product.image}
+            additionalImages={additionalImages}
+            alt={product.names[locale as keyof typeof product.names]}
+            locale={locale}
+          />
 
-        {/* Right - Details */}
-        <div className="px-4 sm:px-6 lg:px-8 space-y-8 pb-10">
-          {/* Header */}
-          <div>
-            <div className="!hidden inline-flex items-center gap-2 mb-4">
-              <Badge
-                variant={isPremium ? "premium" : "basic"}
-                locale={locale as "cs" | "en"}
-              />
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-heading leading-tight">
-              {product.names[locale as keyof typeof product.names]}
-            </h1>
-
-            <p className="text-lg text-gray-600 leading-relaxed">
-              {
-                product.descriptions[
-                  locale as keyof typeof product.descriptions
-                ]
-              }
-            </p>
-          </div>
-
-          {/* Price & CTA */}
-          <div
-            className="bg-accent-1 border border-accent-1 rounded-2xl p-6 space-y-4"
-            style={{ cornerShape: "bevel" } as any}
-          >
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold text-gray-900 font-heading">
-                {locale === "cs"
-                  ? `${(product.priceCZK / 100).toFixed(0)}`
-                  : `${(product.priceCZK / 100).toFixed(0)}`}
-              </span>
-              <span className="text-2xl text-gray-600">
-                {locale === "cs" ? "Kč" : "Kč"}
-                {/* obě teď ukazují Kč, ale jde upravit na dolary nebo eura protože i v nich lze přijímat platba */}
-              </span>
-            </div>
-
-            <BuyButton
-              productId={product.id}
-              locale={locale}
-              variant="primary"
-              className="w-full btn btn-primary text-lg py-4"
-            />
-
-            <p className="text-sm text-gray-500 text-center">
-              {locale === "cs" ? "🔒 Bezpečná platba" : "🔒 Secure payment"}
-            </p>
-            <p className="text-sm text-gray-500 text-center">
-              {locale === "cs"
-                ? "📍 Kliknutím otevřete mapu Zásilkovny pro výběr místa"
-                : "📍 Click to open Packeta map and select pickup location"}
-            </p>
-          </div>
-
-          {/* Features */}
-          <div className="p-5" id="detail-what-you-get">
-            <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
-              {t.whatYouGet}
-            </h3>
-            <ul className="lowercase space-y-3">
-              {(
-                product.highlights?.[
-                  locale as keyof typeof product.highlights
-                ] || []
-              ).map((h, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-700">
-                  <svg
-                    className="w-5 h-5 text-accent-1-contrast mt-0.5 shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Perfect For */}
-          <div className="p-5" id="detail-perfect-for">
-            <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
-              {t.perfectFor}
-            </h3>
-            <p className="text-gray-700 leading-relaxed">{t.perfectForText}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Preview Section */}
-      <section
-        className="relative px-4 sm:px-6 lg:px-8 py-16 md:py-24 overflow-hidden bg-accent-1"
-        id="interactive"
-      >
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 bg-gradient-to-b from-accent-1/50 via-white to-accent-1/40 -z-10" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-1/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-1/60 rounded-full blur-3xl -z-10" />
-
-        <div className="max-w-7xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-4">
-            <h3 className="text-3xl md:text-5xl font-thin mb-6 text-accent-1-contrast heading">
-              {" "}
-              {locale === "cs" ? "Interaktivní náhled" : "Interactive Preview"}
-            </h3>
-            <p className="text-gray-700 leading-relaxed font-medium">
-              {locale === "cs"
-                ? "K pohybu mezi stránkami využijte navigační tlačítka níže nebo tažení stránek."
-                : "Use the navigation buttons below or drag the pages to move between them."}
-            </p>
-          </div>
-
-          {/* Flipbook Container with enhanced styling */}
-          <div className="relative">
-            {/* Main container with shadow and border */}
-            <div className="relative rounded-2xl overflow-hidden w-full max-w-4xl mx-auto">
-              {/* Decorative corner elements */}
-              <div className="hidden md:absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-accent-1 rounded-tl-2xl opacity-50" />
-              <div className="hidden md:absolute top-0 right-0 w-20 h-20 border-t-4 border-r-4 border-accent-1 rounded-tr-2xl opacity-50" />
-              <div className="hidden md:absolute bottom-0 left-0 w-20 h-20 border-b-4 border-l-4 border-accent-1 rounded-bl-2xl opacity-50" />
-              <div className="hidden md:absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
-
-              {/* PDF Flip Book */}
-              <div
-                id="flipbook-container"
-                className="flex justify-center items-center w-full px-5 py-5"
-              >
-                <PDFFlipBook
-                  locale={locale}
-                  pdfUrl="/assets/merged.pdf"
-                  width={600}
-                  height={800}
-                  className="w-full max-w-full"
+          {/* Right - Details */}
+          <div className="px-4 sm:px-6 lg:px-8 space-y-8 pb-10">
+            {/* Header */}
+            <div>
+              <div className="!hidden inline-flex items-center gap-2 mb-4">
+                <Badge
+                  variant={isPremium ? "premium" : "basic"}
+                  locale={locale as "cs" | "en"}
                 />
+              </div>
+
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-heading leading-tight">
+                {product.names[locale as keyof typeof product.names]}
+              </h1>
+
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {
+                  product.descriptions[
+                    locale as keyof typeof product.descriptions
+                  ]
+                }
+              </p>
+            </div>
+
+            {/* Price & CTA */}
+            <div
+              className="bg-accent-1 border border-accent-1 rounded-2xl p-6 space-y-4"
+              style={{ cornerShape: "bevel" } as any}
+            >
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-bold text-gray-900 font-heading">
+                  {locale === "cs"
+                    ? `${(product.priceCZK / 100).toFixed(0)}`
+                    : `${(product.priceCZK / 100).toFixed(0)}`}
+                </span>
+                <span className="text-2xl text-gray-600">
+                  {locale === "cs" ? "Kč" : "Kč"}
+                  {/* obě teď ukazují Kč, ale jde upravit na dolary nebo eura protože i v nich lze přijímat platba */}
+                </span>
+              </div>
+
+              <BuyButton
+                productId={product.id}
+                locale={locale}
+                variant="primary"
+                className="w-full btn btn-primary text-lg py-4"
+              />
+
+              <p className="text-sm text-gray-500 text-center">
+                {locale === "cs" ? "🔒 Bezpečná platba" : "🔒 Secure payment"}
+              </p>
+              <p className="text-sm text-gray-500 text-center">
+                {locale === "cs"
+                  ? "📍 Kliknutím otevřete mapu Zásilkovny pro výběr místa"
+                  : "📍 Click to open Packeta map and select pickup location"}
+              </p>
+            </div>
+
+            {/* Features */}
+            <div className="p-5" id="detail-what-you-get">
+              <h3 className="text-xl font-bold mb-4 font-heading text-gray-900 flex items-center gap-2">
+                {t.whatYouGet}
+              </h3>
+              <ul className="lowercase space-y-3">
+                {(
+                  product.highlights?.[
+                    locale as keyof typeof product.highlights
+                  ] || []
+                ).map((h, i) => (
+                  <li key={i} className="flex items-start gap-3 text-gray-700">
+                    <svg
+                      className="w-5 h-5 text-accent-1-contrast mt-0.5 shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Perfect For */}
+            <div className="p-5" id="detail-perfect-for">
+              <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
+                {t.perfectFor}
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                {t.perfectForText}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Preview Section */}
+        <section
+          className="relative px-4 sm:px-6 lg:px-8 py-16 md:py-24 overflow-hidden bg-accent-1"
+          id="interactive"
+        >
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 bg-gradient-to-b from-accent-1/50 via-white to-accent-1/40 -z-10" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-1/10 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-1/60 rounded-full blur-3xl -z-10" />
+
+          <div className="max-w-7xl mx-auto">
+            {/* Header Section */}
+            <div className="text-center mb-4">
+              <h3 className="text-3xl md:text-5xl font-thin mb-6 text-accent-1-contrast heading">
+                {" "}
+                {locale === "cs"
+                  ? "Interaktivní náhled"
+                  : "Interactive Preview"}
+              </h3>
+              <p className="text-gray-700 leading-relaxed font-medium">
+                {locale === "cs"
+                  ? "K pohybu mezi stránkami využijte navigační tlačítka níže nebo tažení stránek."
+                  : "Use the navigation buttons below or drag the pages to move between them."}
+              </p>
+            </div>
+
+            {/* Flipbook Container with enhanced styling */}
+            <div className="relative">
+              {/* Main container with shadow and border */}
+              <div className="relative rounded-2xl overflow-hidden w-full max-w-4xl mx-auto">
+                {/* Decorative corner elements */}
+                <div className="hidden md:absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-accent-1 rounded-tl-2xl opacity-50" />
+                <div className="hidden md:absolute top-0 right-0 w-20 h-20 border-t-4 border-r-4 border-accent-1 rounded-tr-2xl opacity-50" />
+                <div className="hidden md:absolute bottom-0 left-0 w-20 h-20 border-b-4 border-l-4 border-accent-1 rounded-bl-2xl opacity-50" />
+                <div className="hidden md:absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-accent-1 rounded-br-2xl opacity-50" />
+
+                {/* PDF Flip Book */}
+                <div
+                  id="flipbook-container"
+                  className="flex justify-center items-center w-full px-5 py-5"
+                >
+                  <PDFFlipBook
+                    locale={locale}
+                    pdfUrl="/assets/merged.pdf"
+                    width={600}
+                    height={800}
+                    className="w-full max-w-full"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Image Gallery */}
-      {/* 
+        {/* Image Gallery */}
+        {/* 
       {product.gallery && product.gallery.length > 0 && (
         <section className="hidden bg-accent-1 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
@@ -413,51 +450,52 @@ export default async function ProductDetailPage({ params }: PageProps) {
       )}
       */}
 
-      {/* Additional Info Section */}
-      {/* Contents list from internal file */}
-      <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="heading text-3xl md:text-5xl font-light text-accent-1-contrast mb-4">
-              {" "}
-              {locale === "cs"
-                ? "Co ve Svatebním deníku naleznete"
-                : "What's inside the Wedding Diary"}
-            </h3>
+        {/* Additional Info Section */}
+        {/* Contents list from internal file */}
+        <section className="px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="heading text-3xl md:text-5xl font-light text-accent-1-contrast mb-4">
+                {" "}
+                {locale === "cs"
+                  ? "Co ve Svatebním deníku naleznete"
+                  : "What's inside the Wedding Diary"}
+              </h3>
 
-            <Divider icon={Heart} />
-          </div>
+              <Divider icon={Heart} />
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 ">
-            {CONTENT[locale].why.list.map((item, i) => (
-              <div key={i} className="p-2">
-                <div className="flex items-center gap-2">
-                  <div className="flex-shrink-0">
-                    <Check className="w-4 h-4 text-accent-1-contrast" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-gray-700 leading-relaxed font-medium">
-                      {item}
-                    </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 ">
+              {CONTENT[locale].why.list.map((item, i) => (
+                <div key={i} className="p-2">
+                  <div className="flex items-center gap-2">
+                    <div className="flex-shrink-0">
+                      <Check className="w-4 h-4 text-accent-1-contrast" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-gray-700 leading-relaxed font-medium">
+                        {item}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Benefits Section */}
-      <BenefitsSection
-        locale={locale}
-        title={
-          locale === "cs"
-            ? "Proč si vybrat svatební deník?"
-            : "Why Choose Wedding Planner?"
-        }
-        background="themed"
-      />
-    </div>
+        {/* Benefits Section */}
+        <BenefitsSection
+          locale={locale}
+          title={
+            locale === "cs"
+              ? "Proč si vybrat svatební deník?"
+              : "Why Choose Wedding Planner?"
+          }
+          background="themed"
+        />
+      </div>
+    </>
   );
 }
 
