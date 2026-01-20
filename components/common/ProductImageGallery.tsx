@@ -34,13 +34,13 @@ export function ProductImageGallery({
 
   const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? allImages.length - 1 : prev - 1
+      prev === 0 ? allImages.length - 1 : prev - 1,
     );
   }, [allImages.length]);
 
   const goToNext = useCallback(() => {
     setCurrentImageIndex((prev) =>
-      prev === allImages.length - 1 ? 0 : prev + 1
+      prev === allImages.length - 1 ? 0 : prev + 1,
     );
   }, [allImages.length]);
 
@@ -60,7 +60,7 @@ export function ProductImageGallery({
           break;
       }
     },
-    [isLightboxOpen, closeLightbox, goToPrevious, goToNext]
+    [isLightboxOpen, closeLightbox, goToPrevious, goToNext],
   );
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export function ProductImageGallery({
             {additionalImages.map((image, index) => (
               <div
                 key={index}
-                className="flex-1 min-w-0 aspect-square border relative cursor-pointer"
+                className="flex-1 min-w-0 aspect-square shadow relative cursor-pointer"
                 id="product-additional-image"
                 onClick={() => openLightbox(index + 1)}
               >
