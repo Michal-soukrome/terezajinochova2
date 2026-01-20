@@ -103,7 +103,7 @@ export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
         {[...cards, ...cards].map((card, i) => (
           <motion.div
             key={i}
-            className="shrink-0 w-60 md:w-72 bg-white rounded-xl shadow-lg p-6 border border-gray-100"
+            className="shrink-0 w-60 md:w-72 bg-white h-fit rounded-xl shadow-lg p-6 border border-gray-100"
             style={{ transform: card.transform }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
