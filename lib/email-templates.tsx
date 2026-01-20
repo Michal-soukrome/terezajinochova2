@@ -32,6 +32,13 @@ interface OrderDetails {
   referralSummary?: string; // Add referral tracking info
 }
 
+// Helper function to determine salutation based on Czech name conventions
+function getSalutation(name: string): string {
+  const firstName = name.split(" ")[0];
+  const isFemale = firstName.endsWith("a");
+  return isFemale ? "Vážená" : "Vážený";
+}
+
 // Customer confirmation email template
 export const CustomerOrderConfirmationEmail = ({
   orderId,
@@ -55,9 +62,10 @@ export const CustomerOrderConfirmationEmail = ({
           max-width: 600px;
           margin: 0 auto;
           padding: 20px;
+          background: #fef7f0;
         }
         .header {
-          background: linear-gradient(135deg, #dcab6f 0%, #a08168 100%);
+          background: #dcab6f;
           color: white;
           padding: 30px;
           text-align: center;
@@ -72,6 +80,8 @@ export const CustomerOrderConfirmationEmail = ({
           background: #ffffff;
           padding: 30px;
           border: 1px solid #e0e0e0;
+          max-width: 600px;
+          margin: 0 auto;
         }
         .order-info {
           background: #f8f9fa;
@@ -131,17 +141,34 @@ export const CustomerOrderConfirmationEmail = ({
       </div>
 
       <div className="content">
-        <p>Vážený/Vážená {customerName},</p>
         <p>
-          velmi si vážím, že jste si vybrali můj svatební deník. Vaše objednávka
-          byla úspěšně přijata a brzy bude zpracována. Těším se, že vám můj
-          deník pomůže zachovat vzpomínky na váš speciální den.
+          {getSalutation(customerName)} {customerName},
+        </p>
+
+        <p>
+          děkuji Vám za Vaši objednávku a důvěru, kterou jste mi výběrem
+          Svatebního deníku dala.
+        </p>
+
+        <p>
+          Objednávka byla úspěšně přijata a v nejbližších dnech ji pro Vás
+          připravím k odeslání.
+        </p>
+
+        <p>
+          Věřím, že Vám Deník bude příjemným průvodcem při plánování svatby a
+          později i krásnou vzpomínkou na jeden z nejdůležitějších dnů Vašeho
+          života.
+        </p>
+
+        <p>
+          S láskou,
+          <br />
+          Tereza
         </p>
 
         <div className="order-info">
-          <h2 style={{ marginTop: 0, color: "#dcab6f" }}>
-            Detail objednávky #{orderId}
-          </h2>
+          <h2 style={{ marginTop: 0, color: "#dcab6f" }}>Detail objednávky</h2>
 
           {items.map((item, index) => (
             <div key={index} className="item">
@@ -198,9 +225,6 @@ export const CustomerOrderConfirmationEmail = ({
             >
               Stáhnout fakturu (PDF)
             </a>
-            <p style={{ margin: "10px 0", fontSize: "14px", color: "#666" }}>
-              Download Invoice (PDF)
-            </p>
           </div>
         )}
 
@@ -245,13 +269,9 @@ export const CustomerOrderConfirmationEmail = ({
         )}
 
         <p style={{ marginTop: "30px" }}>
-          <strong>Co bude dál?</strong>
+          O odeslání objednávky budete informováni e-mailem včetně sledovacího
+          čísla zásilky.
         </p>
-        <ul style={{ paddingLeft: "20px" }}>
-          <li>Vaše objednávka bude zpracována do 2 pracovních dnů</li>
-          <li>Jakmile zásilku odešleme, pošleme vám sledovací číslo</li>
-          <li>Doručení obvykle trvá 2-3 pracovní dny</li>
-        </ul>
 
         <p style={{ marginTop: "30px" }}>
           Pokud máte jakékoli dotazy, neváhejte mě kontaktovat na{" "}
@@ -294,6 +314,7 @@ export const AdminOrderNotificationEmail = ({
           max-width: 600px;
           margin: 0 auto;
           padding: 20px;
+          background: #fef7f0;
         }
         .header {
           background: #dcab6f;
@@ -306,6 +327,8 @@ export const AdminOrderNotificationEmail = ({
           background: #ffffff;
           padding: 30px;
           border: 1px solid #e0e0e0;
+          max-width: 600px;
+          margin: 0 auto;
         }
         .alert {
           background: #fff3cd;

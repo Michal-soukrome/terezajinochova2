@@ -4,6 +4,7 @@ import { Locale, isValidLocale } from "@/lib/i18n";
 import { WEDDINGS } from "@/lib/weddings";
 import WeddingGalleryGrid from "@/components/sections/WeddingGalleryGrid";
 import { GalleryHeader } from "@/components/common/GalleryHeader";
+import { CertificationBadges } from "@/components/common/CertificationBadges";
 
 type Props = {
   params: Promise<{
@@ -50,6 +51,8 @@ export default async function GalleryPage({ params }: Props) {
         <GalleryHeader locale={locale as Locale} />
 
         <WeddingGalleryGrid weddings={WEDDINGS} locale={locale as Locale} />
+
+        <CertificationBadges locale={locale as Locale} />
       </div>
     </main>
   );

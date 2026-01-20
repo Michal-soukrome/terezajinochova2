@@ -125,6 +125,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
             </p>
           </div>
 
+          {/* 
           <div className="max-w-7xl mx-auto mt-5 mb-10" id="stats-inner">
             <div className="">
               <div className="text-center">
@@ -135,6 +136,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
               </div>
             </div>
           </div>
+          */}
 
           <ReviewsCarousel locale={locale} />
         </div>

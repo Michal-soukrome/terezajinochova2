@@ -157,15 +157,42 @@ export async function sendOrderEmails({
  */
 export async function sendTestEmail(toEmail: string) {
   try {
+    // Import the admin email template
+    const { AdminOrderNotificationEmail } = await import("./email-templates");
+
+    // Create mock order data for testing
+    const mockOrderData = {
+      orderId: "TEST-001",
+      customerEmail: "test@example.com",
+      customerName: "Test Customer",
+      items: [
+        {
+          name: "Svatební deník - Premium",
+          quantity: 1,
+          price: 250000, // 2500 CZK in halere
+        },
+      ],
+      subtotal: 250000,
+      shipping: 0,
+      total: 250000,
+      shippingAddress: {
+        name: "Test Customer",
+        line1: "Test Street 123",
+        line2: "",
+        city: "Prague",
+        postal_code: "110 00",
+        country: "Czech Republic",
+      },
+      packetaPickupPoint: undefined,
+      deliveryMethod: "address",
+      referralSummary: undefined,
+    };
+
     const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
       to: toEmail,
-      subject: "Test Email - Tereza Jinochová",
-      html: `
-        <h1>Test Email</h1>
-        <p>This is a test email from Tereza Jinochová website.</p>
-        <p>If you received this, Resend is configured correctly! ✅</p>
-      `,
+      subject: "Test Email - Tereza Jinochová - Admin Template",
+      react: AdminOrderNotificationEmail(mockOrderData),
     });
 
     return { success: true, id: result.data?.id };

@@ -47,8 +47,8 @@ const cards = [
   },
   {
     text: {
-      cs: '"Svatební deník od Terezky mi od začátku dodával pocit, že plánování svatby nemusí být chaos, ale může to být krásná a klidná cesta. Krok po kroku mě provedl vším důležitým - od prvních představ, přes rozpočet a organizaci, až po drobné detaily, na které bych jinak snadno zapomněla."',
-      en: "\"Terezka's wedding diary gave me the feeling from the beginning that wedding planning doesn't have to be chaos, but can be a beautiful and calm journey. Step by step, it guided me through everything important - from initial ideas, through budget and organization, to small details I would otherwise easily forget.\"",
+      cs: '"Svatební deník od Terezky mi od začátku dodával pocit, že plánování svatby nemusí být chaos, ale může to být krásná a klidná cesta. Krok po kroku mě provedl vším důležitým - od prvních představ, přes rozpočet a organizaci, až po drobné detaily, na které bych jinak snadno zapomněla. Moc se mi líbí, jak je deník přehledný, ale zároveň lidský a milý. Není to jen „sešit s úkoly", ale spíš parťák, ke kterému se člověk rád vrací. Vše má své místo, nic se neztratí a člověk má pořád pocit, že má svatbu pod kontrolou. Pokud hledáte pomocníka, který vám ušetří nervy a zároveň si v něm uchováte krásné vzpomínky, můžu ho s klidných svědomím doporučit."',
+      en: "\"Terezka's wedding diary gave me the feeling from the beginning that wedding planning doesn't have to be chaos, but can be a beautiful and calm journey. Step by step, it guided me through everything important - from initial ideas, through budget and organization, to small details I would otherwise easily forget. I really like how clear the diary is, yet human and kind. It's not just a 'task notebook', but rather a companion you like to return to. Everything has its place, nothing gets lost, and you always feel you have your wedding under control. If you're looking for a helper that will save your nerves and at the same time preserve beautiful memories, I can recommend it with a clear conscience.\"",
     },
     name: { cs: "Martina", en: "Martina" },
     date: { cs: "", en: "" },
@@ -56,21 +56,12 @@ const cards = [
   },
   {
     text: {
-      cs: '"Moc se mi líbí, jak je deník přehledný, ale zároveň lidský a milý. Není to jen „sešit s úkoly", ale spíš parťák, ke kterému se člověk rád vrací. Vše má své místo, nic se neztratí a člověk má pořád pocit, že má svatbu pod kontrolou."',
-      en: "\"I really like how clear the diary is, yet human and kind. It's not just a 'task notebook', but rather a companion you like to return to. Everything has its place, nothing gets lost, and you always feel you have your wedding under control.\"",
+      cs: '"Svatební deník mi byl po celou dobu plánování skvělým pomocníkem. Pomohl mi udržet si přehled a zároveň si uchovat emoce a vzpomínky, ke kterým se budu moc ráda vracet. Navíc je jeden z mála, který je opravdu praktický a dává smysl při skutečném plánování svatby."',
+      en: '"The wedding diary was a great helper for me throughout the planning period. It helped me keep an overview and at the same time preserve emotions and memories that I will be happy to return to. Moreover, it is one of the few that is really practical and makes sense in real wedding planning."',
     },
-    name: { cs: "Martina", en: "Martina" },
+    name: { cs: "Kateřina", en: "Kateřina" },
     date: { cs: "", en: "" },
-    transform: "translateY(15px) rotate(-1.5deg)",
-  },
-  {
-    text: {
-      cs: '"Pokud hledáte pomocníka, který vám ušetří nervy a zároveň si v něm uchováte krásné vzpomínky, můžu ho s klidných svědomím doporučit."',
-      en: '"If you\'re looking for a helper that will save your nerves and at the same time preserve beautiful memories, I can recommend it with a clear conscience."',
-    },
-    name: { cs: "Martina", en: "Martina" },
-    date: { cs: "", en: "" },
-    transform: "translateY(-10px) rotate(2deg)",
+    transform: "translateY(5px) rotate(-0.5deg)",
   },
 ];
 
