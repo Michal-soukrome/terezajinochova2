@@ -255,6 +255,32 @@ export default async function ProductDetailPage({ params }: PageProps) {
                   ]
                 }
               </p>
+
+              {/* English version notice */}
+              {locale === "en" && product.englishNotice && (
+                <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center mt-0.5">
+                      <svg
+                        className="w-4 h-4 text-amber-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-amber-800 font-medium">
+                      {product.englishNotice.en}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Price & CTA */}

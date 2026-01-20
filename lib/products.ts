@@ -43,6 +43,12 @@ export interface Product {
     cs: string[];
     en: string[];
   };
+
+  // Special notice for English users about availability
+  englishNotice?: {
+    cs: string;
+    en: string;
+  };
 }
 
 export const PRODUCTS: Record<string, Product> = {
@@ -95,6 +101,10 @@ export const PRODUCTS: Record<string, Product> = {
         "quality processing that will withstand frequent flipping",
       ],
     },
+    englishNotice: {
+      cs: "",
+      en: "The wedding diary is currently only available in Czech (printed version). If you're interested in an English version, please contact me and I'll be happy to discuss the possibilities!",
+    },
   },
 
   premium: {
@@ -138,6 +148,10 @@ export const PRODUCTS: Record<string, Product> = {
         "personal dedication",
         "elegant gift box with delicate tissue paper",
       ],
+    },
+    englishNotice: {
+      cs: "",
+      en: "The wedding diary is currently only available in Czech (printed version). If you're interested in an English version, please contact me and I'll be happy to discuss the possibilities!",
     },
   },
 };
