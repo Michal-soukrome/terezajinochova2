@@ -28,7 +28,7 @@ export class PacketaAPI {
   }
 
   async createShipment(
-    shipmentData: PacketaShipmentData
+    shipmentData: PacketaShipmentData,
   ): Promise<PacketaShipmentResult> {
     // Use the exact XML structure from Packeta documentation
     const xmlBody = `<createPacket>
@@ -49,12 +49,12 @@ export class PacketaAPI {
     try {
       console.log(
         "📦 Creating Packeta shipment for order:",
-        shipmentData.orderNumber
+        shipmentData.orderNumber,
       );
       console.log("📧 API Password length:", this.apiPassword.length);
       console.log(
         "📧 API Password starts with:",
-        this.apiPassword.substring(0, 4)
+        this.apiPassword.substring(0, 4),
       );
 
       const response = await axios.post(this.apiUrl, xmlBody, {
@@ -77,8 +77,28 @@ export class PacketaAPI {
         console.log("✅ Packeta shipment created successfully:", packetId);
         return { success: true, packetId };
       } else {
-        const error =
-          result.response.errors?.[0]?.error?.[0] || "Unknown error";
+        // Parse error from XML response
+        let error = "Unknown error";
+        if (result.response.fault && result.response.fault[0]) {
+          error = result.response.fault[0];
+        }
+        if (result.response.string && result.response.string[0]) {
+          error += ": " + result.response.string[0];
+        }
+        // Add detail if available
+        if (
+          result.response.detail &&
+          result.response.detail[0] &&
+          result.response.detail[0].attributes &&
+          result.response.detail[0].attributes[0] &&
+          result.response.detail[0].attributes[0].fault &&
+          result.response.detail[0].attributes[0].fault[0] &&
+          result.response.detail[0].attributes[0].fault[0].fault &&
+          result.response.detail[0].attributes[0].fault[0].fault[0]
+        ) {
+          error +=
+            " - " + result.response.detail[0].attributes[0].fault[0].fault[0];
+        }
         console.error("❌ Packeta API error:", error);
         return { success: false, error };
       }
@@ -96,7 +116,7 @@ export class PacketaAPI {
 
   async getShipmentLabel(
     packetId: string,
-    format: string = "A6 on A6"
+    format: string = "A6 on A6",
   ): Promise<Buffer | null> {
     const xmlBody = `<packetLabelPdf>
       <apiPassword>${this.apiPassword}</apiPassword>

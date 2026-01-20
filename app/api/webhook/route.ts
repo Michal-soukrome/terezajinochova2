@@ -144,66 +144,123 @@ export async function POST(request: NextRequest) {
 
         const referralSummary = getReferralSummary(referralData);
 
-        // Create Packeta shipment automatically
-        console.log("🚚 Creating Packeta shipment...");
-        const nameParts = customerName.split(" ");
-        const firstName = nameParts[0] || "";
-        const lastName = nameParts.slice(1).join(" ") || "";
+        // Create Packeta shipment automatically (only for Packeta pickup delivery)
+        // Note: deliveryMethod can be "packeta_pickup" or undefined (when no pickup point selected yet)
+        if (
+          deliveryMethod === "packeta_pickup" &&
+          packetaPickupPoint?.id &&
+          packetaPickupPoint.id !== "0"
+        ) {
+          console.log("🚚 Creating Packeta shipment...");
+          console.log("📦 Delivery method:", deliveryMethod);
+          console.log("📍 Pickup point ID:", packetaPickupPoint.id);
+          console.log("📍 Pickup point name:", packetaPickupPoint.name);
 
-        // Get product weight from line items
-        let packageWeight = 0.5; // Default 500g
-        if (lineItems.length > 0) {
-          // Find the product in our PRODUCTS catalog by matching Stripe price ID
-          for (const item of lineItems) {
-            const stripePriceId = item.price?.id;
-            if (stripePriceId) {
-              // Find product by stripe price ID
-              const productKey = Object.keys(PRODUCTS).find(
-                (key) => PRODUCTS[key].stripePriceId === stripePriceId,
-              );
-              if (productKey) {
-                const product = PRODUCTS[productKey];
-                const itemWeight = product.weight || 0.5;
-                packageWeight += itemWeight * (item.quantity || 1);
+          // Check if API password is configured
+          if (!process.env.PACKETA_API_PASSWORD) {
+            console.error(
+              "❌ PACKETA_API_PASSWORD not configured in environment variables!",
+            );
+            console.error(
+              "⚠️ Skipping Packeta shipment creation - please configure the API password in Vercel",
+            );
+          } else {
+            const nameParts = customerName.split(" ");
+            const firstName = nameParts[0] || "";
+            const lastName = nameParts.slice(1).join(" ") || "";
+
+            // Get product weight from line items
+            let packageWeight = 0.5; // Default 500g
+            if (lineItems.length > 0) {
+              // Find the product in our PRODUCTS catalog by matching Stripe price ID
+              for (const item of lineItems) {
+                const stripePriceId = item.price?.id;
+                if (stripePriceId) {
+                  // Find product by stripe price ID
+                  const productKey = Object.keys(PRODUCTS).find(
+                    (key) => PRODUCTS[key].stripePriceId === stripePriceId,
+                  );
+                  if (productKey) {
+                    const product = PRODUCTS[productKey];
+                    const itemWeight = product.weight || 0.5;
+                    packageWeight += itemWeight * (item.quantity || 1);
+                  }
+                }
               }
             }
-          }
-        }
 
-        const packetaShipmentData = {
-          orderNumber: session.id,
-          customerName: firstName,
-          customerSurname: lastName,
-          customerEmail: customerEmail,
-          customerPhone: fullSession.customer_details?.phone || "",
-          packetaAddressId: parseInt(packetaPickupPoint?.id || "0"),
-          packageValue: total,
-          weight: packageWeight,
-          codAmount: 0, // No COD for now
-        };
+            // Create a shorter order number (Packeta max: 36 chars, Stripe session ID: 73 chars)
+            // Format: ORDER-timestamp-last8chars (e.g., ORDER-1768895581-fmdKUe = 29 chars)
+            const timestamp = Math.floor(Date.now() / 1000); // Unix timestamp
+            const sessionSuffix = session.id.slice(-8); // Last 8 chars of session ID
+            const shortOrderNumber = `ORDER-${timestamp}-${sessionSuffix}`;
 
-        const packetaResult =
-          await packetaAPI.createShipment(packetaShipmentData);
+            const packetaShipmentData = {
+              orderNumber: shortOrderNumber,
+              customerName: firstName,
+              customerSurname: lastName,
+              customerEmail: customerEmail,
+              customerPhone: fullSession.customer_details?.phone || "",
+              packetaAddressId: parseInt(packetaPickupPoint.id),
+              packageValue: total,
+              weight: packageWeight,
+              codAmount: 0, // No COD for now
+            };
 
-        if (packetaResult.success) {
-          console.log("✅ Packeta shipment created:", packetaResult.packetId);
+            console.log("📦 Packeta shipment data:", {
+              stripeSessionId: session.id,
+              packetaOrderNumber: packetaShipmentData.orderNumber,
+              orderNumberLength: packetaShipmentData.orderNumber.length,
+              customerName: packetaShipmentData.customerName,
+              customerSurname: packetaShipmentData.customerSurname,
+              packetaAddressId: packetaShipmentData.packetaAddressId,
+              weight: packetaShipmentData.weight,
+            });
 
-          // Optionally generate label immediately
-          if (packetaResult.packetId) {
-            const labelPdf = await packetaAPI.getShipmentLabel(
-              packetaResult.packetId,
-            );
-            if (labelPdf) {
-              console.log("📄 Shipment label generated successfully");
-              // You could save this PDF or email it to yourself
+            const packetaResult =
+              await packetaAPI.createShipment(packetaShipmentData);
+
+            if (packetaResult.success) {
+              console.log(
+                "✅ Packeta shipment created:",
+                packetaResult.packetId,
+              );
+
+              // Optionally generate label immediately
+              if (packetaResult.packetId) {
+                const labelPdf = await packetaAPI.getShipmentLabel(
+                  packetaResult.packetId,
+                );
+                if (labelPdf) {
+                  console.log("📄 Shipment label generated successfully");
+                  // You could save this PDF or email it to yourself
+                }
+              }
+            } else {
+              console.error(
+                "❌ Failed to create Packeta shipment:",
+                packetaResult.error,
+              );
+              console.error("📦 Shipment data that failed:", {
+                orderNumber: packetaShipmentData.orderNumber,
+                packetaAddressId: packetaShipmentData.packetaAddressId,
+                customerEmail: packetaShipmentData.customerEmail,
+              });
+              // Continue with email sending even if Packeta creation fails
             }
           }
         } else {
-          console.error(
-            "❌ Failed to create Packeta shipment:",
-            packetaResult.error,
-          );
-          // Continue with email sending even if Packeta creation fails
+          console.log("ℹ️ Skipping Packeta shipment creation:", {
+            deliveryMethod,
+            hasPickupPoint: !!packetaPickupPoint?.id,
+            pickupPointId: packetaPickupPoint?.id,
+            reason:
+              deliveryMethod !== "packeta_pickup"
+                ? `Not a Packeta pickup delivery (method: ${deliveryMethod || "none"})`
+                : !packetaPickupPoint?.id
+                  ? "No pickup point ID found"
+                  : "Pickup point ID is 0 or invalid",
+          });
         }
 
         // Send emails to customer and admin
