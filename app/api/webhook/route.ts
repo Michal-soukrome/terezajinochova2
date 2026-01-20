@@ -199,6 +199,11 @@ export async function POST(request: NextRequest) {
             // Convert from cents to whole CZK (e.g., 84900 cents = 849 CZK)
             const totalInCZK = Math.round(total / 100);
 
+            console.log("💰 Price conversion check:", {
+              stripeTotal_cents: total,
+              convertedTo_CZK: totalInCZK,
+            });
+
             const packetaShipmentData = {
               orderNumber: shortOrderNumber,
               customerName: firstName,
@@ -218,6 +223,7 @@ export async function POST(request: NextRequest) {
               customerName: packetaShipmentData.customerName,
               customerSurname: packetaShipmentData.customerSurname,
               packetaAddressId: packetaShipmentData.packetaAddressId,
+              packageValue: packetaShipmentData.packageValue, // NOW LOGGED!
               weight: packetaShipmentData.weight,
             });
 
