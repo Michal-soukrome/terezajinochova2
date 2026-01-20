@@ -1,6 +1,7 @@
 "use client";
 
 import TranslatedLink from "../navigation/TranslatedLink";
+import { LanguageSwitcher } from "../ui/LanguageSwitcher";
 import { Locale } from "@/lib/i18n";
 import { NAV } from "@/lib/headerData";
 import {
@@ -30,7 +31,7 @@ interface DesktopNavProps {
 
 export function DesktopNav({ locale, onClose }: DesktopNavProps) {
   const navItems = Object.values(NAV[locale]).filter(
-    (item) => item.href !== "/privacy"
+    (item) => item.href !== "/privacy",
   );
 
   return (

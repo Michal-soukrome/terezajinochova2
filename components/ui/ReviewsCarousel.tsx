@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+interface ReviewsCarouselProps {
+  locale: string;
+}
 
 interface ReviewsCarouselProps {
   locale: string;
@@ -63,49 +66,67 @@ const cards = [
     date: { cs: "", en: "" },
     transform: "translateY(5px) rotate(-0.5deg)",
   },
+  // Special card for English users about diary availability
+  {
+    text: {
+      cs: "",
+      en: "The wedding diary is currently only available in Czech (printed version). If you're interested in an English version, please contact me and I'll be happy to discuss the possibilities!",
+    },
+    name: { cs: "", en: "Tereza" },
+    date: { cs: "", en: "" },
+    transform: "translateY(-10px) rotate(0.5deg)",
+    isInfo: true,
+  },
 ];
 
 export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef<number>(0);
+  const positionRef = useRef(0);
 
-  const scrollByAmount = (amount: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    el.scrollTo({
-      left: el.scrollLeft + amount,
-      behavior: "smooth",
-    });
-  };
-
+  // Simple auto-scroll
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const scroll = () => {
+      if (!containerRef.current || isHovered) return;
 
-    const handleScroll = () => {
-      const max = el.scrollWidth / 2;
-      if (el.scrollLeft >= max) {
-        el.scrollLeft -= max;
-      } else if (el.scrollLeft <= 1) {
-        el.scrollLeft += max;
+      positionRef.current += 0.5; // Slow, smooth movement
+      containerRef.current.scrollLeft = positionRef.current;
+
+      // Reset position when reaching the end of first set
+      const cardWidth = 288 + 32; // w-72 + gap
+      const resetPoint = cardWidth * cards.length;
+      if (positionRef.current >= resetPoint) {
+        positionRef.current = 0;
+        containerRef.current.scrollLeft = 0;
       }
+
+      animationRef.current = requestAnimationFrame(scroll);
     };
 
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
+    animationRef.current = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovered]);
 
   return (
-    <div className="relative">
-      <motion.div
+    <div className="relative ">
+      <div
         ref={containerRef}
-        className="flex gap-8 py-12 px-4 overflow-x-auto overscroll-contain scrollbar-hide"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="flex gap-8 py-12 px-8 md:px-16 overflow-x-auto scrollbar-hide"
       >
-        {[...cards, ...cards].map((card, i) => (
+        {/* Triple the cards for seamless infinite scroll */}
+        {[...cards, ...cards, ...cards].map((card, i) => (
           <motion.div
             key={i}
             className="shrink-0 w-60 md:w-72 bg-white h-fit rounded-xl shadow-lg p-6 border border-gray-100"
             style={{ transform: card.transform }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <div className="flex items-center mb-4">
               <div className="flex text-accent-4">
@@ -132,26 +153,6 @@ export function ReviewsCarousel({ locale }: ReviewsCarouselProps) {
             </div>
           </motion.div>
         ))}
-      </motion.div>
-      {/* BUTTONS */}
-      <div className="flex justify-center gap-4 pt-8">
-        <button
-          onClick={() => scrollByAmount(-300)}
-          className="p-4 rounded-full cursor-pointer bg-accent-1-contrast text-accent-1"
-        >
-          <span className="text-accent-1">
-            <ChevronRight className="w-4 h-4 rotate-180" />
-          </span>
-        </button>
-
-        <button
-          onClick={() => scrollByAmount(300)}
-          className="p-4 rounded-full cursor-pointer bg-accent-1-contrast text-accent-1"
-        >
-          <span className="text-accent-1">
-            <ChevronRight className="w-4 h-4" />
-          </span>
-        </button>
       </div>
     </div>
   );

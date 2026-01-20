@@ -112,7 +112,7 @@ export default function HomeContent({ locale }: HomeContentProps) {
       {/* reviews, offset carousel with horizontal scroll */}
       <section className="bg-accent-1 px-0 py-16 md:py-24" id="reviews">
         <div className="w-full" id="reviews-inner">
-          <div className="px-4 sm:px-6 lg:px-8 text-center ">
+          <div className="px-4 sm:px-6 lg:px-8 text-center mb-5">
             <h3 className="text-3xl font-bold text-gray-900 mb-4 font-heading">
               {locale === "cs"
                 ? "Recenze spokojených svatebčanů"

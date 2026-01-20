@@ -124,8 +124,8 @@ export function Header({ locale }: HeaderProps) {
         if (!el) return;
         const focusable = Array.from(
           el.querySelectorAll<HTMLElement>(
-            "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])"
-          )
+            "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])",
+          ),
         ).filter((f) => f.offsetParent !== null);
         if (focusable.length === 0) {
           e.preventDefault();
@@ -196,7 +196,13 @@ export function Header({ locale }: HeaderProps) {
         </Link>
 
         {/* Desktop nav */}
-        <DesktopNav locale={locale} onClose={() => setOpen(false)} />
+        <div className="hidden md:flex items-center gap-4">
+          <DesktopNav locale={locale} onClose={() => setOpen(false)} />
+          <LanguageSwitcher
+            mode="dropdown"
+            onLanguageChange={() => setOpen(false)}
+          />
+        </div>
         {/* Hamburger visible on all screen sizes */}
         <button
           ref={closeButtonRef}
