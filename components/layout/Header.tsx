@@ -196,7 +196,7 @@ export function Header({ locale }: HeaderProps) {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex h-full items-center gap-4">
           <DesktopNav locale={locale} onClose={() => setOpen(false)} />
           <LanguageSwitcher
             mode="dropdown"

@@ -184,7 +184,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
     },
     offers: {
       "@type": "Offer",
-      price: (product.priceCZK / 100).toFixed(2),
+      price: product.priceCZK.toFixed(2),
       priceCurrency: "CZK",
       availability: "https://schema.org/InStock",
       seller: {
@@ -290,9 +290,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             >
               <div className="flex items-baseline gap-2">
                 <span className="text-5xl font-bold text-gray-900 font-heading">
-                  {locale === "cs"
-                    ? `${(product.priceCZK / 100).toFixed(0)}`
-                    : `${(product.priceCZK / 100).toFixed(0)}`}
+                  {product.priceCZK}
                 </span>
                 <span className="text-2xl text-gray-600">
                   {locale === "cs" ? "Kč" : "Kč"}

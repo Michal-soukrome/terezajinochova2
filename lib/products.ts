@@ -22,8 +22,7 @@ export interface Product {
     en: string;
   };
 
-  // Cena pro zobrazení (Stripe řeší reálnou cenu)
-  // zobrazuje se cena v centech/halířích (?)
+  // Cena pro zobrazení v CZK (Stripe řeší reálnou cenu přes stripePriceId)
   priceCZK: number;
 
   // Whether this product requires shipping
@@ -68,7 +67,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "A practical wedding diary for modern couples — checklists, budget templates and space for your favorite memories.",
     },
 
-    priceCZK: 84900,
+    priceCZK: 849,
     requiresShipping: true,
     weight: 0.8, // 800g wedding diary
     image: "/assets/diary/basic0.jpg",
@@ -123,7 +122,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Premium choice for those who want to give not only the diary, but also a special moment – a beautiful memory that delights from the moment of unwrapping and guides the bride through the entire period of wedding preparations.",
     },
 
-    priceCZK: 94900,
+    priceCZK: 949,
     requiresShipping: true,
     weight: 1.2, // 1.2kg with gift box
     image: "/assets/diary/premium.jpg",

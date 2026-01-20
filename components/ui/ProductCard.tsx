@@ -93,7 +93,7 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           {/* Price */}
           <div className="pt-2">
             <p className="text-4xl font-bold text-gray-900 font-heading">
-              {(product.priceCZK / 100).toFixed(0)} Kč
+              {product.priceCZK} Kč
             </p>
           </div>
         </div>
