@@ -195,6 +195,10 @@ export async function POST(request: NextRequest) {
             const sessionSuffix = session.id.slice(-8); // Last 8 chars of session ID
             const shortOrderNumber = `ORDER-${timestamp}-${sessionSuffix}`;
 
+            // Stripe amounts are in cents, but Packeta expects CZK
+            // Convert from cents to whole CZK (e.g., 84900 cents = 849 CZK)
+            const totalInCZK = Math.round(total / 100);
+
             const packetaShipmentData = {
               orderNumber: shortOrderNumber,
               customerName: firstName,
@@ -202,7 +206,7 @@ export async function POST(request: NextRequest) {
               customerEmail: customerEmail,
               customerPhone: fullSession.customer_details?.phone || "",
               packetaAddressId: parseInt(packetaPickupPoint.id),
-              packageValue: total,
+              packageValue: totalInCZK, // Converted from cents to CZK
               weight: packageWeight,
               codAmount: 0, // No COD for now
             };
