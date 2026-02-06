@@ -21,14 +21,21 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
 
-  return generatePageMetadata(
+  const metadata = generatePageMetadata(
     locale,
     "",
     "Váš svatební plánovač | Tereza Jinochová",
     "Your Wedding Planner | Tereza Jinochová",
     "Naplánujte si svůj svatební den s lehkostí a radostí",
-    "Plan your wedding day with ease and joy"
+    "Plan your wedding day with ease and joy",
   );
+
+  return {
+    ...metadata,
+    other: {
+      "facebook-domain-verification": "f5hfjcphd3mpuz3k721j2fcuw",
+    },
+  };
 }
 
 export default async function HomePage({ params }: PageProps) {
