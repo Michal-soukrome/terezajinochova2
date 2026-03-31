@@ -206,7 +206,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
         ? "Skvělý pomocník při plánování - vše na jednom místě a přehledné."
         : "An amazing planner — everything in one place, simple and elegant.",
     features: locale === "cs" ? "Funkce" : "Features",
-    perfectFor: locale === "cs" ? "Pro koho je deník určen" : "Perfect for",
+    perfectFor:
+      locale === "cs"
+        ? isPremium
+          ? "Proč zvolit dárkové balení"
+          : "Pro koho je deník určen"
+        : isPremium
+        ? "Why choose gift packaging"
+        : "Perfect for",
     perfectForText:
       locale === "cs"
         ? "Svatební deník je ideální pro páry, které chtějí mít svatbu zorganizovanou a nezapomenout na žádný detail."
@@ -349,9 +356,46 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <h3 className="text-xl font-bold mb-3 font-heading text-gray-900">
                 {t.perfectFor}
               </h3>
-              <p className="text-gray-700 leading-relaxed">
-                {t.perfectForText}
-              </p>
+              {isPremium ? (
+                <ul className="space-y-2 text-gray-700 leading-relaxed">
+                  {(locale === "cs"
+                    ? [
+                        "Okamžitý „wow efekt“ při rozbalení",
+                        "Ideální dárek k zásnubám nebo rozlučce se svobodou",
+                        "Luxusní a vkusné provedení",
+                        "Připraveno rovnou k darování",
+                      ]
+                    : [
+                        "Instant 'wow factor' when unwrapping",
+                        "Ideal gift for engagements or bachelorette party",
+                        "Luxurious and tasteful presentation",
+                        "Ready to give",
+                      ]
+                  ).map((point, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-gray-700"
+                    >
+                      <svg
+                        className="w-5 h-5 text-accent-1-contrast mt-0.5 shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-700 leading-relaxed">
+                  {t.perfectForText}
+                </p>
+              )}
             </div>
           </div>
         </section>

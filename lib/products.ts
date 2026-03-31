@@ -59,7 +59,7 @@ export const PRODUCTS: Record<string, Product> = {
     },
     stripePriceId: process.env.STRIPE_PRICE_BASIC!,
     names: {
-      cs: "Svatební deník – základní",
+      cs: "Svatební deník – základní balení",
       en: "Wedding diary – basic",
     },
     descriptions: {
@@ -88,16 +88,16 @@ export const PRODUCTS: Record<string, Product> = {
       cs: [
         "elegantní a přehledné rozvržení stránek",
         "prostor pro vlastní poznámky, checklisty i fotografie",
-        "jemný a moderní design, který potěší oko",
-        "ideální dárek pro sebe nebo kamarádku, která se právě zasnoubila",
-        "kvalitní zpracování, které vydrží časté listování",
+        "odpovědi na nejčastější otázky, které během příprav přirozeně přicházejí",
+        "jemný a moderní design, který vás bude bavit otevírat znovu a znovu",
+        "kvalitní zpracování, které vydrží celé období plánování i uchování vzpomínek",
       ],
       en: [
         "elegant and clear page layout",
         "space for personal notes, checklists and photos",
-        "delicate and modern design that pleases the eye",
-        "ideal gift for yourself or a friend who just got engaged",
-        "quality processing that will withstand frequent flipping",
+        "answers to the most common questions that naturally arise during preparations",
+        "delicate and modern design that you'll enjoy opening again and again",
+        "quality processing that will withstand the entire planning period and preservation of memories",
       ],
     },
     englishNotice: {
@@ -114,7 +114,7 @@ export const PRODUCTS: Record<string, Product> = {
     },
     stripePriceId: process.env.STRIPE_PRICE_PREMIUM!,
     names: {
-      cs: "Svatební deník – prémiový",
+      cs: "Svatební deník – prémiové balení",
       en: "Wedding diary – premium",
     },
     descriptions: {
@@ -122,7 +122,7 @@ export const PRODUCTS: Record<string, Product> = {
       en: "Premium choice for those who want to give not only the diary, but also a special moment – a beautiful memory that delights from the moment of unwrapping and guides the bride through the entire period of wedding preparations.",
     },
 
-    priceCZK: 949,
+    priceCZK: 1190,
     requiresShipping: true,
     weight: 1.2, // 1.2kg with gift box
     image: "/assets/diary/premium.jpg",
@@ -133,19 +133,24 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     highlights: {
       cs: [
-        "totožný obsah jako v základní verzi",
-        "osobní věnování",
-        "elegantní dárková krabička s jemným hedvábným papírem",
-        "Cenné rady pro uspořádání vašeho svatebního dne",
-        "Praktické checklisty a přehledné kontrolní seznamy",
-        "Šablony rozpočtu a seznam dodavatelů",
-        "Prostor pro poznámky a vzpomínky na celý život",
-        "195 stran promyšleného plánování a inspirace",
+    "kompletní obsah Svatebního deníku včetně všech plánovacích částí",
+    "osobní věnování, které dodá dárku jedinečný význam",
+    "elegantní a přehledné rozvržení stránek",
+    "elegantní dárkové balení s jemnými detaily připravené k okamžitému předání",
+    "prostor pro vlastní poznámky, checklisty, rozpočet i fotografie",
+    "odpovědi na nejčastější otázky, které během příprav přirozeně přicházejí",
+    "jemný a moderní design, který vás bude bavit otevírat znovu a znovu",
+    "kvalitní zpracování, které vydrží celé období plánování i uchování vzpomínek"
       ],
       en: [
-        "identical content as in the basic version",
-        "personal dedication",
-        "elegant gift box with delicate tissue paper",
+    "complete content of the Wedding diary including all planning sections",
+    "personal dedication that adds unique meaning to the gift",
+    "elegant gift packaging with delicate details ready for immediate presentation",
+    "elegant and clear page layout",
+    "space for personal notes, checklists, budget and photos",
+    "answers to the most common questions that naturally arise during preparations",
+    "delicate and modern design that you'll enjoy opening again and again",
+    "quality processing that will withstand the entire planning period and preservation of memories"
       ],
     },
     englishNotice: {
